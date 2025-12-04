@@ -1,0 +1,8 @@
+denv_name="first_histogram_analysis"
+denv_image="python:3.11"
+denv_shell="/bin/bash -i"
+denv_mounts=""
+denv_env_var_copy_all="true"
+denv_env_var_copy=""
+denv_env_var_set=""
+denv_network="true"
