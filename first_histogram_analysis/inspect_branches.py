@@ -1,10 +1,13 @@
-# inspect_branches.py
 import uproot
 
-with uproot.open("output.root") as f:
+with uproot.open("hits_only.root") as f:
     print("Keys at top level:", f.keys())
+    obj = f["LDMX_Events"]
+    print("Class of LDMX_Events:", type(obj))
 
-    tree = f["LDMX_Events"]
-    print("\nBranches / fields in LDMX_Events:")
-    for k in tree.keys():
-        print("  ", k)
+    if isinstance(obj, uproot.TTree):
+        tree = obj
+        print("Number of entries:", tree.num_entries)
+        print("Branch names:", tree.keys())
+    else:
+        print("LDMX_Events is not a TTree")
