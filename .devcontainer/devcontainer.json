@@ -6,6 +6,7 @@
   "remoteEnv": {
     "PYTHONPATH": "/usr/local/python:${PYTHONPATH}"
   },
+  "postCreateCommand": "echo 'source /workspaces/mpetren-msceng-ldmx/.venv/bin/activate' >> ~/.bashrc",
   "customizations": {
     "vscode": {
       "extensions": [
