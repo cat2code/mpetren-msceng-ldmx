@@ -6,6 +6,8 @@ Write reco-level collections to a ROOT file.
 
 Physics context:
 Fixed-target electron-beam missing-momentum experiment (LDMX).
+
+fire make_1e.py --nevents 100 --out 1e_test.root
 '''
 
 
@@ -51,6 +53,5 @@ p.sequence = [
     ecal_digi.EcalRecProducer(),
     hcal_digi.HcalDigiProducer(),
     hcal_digi.HcalRecProducer(),
+    # cluestuff here
 ]
-
-# p.pause()

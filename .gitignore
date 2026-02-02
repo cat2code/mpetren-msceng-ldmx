@@ -1,0 +1,28 @@
+# --- virtual environments ---
+.venv/
+venv/
+.env/
+
+# --- python cache / compiled ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+# --- packaging / build ---
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# --- notebooks ---
+.ipynb_checkpoints/
+
+# --- editor / OS ---
+.vscode/
+.DS_Store
+
+# --- logs ---
+*.log
+
+# --- LDMX / ROOT outputs (recommended) ---
+*.root
