@@ -1,7 +1,11 @@
-# --- virtual environments ---
+# Python virtual environments
 .venv/
-venv/
-.env/
+.venv-*/
+.venv-analysis/
+
+# Jupyter
+.ipynb_checkpoints/
+EOF
 
 # --- python cache / compiled ---
 __pycache__/
@@ -14,8 +18,6 @@ dist/
 *.egg-info/
 .eggs/
 
-# --- notebooks ---
-.ipynb_checkpoints/
 
 # --- editor / OS ---
 .vscode/
@@ -26,3 +28,7 @@ dist/
 
 # --- LDMX / ROOT outputs (recommended) ---
 *.root
+
+# Upstream reference repos (do not track)
+external/ldmx-sw/
+external/ci-data/

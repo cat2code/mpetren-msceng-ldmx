@@ -1,12 +1,12 @@
 {
   "name": "LDMX",
-  "image": "ldmx/pro:v4.0.1",
+  "image": "ldmx/pro:v4.5.9",
   "workspaceFolder": "/workspaces/mpetren-msceng-ldmx",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/mpetren-msceng-ldmx,type=bind",
   "remoteEnv": {
     "PYTHONPATH": "/usr/local/python:${PYTHONPATH}"
   },
-  "postCreateCommand": "echo 'source /workspaces/mpetren-msceng-ldmx/.venv/bin/activate' >> ~/.bashrc",
+  "postCreateCommand": "bash -lc 'set -e; apt-get update; apt-get install -y python3.12-venv python3-pip; LINE=\"if [ -f /workspaces/mpetren-msceng-ldmx/.venv-analysis/bin/activate ]; then source /workspaces/mpetren-msceng-ldmx/.venv-analysis/bin/activate; fi\"; grep -qxF \"$LINE\" ~/.bashrc || echo \"$LINE\" >> ~/.bashrc'",
   "customizations": {
     "vscode": {
       "extensions": [
