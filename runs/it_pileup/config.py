@@ -13,8 +13,9 @@ thisPassName="overlay"
 p=ldmxcfg.Process(thisPassName)
 
 det = 'ldmx-det-v15-8gev'
-p.run = int(os.environ['LDMX_RUN_NUMBER'])
-p.maxEvents = int(os.environ['LDMX_NUM_EVENTS']) // 2
+
+p.run = 10 #int(os.environ['LDMX_RUN_NUMBER'])
+p.maxEvents = 1 #int(os.environ['LDMX_NUM_EVENTS']) // 2
 
 # Load the full tracking sequance
 from LDMX.Tracking import full_tracking_sequence
@@ -23,7 +24,7 @@ from LDMX.Recon.overlay import OverlayProducer
 overlay=OverlayProducer('pileup.root')
 overlay.sim_passname = simPassName                  #sim input event pass name
 overlay.overlay_passname = pileupFilePassName    #pileup input event pass name
-
+overlay.tracker_collections.extend(["EcalScoringPlaneHits"])
 p.sequence = [overlay]
 
 # ECal geometry nonsense
@@ -256,3 +257,6 @@ p.sequence.extend([
 p.inputFiles = ['ecal_pn.root']
 p.outputFiles= ['events.root']
 p.histogramFile = 'hist.root'
+
+# for verbose printout
+p.pause()
