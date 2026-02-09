@@ -259,4 +259,4 @@ p.outputFiles= ['events.root']
 p.histogramFile = 'hist.root'
 
 # for verbose printout
-p.pause()
+# p.pause()
