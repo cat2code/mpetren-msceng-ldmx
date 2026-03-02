@@ -1,0 +1,64 @@
+# =========================
+# OS / Shell junk
+# =========================
+.bashrc
+.bash_logout
+.profile
+.DS_Store
+
+# =========================
+# Python virtual environments
+# =========================
+.venv/
+.venv-*/
+.venv-analysis/
+.env/
+
+# =========================
+# Python cache / compiled
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# =========================
+# Build / packaging
+# =========================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Dev / IDE
+# =========================
+.denv/
+.vscode/
+
+# =========================
+# HEP / LDMX generated data
+# =========================
+*.root
+*.hepmc
+*.slcio
+
+runs/**/output/
+runs/**/data/
+runs/**/tmp/
+
+# =========================
+# External upstream repos
+# =========================
+external/ldmx-sw/
+external/ci-data/
