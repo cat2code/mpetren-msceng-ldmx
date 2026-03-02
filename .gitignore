@@ -1,34 +1,64 @@
+# =========================
+# OS / Shell junk
+# =========================
+.bashrc
+.bash_logout
+.profile
+.DS_Store
+
+# =========================
 # Python virtual environments
+# =========================
 .venv/
 .venv-*/
 .venv-analysis/
+.env/
 
-# Jupyter
-.ipynb_checkpoints/
-EOF
-
-# --- python cache / compiled ---
+# =========================
+# Python cache / compiled
+# =========================
 __pycache__/
 *.py[cod]
 *$py.class
 
-# --- packaging / build ---
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# =========================
+# Build / packaging
+# =========================
 build/
 dist/
 *.egg-info/
 .eggs/
 
-
-# --- editor / OS ---
-.vscode/
-.DS_Store
-
-# --- logs ---
+# =========================
+# Logs
+# =========================
 *.log
 
-# --- LDMX / ROOT outputs (recommended) ---
-*.root
+# =========================
+# Dev / IDE
+# =========================
+.denv/
+.vscode/
 
-# Upstream reference repos (do not track)
+# =========================
+# HEP / LDMX generated data
+# =========================
+*.root
+*.hepmc
+*.slcio
+
+runs/**/output/
+runs/**/data/
+runs/**/tmp/
+
+# =========================
+# External upstream repos
+# =========================
 external/ldmx-sw/
 external/ci-data/
