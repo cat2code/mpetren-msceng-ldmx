@@ -60,5 +60,6 @@ runs/**/tmp/
 # =========================
 # External upstream repos
 # =========================
+external/
 external/ldmx-sw/
 external/ci-data/
