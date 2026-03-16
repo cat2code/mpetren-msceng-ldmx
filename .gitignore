@@ -63,3 +63,4 @@ runs/**/tmp/
 external/ldmx-sw
 external/ldmx-sw-new/
 external/ci-data/
+external/*
