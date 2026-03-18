@@ -4,4 +4,8 @@ https://chatgpt.com/g/g-p-691ef59786788191a75bc490283719f0-ldmx-software-assista
 
 
 #### Trying to make a slice here
+
 ROOT -> awkward arrays -> padded tensor -> tiny NN forward pass
+
+see smoke test in root_to_tensor_smoke.py
+
