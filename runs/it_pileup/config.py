@@ -14,8 +14,8 @@ this_pass_name="overlay"
 p=ldmxcfg.Process(this_pass_name)
 
 det = 'ldmx-det-v15-8gev'
-p.run = 10 #int(os.environ['LDMX_RUN_NUMBER'])
-p.max_events = 1 #int(os.environ['LDMX_NUM_EVENTS']) // 2
+p.run = int(os.environ['LDMX_RUN_NUMBER'])
+p.max_events = int(os.environ['LDMX_NUM_EVENTS']) // 2
 
 # Load the full tracking sequance
 from LDMX.Recon.overlay import OverlayProducer
@@ -25,6 +25,7 @@ from LDMX.Tracking import full_tracking_sequence
 overlay=OverlayProducer('pileup.root')
 overlay.sim_passname = sim_pass_name                  #sim input event pass name
 overlay.overlay_passname = pileup_file_pass_name    #pileup input event pass name
+
 overlay.tracker_collections.extend(["EcalScoringPlaneHits"])
 p.sequence = [overlay]
 
