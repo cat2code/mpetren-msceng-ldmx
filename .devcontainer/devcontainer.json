@@ -1,6 +1,6 @@
 {
   "name": "LDMX",
-  "image": "ldmx/pro:v4.6.1",
+  "image": "ldmx/pro:v4.6.5",
   "runArgs": ["--platform=linux/amd64"],
   "workspaceFolder": "/workspaces/mpetren-msceng-ldmx",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/mpetren-msceng-ldmx,type=bind",
