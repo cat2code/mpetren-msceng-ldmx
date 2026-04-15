@@ -1,3 +1,22 @@
+'''
+Builds graph connectivity from node positions.
+
+This module provides utilities to construct edge indices for graph neural
+networks. Given node coordinates (e.g. detector hit positions), it creates
+a graph by connecting each node to its k nearest neighbors.
+
+Input:
+    pos : Tensor of shape [N, 3] containing node positions
+
+Output:
+    edge_index : Tensor of shape [2, E] defining graph edges
+
+Notes:
+- This module is geometry-only: it does not know about physics, labels,
+  or datasets.
+- It can be replaced by PyG utilities (e.g. knn_graph) later.
+'''
+
 import torch
 
 

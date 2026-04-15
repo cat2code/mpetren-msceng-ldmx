@@ -9,7 +9,7 @@ This script:
     5. Evaluates performance on a validation split
 
 Pipeline:
-    ROOT → tensorization → graph building → PyG Data → GNN → loss → training
+ROOT → tensorization → graph building → PyG Data → GNN → loss → training
 
 Assumptions:
     - read_events(...) returns iterable events
@@ -66,8 +66,10 @@ def small_io_test():
     print(events[0]["x"].shape)
     print(events[0]["energy"][:5])
 
-def training_test(): # Test 
+def training_test():  # Test
     root_path = Path("data/overlay_main10_pileup20_00/events.root")
+    output_dir = Path("outputs/tiny_gnn")
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     events = read_events(root_path, max_events=100)
     dataset = [event_to_data(event) for event in events]
@@ -83,6 +85,9 @@ def training_test(): # Test
 
     model = SimpleGNN(in_dim=dataset[0].x.shape[1], hidden_dim=32, out_dim=2).to(device)
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
+
+    train_losses = []
+    val_accs = []
 
     for epoch in range(20):
         model.train()
@@ -100,6 +105,9 @@ def training_test(): # Test
 
             train_loss += loss.item()
 
+        train_loss /= len(train_loader)
+        train_losses.append(train_loss)
+
         model.eval()
         correct = 0
         total = 0
@@ -113,7 +121,19 @@ def training_test(): # Test
                 total += batch.y.size(0)
 
         val_acc = correct / total if total > 0 else 0.0
+        val_accs.append(val_acc)
+
         print(f"epoch={epoch:03d} train_loss={train_loss:.4f} val_acc={val_acc:.3f}")
+
+    torch.save(
+        {
+            "train_loss": train_losses,
+            "val_acc": val_accs,
+        },
+        output_dir / "history.pt",
+    )
+    torch.save(dataset[0], output_dir / "example_graph.pt")
+    torch.save(model.state_dict(), output_dir / "model.pt")
 
 
 def main():
