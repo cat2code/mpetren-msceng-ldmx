@@ -3,6 +3,8 @@ pandas==3.0.0
 matplotlib==3.10.8
 uproot==5.7.1
 awkward==2.8.12
+torch
+torch-geometric
 ipykernel==7.1.0
 ipywidgets==8.1.7
 plotly
