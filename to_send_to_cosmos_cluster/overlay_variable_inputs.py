@@ -15,7 +15,7 @@ p = ldmxcfg.Process(this_pass_name)
 
 det = "ldmx-det-v15-8gev"
 p.run = int(os.environ["LDMX_RUN_NUMBER"])
-p.max_events = int(os.environ["LDMX_NUM_EVENTS"]) // 2
+p.max_events = int(os.environ["LDMX_MAX_EVENTS"])
 
 
 # Load the full tracking sequance
@@ -23,14 +23,17 @@ from LDMX.Recon.overlay import OverlayProducer
 
 
 overlay = OverlayProducer(
-    overlay_filename="pileup.root", # here the pileup event input file is set
+    overlay_filename=os.environ["LDMX_PILEUP_FILE"],
     sim_passname=sim_pass_name,
     overlay_passname=pileup_file_pass_name,
 )
 
 p.sequence = [overlay]
 
-overlay.poisson_mu = 3.0
+overlay_mu = os.environ.get("LDMX_OVERLAY_MU", "")
+
+if overlay_mu not in ("", "omit", "OMIT", "none", "NONE"):
+    overlay.poisson_mu = float(overlay_mu)
 
 # ECal geometry nonsense
 import LDMX.Ecal.ecal_clusters as ecal_cluster
@@ -353,8 +356,7 @@ p.sequence.extend(
     ]
 )
 
-p.logger.term_level = 2
-p.input_files = ["ecal_pn.root"] # here the main event input file is set
-p.output_files = ["events.root"]
-p.histogram_file = "hist.root"
+p.input_files = [os.environ["LDMX_MAIN_FILE"]]
+p.output_files = [os.environ["LDMX_OUTPUT_FILE"]]
+p.histogram_file = os.environ["LDMX_HIST_FILE"]
 

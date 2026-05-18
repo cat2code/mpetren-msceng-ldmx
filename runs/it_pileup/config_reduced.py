@@ -17,20 +17,19 @@ det = "ldmx-det-v15-8gev"
 p.run = int(os.environ["LDMX_RUN_NUMBER"])
 p.max_events = int(os.environ["LDMX_NUM_EVENTS"]) // 2
 
-
 # Load the full tracking sequance
 from LDMX.Recon.overlay import OverlayProducer
 
 
 overlay = OverlayProducer(
-    overlay_filename="pileup.root", # here the pileup event input file is set
+    overlay_filename="pileup.root",
     sim_passname=sim_pass_name,
     overlay_passname=pileup_file_pass_name,
 )
 
 p.sequence = [overlay]
 
-overlay.poisson_mu = 3.0
+# overlay.poisson_mu = 3 # Set the number of electrons in each event. When this is 3 it becomes 1 main event with 2 pileup events
 
 # ECal geometry nonsense
 import LDMX.Ecal.ecal_clusters as ecal_cluster
@@ -192,10 +191,11 @@ pu_finder.pf_cand_coll_name = pf_comb.output_coll_name
 pu_finder.pf_cand_pass_name = this_pass_name
 pu_finder.min_momentum = 3000.0
 
+
 # Load the DQM modules
 from LDMX.DQM import dqm
 
-
+'''
 trig_scint_sim_dqm = [
     dqm.TrigScintSimDQM(
         instance_name="TrigScintSimPad1",
@@ -212,9 +212,9 @@ trig_scint_sim_dqm = [
         hit_collection="TriggerPad3SimHits",
         pad="pad3",
     ),
-]
+]'''
 
-for ts_sim_dqm in trig_scint_sim_dqm:
+'''for ts_sim_dqm in trig_scint_sim_dqm:
     ts_sim_dqm.hit_collection += overlay_str
 
 trig_scint_dqm = [
@@ -252,9 +252,9 @@ trig_scint_dqm = [
         instance_name="TrigScintTracks",
         track_collection="TriggerPadTracks",
     ),
-]
+]'''
 
-for ts_dqm in trig_scint_dqm:
+'''for ts_dqm in trig_scint_dqm:
     ts_dqm.pass_name = this_pass_name
 
 # EcalDigiVerify
@@ -305,6 +305,7 @@ dqm_with_overlay = (
     ]
     + hcal_dqm
 )
+'''
 
 p.logger.term_level = 1
 
@@ -316,7 +317,7 @@ from LDMX.Tracking import full_tracking_sequence
 # append "Overlay" to sim collection names in tracking sequence
 full_tracking_sequence.set_overlay(this_pass_name)
 p.sequence.extend(full_tracking_sequence.sequence)
-p.sequence.extend(full_tracking_sequence.dqm_sequence)
+#p.sequence.extend(full_tracking_sequence.dqm_sequence)
 
 p.sequence.extend(
     [
@@ -333,17 +334,17 @@ p.sequence.extend(
         trig_scint_track,
         count,
         TriggerProcessor(beam_energy=8000.0, instance_name="trigger"),
-        dqm.PhotoNuclearDQM(),
+        # dqm.PhotoNuclearDQM(),
     ]
 )
 
-p.sequence.extend(dqm_with_overlay)
+#p.sequence.extend(dqm_with_overlay)
 
 # Add PFlow + pileup finding sequence
 p.sequence.extend(
     [
         cluster,
-        dqm.EcalClusterAnalyzer(),
+        #dqm.EcalClusterAnalyzer(),
         track_pf,
         truth_pf,
         ecal_pf,
@@ -356,5 +357,4 @@ p.sequence.extend(
 p.logger.term_level = 2
 p.input_files = ["ecal_pn.root"] # here the main event input file is set
 p.output_files = ["events.root"]
-p.histogram_file = "hist.root"
-
+#p.histogram_file = "hist.root"
