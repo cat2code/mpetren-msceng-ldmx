@@ -1,0 +1,140 @@
+{
+  "interrupted": false,
+  "best_val_loss": 2.580451806386312,
+  "final_val_loss": 2.580451806386312,
+  "final_val_origin_ce": 1.1391409834225972,
+  "final_val_fraction_ce": 1.1255698005358379,
+  "final_val_slot_bce": 0.4105095863342285,
+  "final_val_count_ce": 1.168196201324463,
+  "final_val_fraction_mse": 0.15257711884920047,
+  "final_val_fraction_mae": 0.3079953197950283,
+  "final_val_accuracy": 0.37610619469026546,
+  "final_val_slot_accuracy": 0.8888888888888888,
+  "final_val_slot_exact_accuracy": 0.6666666666666666,
+  "final_val_count_accuracy": 0.3333333333333333,
+  "final_val_slot_count_accuracy": 0.6666666666666666,
+  "final_val_num_hits": 904,
+  "final_val_num_events": 3,
+  "final_val_count_accuracy_2e": 1.0,
+  "final_val_count_accuracy_3e": 0.0,
+  "final_val_hit_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      340,
+      0,
+      0
+    ],
+    [
+      0,
+      333,
+      0,
+      0
+    ],
+    [
+      0,
+      231,
+      0,
+      0
+    ]
+  ],
+  "final_val_count_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      2,
+      0
+    ]
+  ],
+  "test_loss": 2.135892868041992,
+  "test_origin_ce": 0.8937814235687256,
+  "test_fraction_ce": 0.8899570107460022,
+  "test_slot_bce": 0.6522840857505798,
+  "test_count_ce": 1.1084883213043213,
+  "test_fraction_mse": 0.12824180722236633,
+  "test_fraction_mae": 0.2852727174758911,
+  "test_accuracy": 0.5405405405405406,
+  "test_slot_accuracy": 0.6666666666666666,
+  "test_slot_exact_accuracy": 0.0,
+  "test_count_accuracy": 1.0,
+  "test_slot_count_accuracy": 0.0,
+  "test_num_hits": 222,
+  "test_num_events": 1,
+  "test_count_accuracy_2e": 1.0,
+  "test_hit_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      120,
+      0,
+      0
+    ],
+    [
+      0,
+      102,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "test_count_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "test_elapsed_sec": 0.007553577423095703
+}

@@ -1,0 +1,92 @@
+[
+  {
+    "epoch": 1,
+    "lr": 0.001,
+    "train_loss": 3.0933730006217957,
+    "train_origin_ce": 1.3311746641993523,
+    "train_fraction_ce": 1.3031376712024212,
+    "train_slot_bce": 0.589487386867404,
+    "train_count_ce": 1.7058159187436104,
+    "train_fraction_mse": 0.17383658808240005,
+    "train_fraction_mae": 0.34694306852522155,
+    "train_accuracy": 0.2741702741702742,
+    "train_slot_accuracy": 0.8333333333333334,
+    "train_slot_exact_accuracy": 0.5,
+    "train_count_accuracy": 0.0,
+    "train_slot_count_accuracy": 0.5,
+    "train_num_hits": 4851,
+    "train_num_events": 16,
+    "train_count_accuracy_2e": 0.0,
+    "train_count_accuracy_3e": 0.0,
+    "train_elapsed_sec": 0.5284647941589355,
+    "val_loss": 2.7016772429148355,
+    "val_origin_ce": 1.1730255881945293,
+    "val_fraction_ce": 1.1512319644292195,
+    "val_slot_bce": 0.4807758132616679,
+    "val_count_ce": 1.4063230355580647,
+    "val_fraction_mse": 0.1523748590586196,
+    "val_fraction_mae": 0.3148792227812573,
+    "val_accuracy": 0.36836283185840707,
+    "val_slot_accuracy": 0.8888888888888888,
+    "val_slot_exact_accuracy": 0.6666666666666666,
+    "val_count_accuracy": 0.3333333333333333,
+    "val_slot_count_accuracy": 0.6666666666666666,
+    "val_num_hits": 904,
+    "val_num_events": 3,
+    "val_count_accuracy_2e": 1.0,
+    "val_count_accuracy_3e": 0.0,
+    "val_hit_confusion": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        340,
+        0
+      ],
+      [
+        0,
+        0,
+        333,
+        0
+      ],
+      [
+        0,
+        2,
+        229,
+        0
+      ]
+    ],
+    "val_count_confusion": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        2,
+        0
+      ]
+    ],
+    "val_elapsed_sec": 0.02357172966003418
+  }
+]
