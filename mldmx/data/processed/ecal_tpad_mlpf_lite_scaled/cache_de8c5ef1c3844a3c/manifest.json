@@ -1,0 +1,1007 @@
+{
+  "cache_schema_version": 1,
+  "cache_signature": "de8c5ef1c3844a3c",
+  "cache_spec": {
+    "data_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events",
+    "filter_noise": true,
+    "max_events": 20,
+    "reader": "ecal_tpad_mlpf_lite_scaled",
+    "root_files": [
+      {
+        "mtime_ns": 1778527586000000000,
+        "name": "events_1.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_1.root",
+        "size": 502416931
+      },
+      {
+        "mtime_ns": 1778527594000000000,
+        "name": "events_2.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_2.root",
+        "size": 510618468
+      },
+      {
+        "mtime_ns": 1778527514000000000,
+        "name": "events_3.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_3.root",
+        "size": 428170094
+      },
+      {
+        "mtime_ns": 1778527592000000000,
+        "name": "events_4.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_4.root",
+        "size": 509986803
+      },
+      {
+        "mtime_ns": 1778527600000000000,
+        "name": "events_5.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_5.root",
+        "size": 518745409
+      },
+      {
+        "mtime_ns": 1778527600000000000,
+        "name": "events_6.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_6.root",
+        "size": 516199135
+      },
+      {
+        "mtime_ns": 1778527598000000000,
+        "name": "events_7.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_7.root",
+        "size": 517505348
+      },
+      {
+        "mtime_ns": 1778527598000000000,
+        "name": "events_8.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_8.root",
+        "size": 516529187
+      },
+      {
+        "mtime_ns": 1778527582000000000,
+        "name": "events_9.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_9.root",
+        "size": 498102704
+      },
+      {
+        "mtime_ns": 1778527608000000000,
+        "name": "events_10.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_10.root",
+        "size": 521619064
+      },
+      {
+        "mtime_ns": 1778527606000000000,
+        "name": "events_11.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_11.root",
+        "size": 511920796
+      },
+      {
+        "mtime_ns": 1778527610000000000,
+        "name": "events_12.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_12.root",
+        "size": 521135656
+      },
+      {
+        "mtime_ns": 1778527608000000000,
+        "name": "events_13.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_13.root",
+        "size": 522916940
+      },
+      {
+        "mtime_ns": 1778527596000000000,
+        "name": "events_14.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_14.root",
+        "size": 508321842
+      },
+      {
+        "mtime_ns": 1778527600000000000,
+        "name": "events_15.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_15.root",
+        "size": 515262913
+      },
+      {
+        "mtime_ns": 1778527602000000000,
+        "name": "events_16.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_16.root",
+        "size": 514358926
+      },
+      {
+        "mtime_ns": 1778527580000000000,
+        "name": "events_17.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_17.root",
+        "size": 492984108
+      },
+      {
+        "mtime_ns": 1778527608000000000,
+        "name": "events_18.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_18.root",
+        "size": 519445155
+      },
+      {
+        "mtime_ns": 1778527622000000000,
+        "name": "events_19.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_19.root",
+        "size": 535110250
+      },
+      {
+        "mtime_ns": 1778527610000000000,
+        "name": "events_20.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_20.root",
+        "size": 520519266
+      },
+      {
+        "mtime_ns": 1778527604000000000,
+        "name": "events_21.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_21.root",
+        "size": 519921164
+      },
+      {
+        "mtime_ns": 1778527670000000000,
+        "name": "events_22.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_22.root",
+        "size": 505298600
+      },
+      {
+        "mtime_ns": 1778527666000000000,
+        "name": "events_23.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_23.root",
+        "size": 506826227
+      },
+      {
+        "mtime_ns": 1778527652000000000,
+        "name": "events_24.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_24.root",
+        "size": 507403807
+      },
+      {
+        "mtime_ns": 1778527658000000000,
+        "name": "events_25.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_25.root",
+        "size": 521381062
+      },
+      {
+        "mtime_ns": 1778527656000000000,
+        "name": "events_26.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_26.root",
+        "size": 517908567
+      },
+      {
+        "mtime_ns": 1778527578000000000,
+        "name": "events_27.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_27.root",
+        "size": 443863540
+      },
+      {
+        "mtime_ns": 1778527644000000000,
+        "name": "events_28.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_28.root",
+        "size": 507732871
+      },
+      {
+        "mtime_ns": 1778527672000000000,
+        "name": "events_29.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_29.root",
+        "size": 527554912
+      },
+      {
+        "mtime_ns": 1778527578000000000,
+        "name": "events_30.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_30.root",
+        "size": 503956472
+      },
+      {
+        "mtime_ns": 1778527574000000000,
+        "name": "events_31.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_31.root",
+        "size": 504251620
+      },
+      {
+        "mtime_ns": 1778527590000000000,
+        "name": "events_32.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_32.root",
+        "size": 507675918
+      },
+      {
+        "mtime_ns": 1778527622000000000,
+        "name": "events_33.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_33.root",
+        "size": 531279896
+      },
+      {
+        "mtime_ns": 1778527588000000000,
+        "name": "events_34.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_34.root",
+        "size": 501336572
+      },
+      {
+        "mtime_ns": 1778527594000000000,
+        "name": "events_35.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_35.root",
+        "size": 508451667
+      },
+      {
+        "mtime_ns": 1778527586000000000,
+        "name": "events_36.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_36.root",
+        "size": 502041570
+      },
+      {
+        "mtime_ns": 1778527610000000000,
+        "name": "events_37.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_37.root",
+        "size": 520632032
+      },
+      {
+        "mtime_ns": 1778527600000000000,
+        "name": "events_38.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_38.root",
+        "size": 496411124
+      },
+      {
+        "mtime_ns": 1778527614000000000,
+        "name": "events_39.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_39.root",
+        "size": 510231744
+      },
+      {
+        "mtime_ns": 1778527622000000000,
+        "name": "events_40.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_40.root",
+        "size": 514948126
+      },
+      {
+        "mtime_ns": 1778527604000000000,
+        "name": "events_41.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_41.root",
+        "size": 524410130
+      },
+      {
+        "mtime_ns": 1778527606000000000,
+        "name": "events_42.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_42.root",
+        "size": 523605813
+      },
+      {
+        "mtime_ns": 1778527590000000000,
+        "name": "events_43.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_43.root",
+        "size": 511265125
+      },
+      {
+        "mtime_ns": 1778527588000000000,
+        "name": "events_44.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_44.root",
+        "size": 503114368
+      },
+      {
+        "mtime_ns": 1778527588000000000,
+        "name": "events_45.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_45.root",
+        "size": 501562519
+      },
+      {
+        "mtime_ns": 1778527594000000000,
+        "name": "events_46.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_46.root",
+        "size": 508620216
+      },
+      {
+        "mtime_ns": 1778527606000000000,
+        "name": "events_47.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_47.root",
+        "size": 518340838
+      },
+      {
+        "mtime_ns": 1778527586000000000,
+        "name": "events_48.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_48.root",
+        "size": 507126496
+      },
+      {
+        "mtime_ns": 1778527610000000000,
+        "name": "events_49.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_49.root",
+        "size": 518512463
+      },
+      {
+        "mtime_ns": 1778527590000000000,
+        "name": "events_50.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_50.root",
+        "size": 516024356
+      },
+      {
+        "mtime_ns": 1778527574000000000,
+        "name": "events_51.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_51.root",
+        "size": 499717029
+      },
+      {
+        "mtime_ns": 1778527568000000000,
+        "name": "events_52.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_52.root",
+        "size": 498779580
+      },
+      {
+        "mtime_ns": 1778527666000000000,
+        "name": "events_53.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_53.root",
+        "size": 519588329
+      },
+      {
+        "mtime_ns": 1778527680000000000,
+        "name": "events_54.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_54.root",
+        "size": 517172934
+      },
+      {
+        "mtime_ns": 1778527664000000000,
+        "name": "events_55.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_55.root",
+        "size": 528242246
+      },
+      {
+        "mtime_ns": 1778527662000000000,
+        "name": "events_56.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_56.root",
+        "size": 507333344
+      },
+      {
+        "mtime_ns": 1778527660000000000,
+        "name": "events_57.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_57.root",
+        "size": 510708068
+      },
+      {
+        "mtime_ns": 1778527666000000000,
+        "name": "events_58.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_58.root",
+        "size": 522789130
+      },
+      {
+        "mtime_ns": 1778527612000000000,
+        "name": "events_59.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_59.root",
+        "size": 524290768
+      },
+      {
+        "mtime_ns": 1778527594000000000,
+        "name": "events_60.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_60.root",
+        "size": 505828095
+      },
+      {
+        "mtime_ns": 1778527612000000000,
+        "name": "events_61.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_61.root",
+        "size": 518736537
+      },
+      {
+        "mtime_ns": 1778527598000000000,
+        "name": "events_62.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_62.root",
+        "size": 514596618
+      },
+      {
+        "mtime_ns": 1778527634000000000,
+        "name": "events_63.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_63.root",
+        "size": 532485554
+      },
+      {
+        "mtime_ns": 1778527594000000000,
+        "name": "events_64.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_64.root",
+        "size": 506400094
+      },
+      {
+        "mtime_ns": 1778527600000000000,
+        "name": "events_65.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_65.root",
+        "size": 511775585
+      },
+      {
+        "mtime_ns": 1778527638000000000,
+        "name": "events_66.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_66.root",
+        "size": 509469954
+      },
+      {
+        "mtime_ns": 1778527624000000000,
+        "name": "events_67.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_67.root",
+        "size": 501143549
+      },
+      {
+        "mtime_ns": 1778527638000000000,
+        "name": "events_68.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_68.root",
+        "size": 514220951
+      },
+      {
+        "mtime_ns": 1778527638000000000,
+        "name": "events_69.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_69.root",
+        "size": 515622191
+      },
+      {
+        "mtime_ns": 1778527628000000000,
+        "name": "events_70.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_70.root",
+        "size": 514613698
+      },
+      {
+        "mtime_ns": 1778527688000000000,
+        "name": "events_71.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_71.root",
+        "size": 527962458
+      },
+      {
+        "mtime_ns": 1778527682000000000,
+        "name": "events_72.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_72.root",
+        "size": 512293236
+      },
+      {
+        "mtime_ns": 1778527686000000000,
+        "name": "events_73.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_73.root",
+        "size": 515666979
+      },
+      {
+        "mtime_ns": 1778527622000000000,
+        "name": "events_74.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_74.root",
+        "size": 496122179
+      },
+      {
+        "mtime_ns": 1778527624000000000,
+        "name": "events_75.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_75.root",
+        "size": 499050802
+      },
+      {
+        "mtime_ns": 1778527666000000000,
+        "name": "events_76.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_76.root",
+        "size": 503750014
+      },
+      {
+        "mtime_ns": 1778527684000000000,
+        "name": "events_77.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_77.root",
+        "size": 514431615
+      },
+      {
+        "mtime_ns": 1778527708000000000,
+        "name": "events_78.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_78.root",
+        "size": 512547354
+      },
+      {
+        "mtime_ns": 1778527724000000000,
+        "name": "events_79.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_79.root",
+        "size": 517510245
+      },
+      {
+        "mtime_ns": 1778527694000000000,
+        "name": "events_80.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_80.root",
+        "size": 505440104
+      },
+      {
+        "mtime_ns": 1778527714000000000,
+        "name": "events_81.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_81.root",
+        "size": 523880061
+      },
+      {
+        "mtime_ns": 1778527684000000000,
+        "name": "events_82.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_82.root",
+        "size": 505809190
+      },
+      {
+        "mtime_ns": 1778527746000000000,
+        "name": "events_83.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_83.root",
+        "size": 520200013
+      },
+      {
+        "mtime_ns": 1778527742000000000,
+        "name": "events_84.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_84.root",
+        "size": 519471810
+      },
+      {
+        "mtime_ns": 1778527744000000000,
+        "name": "events_85.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_85.root",
+        "size": 517649311
+      },
+      {
+        "mtime_ns": 1778527784000000000,
+        "name": "events_86.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_86.root",
+        "size": 508801871
+      },
+      {
+        "mtime_ns": 1778527738000000000,
+        "name": "events_87.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_87.root",
+        "size": 503014339
+      },
+      {
+        "mtime_ns": 1778527766000000000,
+        "name": "events_88.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_88.root",
+        "size": 513332861
+      },
+      {
+        "mtime_ns": 1778527810000000000,
+        "name": "events_89.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_89.root",
+        "size": 525417386
+      },
+      {
+        "mtime_ns": 1778527798000000000,
+        "name": "events_90.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_90.root",
+        "size": 511243384
+      },
+      {
+        "mtime_ns": 1778527810000000000,
+        "name": "events_91.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_91.root",
+        "size": 511146502
+      },
+      {
+        "mtime_ns": 1778527788000000000,
+        "name": "events_92.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_92.root",
+        "size": 496863876
+      },
+      {
+        "mtime_ns": 1778527832000000000,
+        "name": "events_93.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_93.root",
+        "size": 528620027
+      },
+      {
+        "mtime_ns": 1778527830000000000,
+        "name": "events_94.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_94.root",
+        "size": 518280714
+      },
+      {
+        "mtime_ns": 1778527836000000000,
+        "name": "events_95.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_95.root",
+        "size": 520577741
+      },
+      {
+        "mtime_ns": 1778527814000000000,
+        "name": "events_96.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_96.root",
+        "size": 505547290
+      },
+      {
+        "mtime_ns": 1778527822000000000,
+        "name": "events_97.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_97.root",
+        "size": 511803463
+      },
+      {
+        "mtime_ns": 1778527800000000000,
+        "name": "events_98.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_98.root",
+        "size": 506395932
+      },
+      {
+        "mtime_ns": 1778527810000000000,
+        "name": "events_99.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_99.root",
+        "size": 518490532
+      },
+      {
+        "mtime_ns": 1778527818000000000,
+        "name": "events_100.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_100.root",
+        "size": 525497165
+      },
+      {
+        "mtime_ns": 1778527804000000000,
+        "name": "events_101.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_101.root",
+        "size": 511577004
+      },
+      {
+        "mtime_ns": 1778527816000000000,
+        "name": "events_102.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_102.root",
+        "size": 523768393
+      },
+      {
+        "mtime_ns": 1778527832000000000,
+        "name": "events_103.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_103.root",
+        "size": 534287798
+      },
+      {
+        "mtime_ns": 1778527794000000000,
+        "name": "events_104.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_104.root",
+        "size": 504887283
+      },
+      {
+        "mtime_ns": 1778527790000000000,
+        "name": "events_105.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_105.root",
+        "size": 501363117
+      },
+      {
+        "mtime_ns": 1778527804000000000,
+        "name": "events_106.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_106.root",
+        "size": 508410638
+      },
+      {
+        "mtime_ns": 1778527802000000000,
+        "name": "events_107.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_107.root",
+        "size": 512692339
+      },
+      {
+        "mtime_ns": 1778527814000000000,
+        "name": "events_108.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_108.root",
+        "size": 522831163
+      },
+      {
+        "mtime_ns": 1778527816000000000,
+        "name": "events_109.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_109.root",
+        "size": 508220611
+      },
+      {
+        "mtime_ns": 1778527822000000000,
+        "name": "events_110.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_110.root",
+        "size": 504688016
+      },
+      {
+        "mtime_ns": 1778527814000000000,
+        "name": "events_111.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_111.root",
+        "size": 500909584
+      },
+      {
+        "mtime_ns": 1778527824000000000,
+        "name": "events_112.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_112.root",
+        "size": 508627110
+      },
+      {
+        "mtime_ns": 1778527832000000000,
+        "name": "events_113.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_113.root",
+        "size": 517925457
+      },
+      {
+        "mtime_ns": 1778527828000000000,
+        "name": "events_114.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_114.root",
+        "size": 516494831
+      },
+      {
+        "mtime_ns": 1778527826000000000,
+        "name": "events_115.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_115.root",
+        "size": 519670777
+      },
+      {
+        "mtime_ns": 1778527806000000000,
+        "name": "events_116.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_116.root",
+        "size": 498234369
+      },
+      {
+        "mtime_ns": 1778527828000000000,
+        "name": "events_117.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_117.root",
+        "size": 515438823
+      },
+      {
+        "mtime_ns": 1778527758000000000,
+        "name": "events_118.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_118.root",
+        "size": 438392952
+      },
+      {
+        "mtime_ns": 1778527818000000000,
+        "name": "events_119.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_119.root",
+        "size": 503952910
+      },
+      {
+        "mtime_ns": 1778527822000000000,
+        "name": "events_120.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_120.root",
+        "size": 511262800
+      },
+      {
+        "mtime_ns": 1778527826000000000,
+        "name": "events_121.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_121.root",
+        "size": 513102843
+      },
+      {
+        "mtime_ns": 1778527810000000000,
+        "name": "events_122.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_122.root",
+        "size": 502416225
+      },
+      {
+        "mtime_ns": 1778527820000000000,
+        "name": "events_123.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_123.root",
+        "size": 515451139
+      },
+      {
+        "mtime_ns": 1778527824000000000,
+        "name": "events_124.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_124.root",
+        "size": 513289086
+      },
+      {
+        "mtime_ns": 1778527824000000000,
+        "name": "events_125.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_125.root",
+        "size": 512826603
+      },
+      {
+        "mtime_ns": 1778527820000000000,
+        "name": "events_126.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_126.root",
+        "size": 509352512
+      },
+      {
+        "mtime_ns": 1778527806000000000,
+        "name": "events_127.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_127.root",
+        "size": 496346896
+      },
+      {
+        "mtime_ns": 1778527810000000000,
+        "name": "events_128.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_128.root",
+        "size": 501023070
+      },
+      {
+        "mtime_ns": 1778527836000000000,
+        "name": "events_129.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_129.root",
+        "size": 515479990
+      },
+      {
+        "mtime_ns": 1778527818000000000,
+        "name": "events_130.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_130.root",
+        "size": 507462551
+      },
+      {
+        "mtime_ns": 1778527810000000000,
+        "name": "events_131.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_131.root",
+        "size": 503048898
+      },
+      {
+        "mtime_ns": 1778527810000000000,
+        "name": "events_132.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_132.root",
+        "size": 501165514
+      },
+      {
+        "mtime_ns": 1778527844000000000,
+        "name": "events_133.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_133.root",
+        "size": 512146658
+      },
+      {
+        "mtime_ns": 1778527838000000000,
+        "name": "events_134.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_134.root",
+        "size": 514210312
+      },
+      {
+        "mtime_ns": 1778527846000000000,
+        "name": "events_135.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_135.root",
+        "size": 526918251
+      },
+      {
+        "mtime_ns": 1778527830000000000,
+        "name": "events_136.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_136.root",
+        "size": 513462650
+      },
+      {
+        "mtime_ns": 1778527854000000000,
+        "name": "events_137.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_137.root",
+        "size": 531540662
+      },
+      {
+        "mtime_ns": 1778527828000000000,
+        "name": "events_138.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_138.root",
+        "size": 509673244
+      },
+      {
+        "mtime_ns": 1778527832000000000,
+        "name": "events_139.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_139.root",
+        "size": 513728675
+      },
+      {
+        "mtime_ns": 1778527832000000000,
+        "name": "events_140.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_140.root",
+        "size": 506061375
+      },
+      {
+        "mtime_ns": 1778527838000000000,
+        "name": "events_141.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_141.root",
+        "size": 520310569
+      },
+      {
+        "mtime_ns": 1778527822000000000,
+        "name": "events_142.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events\\events_142.root",
+        "size": 507065604
+      }
+    ],
+    "schema_version": 1,
+    "target_mode": "canonical-y",
+    "valid_labels": [
+      1,
+      2,
+      3
+    ]
+  },
+  "event_files": [
+    "event_000000.pt",
+    "event_000001.pt",
+    "event_000002.pt",
+    "event_000003.pt",
+    "event_000004.pt",
+    "event_000005.pt",
+    "event_000006.pt",
+    "event_000007.pt",
+    "event_000008.pt",
+    "event_000009.pt",
+    "event_000010.pt",
+    "event_000011.pt",
+    "event_000012.pt",
+    "event_000013.pt",
+    "event_000014.pt",
+    "event_000015.pt",
+    "event_000016.pt",
+    "event_000017.pt",
+    "event_000018.pt",
+    "event_000019.pt"
+  ],
+  "event_sources": [
+    {
+      "entry": 0,
+      "event_idx": 0,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 1,
+      "event_idx": 1,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 2,
+      "event_idx": 2,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 3,
+      "event_idx": 3,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 4,
+      "event_idx": 4,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 5,
+      "event_idx": 5,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 6,
+      "event_idx": 6,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 7,
+      "event_idx": 7,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 8,
+      "event_idx": 8,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 9,
+      "event_idx": 9,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 10,
+      "event_idx": 10,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 11,
+      "event_idx": 11,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 12,
+      "event_idx": 12,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 13,
+      "event_idx": 13,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 14,
+      "event_idx": 14,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 15,
+      "event_idx": 15,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 16,
+      "event_idx": 16,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 17,
+      "event_idx": 17,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 18,
+      "event_idx": 18,
+      "file": "events_1.root"
+    },
+    {
+      "entry": 19,
+      "event_idx": 19,
+      "file": "events_1.root"
+    }
+  ],
+  "feature_layout": [
+    "is_ecal",
+    "is_tpad",
+    "ecal_x",
+    "ecal_y",
+    "ecal_z",
+    "ecal_energy",
+    "tpad_centroid",
+    "tpad_pe"
+  ],
+  "num_events": 20,
+  "preprocess_elapsed_sec": 0.9774029000000155
+}
