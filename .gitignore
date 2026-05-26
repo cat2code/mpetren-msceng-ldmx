@@ -59,6 +59,8 @@ runs/**/tmp/
 
 # Tensorized data
 *.pt
+mldmx/data/processed/production_5M_001_sharded/
+mldmx/data/processed/production_5M_001_sharded_smoke/
 
 # =========================
 # External upstream repos
