@@ -9,6 +9,8 @@ torch
 #torchvision
 #torchaudio
 torch-geometric
+--find-links https://data.pyg.org/whl/torch-2.7.0+cu118.html
+torch_cluster
 ipykernel==7.1.0
 ipywidgets==8.1.7
 plotly

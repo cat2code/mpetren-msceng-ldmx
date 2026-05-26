@@ -57,6 +57,9 @@ runs/**/output/
 runs/**/data/
 runs/**/tmp/
 
+# Tensorized data
+*.pt
+
 # =========================
 # External upstream repos
 # =========================
