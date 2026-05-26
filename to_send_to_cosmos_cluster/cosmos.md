@@ -52,6 +52,10 @@ kill PROCESS_ID
 ## Tensorize production_5M_001 into ML-ready shards
 
 The tensorization batch job runs independently after disconnecting from SSH.
+Both Slurm scripts load `GCCcore/13.2.0` and `Python/3.11.5`, then activate
+`mpetren-msceng-ldmx/.venv/` inside the batch job. The virtual environment
+must already contain the requirements before submitting.
+
 First run a small preflight job. It converts 100 events from one ROOT file
 for each of `2e` and `3e`, writing to a separate smoke output directory:
 
