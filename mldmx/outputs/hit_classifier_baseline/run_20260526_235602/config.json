@@ -1,0 +1,72 @@
+{
+  "model": "ECalTpadTransformer",
+  "events_per_class": 10,
+  "max_events": null,
+  "data_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "processed_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\processed\\ecal_tpad_hit_classifier_baseline",
+  "processed_cache": "data\\processed\\ecal_tpad_2e3e_sharded",
+  "force_sharded_cache": false,
+  "allow_incomplete_sharded_cache": true,
+  "max_cache_root_files": null,
+  "max_events_per_root_file": null,
+  "shard_cache_size": 1,
+  "output_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\hit_classifier_baseline",
+  "run_name": null,
+  "epochs": 20,
+  "batch_size": 8,
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "seed": 7,
+  "checkpoint_every": 1,
+  "resume": null,
+  "device": "cuda",
+  "valid_labels": [
+    1,
+    2,
+    3
+  ],
+  "target_mode": "canonical-y",
+  "hidden_dim": 64,
+  "num_layers": 2,
+  "num_heads": 4,
+  "dim_feedforward": 128,
+  "dropout": 0.1,
+  "space_dimensions": 4,
+  "propagate_dimensions": 32,
+  "k": 16,
+  "grad_clip": 1.0,
+  "no_normalize_features": false,
+  "cache_model_views": false,
+  "allow_small_split": false,
+  "no_progress": false,
+  "num_ecal_plots": 2,
+  "event_log_every": 0,
+  "read_step_size": 500,
+  "allow_fewer_events": false,
+  "output_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\hit_classifier_baseline",
+  "resolved_data_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\processed\\ecal_tpad_2e3e_sharded",
+  "root_files_used": [
+    "events_1.root",
+    "events_2.root"
+  ],
+  "num_loaded_events": 20000,
+  "split_sizes": {
+    "train": 16000,
+    "val": 3000,
+    "test": 1000
+  },
+  "target_order_counts": {
+    "train": {
+      "(1, 2)": 7940,
+      "(2, 1)": 8060
+    },
+    "val": {
+      "(1, 2)": 1496,
+      "(2, 1)": 1504
+    },
+    "test": {
+      "(1, 2)": 496,
+      "(2, 1)": 504
+    }
+  }
+}
