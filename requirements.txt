@@ -1,3 +1,5 @@
+# Python version: 3.11.9 (or 3.11.5 on cosmos is fine)
+
 numpy==2.4.2
 pandas==3.0.0
 matplotlib==3.10.8
