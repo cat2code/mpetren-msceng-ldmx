@@ -1,21 +1,43 @@
-# Partitioning code:
 
-## Moving stuff out from train_ecal_tpad_mlpf_lite_scaled.py
+# Models to send for big training at cosmos
 
-* Simple progress class needs to have its own place outside of script
-    * make_progress function as well as it is connected to this
+## GNN(GravNetConv)
 
-* Code related to logging should also not be contained in this script it should have its own place
+* Why?
+  * Becuase it is designed specifically for this task. One of the largest tasks of the GNN is to build a good graph and create suitable edges for the most important nodes. This is a learnable layer and we are not dealing with a fully connected graph. GravNetConv is designed to work better to learn how to build the graph when dealing with input similar to the ones in the detector where they are not so structured from the start. 
 
-* resolve_run_dir can be moved out as well I like this solution so it can be global standard for other scripts
+* It can be interesting to see if adding tpad info can give better performance. Is it worth to add more info from another detector in this case? 
+  * It is likely not useful in this case as it should not give any meaningful info for this specific task, compared to counting electrons for example where this info should rather be something way more useful. 
 
-* Same goes for resolve_data_dir
+### Ecal + tpad -> GNN(GravNetConv) -> origin electron classification
 
-* Same goes for deterministic_split it can be global standard for making training splits
+### Ecal -> GNN(GravNetConv) -> origin electron classification
 
-* Same goes for normalize_continuous_features the normalization is a preprocessing 
 
-* Same goes for count_classes it can be global standard of counting the number of classes 
+## Transformer(Full Self Attention)
+
+* Why? 
+  * Industry is shifting to transformers and they have shown to be powerful and that they scale very well. There is an analogy that transformers are essentially GNN:s with fully connected graphs, so it would be interesting to see how these perform and especially since the self-attention mechanism should work effectively with context of other detectors such as the tpad. 
+  * There is hardware specifically designed for training/inference with transformers...
+  * This could result in a tradeoff discussion where the learned graphs take up more memory but they may perform better or something.
+  * Full self attention is possible here since we have relatively small input sizes. Computation scale quadratically with input size. 
+    * MLPF from CMS uses full self attention but they use flash attention since they have large input sizes and they want to be able to use the model in production where speed matters. 
+    * In a full-attention transformer, detector geometry is given through hit features such as x,y,z, layer, and energy. The model then lets every hit attend to every other hit and learns which spatial correlations matter.
+    * In a GNN, geometry more directly shapes the interaction structure through a graph: each hit mainly exchanges information with selected neighbors. Thus, GNNs impose more locality bias, while full transformers use global interactions and learn relevance from the input features.
+
+### Ecal + tpad -> Transformer(Full Self Attention) -> origin electron classification
+
+### Ecal -> Transformer(Full Self Attention) -> origin electron classification
+
+## MLPF inspired multi-task ML-based reconstruction for LDMX
+
+* Why? This model is to show the potential and the interesting usecase of ML-models and the strength and flexibility in representing inputs as graph nodes or as input tokens. 
+
+### Ecal + tpad -> Transformer(Full Self Attention) -> origin + fraction + num electrons + is noise
+
+### OUT OF SCOPE: Ecal + tpad -> Transformer(Full Self Attention) -> origin + fraction + num_electrons + is_noise + is_signal
+
+* This last one is out of scope since I do not have a dataset for this there was not enough time for that
 
 
 # Input data to model
@@ -61,7 +83,7 @@ centroid, pe
 * https://chatgpt.com/g/g-p-69faff0c00048191b60dc8210dd6cc2a-master-thesis-writing/c/6a0b7cf8-701c-8384-af15-47261c4f9e59
 
 
-
+****
 # Trying to make a slice here
 
 ROOT -> awkward arrays -> padded tensor -> tiny NN forward pass
