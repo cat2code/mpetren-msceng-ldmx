@@ -45,11 +45,15 @@
 ### ECal:
 x, y, z, origin ID, rec energy, is noise
 
-* Idea: Add layer index info
-
-* Idea: Add time info (does that exist?)
+* Idea: have consistent ordering of origin id numbering from - -> + of y-direction consistent with the information from tpad.
+    * This should be ensured! 
 
 * Idea event-level info: pre-calculate total rec energy, if that improves anything...
+
+* Idea: Add layer index info **REDUNDANT? IT IS IMPLICITLY GIVEN WITH Z-COORDINATES**
+
+* Idea: Add time info (does that exist?), Yes, time info exists... **REDUDANT? IS IT THE SAME TIME OR NOT FOR EVERY HIT IN ECAL SINCE EVERYTHING HAPPENS SO FAST?**
+
 
 ### Trigger Scintillator:
 centroid, pe
