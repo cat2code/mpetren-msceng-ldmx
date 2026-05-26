@@ -1,0 +1,99 @@
+{
+  "events_per_class": 1000,
+  "max_events": null,
+  "data_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "processed_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\processed\\ecal_tpad_slot_model",
+  "output_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\ecal_tpad_slot_model",
+  "run_name": null,
+  "epochs": 100,
+  "batch_size": 8,
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "seed": 7,
+  "checkpoint_every": 1,
+  "resume": null,
+  "device": "cuda",
+  "valid_labels": [
+    1,
+    2,
+    3
+  ],
+  "target_mode": "canonical-y",
+  "hidden_dim": 128,
+  "num_layers": 2,
+  "num_heads": 4,
+  "max_electrons": 3,
+  "dropout": 0.1,
+  "no_type_embedding": false,
+  "lambda_origin": 1.0,
+  "lambda_fraction": 1.0,
+  "lambda_slot": 0.5,
+  "lambda_count": 1.0,
+  "grad_clip": 1.0,
+  "lr_scheduler": "none",
+  "plateau_patience": 3,
+  "plateau_factor": 0.5,
+  "no_normalize_features": false,
+  "no_class_weights": false,
+  "keep_noise": false,
+  "no_progress": false,
+  "num_ecal_plots": 2,
+  "event_log_every": 0,
+  "read_step_size": 500,
+  "allow_fewer_events": false,
+  "output_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\ecal_tpad_slot_model",
+  "origin_class_weights": [
+    0.0,
+    0.7446282527984786,
+    0.7585796079923206,
+    1.4967921392092012
+  ],
+  "count_class_weights": [
+    0.0,
+    0.0,
+    1.00625,
+    0.99375
+  ],
+  "resolved_data_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "root_files_used": [
+    "events_1.root"
+  ],
+  "num_loaded_events": 2000,
+  "split_sizes": {
+    "train": 1600,
+    "val": 300,
+    "test": 100
+  },
+  "target_order_counts": {
+    "train": {
+      "(1, 2)": 387,
+      "(1, 2, 3)": 117,
+      "(1, 3, 2)": 139,
+      "(2, 1)": 408,
+      "(2, 1, 3)": 136,
+      "(2, 3, 1)": 133,
+      "(3, 1, 2)": 155,
+      "(3, 2, 1)": 125
+    },
+    "val": {
+      "(1, 2)": 71,
+      "(1, 2, 3)": 24,
+      "(1, 3, 2)": 20,
+      "(2, 1)": 82,
+      "(2, 1, 3)": 21,
+      "(2, 3, 1)": 25,
+      "(3, 1, 2)": 33,
+      "(3, 2, 1)": 24
+    },
+    "test": {
+      "(1, 2)": 26,
+      "(1, 2, 3)": 4,
+      "(1, 3, 2)": 7,
+      "(2, 1)": 26,
+      "(2, 1, 3)": 7,
+      "(2, 3, 1)": 11,
+      "(3, 1, 2)": 9,
+      "(3, 2, 1)": 10
+    }
+  }
+}

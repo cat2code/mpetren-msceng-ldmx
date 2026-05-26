@@ -1,0 +1,84 @@
+{
+  "events_per_class": 10,
+  "max_events": null,
+  "data_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "processed_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\processed\\ecal_tpad_slot_model",
+  "output_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\ecal_tpad_slot_model",
+  "run_name": null,
+  "epochs": 2,
+  "batch_size": 8,
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "seed": 7,
+  "checkpoint_every": 1,
+  "resume": null,
+  "device": "cuda",
+  "valid_labels": [
+    1,
+    2,
+    3
+  ],
+  "target_mode": "canonical-y",
+  "hidden_dim": 128,
+  "num_layers": 2,
+  "num_heads": 4,
+  "max_electrons": 3,
+  "dropout": 0.1,
+  "no_type_embedding": false,
+  "lambda_origin": 1.0,
+  "lambda_fraction": 1.0,
+  "lambda_slot": 0.5,
+  "lambda_count": 1.0,
+  "grad_clip": 1.0,
+  "lr_scheduler": "none",
+  "plateau_patience": 3,
+  "plateau_factor": 0.5,
+  "no_normalize_features": false,
+  "no_class_weights": false,
+  "keep_noise": false,
+  "no_progress": false,
+  "num_ecal_plots": 2,
+  "event_log_every": 0,
+  "read_step_size": 500,
+  "allow_fewer_events": false,
+  "output_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\ecal_tpad_slot_model",
+  "origin_class_weights": [
+    0.0,
+    0.7761875130735445,
+    0.7765934688858215,
+    1.4472190180406341
+  ],
+  "count_class_weights": [
+    0.0,
+    0.0,
+    1.0,
+    1.0
+  ],
+  "resolved_data_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "root_files_used": [
+    "events_1.root"
+  ],
+  "num_loaded_events": 20,
+  "split_sizes": {
+    "train": 16,
+    "val": 3,
+    "test": 1
+  },
+  "target_order_counts": {
+    "train": {
+      "(1, 2)": 5,
+      "(1, 2, 3)": 2,
+      "(2, 1)": 3,
+      "(2, 3, 1)": 2,
+      "(3, 1, 2)": 1,
+      "(3, 2, 1)": 3
+    },
+    "val": {
+      "(2, 1)": 1,
+      "(2, 3, 1)": 2
+    },
+    "test": {
+      "(2, 1)": 1
+    }
+  }
+}

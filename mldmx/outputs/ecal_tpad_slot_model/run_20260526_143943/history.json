@@ -1,0 +1,182 @@
+[
+  {
+    "epoch": 1,
+    "lr": 0.001,
+    "train_loss": 2.6301979557424784,
+    "train_origin_ce": 0.9184220625087619,
+    "train_fraction_ce": 0.8683862566575408,
+    "train_slot_bce": 0.2475237085390836,
+    "train_count_ce": 0.7196277881599963,
+    "train_fraction_mse": 0.12673801173363897,
+    "train_fraction_mae": 0.25287403572658523,
+    "train_accuracy": 0.5575377665416417,
+    "train_slot_accuracy": 0.8445833333333334,
+    "train_slot_exact_accuracy": 0.535625,
+    "train_count_accuracy": 0.539375,
+    "train_slot_count_accuracy": 0.536875,
+    "train_num_hits": 482570,
+    "train_num_events": 1600,
+    "train_count_accuracy_2e": 0.5018867924528302,
+    "train_count_accuracy_3e": 0.5763975155279503,
+    "train_elapsed_sec": 31.358983516693115,
+    "val_loss": 2.865984249909719,
+    "val_origin_ce": 0.8981053352355957,
+    "val_fraction_ce": 0.8515561374028524,
+    "val_slot_bce": 0.3003323544934392,
+    "val_count_ce": 0.9661566006640593,
+    "val_fraction_mse": 0.11998494934553375,
+    "val_fraction_mae": 0.2384990307706298,
+    "val_accuracy": 0.5485023883113234,
+    "val_slot_accuracy": 0.8344444444444444,
+    "val_slot_exact_accuracy": 0.5033333333333333,
+    "val_count_accuracy": 0.5,
+    "val_slot_count_accuracy": 0.5033333333333333,
+    "val_num_hits": 88975,
+    "val_num_events": 300,
+    "val_count_accuracy_2e": 0.026143790849673203,
+    "val_count_accuracy_3e": 0.9931972789115646,
+    "val_hit_confusion": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        25370,
+        6742,
+        3850
+      ],
+      [
+        0,
+        7450,
+        8932,
+        18922
+      ],
+      [
+        0,
+        1308,
+        1900,
+        14501
+      ]
+    ],
+    "val_count_confusion": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        4,
+        149
+      ],
+      [
+        0,
+        0,
+        1,
+        146
+      ]
+    ],
+    "val_elapsed_sec": 2.578371047973633
+  },
+  {
+    "epoch": 2,
+    "lr": 0.001,
+    "train_loss": 2.4162917091324925,
+    "train_origin_ce": 0.8443460574746132,
+    "train_fraction_ce": 0.80462303603068,
+    "train_slot_bce": 0.21714568283467087,
+    "train_count_ce": 0.6587497737572994,
+    "train_fraction_mse": 0.11753767055969032,
+    "train_fraction_mae": 0.23617015315018777,
+    "train_accuracy": 0.6045651408085874,
+    "train_slot_accuracy": 0.881875,
+    "train_slot_exact_accuracy": 0.645625,
+    "train_count_accuracy": 0.64625,
+    "train_slot_count_accuracy": 0.645625,
+    "train_num_hits": 482570,
+    "train_num_events": 1600,
+    "train_count_accuracy_2e": 0.610062893081761,
+    "train_count_accuracy_3e": 0.6819875776397516,
+    "train_elapsed_sec": 28.750295877456665,
+    "val_loss": 2.558337460756302,
+    "val_origin_ce": 0.8168190741539001,
+    "val_fraction_ce": 0.7774876907467843,
+    "val_slot_bce": 0.2721708195322814,
+    "val_count_ce": 0.8279452845298996,
+    "val_fraction_mse": 0.11404211795578749,
+    "val_fraction_mae": 0.2276376906170474,
+    "val_accuracy": 0.6116324810339984,
+    "val_slot_accuracy": 0.87,
+    "val_slot_exact_accuracy": 0.61,
+    "val_count_accuracy": 0.5833333333333334,
+    "val_slot_count_accuracy": 0.61,
+    "val_num_hits": 88975,
+    "val_num_events": 300,
+    "val_count_accuracy_2e": 1.0,
+    "val_count_accuracy_3e": 0.14965986394557823,
+    "val_hit_confusion": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        30434,
+        4580,
+        948
+      ],
+      [
+        0,
+        12175,
+        14078,
+        9051
+      ],
+      [
+        0,
+        2277,
+        5524,
+        9908
+      ]
+    ],
+    "val_count_confusion": [
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        153,
+        0
+      ],
+      [
+        0,
+        0,
+        125,
+        22
+      ]
+    ],
+    "val_elapsed_sec": 2.5755887031555176
+  }
+]
