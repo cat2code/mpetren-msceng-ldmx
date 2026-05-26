@@ -52,7 +52,7 @@ kill PROCESS_ID
 ## Tensorize production_5M_001 into ML-ready shards
 
 The tensorization batch job runs independently after disconnecting from SSH.
-Both Slurm scripts load `GCCcore/13.2.0` and `Python/3.11.5`, then activate
+These Slurm scripts load `GCCcore/13.2.0` and `Python/3.11.5`, then activate
 `mpetren-msceng-ldmx/.venv/` inside the batch job. The virtual environment
 must already contain the requirements before submitting.
 
@@ -76,7 +76,27 @@ The smoke output is stored below
 `mpetren-msceng-ldmx/mldmx/data/processed/production_5M_001_sharded_smoke/`
 and does not need to be deleted before the full job.
 
-After the smoke job completes successfully, submit the full job:
+Before the full dataset, measure realistic shard memory use by tensorizing one
+complete ROOT file from each class. Unlike the 100-event smoke run, this
+preflight builds full approximately 10,000-event shards in memory:
+
+```bash
+cd /projects/hep/fs9/shared/ldmx/users/eliotmp
+sbatch mpetren-msceng-ldmx/mldmx/scripts/slurm/preflight_full_shards_production_5M_001.sbatch
+```
+
+For a returned preflight job ID such as `1234568`, follow it with:
+
+```bash
+tail -F tensorize_production_5M_001_full_shard_check_1234568.out tensorize_production_5M_001_full_shard_check_1234568.err
+sacct -j 1234568 --format=JobID,JobName,State,Elapsed,ExitCode,MaxRSS
+```
+
+The full-shard preflight output is separate from production and can remain in
+place: `mldmx/data/processed/production_5M_001_full_shard_preflight/`.
+
+After the full-shard preflight completes within the `32G` request, submit the
+complete dataset job:
 
 ```bash
 cd /projects/hep/fs9/shared/ldmx/users/eliotmp

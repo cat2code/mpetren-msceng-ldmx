@@ -61,6 +61,7 @@ runs/**/tmp/
 *.pt
 mldmx/data/processed/production_5M_001_sharded/
 mldmx/data/processed/production_5M_001_sharded_smoke/
+mldmx/data/processed/production_5M_001_full_shard_preflight/
 
 # =========================
 # External upstream repos
