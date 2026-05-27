@@ -114,4 +114,19 @@ sacct -j 1234567 --format=JobID,JobName,State,Elapsed,ExitCode,MaxRSS
 
 The Python progress messages report each source `.root` file as its `.pt`
 shard is written. Re-submitting after interruption resumes valid existing
-shards because the job uses `--skip-existing`.
+shards because the job uses `--skip-existing`. If a ROOT file is unreadable
+or cannot be tensorized, the production job records it under `skipped_sources`
+in that class's `index.json`, logs the error, and continues with later files.
+
+If a failed run already completed an indexed prefix, it can skip reopening
+those existing shard payloads. For example, if `2e` completed through
+`events_184.root` and failed at `events_185.root`, submit:
+
+```bash
+cd /projects/hep/fs9/shared/ldmx/users/eliotmp
+sbatch --export=ALL,RESUME_2E_FROM_ROOT_INDEX=185 \
+  mpetren-msceng-ldmx/mldmx/scripts/slurm/preprocess_production_5M_001_sharded.sbatch
+```
+
+Use `RESUME_3E_FROM_ROOT_INDEX` separately only if a later run has an existing
+indexed prefix in the `3e` output. These values are 1-based ROOT-file positions.
