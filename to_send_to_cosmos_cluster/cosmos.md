@@ -1,132 +1,111 @@
-# Sharding everything!!!!
+# Cosmos MLDMX Run Notes
 
-cd /projects/hep/fs9/shared/ldmx/users/eliotmp
-sbatch mpetren-msceng-ldmx/mldmx/scripts/slurm/preprocess_production_5M_001_sharded.sbatch
+Authoritative training guide:
 
-#
+```text
+mpetren-msceng-ldmx/mldmx/docs/cosmos_training.md
+```
 
+## Normal Start
 
-send req to cosmos
+```bash
+ssh eliotmp@cosmos.lunarc.lu.se
+cd /projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx
+git pull
+source .venv/bin/activate
+cd mldmx
+python -m pip install -e .
+mkdir -p outputs/slurm
+```
 
-scp requirements.txt eliotmp@cosmos.lunarc.lu.se:/home/eliotmp/eliot_project/
+The production ML-ready shard layout is expected to be:
 
+```text
+mldmx/data/processed/production_5M_001_sharded/
+  2e/events/index.json
+  2e/events/manifest.json
+  2e/events/shards/
+  3e/events/index.json
+  3e/events/manifest.json
+  3e/events/shards/
+```
 
+Training should normally use `--processed-cache-root
+data/processed/production_5M_001_sharded`, not ROOT reading.
 
-send plot to my comp
+## GPU Validation
 
-scp eliotmp@cosmos.lunarc.lu.se:/home/eliotmp/eliot_project/event_count_histogram.png ~/Downloads/.
+```bash
+sbatch other/cosmos_validate_gpu.sbatch
+```
 
+This uses `gpua100i`, checks CUDA, and runs the five maintained-model common
+pipeline validation.
 
+## First Training Runs
 
-Start something in the background
+1,000 total events, balanced across `2e` and `3e`:
 
-Running right now: 3096125
+```bash
+sbatch --export=ALL,MODEL=ECalTpadTransformer,EVENTS_PER_SOURCE=500,EPOCHS=5,RUN_NAME=tpad_transformer_1k \
+  other/cosmos_train_baseline.sbatch
+```
 
-nohup python ~/eliot_project/inspect_event_counts.py > ~/eliot_project/inspect_event_counts.log 2>&1 &
+10,000 total events:
 
+```bash
+sbatch --export=ALL,MODEL=ECalTpadTransformer,EVENTS_PER_SOURCE=5000,EPOCHS=10,RUN_NAME=tpad_transformer_10k \
+  other/cosmos_train_baseline.sbatch
+```
 
+Advanced slot model, 1,000 total events:
 
-Watch progress
+```bash
+sbatch --export=ALL,EVENTS_PER_SOURCE=500,EPOCHS=5,RUN_NAME=slot_1k \
+  other/cosmos_train_slot.sbatch
+```
 
-tail -f ~/eliot_project/inspect_event_counts.log
+`EVENTS_PER_SOURCE=N` means total events are `2*N` for the standard
+`2e`+`3e` processed-cache root.
 
-Exit: Ctrl + C
+## Monitor
 
+```bash
+jobinfo -u $USER
+squeue -j <jobid>
+tail -F outputs/slurm/<job-name>_<jobid>.out
+sacct -j <jobid> --format=JobID,JobName,State,Elapsed,ExitCode,MaxRSS
+srun --jobid=<jobid> --pty nvidia-smi
+```
 
+Outputs are written under:
 
-Check if still running
+```text
+mldmx/outputs/cosmos_baselines/<run-name>/
+mldmx/outputs/cosmos_slot/<run-name>/
+```
 
-ps -u $USER | grep inspect_event_counts
+Resume with:
 
-or
+```bash
+sbatch --export=ALL,RESUME=outputs/cosmos_baselines/<run-name>/checkpoints/latest.pt,RUN_NAME=<new-or-same-name> \
+  other/cosmos_train_baseline.sbatch
+```
 
-pgrep -af inspect_event_counts.py
+## Tensorize Production Shards
 
+The production tensorization jobs are separate from training. They should write
+independent `2e/events` and `3e/events` caches so training can balance them
+with `--processed-cache-root`.
 
-
-
-Kill if needed:
-
-kill PROCESS_ID
-
-## Tensorize production_5M_001 into ML-ready shards
-
-The tensorization batch job runs independently after disconnecting from SSH.
-These Slurm scripts load `GCCcore/13.2.0` and `Python/3.11.5`, then activate
-`mpetren-msceng-ldmx/.venv/` inside the batch job. The virtual environment
-must already contain the requirements before submitting.
-
-First run a small preflight job. It converts 100 events from one ROOT file
-for each of `2e` and `3e`, writing to a separate smoke output directory:
+Existing preprocessing Slurm entry points remain:
 
 ```bash
 cd /projects/hep/fs9/shared/ldmx/users/eliotmp
 sbatch mpetren-msceng-ldmx/mldmx/scripts/slurm/smoke_production_5M_001_sharded.sbatch
-```
-
-For a returned smoke job ID such as `1234567`, follow it with:
-
-```bash
-tail -F tensorize_production_5M_001_smoke_1234567.out tensorize_production_5M_001_smoke_1234567.err
-squeue -j 1234567
-sacct -j 1234567 --format=JobID,JobName,State,Elapsed,ExitCode,MaxRSS
-```
-
-The smoke output is stored below
-`mpetren-msceng-ldmx/mldmx/data/processed/production_5M_001_sharded_smoke/`
-and does not need to be deleted before the full job.
-
-Before the full dataset, measure realistic shard memory use by tensorizing one
-complete ROOT file from each class. Unlike the 100-event smoke run, this
-preflight builds full approximately 10,000-event shards in memory:
-
-```bash
-cd /projects/hep/fs9/shared/ldmx/users/eliotmp
 sbatch mpetren-msceng-ldmx/mldmx/scripts/slurm/preflight_full_shards_production_5M_001.sbatch
-```
-
-For a returned preflight job ID such as `1234568`, follow it with:
-
-```bash
-tail -F tensorize_production_5M_001_full_shard_check_1234568.out tensorize_production_5M_001_full_shard_check_1234568.err
-sacct -j 1234568 --format=JobID,JobName,State,Elapsed,ExitCode,MaxRSS
-```
-
-The full-shard preflight output is separate from production and can remain in
-place: `mldmx/data/processed/production_5M_001_full_shard_preflight/`.
-
-After the full-shard preflight completes within the `32G` request, submit the
-complete dataset job:
-
-```bash
-cd /projects/hep/fs9/shared/ldmx/users/eliotmp
 sbatch mpetren-msceng-ldmx/mldmx/scripts/slurm/preprocess_production_5M_001_sharded.sbatch
 ```
 
-Record the job ID printed by `sbatch`, for example `Submitted batch job 1234567`.
-The job writes logs in the current project area:
-
-```bash
-tail -F tensorize_production_5M_001_1234567.out tensorize_production_5M_001_1234567.err
-squeue -j 1234567
-sacct -j 1234567 --format=JobID,JobName,State,Elapsed,ExitCode,MaxRSS
-```
-
-The Python progress messages report each source `.root` file as its `.pt`
-shard is written. Re-submitting after interruption resumes valid existing
-shards because the job uses `--skip-existing`. If a ROOT file is unreadable
-or cannot be tensorized, the production job records it under `skipped_sources`
-in that class's `index.json`, logs the error, and continues with later files.
-
-If a failed run already completed an indexed prefix, it can skip reopening
-those existing shard payloads. For example, if `2e` completed through
-`events_184.root` and failed at `events_185.root`, submit:
-
-```bash
-cd /projects/hep/fs9/shared/ldmx/users/eliotmp
-sbatch --export=ALL,RESUME_2E_FROM_ROOT_INDEX=185 \
-  mpetren-msceng-ldmx/mldmx/scripts/slurm/preprocess_production_5M_001_sharded.sbatch
-```
-
-Use `RESUME_3E_FROM_ROOT_INDEX` separately only if a later run has an existing
-indexed prefix in the `3e` output. These values are 1-based ROOT-file positions.
+Reruns should use `--skip-existing` or the script defaults that reuse valid
+completed shards.
