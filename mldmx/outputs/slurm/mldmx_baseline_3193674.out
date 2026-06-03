@@ -1,0 +1,87 @@
+Obtaining file:///projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: mldmx
+  Building editable for mldmx (pyproject.toml): started
+  Building editable for mldmx (pyproject.toml): finished with status 'done'
+  Created wheel for mldmx: filename=mldmx-0.1.0-0.editable-py3-none-any.whl size=1160 sha256=963e19c817b302fbf9b5720939d18e0ae71928a3ef4fcb2acd5ab796521b9a1e
+  Stored in directory: /local/slurmtmp.3193674/pip-ephem-wheel-cache-s499gr1c/wheels/5e/47/d9/532e4e0120ee7c9bf7a58eb35af2c009d586d264b1d10d841f
+Successfully built mldmx
+Installing collected packages: mldmx
+  Attempting uninstall: mldmx
+    Found existing installation: mldmx 0.1.0
+    Uninstalling mldmx-0.1.0:
+      Successfully uninstalled mldmx-0.1.0
+Successfully installed mldmx-0.1.0
+host: cg21
+repo: /projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx
+model: ECalTpadTransformer
+processed cache root: data/processed/production_5M_001_sharded
+events per source: 1000
+Python 3.11.5
+Thu May 28 16:58:33 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          Off |   00000000:86:00.0 Off |                    0 |
+| N/A   26C    P0             31W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-PCIE-40GB          Off |   00000000:D8:00.0 Off |                    0 |
+| N/A   26C    P0             32W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+python: 3.11.5 (main, Aug 26 2024, 11:58:39) [GCC 13.2.0]
+platform: Linux-5.14.0-611.11.1.el9_7.x86_64-x86_64-with-glibc2.34
+torch: 2.7.0+cu126
+torch cuda version: 12.6
+cuda available: True
+cuda device count: 1
+current cuda device: 0
+gpu name: NVIDIA A100-PCIE-40GB
+tiny cuda tensor check: 140.0
+command: python -u scripts/train_hit_classifier_baseline.py --model ECalTpadTransformer --processed-cache-root data/processed/production_5M_001_sharded --events-per-source 1000 --epochs 5 --batch-size 8 --lr 1e-3 --weight-decay 0.0 --hidden-dim 64 --num-layers 2 --num-heads 4 --dim-feedforward 128 --dropout 0.1 --seed 7 --device cuda --output-root outputs/cosmos_baselines --run-name tpad_transformer_1k_test --no-progress
+2026-05-28 16:58:43 | INFO | CUDA GPU: NVIDIA A100-PCIE-40GB
+2026-05-28 16:58:43 | INFO | Output directory: outputs/cosmos_baselines/tpad_transformer_1k_test
+2026-05-28 16:58:43 | INFO | Model: ECalTpadTransformer
+2026-05-28 16:58:43 | INFO | Using device: cuda
+2026-05-28 16:58:43 | INFO | Target mode: canonical-y; baseline training noise policy: filtered
+2026-05-28 16:58:43 | INFO | Multi-source sharded cache mode selected; use --events-per-source for balanced staged runs.
+2026-05-28 16:58:44 | INFO | Using sharded source 2e (2e): 1000 event(s) from data/processed/production_5M_001_sharded/2e/events
+2026-05-28 16:58:44 | INFO | Using sharded source 3e (3e): 1000 event(s) from data/processed/production_5M_001_sharded/3e/events
+2026-05-28 16:58:44 | INFO | Loaded lazy multi-source sharded dataset with 2000 total event(s): [{'electron_count': 2, 'source_label': '2e', 'cache_dir': 'data/processed/production_5M_001_sharded/2e/events', 'num_events': 1000}, {'electron_count': 3, 'source_label': '3e', 'cache_dir': 'data/processed/production_5M_001_sharded/3e/events', 'num_events': 1000}]
+2026-05-28 16:58:44 | INFO | Split sizes: train=1600 val=300 test=100
+2026-05-28 16:59:06 | INFO | Fitted lazy canonical-event feature normalization from sharded training events.
+2026-05-28 16:59:06 | INFO | Training canonical class counts: {1: 194656, 2: 191076, 3: 96838}
+2026-05-28 16:59:06 | INFO | Input feature dimension: 8
+2026-05-28 16:59:06 | INFO | Deriving model-specific views on demand; pass --cache-model-views to reuse them.
+2026-05-28 16:59:06 | INFO | Trainable parameters: 71875
+2026-05-28 16:59:25 | INFO | epoch=001 train_loss=0.73036 train_acc=0.6901 elapsed=18.0s
+2026-05-28 16:59:27 | INFO | epoch=001 val_loss=0.91200 val_acc=0.5618
+2026-05-28 16:59:45 | INFO | epoch=002 train_loss=0.70872 train_acc=0.7027 elapsed=17.3s
+2026-05-28 16:59:47 | INFO | epoch=002 val_loss=0.90719 val_acc=0.5504
+2026-05-28 17:00:04 | INFO | epoch=003 train_loss=0.60182 train_acc=0.7242 elapsed=17.3s
+2026-05-28 17:00:07 | INFO | epoch=003 val_loss=1.76785 val_acc=0.5965
+2026-05-28 17:00:24 | INFO | epoch=004 train_loss=0.69116 train_acc=0.7125 elapsed=17.3s
+2026-05-28 17:00:26 | INFO | epoch=004 val_loss=0.80513 val_acc=0.5957
+2026-05-28 17:00:44 | INFO | epoch=005 train_loss=0.67758 train_acc=0.7092 elapsed=17.3s
+2026-05-28 17:00:46 | INFO | epoch=005 val_loss=0.85226 val_acc=0.5691
+2026-05-28 17:00:48 | INFO | Final test: loss=0.85111 hit_acc=0.5668; saved outputs to outputs/cosmos_baselines/tpad_transformer_1k_test

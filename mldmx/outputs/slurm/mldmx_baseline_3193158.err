@@ -1,0 +1,5 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) SoftwareTree/Milan
+/var/spool/slurm/slurmd/job3193158/slurm_script: line 75: 2021479 Segmentation fault      (core dumped) "${cmd[@]}"

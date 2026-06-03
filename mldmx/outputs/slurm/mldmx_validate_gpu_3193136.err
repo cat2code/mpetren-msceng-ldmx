@@ -1,0 +1,5 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) SoftwareTree/Milan
+/var/spool/slurm/slurmd/job3193136/slurm_script: line 36: 2020066 Bus error               (core dumped) python -u scripts/validate_model_family_common_pipeline.py --processed-cache-root "${PROCESSED_CACHE_ROOT}" --events-per-source "${EVENTS_PER_SOURCE}" --device cuda
