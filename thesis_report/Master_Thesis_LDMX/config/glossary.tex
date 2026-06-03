@@ -1,0 +1,325 @@
+% =====================================================================
+% LDMX Glossary
+% =====================================================================
+
+% Added Commands for easily writing Acronyms and Terms in titles
+\newcommand{\glsacrotitle}[1]{\texorpdfstring{\ecapitalisewords{\glsentrylong{#1}} (\glsfmtshort{#1})}{}}
+\newcommand{\glstermtitle}[1]{\texorpdfstring{\ecapitalisewords{\glsentrytext{#1}}}{}}
+
+% First occurance of Acronyms italic
+\renewcommand{\glsfirstlongdefaultfont}[1]{\emph{#1}}
+
+\MFUhyphentrue
+
+\newignoredglossary{common}
+
+\setabbreviationstyle{long-short}
+\setabbreviationstyle[acronym]{long-short}
+
+\glssetcategoryattributes{acro}{glossdesc}{title}
+\glssetcategoryattributes{term}{glossname}{title}
+
+% =====================================================================
+% Terms
+% =====================================================================
+
+\newglossaryentry{missing momentum experiment}{
+    name={missing momentum experiment},
+    type=common,
+    first={\emph{missing momentum experiment}},
+    description={The LDMX detection strategy that identifies weakly interacting particles by measuring the imbalance in momentum between the incoming electron and the reconstructed final state.},
+    category={term}
+}
+
+\newglossaryentry{recoil electron}{
+    name={recoil electron},
+    first={\emph{recoil electron}},
+    description={The outgoing electron after scattering in the target. Its energy and angle encode information relevant for dark-sector production.},
+    category={term}
+}
+
+\newglossaryentry{pile-up}{
+    name={pile-up},
+    first={\emph{pile-up}},
+    description={The presence of multiple overlapping electrons or interactions within the same detector readout window, leading to overlapping showers and increased ambiguity in reconstruction.},
+    category={term}
+}
+
+\newglossaryentry{reconstruction}{
+    name={reconstruction},
+    first={\emph{reconstruction}},
+    description={The algorithmic stage that converts detector signals (simulated or measured) into higher-level physics objects, e.g. calibrated hits, clusters, and shower observables, which can then be used for physics analysis.},
+    category={term}
+}
+
+
+\newglossaryentry{bremsstrahlung}{
+    name={bremsstrahlung},
+    first={\emph{bremsstrahlung}},
+    description={Photon radiation emitted by electrons traversing material. It constitutes a major background and drives electromagnetic shower development.},
+    category={term}
+}
+
+\newglossaryentry{mip}{
+    name={minimum-ionizing particle},
+    first={\emph{minimum-ionizing particle}},
+    description={A particle depositing near-minimum energy per unit length in silicon; used as a reference for tracker and calorimeter calibration.},
+    category={term}
+}
+
+\newglossaryentry{tracker hit}{
+    name={tracker hit},
+    first={\emph{tracker hit}},
+    description={A signal in a silicon strip sensor corresponding to charged-particle passage; used to reconstruct track segments and momenta.},
+    category={term}
+}
+
+\newglossaryentry{ecal shower}{
+    name={ECAL shower},
+    first={\emph{ECAL shower}},
+    description={An electromagnetic cascade initiated when electrons or photons enter the electromagnetic calorimeter. Its topology and energy profile are central to background rejection.},
+    category={term}
+}
+
+\newglossaryentry{hcal veto}{
+    name={HCAL veto},
+    first={\emph{HCAL veto}},
+    description={Hadronic calorimeter signatures used to identify hadronic interactions or punch-through and reject background events.},
+    category={term}
+}
+
+\newglossaryentry{dark photon}{
+    name={dark photon},
+    first={\emph{dark photon}},
+    description={A hypothetical mediator \(A'\) between standard model and dark-sector particles; one of the primary physics targets of LDMX.},
+    category={term}
+}
+
+\newglossaryentry{dark matter candidate}{
+    name={dark matter candidate},
+    first={\emph{dark matter candidate}},
+    description={A hypothetical particle \(\chi\) produced via dark-sector processes, escaping the detector and generating missing momentum.},
+    category={term}
+}
+
+\newglossaryentry{trigger scintillator}{
+    name={trigger scintillator},
+    first={\emph{trigger scintillator}},
+    description={Fast plastic scintillator layers used to tag the incoming electron and reject out-of-time or multi-particle contamination.},
+    category={term}
+}
+
+\newglossaryentry{radiative trident}{
+    name={radiative trident},
+    first={\emph{radiative trident}},
+    description={Background process \(e^- Z \to e^- \gamma Z \to e^- e^+ e^- Z\), with a photon converting to an $e^+e^-$ pair; mimics missing-momentum signatures.},
+    category={term}
+}
+
+\newglossaryentry{photo-nuclear interaction}{
+    name={photo-nuclear interaction},
+    first={\emph{photo-nuclear interaction}},
+    description={Interaction where a high-energy photon knocks out hadrons from a nucleus; a leading background for LDMX missing momentum analyses.},
+    category={term}
+}
+
+\newglossaryentry{alignment}{
+    name={detector alignment},
+    first={\emph{detector alignment}},
+    description={Calibration of the relative positions of tracking sensors to ensure accurate momentum and hit reconstruction.},
+    category={term}
+}
+
+\newglossaryentry{gnn reconstruction}{
+    name={graph neural network reconstruction},
+    first={\emph{graph neural network reconstruction}},
+    description={Machine-learning-based event reconstruction where hits or calorimeter cells form graph nodes and their spatial relation is encoded with edges ("Graph Neural Network"), enabling shower classification, hit-to-shower assignment and possibly pile-up mitigation.},
+    category={term}
+}
+
+
+
+
+% =====================================================================
+% Math/HEP kinematic quantities (glossary entries + acronyms)
+% =====================================================================
+
+% --- core angular/kinematic quantities (as acronyms, consistent with your style)
+\newabbreviation[type=acronym, category=acro]{theta}{\ensuremath{\theta}}{polar angle}
+\newabbreviation[type=acronym, category=acro]{p}{\ensuremath{p}}{momentum magnitude}
+\newabbreviation[type=acronym, category=acro]{e}{\ensuremath{E}}{energy}
+\newabbreviation[type=acronym, category=acro]{m}{\ensuremath{m}}{mass}
+\newabbreviation[type=acronym, category=acro]{px}{\ensuremath{p_x}}{momentum component along \(x\)}
+\newabbreviation[type=acronym, category=acro]{py}{\ensuremath{p_y}}{momentum component along \(y\)}
+\newabbreviation[type=acronym, category=acro]{pz}{\ensuremath{p_z}}{momentum component along \(z\)}
+\newabbreviation[type=acronym, category=acro]{et}{\ensuremath{E_T}}{transverse energy}
+
+% --- derived quantities (terms, since they are definitions rather than symbols)
+\newglossaryentry{azimuthal angle}{
+    name={azimuthal angle},
+    first={\emph{azimuthal angle}},
+    description={The angle \(\gls{phi}\) in the transverse plane around the beam axis (usually the \(z\)-axis), typically defined in the range \((-\pi,\pi]\). Together with \(\gls{eta}\) (or \(\gls{theta}\)), it specifies a direction in the detector.},
+    category={term}
+}
+
+\newglossaryentry{polar angle}{
+    name={polar angle},
+    first={\emph{polar angle}},
+    description={The angle \(\gls{theta}\) between a particle momentum vector and the beam axis (usually the \(z\)-axis). It is related to pseudorapidity by \(\eta = -\ln \tan(\theta/2)\).},
+    category={term}
+}
+
+\newglossaryentry{pseudorapidity}{
+    name={pseudorapidity},
+    first={\emph{pseudorapidity}},
+    description={A coordinate \(\gls{eta}\) that parametrizes the polar angle via \(\eta = -\ln \tan(\gls{theta}/2)\). Differences in \(\eta\) are approximately invariant under boosts along the beam axis for highly relativistic particles, making \((\eta,\phi)\) convenient for collider and forward-spectrometer geometries.},
+    category={term}
+}
+
+\newglossaryentry{transverse momentum}{
+    name={transverse momentum},
+    first={\emph{transverse momentum}},
+    description={The momentum component perpendicular to the beam axis: \(\gls{pt} = \sqrt{\gls{px}^2+\gls{py}^2}\). It is widely used because it is insensitive to unknown boosts along the beam direction and is directly tied to curvature in a solenoidal magnetic field.},
+    category={term}
+}
+
+\newglossaryentry{transverse energy}{
+    name={transverse energy},
+    first={\emph{transverse energy}},
+    description={The energy projected into the transverse plane, commonly defined as \(\gls{et} = \gls{e}\sin\gls{theta}\). For (effectively) massless particles, \(E_T\approx p_T\).},
+    category={term}
+}
+
+\newglossaryentry{four-momentum}{
+    name={four-momentum},
+    first={\emph{four-momentum}},
+    description={The relativistic momentum four-vector \(p^\mu = (\gls{e},\vec{p})\), often written as \((E, p_x, p_y, p_z)\). The invariant mass satisfies \(m^2 = E^2 - |\vec{p}|^2\) (with \(c=1\)).},
+    category={term}
+}
+
+\newglossaryentry{impact parameter}{
+    name={impact parameter},
+    first={\emph{impact parameter}},
+    description={A measure of the distance of closest approach of a reconstructed track to a reference point (typically the primary vertex). Common components are the transverse impact parameter \(d_0\) and longitudinal impact parameter \(z_0\), used in track quality and vertexing.},
+    category={term}
+}
+
+\newglossaryentry{chi-squared}{
+    name={chi-squared},
+    first={\emph{chi-squared}},
+    description={A goodness-of-fit statistic \(\chi^2\) used in track and vertex fitting, quantifying the weighted squared residuals between measured hits and the fitted model. Often reported as \(\chi^2/\mathrm{ndf}\) (per degree of freedom) as a track-quality indicator.},
+    category={term}
+}
+
+\newglossaryentry{pileup}{
+    name={pile-up},
+    first={\emph{pile-up}},
+    description={Additional interactions or particles (electrons in this thesis) overlapping in the same readout window, producing overlapping showers, hits and energy deposits that complicate reconstruction and object association.},
+    category={term}
+}
+
+% =====================================================================
+% Minimal test snippet (drop into your document to verify glossary output)
+% =====================================================================
+
+% Example usage:
+% - \gls{pt}, \gls{eta}, \gls{phi} are acronyms already in your file.
+% - The term entries below use \gls{} to link to the acronyms.
+
+\newcommand{\glosstestsnippet}{
+In cylindrical detector coordinates, a particle direction is often expressed by pseudorapidity \gls{eta} and azimuth \gls{phi} (the \gls{azimuthal angle}), while its hardness is characterized by the transverse momentum \gls{pt} (the \gls{transverse momentum}). The polar angle \gls{theta} is related to \gls{eta} via \(\eta=-\ln\tan(\theta/2)\), and transverse energy \gls{et} is defined as \(E_T=E\sin\theta\). Track-quality diagnostics commonly include \gls{chi-squared} and the \gls{impact parameter}. In high-occupancy conditions such as \gls{pileup}, associating calorimeter clusters to tracks becomes more ambiguous, motivating global methods such as \gls{pf}.
+}
+
+
+
+
+
+
+
+
+
+
+
+% =====================================================================
+% Math Acronyms
+% =====================================================================
+
+
+\newabbreviation[type=acronym, category=acro]{pt}{\ensuremath{p_T}}{transverse momentum}
+
+\newabbreviation[type=acronym, category=acro]{eta}{\ensuremath{\eta}}{pseudorapidity}
+
+\newabbreviation[type=acronym, category=acro]{phi}{\ensuremath{\phi}}{azimuthal angle}
+
+% =====================================================================
+% Acronyms
+% =====================================================================
+
+\newabbreviation[type=acronym, category=acro]{ldmx}{LDMX}{Light Dark Matter eXperiment}
+
+\newabbreviation[type=acronym, category=acro]{ldmxsw}{LDMX-SW}{LDMX-Software}
+
+\newabbreviation[type=acronym, category=acro]{slac}{SLAC}{Stanford Linear Accelerator Center}
+
+\newabbreviation[type=acronym, category=acro]{ecal}{ECal}{electromagnetic calorimeter}
+
+\newabbreviation[type=acronym, category=acro]{hcal}{HCal}{hadronic calorimeter}
+
+\newabbreviation[type=acronym, category=acro]{gnn}{GNN}{graph neural network}
+
+\newabbreviation[type=acronym, category=acro]{cnn}{CNN}{convolutional neural network}
+
+\newabbreviation[type=acronym, category=acro]{gravnet}{GravNet}{a graph neural network architecture for learned clustering and representation learning in high-granularity particle detectors}
+
+\newabbreviation[type=acronym, category=acro]{dm}{DM}{dark matter}
+
+\newabbreviation[type=acronym, category=acro]{eot}{EoT}{electrons on target}
+
+\newabbreviation[type=acronym, category=acro]{geant4}{Geant4}{GEometry ANd Tracking 4}
+
+\newabbreviation[type=acronym, category=acro]{ldm}{LDM}{light dark matter}
+
+\newabbreviation[type=acronym, category=acro]{pf}{PF}{ParticleFlow}
+
+\newabbreviation[type=acronym, category=acro]{sm}{SM}{Standard Model}
+
+\newabbreviation[type=acronym, category=acro]{mond}{MOND}{Modified Newtonian Dynamics}
+
+\newabbreviation[type=acronym, category=acro]{wimp}{WIMP}{weakly interacting massive particle}
+
+\newabbreviation[type=acronym, category=acro]{mlpf}{MLPF}{machine learning particle flow}
+
+\newabbreviation[type=acronym, category=acro]{ml}{ML}{machine learning}
+
+\newabbreviation[type=acronym, category=acro]{clue}{CLUE}{CLUstering of Energy}
+
+\newabbreviation[type=acronym, category=acro]{atlas}{ATLAS}{A Toroidal LHC ApparatuS}
+
+\newabbreviation[type=acronym, category=acro]{cern}{CERN}{European Organization for Nuclear Research}
+
+\newabbreviation[type=acronym, category=acro]{cms}{CMS}{Compact Muon Solenoid}
+
+\newabbreviation[type=acronym, category=acro]{lhc}{LHC}{Large Hadron Collider}
+
+\newabbreviation[type=acronym, category=acro]{hllhc}{HL-LHC}{High-Luminosity Large Hadron Collider}
+
+\newabbreviation[type=acronym, category=acro]{hgcal}{HGCAL}{High-Granularity Calorimeter}
+
+\newabbreviation[type=acronym, category=acro]{gpu}{GPU}{graphics processing unit}
+
+\newabbreviation[type=acronym, category=acro]{cpu}{CPU}{Central Processing Unit}
+
+\newabbreviation[type=acronym, category=acro]{tpu}{TPU}{tensor processing unit}
+
+\newabbreviation[type=acronym, category=acro]{dbscan}{DBSCAN}{Density-Based Spatial Clustering of Applications with Noise}
+
+\newabbreviation[type=acronym, category=acro]{hep}{HEP}{high-energy physics}
+
+\newabbreviation[type=acronym, category=acro]{dune}{DUNE}{Deep Underground Neutrino Experiment}
+
+\newabbreviation[type=acronym, category=acro]{nova}{NOvA}{NuMI Off-axis $\nu_e$ Appearance}
+
+\newabbreviation[type=acronym, category=acro]{lartpc}{LArTPC}{liquid argon time projection chamber}
+
+\newabbreviation[type=acronym, category=acro]{edgeconv}{EdgeConv}{edge convolution}
+
