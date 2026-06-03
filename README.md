@@ -1,48 +1,117 @@
-# mpetren-msceng-ldmx
+# Graph Neural Network-Based Reconstruction for LDMX under Pile-Up
 
-## Graph Neural Network-Based High-Level-Trigger Reconstruction in LDMX under Pile-Up​ Conditions
+This repository contains the MScEng thesis work of Eliot M. Petrén for the
+Light Dark Matter eXperiment (LDMX) group at the Division of Particle and
+Nuclear Physics, Lund University.
 
-This is a repo for the master thesis in Engineering Physics (MScEng) of Eliot M. Petrén, done for the Light Dark Matter eXperiment (LDMX) research group of the Particle- and Nuclear Physics division of Lund University. 
+The project studies machine-learning reconstruction of overlapping electron
+events in LDMX. The current pipeline combines ECal reconstructed hits with
+TriggerPadTracks context and explores graph- and transformer-based models for
+hit-origin assignment, fractional attribution, and event-level electron
+counting under pile-up conditions.
 
-**Please note that this project is ongoing**
+This is an active research repository. Scripts, datasets, and model choices may
+change as the thesis work develops.
 
-## Working title: **Graph Neural Network-Based High-Level-Trigger Multi-Detector-Reconstruction in LDMX under Pile-Up​ Conditions**
-### Translation: "Put the readouts of the whole detector in a graph and let a learning computer infer what the hell happened when there were several electrons at the same time"
+## Repository Layout
 
-## Overview
+| Path | Purpose |
+| --- | --- |
+| `mldmx/` | Installable Python package, runnable ML scripts, notebooks, trained artifacts, figures, and experiment outputs. |
+| `runs/` | LDMX simulation and overlay run directories; `runs/it_pileup/` contains the current `ldmx-sw` configuration scripts. |
+| `playground/` | Early notebooks and exploratory visualizations. |
+| `to_send_to_cosmos_cluster/` | Files prepared for running simulation work on the Cosmos cluster. |
+| `papers/` | Reference literature collected during the project. |
+| `veckomote/` | Project and supervision meeting notes. |
+| `external/` | Local upstream `ldmx-sw` checkouts, ignored by Git. |
 
-### Model flowchart illustration
+## Current Workflow
 
-![GNN Illustration](assets/mpetren_gnn.jpg)
+The core development now lives in `mldmx/`:
 
-### Reqiurements
+1. Generate or overlay LDMX events with the `ldmx-sw` configurations in
+   `runs/it_pileup/`.
+2. Read ROOT event data with `uproot` and `awkward`.
+3. Tensorize ECal hits and TriggerPadTracks information, optionally constructing
+   graph edges and cached event tensors.
+4. Train and evaluate reconstruction models implemented in
+   `mldmx/src/mldmx/models/`.
+5. Save checkpoints, metrics, event displays, and diagnostic plots under
+   `mldmx/outputs/` and `mldmx/figures/`.
 
-This is a large repo containing everything that I have worked with so there are different requirements depening on where you look but here is a list of everything that is relevant. 
+Implemented experiments include:
 
-`Docker` - This repo utilizes the `ldmx-sw` framework and their corresponding Docker, find tutorial there. 
+- Small GNN and transformer baselines for three-class ECal hit assignment.
+- ECal plus TriggerPadTracks graph and transformer variants.
+- An MLPF-lite-style model for hit-origin classification and fractional
+  attribution.
+- A slot-validity multi-task model for variable electron multiplicity.
 
-`Python 3.10` - Even though the Docker has Python I have utilized a Python installation outside of the Docker image, because it is easier to control and to install various ML-related packages to. 
+## Setup
 
-`requirements.txt` - Install relevant packages from here that are dependencies for your Python installation (presumably outside of the Docker image). Use this command: `python3 -m pip install -r requirements.txt` 
+The LDMX simulation step uses the `ldmx-sw` environment and its Docker-based
+workflow. The ML analysis code is run in a regular Python environment.
 
-### Branches
-`main` - this is the front-page branch where I put milestone images of my repo (i.e most stable)
+From the repository root:
 
-`eliot` - this is where I do my work and the latest stuff should be found here (i.e less stable)
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m pip install -e mldmx
+```
 
-`old_code` - this my showcasing bad practice of handling branches (don't be like me)
+The Python dependencies include PyTorch, PyTorch Geometric, ROOT-reading tools,
+Jupyter, and plotting libraries. Large generated ROOT files and local
+`ldmx-sw` checkouts are excluded through `.gitignore`.
 
-### Directories
+## Running The ML Code
 
-`runs` - Configuration scripts from `ldmx-sw` that utilizes the simulation framework, the output from the scripts and python scripts that visualizes `.root`-files are all collected here. 
+Commands below are intended to be run from the repository root after installing
+`mldmx`. Supply paths to the locally generated ROOT datasets where indicated.
 
-`gnn_playground` - Toy-model of the project for my own visualisation and a space where I teach myself things that will make a better project
+Check ROOT reading and tensor conversion:
 
-`papers` - A collection of papers I find relevant for this project (though not an extensive list of all interesting papers)
+```bash
+python mldmx/scripts/root_to_tensor_smoke.py path/to/events.root --stop 5
+```
 
-`veckomote` - Meeting protocols and notes (in Markdown) from weekly meetings with my supervisor and other diploma students at LDMX at Lund University
+Preprocess labelled ECal and TriggerPadTracks events into cached tensors:
 
+```bash
+python mldmx/scripts/preprocess_ecal_tpad_dataset.py \
+  --root-file path/to/events.root \
+  --output-dir mldmx/data/processed/ecal_tpad_3class
+```
 
-## LaTeX pdfs related to this project (Overleaf)
-* Master Thesis Project Plan: https://sv.overleaf.com/project/691b12336cc62effee4980ac
-* Master Thesis Project Report: https://sv.overleaf.com/project/691c746f2f67d8225653d5af
+Run a quick forward/backward model check using existing processed smoke data:
+
+```bash
+python mldmx/scripts/smoke_ecal_tpad_slot_model.py --max-events 3 --device cpu
+```
+
+Train the MLPF-lite-style ECal/TriggerPadTracks model:
+
+```bash
+python mldmx/scripts/train_ecal_tpad_mlpf_lite_scaled.py \
+  --data-dir path/to/events \
+  --max-events 1000 \
+  --epochs 1
+```
+
+Train the slot-validity model on two- and three-electron event directories:
+
+```bash
+python mldmx/scripts/train_ecal_tpad_slot_model.py \
+  --data-root path/to/ldmx_overlay_events \
+  --events-per-class 10 \
+  --epochs 2 \
+  --device cpu
+```
+
+For package structure and shorter notes about the ML directory, see
+[`mldmx/README.md`](mldmx/README.md).
+
+## License
+
+This repository is licensed under the terms in [`LICENSE`](LICENSE).

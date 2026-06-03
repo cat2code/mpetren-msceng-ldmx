@@ -1,0 +1,7 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) SoftwareTree/Milan
+
+[notice] A new release of pip is available: 26.1.1 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip

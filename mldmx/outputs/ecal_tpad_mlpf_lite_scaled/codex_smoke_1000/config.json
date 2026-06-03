@@ -1,0 +1,45 @@
+{
+  "max_events": 1000,
+  "data_dir": "data\\ldmx_overlay_events_700k\\3e\\events",
+  "output_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\ecal_tpad_mlpf_lite_scaled",
+  "run_name": "codex_smoke_1000",
+  "epochs": 1,
+  "batch_size": 16,
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "seed": 7,
+  "checkpoint_every": 1,
+  "resume": null,
+  "device": "auto",
+  "valid_labels": [
+    1,
+    2,
+    3
+  ],
+  "d_model": 64,
+  "nhead": 4,
+  "num_layers": 2,
+  "dim_feedforward": 128,
+  "dropout": 0.1,
+  "lambda_fraction": 1.0,
+  "grad_clip": 1.0,
+  "lr_scheduler": "none",
+  "plateau_patience": 3,
+  "plateau_factor": 0.5,
+  "no_normalize_features": false,
+  "keep_noise": false,
+  "num_plot_hits": 20000,
+  "no_progress": true,
+  "event_log_every": 0,
+  "allow_fewer_events": false,
+  "resolved_data_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\3e\\events",
+  "root_files_used": [
+    "events_1.root"
+  ],
+  "num_loaded_events": 1000,
+  "split_sizes": {
+    "train": 800,
+    "val": 150,
+    "test": 50
+  }
+}

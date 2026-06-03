@@ -1,0 +1,141 @@
+{
+  "interrupted": false,
+  "best_val_loss": 2.188109103838603,
+  "final_val_loss": 2.479900050163269,
+  "final_val_origin_ce": 0.816698416074117,
+  "final_val_fraction_ce": 0.7610697547594706,
+  "final_val_slot_bce": 0.25839585832630596,
+  "final_val_count_ce": 0.7729339399685462,
+  "final_val_fraction_mse": 0.10981104358353398,
+  "final_val_fraction_mae": 0.2185068500956351,
+  "final_val_accuracy": 0.6418181818181818,
+  "final_val_slot_accuracy": 0.9111111111111111,
+  "final_val_slot_exact_accuracy": 0.7333333333333333,
+  "final_val_count_accuracy": 0.7333333333333333,
+  "final_val_slot_count_accuracy": 0.7333333333333333,
+  "final_val_num_hits": 4400,
+  "final_val_num_events": 15,
+  "final_val_count_accuracy_2e": 0.8888888888888888,
+  "final_val_count_accuracy_3e": 0.5,
+  "final_val_hit_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1708,
+      190,
+      47
+    ],
+    [
+      0,
+      579,
+      823,
+      344
+    ],
+    [
+      0,
+      94,
+      322,
+      293
+    ]
+  ],
+  "final_val_count_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      8,
+      1
+    ],
+    [
+      0,
+      0,
+      3,
+      3
+    ]
+  ],
+  "test_loss": 1.6329050302505492,
+  "test_origin_ce": 0.7467236876487732,
+  "test_fraction_ce": 0.7330474972724914,
+  "test_slot_bce": 0.0430182134732604,
+  "test_count_ce": 0.1316247761249542,
+  "test_fraction_mse": 0.11089519300742627,
+  "test_fraction_mae": 0.2157275427840875,
+  "test_accuracy": 0.661517797179315,
+  "test_slot_accuracy": 1.0,
+  "test_slot_exact_accuracy": 1.0,
+  "test_count_accuracy": 1.0,
+  "test_slot_count_accuracy": 1.0,
+  "test_num_hits": 1489,
+  "test_num_events": 5,
+  "test_count_accuracy_2e": 1.0,
+  "test_count_accuracy_3e": 1.0,
+  "test_hit_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      506,
+      86,
+      13
+    ],
+    [
+      0,
+      258,
+      329,
+      38
+    ],
+    [
+      0,
+      26,
+      83,
+      150
+    ]
+  ],
+  "test_count_confusion": [
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      3,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      2
+    ]
+  ],
+  "test_elapsed_sec": 0.032367706298828125
+}

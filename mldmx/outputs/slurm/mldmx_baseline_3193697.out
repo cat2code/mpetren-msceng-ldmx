@@ -1,0 +1,177 @@
+Obtaining file:///projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: mldmx
+  Building editable for mldmx (pyproject.toml): started
+  Building editable for mldmx (pyproject.toml): finished with status 'done'
+  Created wheel for mldmx: filename=mldmx-0.1.0-0.editable-py3-none-any.whl size=1160 sha256=74462a47aaf804c9cb0193251ad78a97e1e5e594335bea4673991545d9a241e3
+  Stored in directory: /local/slurmtmp.3193697/pip-ephem-wheel-cache-umij7n9_/wheels/5e/47/d9/532e4e0120ee7c9bf7a58eb35af2c009d586d264b1d10d841f
+Successfully built mldmx
+Installing collected packages: mldmx
+  Attempting uninstall: mldmx
+    Found existing installation: mldmx 0.1.0
+    Uninstalling mldmx-0.1.0:
+      Successfully uninstalled mldmx-0.1.0
+Successfully installed mldmx-0.1.0
+host: cg21
+repo: /projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx
+model: ECalTpadTransformer
+processed cache root: data/processed/production_5M_001_sharded
+events per source: 10000
+Python 3.11.5
+Thu May 28 17:27:09 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          Off |   00000000:86:00.0 Off |                    0 |
+| N/A   26C    P0             31W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+|   1  NVIDIA A100-PCIE-40GB          Off |   00000000:D8:00.0 Off |                    0 |
+| N/A   26C    P0             32W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+python: 3.11.5 (main, Aug 26 2024, 11:58:39) [GCC 13.2.0]
+platform: Linux-5.14.0-611.11.1.el9_7.x86_64-x86_64-with-glibc2.34
+torch: 2.7.0+cu126
+torch cuda version: 12.6
+cuda available: True
+cuda device count: 1
+current cuda device: 0
+gpu name: NVIDIA A100-PCIE-40GB
+tiny cuda tensor check: 140.0
+command: python -u scripts/train_hit_classifier_baseline.py --model ECalTpadTransformer --processed-cache-root data/processed/production_5M_001_sharded --events-per-source 10000 --epochs 50 --batch-size 8 --lr 1e-3 --weight-decay 0.0 --hidden-dim 64 --num-layers 2 --num-heads 4 --dim-feedforward 128 --dropout 0.1 --seed 7 --device cuda --output-root outputs/cosmos_baselines --run-name tpad_transformer_10k_test --no-progress
+2026-05-28 17:27:16 | INFO | CUDA GPU: NVIDIA A100-PCIE-40GB
+2026-05-28 17:27:16 | INFO | Output directory: outputs/cosmos_baselines/tpad_transformer_10k_test
+2026-05-28 17:27:16 | INFO | Model: ECalTpadTransformer
+2026-05-28 17:27:16 | INFO | Using device: cuda
+2026-05-28 17:27:16 | INFO | Target mode: canonical-y; baseline training noise policy: filtered
+2026-05-28 17:27:16 | INFO | Multi-source sharded cache mode selected; use --events-per-source for balanced staged runs.
+2026-05-28 17:27:16 | INFO | Using sharded source 2e (2e): 10000 event(s) from data/processed/production_5M_001_sharded/2e/events
+2026-05-28 17:27:16 | INFO | Using sharded source 3e (3e): 10000 event(s) from data/processed/production_5M_001_sharded/3e/events
+2026-05-28 17:27:16 | INFO | Loaded lazy multi-source sharded dataset with 20000 total event(s): [{'electron_count': 2, 'source_label': '2e', 'cache_dir': 'data/processed/production_5M_001_sharded/2e/events', 'num_events': 10000}, {'electron_count': 3, 'source_label': '3e', 'cache_dir': 'data/processed/production_5M_001_sharded/3e/events', 'num_events': 10000}]
+2026-05-28 17:27:16 | INFO | Split sizes: train=16000 val=3000 test=1000
+2026-05-28 17:27:49 | INFO | Fitted lazy canonical-event feature normalization from sharded training events.
+2026-05-28 17:28:07 | INFO | Training canonical class counts: {1: 1946472, 2: 1901763, 3: 957393}
+2026-05-28 17:28:07 | INFO | Input feature dimension: 8
+2026-05-28 17:28:07 | INFO | Deriving model-specific views on demand; pass --cache-model-views to reuse them.
+2026-05-28 17:28:07 | INFO | Trainable parameters: 71875
+2026-05-28 17:31:32 | INFO | epoch=001 train_loss=0.58555 train_acc=0.7286 elapsed=163.2s
+2026-05-28 17:31:57 | INFO | epoch=001 val_loss=2.14238 val_acc=0.6075
+2026-05-28 17:34:49 | INFO | epoch=002 train_loss=0.56997 train_acc=0.7380 elapsed=172.5s
+2026-05-28 17:35:15 | INFO | epoch=002 val_loss=2.21215 val_acc=0.6071
+2026-05-28 17:37:41 | INFO | epoch=003 train_loss=0.56028 train_acc=0.7437 elapsed=145.5s
+2026-05-28 17:37:59 | INFO | epoch=003 val_loss=0.81978 val_acc=0.5965
+2026-05-28 17:40:44 | INFO | epoch=004 train_loss=0.54090 train_acc=0.7503 elapsed=164.8s
+2026-05-28 17:41:10 | INFO | epoch=004 val_loss=2.28378 val_acc=0.6075
+2026-05-28 17:43:48 | INFO | epoch=005 train_loss=0.54796 train_acc=0.7502 elapsed=158.1s
+2026-05-28 17:44:13 | INFO | epoch=005 val_loss=2.27508 val_acc=0.6088
+2026-05-28 17:46:57 | INFO | epoch=006 train_loss=0.54687 train_acc=0.7503 elapsed=164.1s
+2026-05-28 17:47:15 | INFO | epoch=006 val_loss=2.23879 val_acc=0.6130
+2026-05-28 17:49:51 | INFO | epoch=007 train_loss=0.54287 train_acc=0.7516 elapsed=155.9s
+2026-05-28 17:50:15 | INFO | epoch=007 val_loss=0.74554 val_acc=0.6147
+2026-05-28 17:52:36 | INFO | epoch=008 train_loss=0.53359 train_acc=0.7533 elapsed=140.7s
+2026-05-28 17:52:55 | INFO | epoch=008 val_loss=2.32349 val_acc=0.6077
+2026-05-28 17:55:45 | INFO | epoch=009 train_loss=0.54084 train_acc=0.7524 elapsed=170.6s
+2026-05-28 17:56:03 | INFO | epoch=009 val_loss=0.81729 val_acc=0.6116
+2026-05-28 17:58:43 | INFO | epoch=010 train_loss=0.53165 train_acc=0.7546 elapsed=159.6s
+2026-05-28 17:59:07 | INFO | epoch=010 val_loss=2.36707 val_acc=0.6127
+2026-05-28 18:01:57 | INFO | epoch=011 train_loss=0.54216 train_acc=0.7523 elapsed=170.2s
+2026-05-28 18:02:23 | INFO | epoch=011 val_loss=2.39560 val_acc=0.6116
+2026-05-28 18:05:13 | INFO | epoch=012 train_loss=0.54048 train_acc=0.7528 elapsed=170.1s
+2026-05-28 18:05:39 | INFO | epoch=012 val_loss=0.80436 val_acc=0.5986
+2026-05-28 18:08:31 | INFO | epoch=013 train_loss=0.53023 train_acc=0.7551 elapsed=172.0s
+2026-05-28 18:08:56 | INFO | epoch=013 val_loss=2.37005 val_acc=0.6144
+2026-05-28 18:11:47 | INFO | epoch=014 train_loss=0.54211 train_acc=0.7528 elapsed=170.5s
+2026-05-28 18:12:05 | INFO | epoch=014 val_loss=2.33452 val_acc=0.6091
+2026-05-28 18:14:43 | INFO | epoch=015 train_loss=0.54134 train_acc=0.7526 elapsed=157.8s
+2026-05-28 18:15:09 | INFO | epoch=015 val_loss=2.40729 val_acc=0.6122
+2026-05-28 18:18:04 | INFO | epoch=016 train_loss=0.54078 train_acc=0.7536 elapsed=175.0s
+2026-05-28 18:18:27 | INFO | epoch=016 val_loss=2.24991 val_acc=0.6175
+2026-05-28 18:21:11 | INFO | epoch=017 train_loss=0.54009 train_acc=0.7532 elapsed=163.7s
+2026-05-28 18:21:43 | INFO | epoch=017 val_loss=2.40655 val_acc=0.6096
+2026-05-28 18:24:33 | INFO | epoch=018 train_loss=0.53863 train_acc=0.7542 elapsed=170.5s
+2026-05-28 18:24:59 | INFO | epoch=018 val_loss=0.77582 val_acc=0.6081
+2026-05-28 18:27:28 | INFO | epoch=019 train_loss=0.53811 train_acc=0.7536 elapsed=149.0s
+2026-05-28 18:27:47 | INFO | epoch=019 val_loss=0.87088 val_acc=0.5868
+2026-05-28 18:30:32 | INFO | epoch=020 train_loss=0.52796 train_acc=0.7565 elapsed=165.1s
+2026-05-28 18:30:57 | INFO | epoch=020 val_loss=2.31133 val_acc=0.6130
+2026-05-28 18:33:48 | INFO | epoch=021 train_loss=0.53883 train_acc=0.7536 elapsed=170.6s
+2026-05-28 18:34:14 | INFO | epoch=021 val_loss=2.24096 val_acc=0.6087
+2026-05-28 18:37:06 | INFO | epoch=022 train_loss=0.53722 train_acc=0.7543 elapsed=172.4s
+2026-05-28 18:37:31 | INFO | epoch=022 val_loss=2.24069 val_acc=0.6070
+2026-05-28 18:40:15 | INFO | epoch=023 train_loss=0.53709 train_acc=0.7547 elapsed=163.1s
+2026-05-28 18:40:39 | INFO | epoch=023 val_loss=2.22952 val_acc=0.6122
+2026-05-28 18:43:01 | INFO | epoch=024 train_loss=0.53708 train_acc=0.7542 elapsed=142.7s
+2026-05-28 18:43:20 | INFO | epoch=024 val_loss=2.31265 val_acc=0.6142
+2026-05-28 18:46:01 | INFO | epoch=025 train_loss=0.53491 train_acc=0.7552 elapsed=160.7s
+2026-05-28 18:46:25 | INFO | epoch=025 val_loss=0.84281 val_acc=0.5996
+2026-05-28 18:49:07 | INFO | epoch=026 train_loss=0.52652 train_acc=0.7570 elapsed=161.7s
+2026-05-28 18:49:25 | INFO | epoch=026 val_loss=2.23801 val_acc=0.6112
+2026-05-28 18:51:59 | INFO | epoch=027 train_loss=0.53383 train_acc=0.7555 elapsed=154.6s
+2026-05-28 18:52:25 | INFO | epoch=027 val_loss=0.85658 val_acc=0.5984
+2026-05-28 18:55:16 | INFO | epoch=028 train_loss=0.52606 train_acc=0.7572 elapsed=170.8s
+2026-05-28 18:55:42 | INFO | epoch=028 val_loss=2.42955 val_acc=0.6117
+2026-05-28 18:58:33 | INFO | epoch=029 train_loss=0.53689 train_acc=0.7551 elapsed=171.0s
+2026-05-28 18:58:51 | INFO | epoch=029 val_loss=2.25817 val_acc=0.6169
+2026-05-28 19:01:44 | INFO | epoch=030 train_loss=0.53571 train_acc=0.7555 elapsed=172.6s
+2026-05-28 19:02:09 | INFO | epoch=030 val_loss=2.30408 val_acc=0.6134
+2026-05-28 19:04:58 | INFO | epoch=031 train_loss=0.53546 train_acc=0.7555 elapsed=169.1s
+2026-05-28 19:05:17 | INFO | epoch=031 val_loss=2.26216 val_acc=0.6169
+2026-05-28 19:07:45 | INFO | epoch=032 train_loss=0.53571 train_acc=0.7553 elapsed=148.0s
+2026-05-28 19:08:09 | INFO | epoch=032 val_loss=2.27521 val_acc=0.6102
+2026-05-28 19:11:02 | INFO | epoch=033 train_loss=0.53636 train_acc=0.7552 elapsed=172.8s
+2026-05-28 19:11:26 | INFO | epoch=033 val_loss=2.32263 val_acc=0.6043
+2026-05-28 19:14:10 | INFO | epoch=034 train_loss=0.53286 train_acc=0.7564 elapsed=164.2s
+2026-05-28 19:14:42 | INFO | epoch=034 val_loss=0.79166 val_acc=0.6140
+2026-05-28 19:17:40 | INFO | epoch=035 train_loss=0.53375 train_acc=0.7558 elapsed=178.3s
+2026-05-28 19:18:12 | INFO | epoch=035 val_loss=0.83313 val_acc=0.5969
+2026-05-28 19:21:12 | INFO | epoch=036 train_loss=0.53570 train_acc=0.7554 elapsed=179.8s
+2026-05-28 19:21:44 | INFO | epoch=036 val_loss=0.83009 val_acc=0.5997
+2026-05-28 19:24:32 | INFO | epoch=037 train_loss=0.53506 train_acc=0.7557 elapsed=168.2s
+2026-05-28 19:24:58 | INFO | epoch=037 val_loss=0.77543 val_acc=0.6149
+2026-05-28 19:27:45 | INFO | epoch=038 train_loss=0.53325 train_acc=0.7562 elapsed=167.3s
+2026-05-28 19:28:05 | INFO | epoch=038 val_loss=0.79281 val_acc=0.6084
+2026-05-28 19:30:55 | INFO | epoch=039 train_loss=0.52443 train_acc=0.7581 elapsed=169.9s
+2026-05-28 19:31:14 | INFO | epoch=039 val_loss=2.28159 val_acc=0.6117
+2026-05-28 19:33:56 | INFO | epoch=040 train_loss=0.53396 train_acc=0.7564 elapsed=161.4s
+2026-05-28 19:34:20 | INFO | epoch=040 val_loss=2.23073 val_acc=0.6081
+2026-05-28 19:37:16 | INFO | epoch=041 train_loss=0.53427 train_acc=0.7561 elapsed=175.9s
+2026-05-28 19:37:49 | INFO | epoch=041 val_loss=2.29072 val_acc=0.6075
+2026-05-28 19:40:47 | INFO | epoch=042 train_loss=0.53262 train_acc=0.7567 elapsed=178.2s
+2026-05-28 19:41:20 | INFO | epoch=042 val_loss=0.87225 val_acc=0.6001
+2026-05-28 19:44:10 | INFO | epoch=043 train_loss=0.53386 train_acc=0.7564 elapsed=170.5s
+2026-05-28 19:44:42 | INFO | epoch=043 val_loss=0.82437 val_acc=0.5943
+2026-05-28 19:47:30 | INFO | epoch=044 train_loss=0.53285 train_acc=0.7563 elapsed=167.9s
+2026-05-28 19:47:56 | INFO | epoch=044 val_loss=0.83243 val_acc=0.6004
+2026-05-28 19:50:44 | INFO | epoch=045 train_loss=0.53402 train_acc=0.7563 elapsed=167.9s
+2026-05-28 19:51:03 | INFO | epoch=045 val_loss=0.83113 val_acc=0.6060
+2026-05-28 19:53:41 | INFO | epoch=046 train_loss=0.52340 train_acc=0.7584 elapsed=157.9s
+2026-05-28 19:54:07 | INFO | epoch=046 val_loss=2.41858 val_acc=0.6112
+2026-05-28 19:56:38 | INFO | epoch=047 train_loss=0.53308 train_acc=0.7565 elapsed=151.4s
+2026-05-28 19:56:57 | INFO | epoch=047 val_loss=2.20446 val_acc=0.6164
+2026-05-28 19:59:20 | INFO | epoch=048 train_loss=0.53342 train_acc=0.7563 elapsed=142.7s
+2026-05-28 19:59:38 | INFO | epoch=048 val_loss=2.24085 val_acc=0.6103
+2026-05-28 20:02:28 | INFO | epoch=049 train_loss=0.53346 train_acc=0.7562 elapsed=169.0s
+2026-05-28 20:02:54 | INFO | epoch=049 val_loss=2.20922 val_acc=0.6101
+2026-05-28 20:05:42 | INFO | epoch=050 train_loss=0.53357 train_acc=0.7564 elapsed=168.1s
+2026-05-28 20:06:01 | INFO | epoch=050 val_loss=2.28590 val_acc=0.6099
+2026-05-28 20:06:18 | INFO | Final test: loss=2.27811 hit_acc=0.6078; saved outputs to outputs/cosmos_baselines/tpad_transformer_10k_test

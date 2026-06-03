@@ -1,0 +1,102 @@
+[
+  {
+    "event_index": 88,
+    "event_id": 88,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9983606934547424,
+      0.9972270131111145,
+      0.4310245215892792
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 38,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 77,
+    "event_id": 77,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9987466335296631,
+      0.9978389143943787,
+      0.43872499465942383
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 27,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 13,
+    "event_id": 13,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9964350461959839,
+      0.9942241311073303,
+      0.4050796329975128
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 13,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 20,
+    "event_id": 20,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9968066215515137,
+      0.9948346614837646,
+      0.41396817564964294
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 20,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 19,
+    "event_id": 19,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9950016140937805,
+      0.9919984936714172,
+      0.3993045389652252
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 19,
+    "source_label": "2e"
+  }
+]

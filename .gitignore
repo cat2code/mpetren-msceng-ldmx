@@ -57,8 +57,16 @@ runs/**/output/
 runs/**/data/
 runs/**/tmp/
 
+# Tensorized data
+*.pt
+mldmx/data/processed/production_5M_001_sharded/
+mldmx/data/processed/production_5M_001_sharded_smoke/
+mldmx/data/processed/production_5M_001_full_shard_preflight/
+
 # =========================
 # External upstream repos
 # =========================
-external/ldmx-sw/
+external/ldmx-sw
+external/ldmx-sw-new/
 external/ci-data/
+external/*

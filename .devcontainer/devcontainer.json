@@ -1,24 +1,30 @@
 {
   "name": "LDMX",
-  "image": "ldmx/pro:v4.6.1",
+  "image": "ldmx/pro:trunk",
+  "runArgs": ["--platform=linux/amd64"],
   "workspaceFolder": "/workspaces/mpetren-msceng-ldmx",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/mpetren-msceng-ldmx,type=bind",
   "remoteEnv": {
-    "PYTHONPATH": "/usr/local/python:${PYTHONPATH}"
+    "PYTHONPATH": "/usr/local/python"
   },
-  "postCreateCommand": "bash -lc 'set -e; apt-get update; apt-get install -y python3.12-venv python3-pip; LINE=\"if [ -f /workspaces/mpetren-msceng-ldmx/.venv-analysis/bin/activate ]; then source /workspaces/mpetren-msceng-ldmx/.venv-analysis/bin/activate; fi\"; grep -qxF \"$LINE\" ~/.bashrc || echo \"$LINE\" >> ~/.bashrc'",
   "customizations": {
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-python.vscode-pylance"
+        "ms-python.vscode-pylance",
+        "ms-toolsai.jupyter"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "/usr/bin/python3",
+        "workbench.colorTheme": "Dark Modern",
+        "python.defaultInterpreterPath": "/workspaces/mpetren-msceng-ldmx/.venv-analysis/bin/python",
         "python.analysis.extraPaths": [
+          "/usr/local/python"
+        ],
+        "python.autoComplete.extraPaths": [
           "/usr/local/python"
         ]
       }
     }
-  }
+  },
+  "postCreateCommand": "bash -lc 'apt-get update && apt-get install -y python3-venv python3-pip'"
 }

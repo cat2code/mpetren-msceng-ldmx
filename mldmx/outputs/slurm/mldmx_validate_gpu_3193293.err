@@ -1,0 +1,18 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) SoftwareTree/Milan
+/projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/.venv/lib/python3.11/site-packages/torch_geometric/__init__.py:4: UserWarning: An issue occurred while importing 'torch-cluster'. Disabling its usage. Stacktrace: libcudart.so.11.0: cannot open shared object file: No such file or directory
+  import torch_geometric.typing
+Traceback (most recent call last):
+  File "/projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx/scripts/validate_model_family_common_pipeline.py", line 311, in <module>
+    main()
+  File "/projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx/scripts/validate_model_family_common_pipeline.py", line 243, in main
+    ECalGravNet(
+  File "/projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx/src/mldmx/models/gnn_gravnet.py", line 35, in __init__
+    [
+  File "/projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx/src/mldmx/models/gnn_gravnet.py", line 36, in <listcomp>
+    GravNetConv(
+  File "/projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/.venv/lib/python3.11/site-packages/torch_geometric/nn/conv/gravnet_conv.py", line 61, in __init__
+    raise ImportError('`GravNetConv` requires `torch-cluster`.')
+ImportError: `GravNetConv` requires `torch-cluster`.

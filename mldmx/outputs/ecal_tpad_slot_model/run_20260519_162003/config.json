@@ -1,0 +1,65 @@
+{
+  "events_per_class": 10,
+  "max_events": null,
+  "data_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "processed_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\processed\\ecal_tpad_slot_model",
+  "output_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\ecal_tpad_slot_model",
+  "run_name": null,
+  "epochs": 1,
+  "batch_size": 8,
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "seed": 7,
+  "checkpoint_every": 1,
+  "resume": null,
+  "device": "cpu",
+  "valid_labels": [
+    1,
+    2,
+    3
+  ],
+  "target_mode": "physical-origin",
+  "hidden_dim": 128,
+  "num_layers": 2,
+  "num_heads": 4,
+  "max_electrons": 3,
+  "dropout": 0.1,
+  "no_type_embedding": false,
+  "lambda_origin": 1.0,
+  "lambda_fraction": 1.0,
+  "lambda_slot": 0.2,
+  "lambda_count": 0.2,
+  "grad_clip": 1.0,
+  "lr_scheduler": "none",
+  "plateau_patience": 3,
+  "plateau_factor": 0.5,
+  "no_normalize_features": false,
+  "keep_noise": false,
+  "no_progress": true,
+  "num_ecal_plots": 2,
+  "event_log_every": 0,
+  "read_step_size": 500,
+  "allow_fewer_events": false,
+  "output_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\outputs\\ecal_tpad_slot_model",
+  "resolved_data_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "root_files_used": [
+    "events_1.root"
+  ],
+  "num_loaded_events": 20,
+  "split_sizes": {
+    "train": 16,
+    "val": 3,
+    "test": 1
+  },
+  "target_order_counts": {
+    "train": {
+      "(1, 2, 3)": 16
+    },
+    "val": {
+      "(1, 2, 3)": 3
+    },
+    "test": {
+      "(1, 2, 3)": 1
+    }
+  }
+}

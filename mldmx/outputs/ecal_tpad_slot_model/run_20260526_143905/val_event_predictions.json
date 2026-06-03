@@ -1,0 +1,62 @@
+[
+  {
+    "event_index": 10,
+    "event_id": 10,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.6360947489738464,
+      0.646058201789856,
+      0.49689576029777527
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 0,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 13,
+    "event_id": 13,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.6333305835723877,
+      0.6447603702545166,
+      0.49618470668792725
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 3,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 6,
+    "event_id": 6,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.6354935765266418,
+      0.6446166634559631,
+      0.5003980994224548
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 6,
+    "source_label": "2e"
+  }
+]

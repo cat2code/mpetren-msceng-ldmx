@@ -1,0 +1,73 @@
+{
+  "model": "ECalGravNet",
+  "events_per_class": 10,
+  "max_events": 10,
+  "data_root": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k",
+  "processed_dir": "data\\processed\\ecal_tpad_3class_smoke",
+  "output_root": "outputs\\codex_baseline_smoke",
+  "run_name": "ecal_gravnet",
+  "epochs": 1,
+  "batch_size": 4,
+  "lr": 0.001,
+  "weight_decay": 0.0,
+  "seed": 7,
+  "checkpoint_every": 1,
+  "resume": null,
+  "device": "cpu",
+  "valid_labels": [
+    1,
+    2,
+    3
+  ],
+  "target_mode": "canonical-y",
+  "hidden_dim": 32,
+  "num_layers": 1,
+  "num_heads": 4,
+  "dim_feedforward": 128,
+  "dropout": 0.0,
+  "space_dimensions": 4,
+  "propagate_dimensions": 16,
+  "k": 8,
+  "grad_clip": 1.0,
+  "no_normalize_features": false,
+  "allow_small_split": true,
+  "no_progress": true,
+  "num_ecal_plots": 1,
+  "event_log_every": 0,
+  "read_step_size": 500,
+  "allow_fewer_events": false,
+  "output_dir": "outputs\\codex_baseline_smoke",
+  "resolved_data_dir": "data\\processed\\ecal_tpad_3class_smoke",
+  "root_files_used": [
+    "event_000000.pt",
+    "event_000001.pt",
+    "event_000002.pt",
+    "event_000003.pt",
+    "event_000004.pt",
+    "event_000005.pt",
+    "event_000006.pt",
+    "event_000007.pt",
+    "event_000008.pt",
+    "event_000009.pt"
+  ],
+  "num_loaded_events": 10,
+  "split_sizes": {
+    "train": 8,
+    "val": 1,
+    "test": 1
+  },
+  "target_order_counts": {
+    "train": {
+      "(2, 1, 3)": 2,
+      "(2, 3, 1)": 4,
+      "(3, 1, 2)": 1,
+      "(3, 2, 1)": 1
+    },
+    "val": {
+      "(2, 3, 1)": 1
+    },
+    "test": {
+      "(2, 3, 1)": 1
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "cache_schema_version": 1,
+  "num_events": 20000,
+  "shards": [
+    {
+      "event_start": 0,
+      "event_stop": 10000,
+      "num_events": 10000,
+      "path": "shards/shard_000001.pt",
+      "source": {
+        "electron_count": 2,
+        "mtime_ns": 1778527786000000000,
+        "name": "events_1.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\2e\\events\\events_1.root",
+        "size": 657292025,
+        "source_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\2e\\events",
+        "source_label": "2e"
+      }
+    },
+    {
+      "event_start": 10000,
+      "event_stop": 20000,
+      "num_events": 10000,
+      "path": "shards/shard_000002.pt",
+      "source": {
+        "electron_count": 2,
+        "mtime_ns": 1778527752000000000,
+        "name": "events_2.root",
+        "path": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\2e\\events\\events_2.root",
+        "size": 647190847,
+        "source_dir": "C:\\Users\\eliot\\Documents\\exjobb_kod\\mpetren-msceng-ldmx\\mldmx\\data\\ldmx_overlay_events_700k\\2e\\events",
+        "source_label": "2e"
+      }
+    }
+  ]
+}

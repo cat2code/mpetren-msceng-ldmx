@@ -1,0 +1,42 @@
+{
+  "class_counts": {
+    "1": 1194,
+    "2": 1250,
+    "3": 1292
+  },
+  "edge_index_stored": true,
+  "event_files": [
+    "event_000000.pt",
+    "event_000001.pt",
+    "event_000002.pt",
+    "event_000003.pt",
+    "event_000004.pt",
+    "event_000005.pt",
+    "event_000006.pt",
+    "event_000007.pt",
+    "event_000008.pt",
+    "event_000009.pt"
+  ],
+  "feature_layout": [
+    "is_ecal",
+    "is_tpad",
+    "ecal_x",
+    "ecal_y",
+    "ecal_z",
+    "ecal_energy",
+    "tpad_centroid",
+    "tpad_pe"
+  ],
+  "filter_noise": true,
+  "k_ecal": 8,
+  "k_tpad_to_ecal": 16,
+  "num_events": 10,
+  "root_file": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/28apr_00/events.root",
+  "total_selected_ecal_hits": 3736,
+  "total_tpad_nodes": 26,
+  "valid_labels": [
+    1,
+    2,
+    3
+  ]
+}

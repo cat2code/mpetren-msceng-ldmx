@@ -1,0 +1,102 @@
+[
+  {
+    "event_index": 88,
+    "event_id": 88,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9996539354324341,
+      0.9997965693473816,
+      0.7352005839347839
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 38,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 77,
+    "event_id": 77,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9998251795768738,
+      0.9999402761459351,
+      0.9487881660461426
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 27,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 13,
+    "event_id": 13,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9998747110366821,
+      0.9997929930686951,
+      0.04335612803697586
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 13,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 20,
+    "event_id": 20,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9997590184211731,
+      0.999750554561615,
+      0.16697508096694946
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 20,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 19,
+    "event_id": 19,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9994761347770691,
+      0.9991764426231384,
+      0.053629208356142044
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 19,
+    "source_label": "2e"
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "event_index": 5,
+    "event_id": 5,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.6343635320663452,
+      0.6447596549987793,
+      0.5004921555519104
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 5,
+    "source_label": "2e"
+  }
+]

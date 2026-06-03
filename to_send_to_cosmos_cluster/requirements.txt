@@ -1,0 +1,11 @@
+numpy
+pandas
+matplotlib
+uproot
+awkward
+torch
+torch-geometric
+ipykernel
+ipywidgets
+plotly
+nbformat

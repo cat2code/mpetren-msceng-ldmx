@@ -1,0 +1,2002 @@
+[
+  {
+    "event_index": 912,
+    "event_id": 912,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999788999557495,
+      0.9999914169311523,
+      0.8033400774002075
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 912,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1069,
+    "event_id": 1069,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999387264251709,
+      0.999932050704956,
+      0.2468147724866867
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 69,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1102,
+    "event_id": 1102,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999985694885254,
+      0.9999996423721313,
+      0.9021481275558472
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 102,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 806,
+    "event_id": 806,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999963045120239,
+      0.9999985694885254,
+      0.808538019657135
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 806,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1173,
+    "event_id": 1173,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999741315841675,
+      0.9999804496765137,
+      0.3887653648853302
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 173,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1928,
+    "event_id": 1928,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999576807022095,
+      0.999963641166687,
+      0.3366358280181885
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 928,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 789,
+    "event_id": 789,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999687671661377,
+      0.9999570846557617,
+      0.16553378105163574
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 789,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 121,
+    "event_id": 121,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999802112579346,
+      0.9999765157699585,
+      0.2112995684146881
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 121,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1458,
+    "event_id": 1458,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999994039535522,
+      0.9999998807907104,
+      0.9406464695930481
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 458,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 166,
+    "event_id": 166,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999861717224121,
+      0.9999938011169434,
+      0.7495707869529724
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 166,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 6,
+    "event_id": 6,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999520778656006,
+      0.9999475479125977,
+      0.24378491938114166
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 6,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 186,
+    "event_id": 186,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999905824661255,
+      0.9999954700469971,
+      0.7176268100738525
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 186,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 988,
+    "event_id": 988,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999948740005493,
+      0.9999980926513672,
+      0.8280431628227234
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 988,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1298,
+    "event_id": 1298,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999948740005493,
+      0.9999983310699463,
+      0.8813014626502991
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 298,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 112,
+    "event_id": 112,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.999994158744812,
+      0.9999977350234985,
+      0.8163062334060669
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 112,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1345,
+    "event_id": 1345,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999990463256836,
+      0.9999997615814209,
+      0.9257757663726807
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 345,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 998,
+    "event_id": 998,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999462366104126,
+      0.9999316930770874,
+      0.19780631363391876
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 998,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 460,
+    "event_id": 460,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.999977707862854,
+      0.9999872446060181,
+      0.5866613984107971
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 460,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1307,
+    "event_id": 1307,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999918937683105,
+      0.9999957084655762,
+      0.6354121565818787
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 307,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 935,
+    "event_id": 935,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999914169311523,
+      0.9999958276748657,
+      0.7093663215637207
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 935,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 273,
+    "event_id": 273,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999687671661377,
+      0.9999631643295288,
+      0.21146690845489502
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 273,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 761,
+    "event_id": 761,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999896287918091,
+      0.9999922513961792,
+      0.4065273106098175
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 761,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 342,
+    "event_id": 342,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999940395355225,
+      0.9999972581863403,
+      0.7118377685546875
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 342,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 515,
+    "event_id": 515,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999700784683228,
+      0.9999812841415405,
+      0.5179339647293091
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 515,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 241,
+    "event_id": 241,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999871253967285,
+      0.9999945163726807,
+      0.7825102806091309
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 241,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 834,
+    "event_id": 834,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999719858169556,
+      0.9999833106994629,
+      0.5560608506202698
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 834,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 165,
+    "event_id": 165,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999740123748779,
+      0.9999847412109375,
+      0.5655491948127747
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 165,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 736,
+    "event_id": 736,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999539852142334,
+      0.999963641166687,
+      0.3800508379936218
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 736,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1729,
+    "event_id": 1729,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999949932098389,
+      0.9999980926513672,
+      0.8246484994888306
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 729,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1680,
+    "event_id": 1680,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999973773956299,
+      0.9999992847442627,
+      0.8981291651725769
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 680,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 972,
+    "event_id": 972,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999850988388062,
+      0.9999927282333374,
+      0.6982425451278687
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 972,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1149,
+    "event_id": 1149,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999963045120239,
+      0.9999988079071045,
+      0.8896495699882507
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 149,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 818,
+    "event_id": 818,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999942779541016,
+      0.9999978542327881,
+      0.8277825713157654
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 818,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 169,
+    "event_id": 169,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999939203262329,
+      0.9999970197677612,
+      0.6780053377151489
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 169,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 392,
+    "event_id": 392,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999635219573975,
+      0.9999405145645142,
+      0.124212846159935
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 392,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1282,
+    "event_id": 1282,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999645948410034,
+      0.9999475479125977,
+      0.14516237378120422
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 282,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 633,
+    "event_id": 633,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999921321868896,
+      0.9999927282333374,
+      0.29054099321365356
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 633,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 356,
+    "event_id": 356,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999713897705078,
+      0.999971866607666,
+      0.2853129506111145
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 356,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 774,
+    "event_id": 774,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999939203262329,
+      0.999997615814209,
+      0.8039440512657166
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 774,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1858,
+    "event_id": 1858,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999985694885254,
+      0.9999996423721313,
+      0.9249461889266968
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 858,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1240,
+    "event_id": 1240,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999988079071045,
+      0.9999996423721313,
+      0.8918123245239258
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 240,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 643,
+    "event_id": 643,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999542236328125,
+      0.999933123588562,
+      0.15059831738471985
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 643,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1674,
+    "event_id": 1674,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999802112579346,
+      0.9999902248382568,
+      0.6831168532371521
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 674,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1260,
+    "event_id": 1260,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.999996542930603,
+      0.9999988079071045,
+      0.8558812141418457
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 260,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1428,
+    "event_id": 1428,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999972581863403,
+      0.9999990463256836,
+      0.856571614742279
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 428,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 510,
+    "event_id": 510,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999905824661255,
+      0.9999957084655762,
+      0.7219712138175964
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 510,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 841,
+    "event_id": 841,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999607801437378,
+      0.9999369382858276,
+      0.12901872396469116
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 841,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 903,
+    "event_id": 903,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999892711639404,
+      0.9999890327453613,
+      0.25613802671432495
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 903,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 468,
+    "event_id": 468,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999731779098511,
+      0.9999768733978271,
+      0.330240935087204
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 468,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 85,
+    "event_id": 85,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999955892562866,
+      0.9999922513961792,
+      0.095236636698246
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 85,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1825,
+    "event_id": 1825,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.999985933303833,
+      0.9999934434890747,
+      0.7263176441192627
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 825,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 67,
+    "event_id": 67,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999985694885254,
+      0.9999995231628418,
+      0.8514199256896973
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 67,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 470,
+    "event_id": 470,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999639987945557,
+      0.9999678134918213,
+      0.3175308108329773
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 470,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 176,
+    "event_id": 176,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999675750732422,
+      0.9999794960021973,
+      0.5042594075202942
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 176,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1043,
+    "event_id": 1043,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999760389328003,
+      0.9999873638153076,
+      0.6394808292388916
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 43,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 527,
+    "event_id": 527,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999488592147827,
+      0.9999265670776367,
+      0.15954594314098358
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 527,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1941,
+    "event_id": 1941,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999980926513672,
+      0.9999994039535522,
+      0.8948346972465515
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 941,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 120,
+    "event_id": 120,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999363422393799,
+      0.9999426603317261,
+      0.32100406289100647
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 120,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 983,
+    "event_id": 983,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.999967098236084,
+      0.9999525547027588,
+      0.15071454644203186
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 983,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1712,
+    "event_id": 1712,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999964237213135,
+      0.9999988079071045,
+      0.8828826546669006
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 712,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 823,
+    "event_id": 823,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999768733978271,
+      0.9999572038650513,
+      0.0992547869682312
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 823,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1393,
+    "event_id": 1393,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999955892562866,
+      0.9999980926513672,
+      0.7552849054336548
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 393,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1380,
+    "event_id": 1380,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999908208847046,
+      0.999996542930603,
+      0.8425360918045044
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 380,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1891,
+    "event_id": 1891,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999961853027344,
+      0.9999982118606567,
+      0.7282753586769104
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 891,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1750,
+    "event_id": 1750,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999958276748657,
+      0.9999988079071045,
+      0.903782844543457
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 750,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1154,
+    "event_id": 1154,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999963045120239,
+      0.9999988079071045,
+      0.8922272324562073
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 154,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1162,
+    "event_id": 1162,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.999997615814209,
+      0.9999990463256836,
+      0.8034403324127197
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 162,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1666,
+    "event_id": 1666,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999638795852661,
+      0.9999490976333618,
+      0.1619092971086502
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 666,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1623,
+    "event_id": 1623,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999431371688843,
+      0.999929666519165,
+      0.2075173407793045
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 623,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1400,
+    "event_id": 1400,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999977350234985,
+      0.9999994039535522,
+      0.9069077372550964
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 400,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1853,
+    "event_id": 1853,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999784231185913,
+      0.9999899864196777,
+      0.7470832467079163
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 853,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 898,
+    "event_id": 898,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999479055404663,
+      0.9999371767044067,
+      0.21681612730026245
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 898,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1699,
+    "event_id": 1699,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999935626983643,
+      0.999997615814209,
+      0.8459754586219788
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 699,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1230,
+    "event_id": 1230,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999732971191406,
+      0.9999548196792603,
+      0.11545180529356003
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 230,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 134,
+    "event_id": 134,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999992847442627,
+      0.9999997615814209,
+      0.9091075658798218
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 134,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 36,
+    "event_id": 36,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999507665634155,
+      0.9999654293060303,
+      0.4613855183124542
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 36,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1039,
+    "event_id": 1039,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999423027038574,
+      0.999923825263977,
+      0.18551325798034668
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 39,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 538,
+    "event_id": 538,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999969005584717,
+      0.9999988079071045,
+      0.8230743408203125
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 538,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1009,
+    "event_id": 1009,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999960660934448,
+      0.9999988079071045,
+      0.89296954870224
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 9,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 414,
+    "event_id": 414,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999972581863403,
+      0.999998927116394,
+      0.799498438835144
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 414,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1216,
+    "event_id": 1216,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999957084655762,
+      0.9999984502792358,
+      0.8642762303352356
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 216,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1882,
+    "event_id": 1882,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999990463256836,
+      0.9999997615814209,
+      0.9432214498519897
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 882,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1559,
+    "event_id": 1559,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999676942825317,
+      0.9999802112579346,
+      0.5458828806877136
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 559,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 277,
+    "event_id": 277,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999860525131226,
+      0.9999938011169434,
+      0.7532680630683899
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 277,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1158,
+    "event_id": 1158,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999817609786987,
+      0.9999897480010986,
+      0.5822674036026001
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 158,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1995,
+    "event_id": 1995,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999784231185913,
+      0.9999624490737915,
+      0.10866773873567581
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 995,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1796,
+    "event_id": 1796,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999703168869019,
+      0.9999516010284424,
+      0.12422658503055573
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 796,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1119,
+    "event_id": 1119,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999939203262329,
+      0.9999977350234985,
+      0.8154486417770386
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 119,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1237,
+    "event_id": 1237,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999221563339233,
+      0.9999384880065918,
+      0.3849875032901764
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 237,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 877,
+    "event_id": 877,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999977350234985,
+      0.9999992847442627,
+      0.864246129989624
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 877,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1218,
+    "event_id": 1218,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999927282333374,
+      0.9999967813491821,
+      0.7434914708137512
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 218,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 734,
+    "event_id": 734,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999932050704956,
+      0.9999969005584717,
+      0.7264943718910217
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 734,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1483,
+    "event_id": 1483,
+    "true_count": 3,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999570846557617,
+      0.9999719858169556,
+      0.4927576780319214
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 483,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 777,
+    "event_id": 777,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999614953994751,
+      0.9999744892120361,
+      0.4820699393749237
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 777,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1618,
+    "event_id": 1618,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999756813049316,
+      0.9999866485595703,
+      0.6040048599243164
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 618,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 709,
+    "event_id": 709,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 2,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999386072158813,
+      0.9999524354934692,
+      0.3968315124511719
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 709,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 520,
+    "event_id": 520,
+    "true_count": 2,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.9999939203262329,
+      0.9999977350234985,
+      0.8305860757827759
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 520,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 848,
+    "event_id": 848,
+    "true_count": 2,
+    "predicted_count": 2,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      0.0
+    ],
+    "slot_probability": [
+      0.999977707862854,
+      0.9999864101409912,
+      0.5311973094940186
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 848,
+    "source_label": "2e"
+  },
+  {
+    "event_index": 1640,
+    "event_id": 1640,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999755620956421,
+      0.9999865293502808,
+      0.6016323566436768
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 640,
+    "source_label": "3e"
+  },
+  {
+    "event_index": 1571,
+    "event_id": 1571,
+    "true_count": 3,
+    "predicted_count": 3,
+    "predicted_slot_count": 3,
+    "slot_target": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "slot_probability": [
+      0.9999949932098389,
+      0.9999978542327881,
+      0.7695592641830444
+    ],
+    "source_file": "events_1.root",
+    "source_entry": 571,
+    "source_label": "3e"
+  }
+]
