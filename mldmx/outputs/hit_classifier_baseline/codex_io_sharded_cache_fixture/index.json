@@ -1,0 +1,37 @@
+{
+  "cache_schema_version": 1,
+  "num_events": 10,
+  "shards": [
+    {
+      "event_start": 0,
+      "event_stop": 5,
+      "num_events": 5,
+      "path": "shards/shard_000001.pt",
+      "source": {
+        "electron_count": 3,
+        "mtime_ns": 0,
+        "name": "codex_fixture_1.root",
+        "path": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke/codex_fixture_1.root",
+        "size": 0,
+        "source_dir": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke",
+        "source_label": "smoke"
+      }
+    },
+    {
+      "event_start": 5,
+      "event_stop": 10,
+      "num_events": 5,
+      "path": "shards/shard_000002.pt",
+      "source": {
+        "electron_count": 3,
+        "mtime_ns": 0,
+        "name": "codex_fixture_2.root",
+        "path": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke/codex_fixture_2.root",
+        "size": 0,
+        "source_dir": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke",
+        "source_label": "smoke"
+      }
+    }
+  ],
+  "skipped_sources": []
+}

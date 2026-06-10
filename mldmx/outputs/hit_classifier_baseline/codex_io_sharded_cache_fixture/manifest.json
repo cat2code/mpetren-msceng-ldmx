@@ -1,0 +1,64 @@
+{
+  "cache_schema_version": 1,
+  "cache_spec": {
+    "feature_layout": [
+      "is_ecal",
+      "is_tpad",
+      "ecal_x",
+      "ecal_y",
+      "ecal_z",
+      "ecal_energy",
+      "tpad_centroid",
+      "tpad_pe"
+    ],
+    "filter_noise": true,
+    "max_events_per_root_file": null,
+    "reader": "ecal_tpad_sharded",
+    "root_sources": [
+      {
+        "electron_count": 3,
+        "mtime_ns": 0,
+        "name": "codex_fixture_1.root",
+        "path": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke/codex_fixture_1.root",
+        "size": 0,
+        "source_dir": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke",
+        "source_label": "smoke"
+      },
+      {
+        "electron_count": 3,
+        "mtime_ns": 0,
+        "name": "codex_fixture_2.root",
+        "path": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke/codex_fixture_2.root",
+        "size": 0,
+        "source_dir": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/processed/ecal_tpad_3class_smoke",
+        "source_label": "smoke"
+      }
+    ],
+    "schema_version": 1,
+    "stored_target_mode": "physical-origin",
+    "supervise_noise": false,
+    "valid_labels": [
+      1,
+      2,
+      3
+    ]
+  },
+  "feature_layout": [
+    "is_ecal",
+    "is_tpad",
+    "ecal_x",
+    "ecal_y",
+    "ecal_z",
+    "ecal_energy",
+    "tpad_centroid",
+    "tpad_pe"
+  ],
+  "filter_noise": true,
+  "format": "ecal_tpad_root_file_shards",
+  "supervise_noise": false,
+  "valid_labels": [
+    1,
+    2,
+    3
+  ]
+}
