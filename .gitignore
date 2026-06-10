@@ -39,6 +39,7 @@ dist/
 # Logs
 # =========================
 *.log
+mldmx/scripts/slurm/
 
 # =========================
 # Dev / IDE
