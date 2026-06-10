@@ -1,0 +1,2 @@
+split_position,event_idx,num_hits,correct_hits,incorrect_hits,accuracy,loss,source_file,source_entry,source_label,electron_count,target_label_order
+0,8,352,115,237,0.32670454545454547,1.129149317741394,event_000008.pt,,,,"[2, 3, 1]"

@@ -1,0 +1,20 @@
+[
+  {
+    "event_idx": 8,
+    "split_position": 0,
+    "num_hits": 352,
+    "correct_hits": 115,
+    "incorrect_hits": 237,
+    "accuracy": 0.32670454545454547,
+    "loss": 1.129149317741394,
+    "source_file": "event_000008.pt",
+    "source_entry": null,
+    "source_label": null,
+    "electron_count": null,
+    "target_label_order": [
+      2,
+      3,
+      1
+    ]
+  }
+]

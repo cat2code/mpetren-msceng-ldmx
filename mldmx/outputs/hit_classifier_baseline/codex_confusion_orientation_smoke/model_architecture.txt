@@ -1,0 +1,24 @@
+ECalTransformer(
+  (input_proj): Sequential(
+    (0): Linear(in_features=4, out_features=8, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=8, out_features=8, bias=True)
+  )
+  (encoder): TransformerEncoder(
+    (layers): ModuleList(
+      (0): TransformerEncoderLayer(
+        (self_attn): MultiheadAttention(
+          (out_proj): NonDynamicallyQuantizableLinear(in_features=8, out_features=8, bias=True)
+        )
+        (linear1): Linear(in_features=8, out_features=16, bias=True)
+        (dropout): Dropout(p=0.0, inplace=False)
+        (linear2): Linear(in_features=16, out_features=8, bias=True)
+        (norm1): LayerNorm((8,), eps=1e-05, elementwise_affine=True)
+        (norm2): LayerNorm((8,), eps=1e-05, elementwise_affine=True)
+        (dropout1): Dropout(p=0.0, inplace=False)
+        (dropout2): Dropout(p=0.0, inplace=False)
+      )
+    )
+  )
+  (head): Linear(in_features=8, out_features=3, bias=True)
+)
