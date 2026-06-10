@@ -1,0 +1,112 @@
+Obtaining file:///projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: mldmx
+  Building editable for mldmx (pyproject.toml): started
+  Building editable for mldmx (pyproject.toml): finished with status 'done'
+  Created wheel for mldmx: filename=mldmx-0.1.0-0.editable-py3-none-any.whl size=1160 sha256=8bc4280bb2c325adc987725bb7fdf2b2694c32c7bad0b84f33d2e1f9e148d5b0
+  Stored in directory: /local/slurmtmp.3235801/pip-ephem-wheel-cache-3lkx2y44/wheels/5e/47/d9/532e4e0120ee7c9bf7a58eb35af2c009d586d264b1d10d841f
+Successfully built mldmx
+Installing collected packages: mldmx
+  Attempting uninstall: mldmx
+    Found existing installation: mldmx 0.1.0
+    Uninstalling mldmx-0.1.0:
+      Successfully uninstalled mldmx-0.1.0
+Successfully installed mldmx-0.1.0
+host: cg19
+repo: /projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx
+model: ECalTpadGravNet
+processed cache root: data/processed/production_5M_001_sharded
+events per source: 100000
+single source: 3e (3 electrons)
+Python 3.11.5
+Wed Jun  3 23:29:57 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          Off |   00000000:D8:00.0 Off |                    0 |
+| N/A   27C    P0             33W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+python: 3.11.5 (main, Aug 26 2024, 11:58:39) [GCC 13.2.0]
+platform: Linux-5.14.0-611.11.1.el9_7.x86_64-x86_64-with-glibc2.34
+torch: 2.7.0+cu126
+torch cuda version: 12.6
+cuda available: True
+cuda device count: 1
+current cuda device: 0
+gpu name: NVIDIA A100-PCIE-40GB
+tiny cuda tensor check: 140.0
+command: python -u scripts/train_hit_classifier_baseline.py --model ECalTpadGravNet --events-per-source 100000 --epochs 20 --batch-size 16 --lr 3e-4 --weight-decay 1e-4 --hidden-dim 128 --num-layers 4 --num-heads 4 --dim-feedforward 128 --dropout 0.1 --seed 7 --device cuda --output-root outputs/cosmos_baselines --run-name tpad_gravnet_3e_100k_h128_l4_lr3e4 --no-progress --processed-source 3 3e data/processed/production_5M_001_sharded/3e/events
+2026-06-03 23:30:05 | INFO | CUDA GPU: NVIDIA A100-PCIE-40GB
+2026-06-03 23:30:05 | INFO | Output directory: outputs/cosmos_baselines/tpad_gravnet_3e_100k_h128_l4_lr3e4
+2026-06-03 23:30:05 | INFO | Model: ECalTpadGravNet
+2026-06-03 23:30:05 | INFO | Using device: cuda
+2026-06-03 23:30:05 | INFO | Target mode: canonical-y; baseline training noise policy: filtered
+2026-06-03 23:30:05 | INFO | Multi-source sharded cache mode selected; use --events-per-source for balanced staged runs.
+2026-06-03 23:30:05 | INFO | Using sharded source 3e (3e): 100000 event(s) from data/processed/production_5M_001_sharded/3e/events
+2026-06-03 23:30:05 | INFO | Loaded lazy multi-source sharded dataset with 100000 total event(s): [{'electron_count': 3, 'source_label': '3e', 'cache_dir': 'data/processed/production_5M_001_sharded/3e/events', 'num_events': 100000}]
+2026-06-03 23:30:05 | INFO | Split sizes: train=80000 val=15000 test=5000
+2026-06-03 23:33:37 | INFO | Fitted lazy canonical-event feature normalization from sharded training events.
+2026-06-03 23:36:04 | INFO | Training canonical class counts: {1: 9604999, 2: 9188854, 3: 9602578}
+2026-06-03 23:36:10 | INFO | Input feature dimension: 8
+2026-06-03 23:36:10 | INFO | Deriving model-specific views on demand; pass --cache-model-views to reuse them.
+2026-06-03 23:36:10 | INFO | Trainable parameters: 118931
+2026-06-04 00:12:37 | INFO | epoch=001 train_loss=0.69383 train_acc=0.6831 elapsed=1807.2s
+2026-06-04 00:17:50 | INFO | epoch=001 val_loss=0.65274 val_acc=0.7029
+2026-06-04 00:48:56 | INFO | epoch=002 train_loss=0.64862 train_acc=0.7055 elapsed=1866.4s
+2026-06-04 00:55:05 | INFO | epoch=002 val_loss=0.64125 val_acc=0.7084
+2026-06-04 01:25:39 | INFO | epoch=003 train_loss=0.64233 train_acc=0.7085 elapsed=1833.9s
+2026-06-04 01:31:46 | INFO | epoch=003 val_loss=0.63746 val_acc=0.7101
+2026-06-04 02:01:44 | INFO | epoch=004 train_loss=0.63873 train_acc=0.7101 elapsed=1797.5s
+2026-06-04 02:07:50 | INFO | epoch=004 val_loss=0.63701 val_acc=0.7102
+2026-06-04 02:38:06 | INFO | epoch=005 train_loss=0.63692 train_acc=0.7110 elapsed=1816.1s
+2026-06-04 02:44:11 | INFO | epoch=005 val_loss=0.63730 val_acc=0.7104
+2026-06-04 03:13:49 | INFO | epoch=006 train_loss=0.63477 train_acc=0.7120 elapsed=1777.5s
+2026-06-04 03:18:54 | INFO | epoch=006 val_loss=0.63448 val_acc=0.7117
+2026-06-04 03:47:01 | INFO | epoch=007 train_loss=0.63349 train_acc=0.7125 elapsed=1687.8s
+2026-06-04 03:53:06 | INFO | epoch=007 val_loss=0.63531 val_acc=0.7101
+2026-06-04 04:22:13 | INFO | epoch=008 train_loss=0.63256 train_acc=0.7128 elapsed=1746.8s
+2026-06-04 04:27:18 | INFO | epoch=008 val_loss=0.63157 val_acc=0.7131
+2026-06-04 04:58:00 | INFO | epoch=009 train_loss=0.63123 train_acc=0.7133 elapsed=1842.5s
+2026-06-04 05:04:06 | INFO | epoch=009 val_loss=0.63059 val_acc=0.7127
+2026-06-04 05:33:41 | INFO | epoch=010 train_loss=0.63029 train_acc=0.7138 elapsed=1774.4s
+2026-06-04 05:38:46 | INFO | epoch=010 val_loss=0.62926 val_acc=0.7136
+2026-06-04 06:06:31 | INFO | epoch=011 train_loss=0.62915 train_acc=0.7143 elapsed=1664.5s
+2026-06-04 06:11:36 | INFO | epoch=011 val_loss=0.62922 val_acc=0.7136
+2026-06-04 06:40:32 | INFO | epoch=012 train_loss=0.62864 train_acc=0.7144 elapsed=1736.1s
+2026-06-04 06:46:37 | INFO | epoch=012 val_loss=0.62832 val_acc=0.7135
+2026-06-04 07:16:09 | INFO | epoch=013 train_loss=0.62808 train_acc=0.7145 elapsed=1771.0s
+2026-06-04 07:22:14 | INFO | epoch=013 val_loss=0.62644 val_acc=0.7148
+2026-06-04 07:52:27 | INFO | epoch=014 train_loss=0.62733 train_acc=0.7149 elapsed=1812.4s
+2026-06-04 07:58:33 | INFO | epoch=014 val_loss=0.62853 val_acc=0.7137
+2026-06-04 08:27:43 | INFO | epoch=015 train_loss=0.62689 train_acc=0.7151 elapsed=1750.4s
+2026-06-04 08:32:43 | INFO | epoch=015 val_loss=0.62668 val_acc=0.7143
+2026-06-04 09:01:10 | INFO | epoch=016 train_loss=0.62639 train_acc=0.7154 elapsed=1706.6s
+2026-06-04 09:07:17 | INFO | epoch=016 val_loss=0.62714 val_acc=0.7146
+2026-06-04 09:37:59 | INFO | epoch=017 train_loss=0.62598 train_acc=0.7155 elapsed=1842.0s
+2026-06-04 09:44:04 | INFO | epoch=017 val_loss=0.63872 val_acc=0.7101
+2026-06-04 10:14:36 | INFO | epoch=018 train_loss=0.62552 train_acc=0.7158 elapsed=1831.8s
+2026-06-04 10:19:43 | INFO | epoch=018 val_loss=0.62835 val_acc=0.7136
+2026-06-04 10:48:27 | INFO | epoch=019 train_loss=0.62535 train_acc=0.7159 elapsed=1724.0s
+2026-06-04 10:53:38 | INFO | epoch=019 val_loss=0.62533 val_acc=0.7150
+2026-06-04 11:23:52 | INFO | epoch=020 train_loss=0.62486 train_acc=0.7161 elapsed=1814.2s
+2026-06-04 11:29:59 | INFO | epoch=020 val_loss=0.62667 val_acc=0.7148

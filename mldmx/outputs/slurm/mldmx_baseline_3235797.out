@@ -1,0 +1,83 @@
+Obtaining file:///projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/mldmx
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'done'
+  Preparing editable metadata (pyproject.toml): started
+  Preparing editable metadata (pyproject.toml): finished with status 'done'
+Building wheels for collected packages: mldmx
+  Building editable for mldmx (pyproject.toml): started
+  Building editable for mldmx (pyproject.toml): finished with status 'done'
+  Created wheel for mldmx: filename=mldmx-0.1.0-0.editable-py3-none-any.whl size=1160 sha256=9b11f8b5abd92a071aaed3aee66b7808f5d3eaa7e04a87118e2f85ac16490633
+  Stored in directory: /local/slurmtmp.3235797/pip-ephem-wheel-cache-3uglqiwa/wheels/5e/47/d9/532e4e0120ee7c9bf7a58eb35af2c009d586d264b1d10d841f
+Successfully built mldmx
+Installing collected packages: mldmx
+  Attempting uninstall: mldmx
+    Found existing installation: mldmx 0.1.0
+    Uninstalling mldmx-0.1.0:
+      Successfully uninstalled mldmx-0.1.0
+Successfully installed mldmx-0.1.0
+host: cg19
+repo: /projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx
+model: ECalTpadGravNet
+processed cache root: data/processed/production_5M_001_sharded
+events per source: 100
+single source: 3e (3 electrons)
+Python 3.11.5
+Wed Jun  3 23:23:26 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 590.44.01              Driver Version: 590.44.01      CUDA Version: 13.1     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA A100-PCIE-40GB          Off |   00000000:D8:00.0 Off |                    0 |
+| N/A   26C    P0             32W /  250W |       0MiB /  40960MiB |      0%      Default |
+|                                         |                        |             Disabled |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+python: 3.11.5 (main, Aug 26 2024, 11:58:39) [GCC 13.2.0]
+platform: Linux-5.14.0-611.11.1.el9_7.x86_64-x86_64-with-glibc2.34
+torch: 2.7.0+cu126
+torch cuda version: 12.6
+cuda available: True
+cuda device count: 1
+current cuda device: 0
+gpu name: NVIDIA A100-PCIE-40GB
+tiny cuda tensor check: 140.0
+command: python -u scripts/train_hit_classifier_baseline.py --model ECalTpadGravNet --events-per-source 100 --epochs 5 --batch-size 16 --lr 3e-4 --weight-decay 1e-4 --hidden-dim 128 --num-layers 4 --num-heads 4 --dim-feedforward 128 --dropout 0.1 --seed 7 --device cuda --output-root outputs/cosmos_baselines --run-name tpad_gravnet_3e_100_h128_l4_lr3e4 --no-progress --processed-source 3 3e data/processed/production_5M_001_sharded/3e/events
+2026-06-03 23:23:33 | INFO | CUDA GPU: NVIDIA A100-PCIE-40GB
+2026-06-03 23:23:33 | INFO | Output directory: outputs/cosmos_baselines/tpad_gravnet_3e_100_h128_l4_lr3e4
+2026-06-03 23:23:33 | INFO | Model: ECalTpadGravNet
+2026-06-03 23:23:33 | INFO | Using device: cuda
+2026-06-03 23:23:33 | INFO | Target mode: canonical-y; baseline training noise policy: filtered
+2026-06-03 23:23:33 | INFO | Multi-source sharded cache mode selected; use --events-per-source for balanced staged runs.
+2026-06-03 23:23:33 | INFO | Using sharded source 3e (3e): 100 event(s) from data/processed/production_5M_001_sharded/3e/events
+2026-06-03 23:23:33 | INFO | Loaded lazy multi-source sharded dataset with 100 total event(s): [{'electron_count': 3, 'source_label': '3e', 'cache_dir': 'data/processed/production_5M_001_sharded/3e/events', 'num_events': 100}]
+2026-06-03 23:23:33 | INFO | Split sizes: train=80 val=15 test=5
+2026-06-03 23:23:39 | INFO | Fitted lazy canonical-event feature normalization from sharded training events.
+2026-06-03 23:23:39 | INFO | Training canonical class counts: {1: 9546, 2: 9187, 3: 9708}
+2026-06-03 23:23:39 | INFO | Input feature dimension: 8
+2026-06-03 23:23:39 | INFO | Deriving model-specific views on demand; pass --cache-model-views to reuse them.
+2026-06-03 23:23:39 | INFO | Trainable parameters: 118931
+2026-06-03 23:23:42 | INFO | epoch=001 train_loss=1.07669 train_acc=0.4407 elapsed=2.9s
+2026-06-03 23:23:43 | INFO | epoch=001 val_loss=1.02229 val_acc=0.5480
+2026-06-03 23:23:44 | INFO | epoch=002 train_loss=1.00827 train_acc=0.5484 elapsed=1.6s
+2026-06-03 23:23:45 | INFO | epoch=002 val_loss=0.96939 val_acc=0.5659
+2026-06-03 23:23:47 | INFO | epoch=003 train_loss=0.96798 train_acc=0.5563 elapsed=1.6s
+2026-06-03 23:23:47 | INFO | epoch=003 val_loss=0.93436 val_acc=0.5635
+2026-06-03 23:23:49 | INFO | epoch=004 train_loss=0.94133 train_acc=0.5627 elapsed=1.6s
+2026-06-03 23:23:49 | INFO | epoch=004 val_loss=0.91564 val_acc=0.5752
+2026-06-03 23:23:51 | INFO | epoch=005 train_loss=0.92657 train_acc=0.5701 elapsed=1.5s
+2026-06-03 23:23:51 | INFO | epoch=005 val_loss=0.91131 val_acc=0.5717
+2026-06-03 23:23:53 | INFO | Final test: loss=0.89338 hit_acc=0.5785; saved outputs to outputs/cosmos_baselines/tpad_gravnet_3e_100_h128_l4_lr3e4

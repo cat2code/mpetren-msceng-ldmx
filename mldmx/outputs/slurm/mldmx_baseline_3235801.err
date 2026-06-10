@@ -1,0 +1,10 @@
+The following modules were not unloaded:
+  (Use "module --force purge" to unload all):
+
+  1) SoftwareTree/Milan
+
+[notice] A new release of pip is available: 26.1.1 -> 26.1.2
+[notice] To update, run: pip install --upgrade pip
+/projects/hep/fs9/shared/ldmx/users/eliotmp/mpetren-msceng-ldmx/.venv/lib/python3.11/site-packages/torch_geometric/utils/_scatter.py:91: UserWarning: The usage of `scatter(reduce='max')` can be accelerated via the 'torch-scatter' package, but it was not found
+  warnings.warn(
+slurmstepd: error: *** JOB 3235801 ON cg19 CANCELLED AT 2026-06-04T11:30:08 DUE TO TIME LIMIT ***
