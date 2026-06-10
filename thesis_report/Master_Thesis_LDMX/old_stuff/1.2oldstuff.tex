@@ -1,0 +1,219 @@
+\newpage
+
+\subsection{Project Objectives}
+
+\paragraph{Overall objective.}
+The overall objective of this project is to develop and evaluate a graph-neural-network-based
+high-level-trigger reconstruction method for LDMX that combines information from the
+ECal trigger cells and the trigger scintillators in order to reconstruct and separate individual
+beam electrons in pile-up events. The goal is not only to count how many electrons are present,
+but to associate detector activity to the correct electron candidate well enough that a more
+reliable trigger decision can be made in multi-electron events.
+
+\paragraph{More specifically, the project aims to:}
+\begin{itemize}
+    \item formulate a \textbf{multi-detector graph representation} of trigger-level LDMX events, where nodes and features encode ECal trigger-cell activity together with trigger-scintillator information;
+    \item train a GNN to perform one or more of the following trigger-relevant tasks:
+    \begin{itemize}
+        \item electron multiplicity prediction,
+        \item per-electron shower separation / hit association,
+        \item identification of which reconstructed activity corresponds to a likely pile-up electron,
+        \item trigger-oriented energy reconstruction for individual electrons;
+    \end{itemize}
+    \item compare the GNN-based method to existing or simpler baselines, such as:
+    \begin{itemize}
+        \item trigger-level counting/classification approaches,
+        \item clustering-based ECal methods,
+        \item PF- or matching-inspired association logic where applicable;
+    \end{itemize}
+    \item study how the performance changes as pile-up becomes more difficult, especially for:
+    \begin{itemize}
+        \item decreasing spatial separation between electrons,
+        \item increasing overlap between showers,
+        \item increasing electron multiplicity,
+        \item more ambiguous trigger-scintillator patterns;
+    \end{itemize}
+    \item determine whether the method improves the \textbf{trigger usefulness} of the reconstruction, not merely offline classification accuracy;
+    \item assess whether the method is sufficiently stable and computationally light to remain relevant in a high-level-trigger context.
+\end{itemize}
+
+\paragraph{Main research questions.}
+\begin{itemize}
+    \item Can a graph-based model use combined ECal trigger-cell and trigger-scintillator information to separate overlapping electrons better than simpler trigger-level approaches?
+    \item Does multi-detector input improve performance compared to using only ECal information?
+    \item Is the gain largest in electron counting, shower association, energy reconstruction, or trigger decision recovery?
+    \item In which regimes does the method fail: close-by showers, heavily mixed hits, low-energy signal electrons, or large multiplicities?
+    \item Does the method provide a realistic path toward trigger-level pile-up mitigation in LDMX?
+\end{itemize}
+
+\subsection{Potential Main Results, Figures, and Tables}
+
+\paragraph{A. Event and input representation}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} schematic of the full pipeline
+    \begin{itemize}
+        \item beam electrons $\rightarrow$ detector response $\rightarrow$ ECal trigger cells + trigger scintillators $\rightarrow$ graph construction $\rightarrow$ GNN $\rightarrow$ trigger-relevant outputs;
+    \end{itemize}
+    \item \textbf{Figure placeholder:} example event displays for
+    \begin{itemize}
+        \item one-electron event,
+        \item easy two-electron event,
+        \item difficult overlapping pile-up event;
+    \end{itemize}
+    \item \textbf{Figure placeholder:} graph visualization showing nodes, edges, detector type labels, and possible message-passing neighborhoods;
+    \item \textbf{Table placeholder:} summary of node features, edge definition, target labels, and dataset splits.
+\end{itemize}
+
+\paragraph{B. Basic ML performance}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} training and validation loss vs epoch;
+    \item \textbf{Figure placeholder:} training and validation metric vs epoch
+    \begin{itemize}
+        \item e.g.\ counting accuracy, F1, or association score;
+    \end{itemize}
+    \item \textbf{Table placeholder:} best hyperparameters and final validation/test metrics.
+\end{itemize}
+
+\paragraph{C. Electron multiplicity performance}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} confusion matrix for predicted vs true electron multiplicity;
+    \item \textbf{Figure placeholder:} per-class efficiency / recall for 1e, 2e, 3e, \dots;
+    \item \textbf{Table placeholder:} overall accuracy, balanced accuracy, macro F1, and rare-class performance.
+\end{itemize}
+
+\paragraph{D. Shower separation and association performance}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} association efficiency as a function of true electron separation in the ECal scoring plane;
+    \item \textbf{Figure placeholder:} purity / contamination of reconstructed electron objects;
+    \item \textbf{Figure placeholder:} fraction of detector activity correctly assigned to the right electron;
+    \item \textbf{Figure placeholder:} event displays of representative successes and failures;
+    \item \textbf{Table placeholder:} comparison of GNN vs baseline on separation-related metrics.
+\end{itemize}
+
+\paragraph{E. Energy reconstruction quality}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} reconstructed vs true per-electron energy;
+    \item \textbf{Figure placeholder:} energy residual distributions
+    \[
+        \frac{E_{\mathrm{reco}} - E_{\mathrm{true}}}{E_{\mathrm{true}}}
+    \]
+    for signal electrons and pile-up electrons separately;
+    \item \textbf{Figure placeholder:} energy purity as a function of electron separation;
+    \item \textbf{Table placeholder:} bias, resolution, and tail fractions.
+\end{itemize}
+
+\paragraph{F. Trigger relevance}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} trigger score or trigger decision efficiency before and after GNN-based reconstruction;
+    \item \textbf{Figure placeholder:} pass/fail distributions for events with and without successful reconstruction;
+    \item \textbf{Figure placeholder:} recovered trigger efficiency in pile-up relative to a no-pile-up reference;
+    \item \textbf{Table placeholder:} rate of
+    \begin{itemize}
+        \item signal events kept,
+        \item pile-up electrons correctly identified as removable / separable,
+        \item false vetoes,
+        \item missed recoverable events.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{G. Robustness studies}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} performance vs pile-up multiplicity;
+    \item \textbf{Figure placeholder:} performance vs electron separation;
+    \item \textbf{Figure placeholder:} performance vs overlap severity / mixed-hit fraction;
+    \item \textbf{Figure placeholder:} performance vs signal-electron energy loss or event difficulty category;
+    \item \textbf{Table placeholder:} robustness summary across event categories.
+\end{itemize}
+
+\paragraph{H. Computational feasibility}
+\begin{itemize}
+    \item \textbf{Figure placeholder:} inference time vs number of nodes / event complexity;
+    \item \textbf{Figure placeholder:} memory usage vs graph size;
+    \item \textbf{Table placeholder:} approximate latency and throughput for candidate deployment scenarios.
+\end{itemize}
+
+\subsection{Candidate Evaluation Metrics}
+
+\paragraph{Core metrics likely to be useful.}
+\begin{itemize}
+    \item electron counting accuracy;
+    \item confusion matrix and per-class recall;
+    \item energy purity of reconstructed electron objects;
+    \item unclustered / unassigned energy fraction;
+    \item unclustered / unassigned hit fraction;
+    \item association efficiency: fraction of true electron activity assigned to the correct reconstructed object;
+    \item fake-split rate: one true shower reconstructed as several objects;
+    \item merge rate: several true electrons reconstructed as one object.
+\end{itemize}
+
+\paragraph{Metrics that could be especially specific to this project.}
+\begin{itemize}
+    \item \textbf{Pile-up electron identification rate:}
+    fraction of events where the pile-up electron is the one correctly identified / reconstructed as the high-energy non-signal electron.
+    
+    \item \textbf{Trigger decision recovery rate:}
+    fraction of signal events that would fail under a global pile-up-sensitive trigger, but would pass after GNN-based multi-electron reconstruction.
+    
+    \item \textbf{Trigger consistency metric:}
+    agreement between the trigger decision in a pile-up event and the decision that would have been obtained for the same signal electron without extra pile-up electrons.
+    
+    \item \textbf{Association-under-overlap score:}
+    association efficiency measured only in a difficult region, e.g.\ for events below a chosen electron-separation threshold.
+    
+    \item \textbf{Mixed-hit handling score:}
+    how well the method deals with detector activity containing contributions from several electrons, for example measured through purity loss as the mixed-hit fraction increases.
+    
+    \item \textbf{Signal-electron retention vs pile-up rejection:}
+    a two-axis summary of how well the method preserves the signal electron while isolating or rejecting pile-up activity.
+    
+    \item \textbf{High-level-trigger utility score:}
+    a composite score combining trigger efficiency gain, false-veto reduction, and computational cost.
+\end{itemize}
+
+\subsection{Minimal Result Set if the Project Scope Must Be Kept Tight}
+
+\begin{itemize}
+    \item one pipeline figure showing the full method;
+    \item one event-display figure with easy and difficult pile-up examples;
+    \item one loss-curve figure;
+    \item one multiplicity confusion matrix;
+    \item one figure of energy purity / association efficiency vs electron separation;
+    \item one figure of reconstructed-vs-true energy or residuals;
+    \item one trigger-relevance figure showing pass/fail improvement or trigger consistency;
+    \item one comparison table: GNN vs baseline;
+    \item one robustness table or figure vs pile-up level.
+\end{itemize}
+
+\subsection{One Compact Formulation of the Project Objective}
+
+\begin{quote}
+The project aims to investigate whether a graph neural network can perform trigger-level
+multi-detector reconstruction in LDMX by combining ECal trigger-cell and trigger-scintillator
+information to separate overlapping beam electrons in pile-up events. The purpose is to
+improve electron counting, per-electron association, and trigger-relevant energy reconstruction
+relative to simpler baseline methods, and thereby study whether machine-learning-based
+reconstruction can improve the reliability of high-level-trigger decisions under pile-up
+conditions.
+\end{quote}
+
+
+\newpage
+
+
+
+\subsection{Research Objectives and Expected Main Results}
+
+%The Light Dark Matter eXperiment (LDMX) is designed to identify rare missing-momentum events in which an incoming beam electron interacts in the target and transfers a significant fraction of its energy and momentum to invisible particles. In such events, reconstruction must not only measure the visible detector activity, but also determine which activity belongs to which incoming electron. This becomes particularly challenging in pile-up conditions, where multiple beam electrons may enter the detector within the same readout window and produce overlapping electromagnetic showers. In this regime, imperfect separation of detector activity can degrade electron counting, energy assignment, and ultimately the trigger-level decision.
+
+%The central objective of this project is therefore to investigate whether a graph neural network (GNN) can improve trigger-oriented reconstruction in LDMX under pile-up conditions by exploiting the relational structure of detector data. In this thesis, ``multi-detector reconstruction'' refers to a graph-based strategy that combines electromagnetic calorimeter information with auxiliary detector information available at or near trigger level, such as trigger scintillator observables and reduced detector-summary or tracking-related quantities. The aim is to reconstruct individual electrons and their associated detector activity, rather than relying only on the total visible activity of the event.
+
+%More specifically, the project has four main objectives. First, detector information should be represented as a graph whose nodes correspond to hits, clusters, or detector objects, with features such as position, layer, energy, timing, and detector identity. Second, a GNN-based model should be developed to separate overlapping electromagnetic showers and assign detector activity to the correct electron candidate in events with one or more incoming electrons. Third, the GNN-based reconstruction should be compared to existing rule-based or conventional baselines, such as clustering- and matching-based approaches, with respect to physically relevant performance metrics. Fourth, the study should evaluate whether any observed improvement is large enough to be relevant for high-level-trigger or near-online reconstruction, where both robustness and computational efficiency are important.
+
+%The main results should therefore be organized around a small number of concrete questions. How well does the method identify the correct number of electrons in the event? How accurately does it assign energy and hits to each electron? How does the performance change as pile-up becomes more severe or as showers overlap more strongly? And to what extent does the method remain simple and fast enough to be considered for trigger-oriented reconstruction?
+
+%The most important plots are consequently those that connect model performance to detector physics. A first class of plots should show training behavior, for example training and validation loss as a function of epoch, in order to demonstrate convergence and stability. A second class should quantify electron counting performance, for example a confusion matrix for predicted versus true electron multiplicity or an efficiency curve for correct multiplicity identification as a function of pile-up level. A third class should address shower separation directly, for example the fraction of correctly assigned hits or the energy purity of reconstructed electron candidates as a function of the true spatial separation between electrons. A fourth class should evaluate energy reconstruction quality through residual distributions, response plots, or resolution curves comparing reconstructed and true electron energy. A fifth class should compare the proposed method to baseline reconstruction using summary plots of efficiency, purity, and robustness across different event categories. Finally, if the trigger aspect is to remain central, an additional plot of computational cost or inference time versus event complexity would provide important context for whether the method is realistic in a high-level-trigger setting.
+
+%Taken together, these results would show not only whether a GNN can outperform conventional reconstruction in difficult multi-electron events, but also where the gain comes from: improved shower separation, better detector-object association, or increased robustness against pile-up. This would make the thesis relevant not only as an application of machine learning, but as a study of how modern reconstruction methods can support the physics reach of LDMX in regimes where overlapping detector activity becomes a limiting factor.
+
+
+\newpage

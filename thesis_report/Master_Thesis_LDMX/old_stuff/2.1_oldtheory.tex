@@ -1,0 +1,73 @@
+
+
+\subsection{The Standard Model and Dark Matter}
+
+Explain the standard model briefly and introduce dark matter and connect the two as context for the reader.
+
+\subsection{The Light Dark Matter Experiment (LDMX)}
+
+Introduce the Light Dark Matter Experiment as a bridge from the last subchapter
+
+Give some practical info and history
+
+Explain the research goal and what is being investigated
+
+
+\newpage
+
+\subsection{Motivation}
+Introduce the physics motivation behind LDMX.
+Explain the importance of precise electron counting and pile-up mitigation and how that relates to the experiment's \textit{physics reach}.
+Motivate why traditional clustering methods may struggle in multi-electron environments.
+Introduce graph neural networks (GNNs) as a promising approach for irregular detector data.
+
+(!) This has already been very nicely done by others. Take inspiration from earlier thesis reports and make one that takes the best things from all of them.
+
+\subsection{Research Objectives}
+Clearly define the problem: robust electromagnetic shower separation under pile-up conditions.
+State the main research questions.
+Define performance goals and comparison to baseline methods (e.g., CLUE, ParticleFlow).
+
+\subsection{Thesis Structure}
+Briefly describe how the thesis is organized.
+
+
+
+
+\subsection{The LDMX Experiment}
+Describe the purpose of LDMX.
+Explain relevant detector components: ECal, HCal, tracking system.
+Describe the simulation framework (ldmx-sw, Geant4). Explain dark bremsstrahlung.
+
+(!) This has already been very nicely done by others. Take inspiration from earlier thesis reports and make one that takes the best things from all of them.
+
+*Figure LDMX detector overview*
+
+*Figure dark bremsstrahlung particle interaction*
+
+\subsection{Electromagnetic Showers}
+Explain shower formation in calorimeters.
+Discuss spatial and energy deposition characteristics.
+Describe challenges arising from overlapping showers.
+
+*Figure ECal cells and trigger cells*
+
+\subsection{Rule-Based Reconstruction in High Energy Physics}
+Introduce clustering and ParticleFlow.
+Describe existing LDMX reconstruction approaches (e.g., CLUE).
+Discuss online vs offline reconstruction context in order to give the reader an idea of online/offline and where this reconstruction method aims to relate.
+
+*Figure that explains CLUE and PF*
+
+
+\subsection{Graph Neural Networks}
+Introduce graph representations and message passing.
+Explain why calorimeter data can naturally be represented as graphs. Explain how data from other subdetectors can be included in the same graph representation and refer to MLPF by CMS.
+Explain attention mechanism in GNN.
+Describe relevant architectures (e.g., MLPF, GravNet-style, ParticleNet-inspired).
+Discuss advantages compared to CNNs/RNNs for irregular geometries.
+Discuss the prospects of a transformer based architecture and explain the analogy between transformers and GNN (especially when GNN has attention). Perhaps refer to entirely transformer based solutions presented by CMS in MLPF. 
+
+*Figure flowchart of where the different alternatives of reconstruction (Rule based CLUE, PF and ML) fit in the reconstruction pipeline of LDMX*
+
+*Figure illustrating the idea of GNN in HEP reconstruction and subdetector data (maybe omitt if there is a proper one later anyways)*
