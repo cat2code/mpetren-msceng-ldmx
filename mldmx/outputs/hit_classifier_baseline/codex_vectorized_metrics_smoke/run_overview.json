@@ -1,0 +1,389 @@
+{
+  "run": {
+    "created_at_utc": "2026-06-10T09:03:00.840883+00:00",
+    "output_dir": "mldmx/outputs/hit_classifier_baseline/codex_vectorized_metrics_smoke",
+    "script": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/scripts/train_hit_classifier_baseline.py",
+    "python": "3.13.7 (main, Aug 14 2025, 11:12:11) [Clang 17.0.0 (clang-1700.3.19.1)]",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "torch_version": "2.11.0"
+  },
+  "model": {
+    "requested_name": "ECalTransformer",
+    "class_name": "ECalTransformer",
+    "module": "mldmx.models.ecal_transformer",
+    "input_dim": 4,
+    "output_dim": 3,
+    "constructor_kwargs": {
+      "in_dim": 4,
+      "d_model": 8,
+      "nhead": 2,
+      "num_layers": 1,
+      "dim_feedforward": 16,
+      "dropout": 0.0,
+      "out_dim": 3
+    },
+    "architecture": "ECalTransformer(\n  (input_proj): Sequential(\n    (0): Linear(in_features=4, out_features=8, bias=True)\n    (1): ReLU()\n    (2): Linear(in_features=8, out_features=8, bias=True)\n  )\n  (encoder): TransformerEncoder(\n    (layers): ModuleList(\n      (0): TransformerEncoderLayer(\n        (self_attn): MultiheadAttention(\n          (out_proj): NonDynamicallyQuantizableLinear(in_features=8, out_features=8, bias=True)\n        )\n        (linear1): Linear(in_features=8, out_features=16, bias=True)\n        (dropout): Dropout(p=0.0, inplace=False)\n        (linear2): Linear(in_features=16, out_features=8, bias=True)\n        (norm1): LayerNorm((8,), eps=1e-05, elementwise_affine=True)\n        (norm2): LayerNorm((8,), eps=1e-05, elementwise_affine=True)\n        (dropout1): Dropout(p=0.0, inplace=False)\n        (dropout2): Dropout(p=0.0, inplace=False)\n      )\n    )\n  )\n  (head): Linear(in_features=8, out_features=3, bias=True)\n)",
+    "total_parameters": 739,
+    "trainable_parameters": 739,
+    "non_trainable_parameters": 0,
+    "parameter_tensors": [
+      {
+        "name": "input_proj.0.weight",
+        "shape": [
+          8,
+          4
+        ],
+        "numel": 32,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "input_proj.0.bias",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "input_proj.2.weight",
+        "shape": [
+          8,
+          8
+        ],
+        "numel": 64,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "input_proj.2.bias",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.self_attn.in_proj_weight",
+        "shape": [
+          24,
+          8
+        ],
+        "numel": 192,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.self_attn.in_proj_bias",
+        "shape": [
+          24
+        ],
+        "numel": 24,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.self_attn.out_proj.weight",
+        "shape": [
+          8,
+          8
+        ],
+        "numel": 64,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.self_attn.out_proj.bias",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.linear1.weight",
+        "shape": [
+          16,
+          8
+        ],
+        "numel": 128,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.linear1.bias",
+        "shape": [
+          16
+        ],
+        "numel": 16,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.linear2.weight",
+        "shape": [
+          8,
+          16
+        ],
+        "numel": 128,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.linear2.bias",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.norm1.weight",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.norm1.bias",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.norm2.weight",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "encoder.layers.0.norm2.bias",
+        "shape": [
+          8
+        ],
+        "numel": 8,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "head.weight",
+        "shape": [
+          3,
+          8
+        ],
+        "numel": 24,
+        "trainable": true,
+        "dtype": "torch.float32"
+      },
+      {
+        "name": "head.bias",
+        "shape": [
+          3
+        ],
+        "numel": 3,
+        "trainable": true,
+        "dtype": "torch.float32"
+      }
+    ],
+    "buffers": []
+  },
+  "training": {
+    "start_epoch": 0,
+    "requested_epochs": 1,
+    "remaining_epochs": 1,
+    "resume_checkpoint": null,
+    "best_val_loss_at_start": null,
+    "device_requested": "cpu",
+    "device_resolved": "cpu",
+    "seed": 7,
+    "batch_size": 4,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "grad_clip": 1.0,
+    "checkpoint_every": 1,
+    "optimizer": {
+      "class_name": "AdamW",
+      "module": "torch.optim.adamw",
+      "defaults": {
+        "lr": 0.001,
+        "betas": [
+          0.9,
+          0.999
+        ],
+        "eps": 1e-08,
+        "weight_decay": 0.0,
+        "amsgrad": false,
+        "maximize": false,
+        "foreach": null,
+        "capturable": false,
+        "differentiable": false,
+        "fused": null,
+        "decoupled_weight_decay": true
+      },
+      "param_groups": [
+        {
+          "lr": 0.001,
+          "betas": [
+            0.9,
+            0.999
+          ],
+          "eps": 1e-08,
+          "weight_decay": 0.0,
+          "amsgrad": false,
+          "maximize": false,
+          "foreach": null,
+          "capturable": false,
+          "differentiable": false,
+          "fused": null,
+          "decoupled_weight_decay": true
+        }
+      ]
+    },
+    "scheduler": null
+  },
+  "data": {
+    "resolved_data_dir": "mldmx/data/processed/ecal_tpad_3class_smoke",
+    "num_loaded_events": 10,
+    "source_files": [
+      "event_000000.pt",
+      "event_000001.pt",
+      "event_000002.pt",
+      "event_000003.pt",
+      "event_000004.pt",
+      "event_000005.pt",
+      "event_000006.pt",
+      "event_000007.pt",
+      "event_000008.pt",
+      "event_000009.pt"
+    ],
+    "split_sizes": {
+      "train": 8,
+      "val": 1,
+      "test": 1
+    },
+    "class_counts": {
+      "train": {
+        "1": 1005,
+        "2": 992,
+        "3": 996
+      },
+      "val": {
+        "1": 119,
+        "2": 128,
+        "3": 105
+      },
+      "test": {
+        "1": 130,
+        "2": 111,
+        "3": 150
+      }
+    },
+    "target_order_counts": {
+      "train": {
+        "(2, 1, 3)": 2,
+        "(2, 3, 1)": 4,
+        "(3, 1, 2)": 1,
+        "(3, 2, 1)": 1
+      },
+      "val": {
+        "(2, 3, 1)": 1
+      },
+      "test": {
+        "(2, 3, 1)": 1
+      }
+    }
+  },
+  "preprocessing": {
+    "target_mode": "canonical-y",
+    "valid_labels": [
+      1,
+      2,
+      3
+    ],
+    "normalize_features": true,
+    "feature_norm": {
+      "enabled": true,
+      "first_continuous_col": 2,
+      "mean": [
+        -9.347044944763184,
+        0.3674025237560272,
+        387.3761291503906,
+        58.180355072021484,
+        0.17556452751159668,
+        1.1446582078933716
+      ],
+      "std": [
+        37.0863037109375,
+        40.84479522705078,
+        90.87516021728516,
+        92.38426971435547,
+        2.374910593032837,
+        14.049565315246582
+      ]
+    },
+    "view_fn": "ecal_transformer_view",
+    "training_view_fn": "ecal_transformer_view"
+  },
+  "hyperparameters": {
+    "model": "ECalTransformer",
+    "events_per_class": 10,
+    "max_events": 10,
+    "data_root": "/Users/eliotmontesinopetren/Documents/exjobb_kod/mpetren-msceng-ldmx/mldmx/data/ldmx_overlay_events_700k",
+    "processed_dir": "mldmx/data/processed/ecal_tpad_3class_smoke",
+    "processed_cache": null,
+    "processed_cache_root": null,
+    "processed_source": null,
+    "events_per_source": null,
+    "force_sharded_cache": false,
+    "allow_incomplete_sharded_cache": false,
+    "max_cache_root_files": null,
+    "max_events_per_root_file": null,
+    "shard_cache_size": 1,
+    "output_root": "mldmx/outputs/hit_classifier_baseline",
+    "run_name": "codex_vectorized_metrics_smoke",
+    "epochs": 1,
+    "batch_size": 4,
+    "lr": 0.001,
+    "weight_decay": 0.0,
+    "seed": 7,
+    "checkpoint_every": 1,
+    "resume": null,
+    "device": "cpu",
+    "valid_labels": [
+      1,
+      2,
+      3
+    ],
+    "target_mode": "canonical-y",
+    "hidden_dim": 8,
+    "num_layers": 1,
+    "num_heads": 2,
+    "dim_feedforward": 16,
+    "dropout": 0.0,
+    "space_dimensions": 4,
+    "propagate_dimensions": 32,
+    "k": 16,
+    "grad_clip": 1.0,
+    "no_normalize_features": false,
+    "cache_model_views": false,
+    "allow_small_split": true,
+    "no_progress": true,
+    "num_ecal_plots": 1,
+    "event_log_every": 0,
+    "read_step_size": 500,
+    "allow_fewer_events": false,
+    "output_dir": "mldmx/outputs/hit_classifier_baseline"
+  }
+}
