@@ -67,6 +67,7 @@ mldmx/data/processed/production_5M_001_full_shard_preflight/
 # =========================
 # External upstream repos
 # =========================
+ml_ldmx/
 external/ldmx-sw
 external/ldmx-sw-new/
 external/ci-data/
