@@ -2,8 +2,7 @@
 \input{config/glossary}
 
 \begin{document}
-
-\pagenumbering{arabic}
+\pagenumbering{gobble}
 
 % ------------------------------------------------
 % Title page + abstract
@@ -13,8 +12,20 @@
   \noindent\rule{\textwidth}{4pt}
   \vspace{0.20in}
 
-  {\LARGE \bfseries Graph Neural Network--Based Heterogonerous Detector Reconstruction in LDMX under Pile-Up Conditions\par}
+  {\LARGE \bfseries Machine Learning Methods for Hit-Level Electron Shower Reconstruction under Pile-Up Conditions for the Light Dark Matter eXperiment \par}
   \vspace{0.7em}
+
+% Hit-Level Electron Shower Reconstruction Using Machine Learning Methods in the Light Dark Matter eXperiment
+
+% Representing Detector Elements as Unordered Sets and Using Machines Learning to Separate Electron Showers of Pile-Up Events
+
+% Machine Learning Based Methods for ECal Shower Separation for the Light Dark Matter eXperiment
+
+% Representing Detector Elements as Unordered Sets and Using Machines Learning to Separate Electron Showers of Pile-Up Events
+
+% Graph Neural Network--Based Heterogonerous Detector Reconstruction in LDMX under Pile-Up Conditions
+
+% Machine Learning Methods 
 
   {\large Eliot M. Petrén\par}
   \vspace{0.35em}
@@ -50,6 +61,7 @@
 % Acknowledgements
 % ------------------------------------------------
 \clearpage
+\thispagestyle{empty}
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 
@@ -57,7 +69,7 @@ My sincerest gratitudes goes to my supervisor Lene Kristian Bryngemark and my co
 
 I am also grateful to everyone who has contributed with discussions, advice, and encouragement during the course of this work, including the other diploma students at LDMX during my time there. 
 
-I want to thank my partner Tilde Bonnevier Wallstedt for her support and source of inspiration to write a thesis in particle physics. My friend Axel Helgstrand should also be thanked for the same reason and for directing me to LDMX especially. 
+I want to direct my thanks to my partner Tilde Bonnevier Wallstedt for her support and source of inspiration to write a thesis in particle physics. My friend Axel Helgstrand also deserves thanks for the same reason and for directing me to LDMX especially. 
 
 I would also like to thank my two cats Shiro and Nemo, who assisted my work by performing random walk on my keyboard, thus expanding the search in the space of possible solutions.
 
@@ -71,6 +83,7 @@ I would also like to thank my two cats Shiro and Nemo, who assisted my work by p
 % Main matter
 % ------------------------------------------------
 \clearpage
+\pagenumbering{arabic} % start numbering here
 \section*{Notes and stuff}
 \input{sections/0stuff}
 
