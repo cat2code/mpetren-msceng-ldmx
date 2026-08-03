@@ -63,7 +63,8 @@ use the restricted input \(\mathcal{X}=\mathcal{H}\), omitting
 
 %MATH HERE DEFINING TRIGGER SCINTILLATOR SET centroid and pe (variable size as well but low size nonetheless). It Previous paragraph should be rephrased as including ECal and TS data is standard and depending on the model the set omitts the set T from the TS. 
 
-The principal supervised task is to assign each selected \gls{ecal} hit to the origin electron that gives its' dominant deposited-energy contribution (since one \gls{ecal} cell can have energy contributions from overlapping originating electron showers). The origin electron classification was the result of attempting to start with the most simple hit-level task that was thought of for shower separation and it produced two variants of classification models that were interesting to compare: one \gls{gnn} model based on the \texttt{GravNet} architecture and one Transformer model with full self attention. 
+The principal supervised task is to assign each selected \gls{ecal} hit to the origin electron responsible for the largest total deposited energy in that cell (since one \gls{ecal} cell can have energy contributions from overlapping originating electron showers). The origin electron classification was the result of attempting to start with the most simple hit-level task that was thought of for shower separation and it produced two variants of classification models that were interesting to compare: one \gls{gnn} model based on the \texttt{GravNet} architecture and one Transformer model with full self attention.
+
 
 The practical use of the origin electron classifiers are inherently limited, and this motivated for experimenting with extended tasks that includes predicting whether an event is (\(2e\)) or (\(3e\)) and the contributed fraction of energy in shared hits. This resulted in one multi-task model, more experimental in nature, that was also based on the Transformer architecture. 
 
@@ -371,7 +372,9 @@ electron, as a successful performance of this task would mean a shower separatio
 
     \item \textbf{One hard label per hit.} An \gls{ecal} cell may contain
     energy from several overlaid showers. For the baseline loss, the hit is
-    assigned to only one origin label $\{1,2 , 3\}$, the origin of its largest individual energy contribution, i.e the \textit{''dominant origin''}.
+    assigned to only one origin label in \(\{1,2,3\}\), called the
+    \textit{dominant origin}. It is the origin with the largest total
+    deposited energy after contributions from the same origin have been summed.
 
     \item \textbf{Noise-free baseline input.} Simulated noise hits are kept in
     the reusable production shards but removed before data are given to a
@@ -382,43 +385,36 @@ electron, as a successful performance of this task would mean a shower separatio
 
 Let \(K_i\) be the number of simulated-particle contributions stored for
 reconstructed hit \(i\). Contribution \(k\) has deposited energy \(d_{ik}\)
-and overlay origin identifier \(o_{ik}\). The hard target is
-\begin{equation}
-    k_i^\star =
-    \argmax_{k \in \{1,\ldots,K_i\}} d_{ik},
-    \qquad
-    y_i^{\mathrm{origin}} = o_{i k_i^\star}.
-    \label{eq:dominant_origin_target}
-\end{equation}
-\textbf{Above math is a bit convoluted I think, better formulation that is easier to interpret but still confident and academic?}
-This selects the origin of the largest individual contribution. Contributions
-from the same origin are not summed before this choice is made. The accepted
-origin identifiers are then mapped to integer class indices for the
-classification loss. If several entries share one origin, the selected class
-is not necessarily the origin with the largest total deposited energy. The
-hard label also does not mean that a cell containing several showers has been
-physically separated.
-
-For models that also predict the composition of a shared hit, the same arrays
-define the energy-fraction target
-\begin{equation}
-    f_{ij} =
-    \frac{
-        \sum_{k=1}^{K_i}
-        \mathbb{I}\!\left[o_{ik}=j\right] d_{ik}
-    }{
-        \sum_{k=1}^{K_i} d_{ik}
-    } .
+and overlay origin identifier \(o_{ik}\). For an electron origin \(j\), its
+total contribution to the hit is
+\begin{align}
+    D_{ij}
+    &=
+    \sum_{k=1}^{K_i}
+    \mathbb{I}\!\left[o_{ik}=j\right]d_{ik}, \\
+    y_i^{\mathrm{origin}}
+    &=
+    \operatorname*{arg\,max}_{j\in\mathcal{J}}D_{ij},
+    \label{eq:dominant_origin_target}\\
+    f_{ij}
+    &=
+    \frac{D_{ij}}{\sum_{k=1}^{K_i}d_{ik}} .
     \label{eq:origin_fraction_target}
-\end{equation}
-\textbf{Above math is a bit convoluted I think, better formulation that is easier to interpret but still confident and academic?}
-Here, \(\mathbb{I}[\cdot]\) is the indicator function. Unlike the hard target,
-this target sums all entries associated with origin \(j\). The denominator
-contains every stored contribution, including contributions from origins
-outside the configured output set. The fractions therefore sum to one when
-the configured origins account for all deposited energy in the hit. This
-target keeps information about shower overlap that is lost in the hard
-label.
+\end{align}
+Here, \(\mathcal{J}\) is the configured set of electron origins and
+\(\mathbb{I}[\cdot]\) is the indicator function. The baseline classifiers and
+the slot model use the hard target \(y_i^{\mathrm{origin}}\), while the slot
+model also uses the fractions \(f_{ij}\) to retain information about shared
+hits. The fractions sum to one when the configured origins account for all
+deposited energy in the hit. A hard label assigns the hit to one target class
+but does not imply that the overlapping energy deposits have been physically
+separated.
+
+An earlier implementation selected the origin of the largest individual
+contribution, but this rule was omitted because it was qualitatively less
+meaningful and could make the learning task unnecessarily difficult, while
+the summed rule is better motivated physically despite its observed accuracy
+increase not being statistically significant.
 
 \subsubsection{Noise Handling and Electron Ordering}
 
@@ -595,7 +591,7 @@ main stored information.
 \end{table}
 
 When a shard is written, \texttt{physical\_y} records the simulation-derived
-label of each retained ECal hit. Electron origins are labelled
+dominant-origin label of each retained ECal hit. Electron origins are labelled
 \(1,2,\ldots\), while a retained noise hit receives \(0\). The field
 \texttt{y} stores the corresponding class index used by the training loss.
 Before a baseline model is trained, noise rows are removed and
@@ -1025,19 +1021,7 @@ Results chapter.
 
 
 
-
-\begin{landscape}
-    \begin{figure*}
-    %\centering
-    \hspace{-2cm}
-    \vspace{-0.7cm}
-    \includegraphics[height=10cm]{config/fig/readout_vs_truth.jpg}
-    \vspace{-0.5cm}
-    \caption{A flowchart showcasing what information, and at which stages, they are inserted into the \gls{ml} training loop. Detector-derived quantities represent the information that can be read from the detectors in a real-world scenario, and the simulation-only information is truth information that cannot be measured in reality, but can be utilized for training models.}
-    \label{fig:readout_vs_truth}
-    \end{figure*}
-\end{landscape}\makebox[0pt]{}
-
+% THIS FIGURE AND THE NEXT SHOULD BE IN THE SAME 1 LANDSCAPE PAGE IN THIS ORDER
 \begin{landscape}
     \begin{figure*}
     %\centering
@@ -1055,7 +1039,22 @@ Results chapter.
     %\centering
     \hspace{-2cm}
     \vspace{-0.7cm}
-    \includegraphics[height=10cm]{config/fig/io_and_tensor.jpg}
+    \includegraphics[height=10cm]{config/fig/readout_vs_truth.jpg}
+    \vspace{-0.5cm}
+    \caption{A flowchart showcasing what information, and at which stages, they are inserted into the \gls{ml} training loop. Detector-derived quantities represent the information that can be read from the detectors in a real-world scenario, and the simulation-only information is truth information that cannot be measured in reality, but can be utilized for training models.}
+    \label{fig:readout_vs_truth}
+    \end{figure*}
+\end{landscape}\makebox[0pt]{}
+
+
+
+
+\begin{landscape}
+    \begin{figure*}
+    %\centering
+    \hspace{-3cm}
+    \vspace{-0.7cm}
+    \includegraphics[height=12cm]{config/fig/io_and_tensor.jpg}
     \vspace{-0.5cm}
     \caption{Write caption here...}
     \label{fig:io_and_tensor}
