@@ -215,7 +215,7 @@ the result also depends on the particle model, its interactions and the history
 of the early Universe.
 
 The historically best-known thermal relic candidate is the \gls{wimp}. A
-particle near the electroweak scale with a weak-strength interaction can freeze
+particle with a mass near the electroweak scale with a weak-strength interaction can freeze
 out with approximately the observed abundance, a coincidence known as the
 \emph{WIMP miracle}. Searches have strongly constrained many WIMP models
 without finding a confirmed signal, although WIMPs as a class have not been
@@ -254,7 +254,7 @@ a new dark-sector gauge-boson mediator called the \gls{dark photon}, denoted by 
 Figure~\ref{fig:sm_dm_dark_photon}. It can be
 thought of as a dark-sector relative of the ordinary photon. A small kinetic mixing with the ordinary
 photon allows the dark photon to interact weakly with electrically charged
-\gls{sm} particles. In the invisible benchmark considered here, the dark
+\gls{sm} particles. In the invisible dark photon benchmark considered here, the dark
 photon decays into a pair of dark matter particles, denoted by
 \(\chi\bar{\chi}\)
 \cite{cirelli2026-darkmatter,ldmx2025-overview}.
@@ -288,21 +288,44 @@ introduces the detector built to answer that question.
 \label{sec:ldmx}
 
 \subsubsection{Search Strategy and Physics Goal}
-\Gls{ldmx} is an electron fixed-target \gls{missing momentum experiment}
+% This section is good in what it achieves and what it wants to tell, but the parts preceding this has been rewritten since and now there is dual information this section does not have to explain stuff again that was explained in previous section. An overview and review of this part with previous parts in mind is necessary. 
+
+% I think this section is missing the perspective of what researches and collaborators are involved in this. It is cool to mention in one sentence in the first paragraph that it is planned in california the us but collaborators are also in other places of the world. 
+
+% I think it would be suitable to explain the choice of tungsten, why tungsten materials? Bremsstrahluhn is implied to be relevant and to occur with tungsten, that could be explicitly stated in 1 sentence with very short explanation.
+
+%Dark bremsstrahlung provides the main benchmark production process for the \gls{ldmx}. LDMX is an electron fixed-target \gls{missing momentum experiment} designed to search for sub-GeV \gls{dm}. An \(8\,\mathrm{GeV}\) electron beam will strike a thin tungsten target at End Station A at \gls{slac}. The momentum of each incoming electron is compared with the measured momentum and energy in the final state. A large imbalance can indicate that an invisible particle carried momentum out of the detector \cite{ldmx2025-overview}.
+
+\Gls{ldmx} is an electron fixed-target \textit{missing momentum} experiment
 designed to search for sub-GeV \gls{dm} through the dark-bremsstrahlung
 process introduced above. The experiment is planned for End Station A at
-\gls{slac} in California and is developed by an international collaboration
+\gls{slac} in Stanford, California and is developed by an international collaboration
 with institutions in the United States and Sweden. An \(8\,\mathrm{GeV}\)
 electron beam will strike a thin tungsten target. Tungsten is used because
 its high atomic number gives a large production rate for low-mass dark
 photons and helps reduce nuclear backgrounds at the chosen target thickness
 \cite{ldmx2025-overview}.
 
-LDMX compares the momentum of each incoming electron with the reconstructed
-visible final state. In the benchmark process, a candidate electron leaves
-the target with much less energy, receives a transverse momentum kick, and
-has no other visible final-state particle that accounts for the imbalance.
-Ordinary \gls{sm} interactions can imitate parts of this signature when a
+
+
+
+
+
+% The explanations here have been repeated from the previous dark matter chapter. We should not repeat stuff find a way new formulation that goes straight to the point instead and trusts that the reader has read the previous part or can just simply do so if one wants to. 
+In the dark bremsstrahlung benchmark, the beam electron radiates a
+\gls{dark photon}, denoted \(A'\). The mediator couples weakly to electrically
+charged \gls{sm} particles and can decay into a pair of dark-sector particles,
+denoted by \(\chi\). It therefore provides a possible bridge between the
+\gls{sm} and a dark sector. The \gls{dm} particles do not produce a
+measurable detector signal. LDMX instead tests the model by searching for the
+recoil of the electron and the missing momentum left by their production
+\cite{akesson2018-ldmx,ldmx2025-overview}.
+
+In the benchmark process, a candidate event has three main features. The electron leaves the target
+with less energy than it entered with, it receives a transverse (perpendicular to the beam direction)
+momentum kick, and no other visible final-state particle accounts for the
+lost momentum. The combination is important because ordinary
+\gls{sm} interactions can mimic parts of this signature when a
 visible particle escapes detection. The trackers therefore measure the
 incoming and recoil-electron momenta, while the calorimeters test whether
 additional visible activity explains the apparent missing momentum
@@ -327,18 +350,6 @@ to retain events containing several electrons can therefore improve the
 practical physics reach. This connection is developed further in
 Section~\ref{sec:formalism}.
 
-Figure~\ref{fig:exclusion_ldmx} gives a representative view of the projected
-reach. The horizontal axis shows the dark-matter mass, while the vertical
-axis combines the assumed interaction strength and particle masses into the
-benchmark quantity \(y\). The blue region represents parameter combinations
-already constrained by earlier searches. The red curves show the smaller
-interaction strengths that LDMX could test, while the black curves and grey
-region show thermal-relic targets for several representative dark-matter
-models. The figure is therefore a comparison within specified model
-assumptions, not a model-independent exclusion of dark matter by mass alone
-\cite{akesson2022-ldmx-status,catena2023-spin1-thermal-targets,
-ldmx2025-overview}.
-
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.80\linewidth]{config/fig/exclusion_ldmx.jpg}
@@ -347,65 +358,108 @@ ldmx2025-overview}.
     gives the dark-matter mass and the vertical axis gives the benchmark
     interaction quantity \(y\). Blue shows approximate existing constraints,
     purple shows the Belle~II projection, red shows the LDMX projection, and
-    the black curves and grey region show several model-dependent thermal
+    the black curves and grey region show several model-dependent \gls{dm} thermal
     targets. Reproduced from
     Refs.~\cite{catena2023-spin1-thermal-targets,ldmx2025-overview}.}
     \label{fig:exclusion_ldmx}
 \end{figure}
 
+Figure~\ref{fig:exclusion_ldmx} gives a representative view of the projected
+reach. The horizontal axis shows the dark-matter mass, while the vertical
+axis combines the assumed interaction strength and particle masses into the
+benchmark quantity \(y\). The blue region represents parameter combinations
+already constrained by earlier searches. The red curves show the smaller
+interaction strengths that LDMX could test, thus expanding the frontier of 
+search of \gls{dm}, while the black curves and grey
+region show thermal-relic targets for several representative \gls{dm}
+models. The figure is therefore a comparison within specified model
+assumptions, not a model-independent exclusion of dark matter by mass alone
+\cite{akesson2022-ldmx-status,catena2023-spin1-thermal-targets,
+ldmx2025-overview}.
+
 \subsubsection{Detector Layout}
 
 Figure~\ref{fig:ldmx_detector_solid_model} shows the physical scale and
-overall arrangement of the detector. The labelled cutaway in
-Figure~\ref{fig:ldmx_detector_cutaway} shows its geometry along the beam
-direction. Two \gls{ts} modules are placed upstream of the silicon tagging
-tracker, and a third is placed directly before the target. The tagging
-tracker measures the incoming electron momentum. The electron then passes
-through the thin tungsten target inside a dipole magnet. Its magnetic field
-bends charged particles transversely according to their momentum, so a
-recoil electron that has lost energy is deflected more strongly than an
-electron retaining the full beam energy. A silicon recoil tracker downstream
-of the target measures the momentum and direction of the outgoing charged
-particles. The baseline target is \(0.1\) radiation lengths thick and has a
-transverse size of \(4\,\mathrm{cm}\times10\,\mathrm{cm}\). Its small
-thickness limits multiple scattering while retaining a useful production
-rate. The nominal
+overall arrangement of the detector. The conceptual drawing in
+Figure~\ref{fig:ldmx_beam_electron_schematic} illustrates the path of the
+beam electron and the missing-momentum signature. The labelled cutaway in
+Figure~\ref{fig:ldmx_detector_cutaway} shows the detector geometry along the
+beam direction.
+
+Two \gls{ts} modules are placed upstream of the silicon tagging tracker, and
+a third is placed directly before the target. The tagging tracker measures
+the incoming electron momentum. The electron then passes through the thin
+tungsten target inside a dipole magnet. Its magnetic field bends charged
+particles transversely according to their momentum, so a recoil electron
+that has lost energy is deflected more strongly than an electron retaining
+the full beam energy. A silicon recoil tracker downstream of the target
+measures the momentum and direction of the outgoing charged particles.
+
+The baseline target is \(0.1\) radiation lengths thick and has a transverse
+size of \(4\,\mathrm{cm}\times10\,\mathrm{cm}\). Its small thickness limits
+multiple scattering while retaining a useful production rate. The nominal
 \(20\,\mathrm{mm}\times80\,\mathrm{mm}\) beam spot reduces peak detector
 occupancy and helps to separate the showers from different electrons
 \cite{ldmx2025-overview}.
 
+The \gls{ecal} is placed behind the recoil tracker. It measures electrons,
+photons and their shower shapes. The HCal surrounds the ECal at the sides
+and rear. Its main role in the dark-matter search is to identify penetrating
+hadrons and muons that could otherwise imitate missing momentum. Together,
+the trackers and calorimeters measure the recoil electron and \emph{veto},
+meaning reject, candidate events containing other visible particles. This
+combined information distinguishes an invisible final state from ordinary
+interactions in which visible particles were missed by one detector system
+\cite{ldmx2025-overview}.
 
-\begin{wrapfigure}{r}{0.50\textwidth}
+\begin{figure}[p]
     \centering
-    \includegraphics[width=\linewidth]{config/fig/ldmx_detector_solid_model.jpg}
-    \caption{Solid-model overview of the LDMX detector installation. The
-    compact tracking and target region is located at the left, in front of
-    the calorimeter systems. Sourced from Figure~3.1 of the LDMX design
-    report \cite{ldmx2025-overview}.}
-    \label{fig:ldmx_detector_solid_model}
-\end{wrapfigure}
 
+    \begin{minipage}[t]{0.48\linewidth}
+        \vspace{0pt}
+        \centering
+        \includegraphics[
+            width=\linewidth,
+            height=0.20\textheight,
+            keepaspectratio
+        ]{config/fig/ldmx_detector_solid_model.jpg}
+        \caption{Solid-model overview of the LDMX detector installation. The
+        compact tracking and target region is located at the left, in front
+        of the calorimeter systems. Sourced from Figure~3.1 of the 2025 LDMX
+        design report \cite{ldmx2025-overview}.}
+        \label{fig:ldmx_detector_solid_model}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.48\linewidth}
+        \vspace{0pt}
+        \centering
+        \includegraphics[
+            width=\linewidth,
+            height=0.20\textheight,
+            keepaspectratio
+        ]{config/fig/beam_electron_schematic.jpg}
+        \caption{Conceptual illustration of the LDMX missing-momentum
+        signature. After the beam electron passes through the tagging tracker
+        and scatters in the thin tungsten target, a recoil electron carrying
+        less than one quarter of the beam energy enters the ECal, while an
+        invisible \(\chi\bar{\chi}\) pair carries away momentum. The ECal and
+        HCal test for additional visible activity. Sourced from Figure~8 of
+        the 2018 LDMX design report \cite{akesson2018-ldmx}.}
+        \label{fig:ldmx_beam_electron_schematic}
+    \end{minipage}
 
-The ECal is placed behind the recoil tracker. It measures electrons, photons
-and their shower shapes. The HCal surrounds the ECal at the
-sides and rear. Its main role in the dark-matter search is to identify
-penetrating hadrons and muons that could otherwise imitate missing momentum.
-Together, the trackers and calorimeters measure the recoil electron and
-\emph{veto}, meaning reject, candidate events containing other visible
-particles. This combined information distinguishes an
-invisible final state from ordinary interactions in which visible particles
-were missed by one detector system \cite{ldmx2025-overview}.
+    \par\vspace{0.02\textheight}
 
-
-
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{config/fig/ldmx_detector_cutaway.jpg}
+    \includegraphics[
+        width=\linewidth,
+        height=0.47\textheight,
+        keepaspectratio
+    ]{config/fig/ldmx_detector_cutaway.jpg}
     \caption{Cutaway view of the LDMX detector. From left to right, it shows
     the Trigger Scintillator, tagging tracker, target inside the dipole
     magnet, recoil tracker, ECal, and the side and back HCal. Sourced from
-    Figure~3.2 of the LDMX design report \cite{ldmx2025-overview}.}
+    Figure~3.2 of the 2025 LDMX design report
+    \cite{ldmx2025-overview}.}
     \label{fig:ldmx_detector_cutaway}
 \end{figure}
 
@@ -413,13 +467,15 @@ were missed by one detector system \cite{ldmx2025-overview}.
 
 \subsubsection{Electromagnetic Calorimeter and Electron Showers}
 
+% The first section first sentence should be a 1 sentence summary what the main purpose or task with the ecal is. 
 The main purpose of the \gls{ecal} is to measure the energy and spatial
 development of electrons and photons, allowing the visible final state to be
-reconstructed and backgrounds to be rejected. Its high-granularity
-silicon-tungsten design is a compact sibling of the CMS High Granularity
-Calorimeter, from which LDMX adopts detector-module and readout technology
+reconstructed and backgrounds to be rejected. Its high-granularity 
+silicon-tungsten design is a compact ''sibling detector'' of the \gls{hgcal} at the \gls{cms} experiment, from which LDMX adopts detector-module and readout technology
 \cite{ldmx2025-overview}.
 
+
+% This section should also mention that the ECal detector is a "sibling detector" since the design is based upon the CMS of CERN in one sentence, which a suitable reference if this info is not found in the design report. 
 The ECal is a sampling calorimeter with a total depth of about \(40\)
 radiation lengths. A radiation length \(X_0\) is the characteristic material
 scale for energy loss by a high-energy electron through bremsstrahlung.
@@ -429,17 +485,15 @@ contains 32 silicon layers arranged as 16 bilayers, where each bilayer pairs
 two silicon sampling planes around a common support and cooling structure.
 The \path{ldmx-det-v15-8gev} geometry used in this thesis likewise produces
 reconstructed ECal hits at 32 layer positions. The performance simulations in
-the current LDMX design report instead used an earlier geometry with 34
+the current (and newer) LDMX design report instead used an earlier geometry with 34
 layers in 17 bilayers \cite{ldmx2025-overview}.
 
 An energetic electron radiates photons through \gls{bremsstrahlung} as it
-passes through tungsten. These photons can produce electron-positron pairs,
+passes through tungsten. These photons can produce electron--positron pairs,
 which radiate further photons. Repetition of these processes creates an
 \gls{electron shower}. One incoming electron therefore produces energy
-deposits in many cells and layers rather than a single detector hit. The
-resulting three-dimensional pattern contains information about the electron
-position, energy and shower development
-\cite{groom2024-passage-particles}.
+deposits in many cells and layers rather than a single detector hit. The energy contributions in the 3D pattern captures information about the electron position,
+energy and shower development \cite{groom2024-passage-particles}.
 
 The transverse size of an electromagnetic shower is commonly described by
 the Molière radius \(R_{\mathrm{M}}\). For a homogeneous material, it is
@@ -454,11 +508,19 @@ material-independent scale energy, and \(E_{\mathrm{c}}\) is the critical
 energy at which radiative and ionisation energy losses are comparable. On
 average, about \(90\%\) of the shower energy is contained within a cylinder
 of radius \(R_{\mathrm{M}}\) \cite{groom2024-passage-particles}. For the
-layered LDMX ECal, the design report gives an effective Molière radius of
+layered \gls{ldmx} \gls{ecal}, the design report gives an effective Molière radius of
 approximately \(2.5\,\mathrm{cm}\). It also reports that \(68\%\) of the
 shower energy is contained within less than \(1\,\mathrm{cm}\) during
 approximately the first 15 layers \cite{ldmx2025-overview}. These values
 provide useful reference scales for interpreting shower overlap.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{config/fig/ecal_cells_and_layers.jpg}
+    \caption{Schematic of the full-resolution LDMX ECal modules and the
+    components of a bilayer. Sourced from the LDMX design report \cite{ldmx2025-overview} }
+    \label{fig:ecal_cells_and_layers}
+\end{figure}
 
 Each ECal sampling plane contains seven hexagonal modules, and each module
 contains 432 silicon readout cells. A local cell identifier connects every
@@ -466,18 +528,9 @@ measured energy deposit with a fixed detector position.
 Figure~\ref{fig:ecal_cells_and_layers} shows this full-resolution segmentation
 and the bilayer construction. For the real-time trigger, groups of nine
 neighbouring readout cells are summed into 48 coarser \emph{trigger cells} per
-module. This grouping, which is not drawn in the figure, retains less spatial
-detail than the individual-cell readout available to offline reconstruction
+module. This grouping, which is not drawn in the figure, retains less spatial detail for the \textit{online reconstruction} compared to
+the individual-cell readout available to \textit{offline reconstruction}
 \cite{ldmx2025-overview}.
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{config/fig/ecal_cells_and_layers.jpg}
-    \caption{Schematic of the full-resolution LDMX ECal modules and the
-    components of a bilayer. Reproduced from the LDMX design report
-    \cite{ldmx2025-overview}.}
-    \label{fig:ecal_cells_and_layers}
-\end{figure}
 
 The fine segmentation helps separate nearby showers and identify small
 energy deposits from background particles, making it central to this thesis.
@@ -504,15 +557,23 @@ signals are converted into estimates of electron position and multiplicity.
 In this thesis, the reconstructed TS track candidates are referred to by
 their name in the research-group codebase, \texttt{TriggerPadTracks}. The
 term describes objects derived from TS measurements, not a separate detector,
-and should not be confused with the ECal trigger cells described above. Each
+and should not be confused as so. Each
 candidate provides a one-dimensional position estimate and a photoelectron
-count. Together, the candidates provide information about the positions and
+count. Together, the candidates provide information about the positions, energy and the 
 multiplicity of the incoming electrons. They are reconstructed detector
 objects rather than simulation-truth labels, and correspond one-to-one with
-the incident electrons only when the reconstruction finds the correct number
-and associations \cite{ldmx2025-overview}.
+the incident electrons only when the reconstruction makes correct prediction \cite{ldmx2025-overview}.
 
-\subsubsection{Triggering and Reconstruction}
+\subsubsection{Triggering
+% and reconstruction
+}
+% I removed the reconstruction from the title since I think that adds reconstruction in too many titles. Reconstruction is already relevant to trigger in itself or maybe one could add a qualitatively description of the trigger that summarizes the content of this section. The trigger naturally leads into online and offline and the different resolutions one works with, and "working" with data is always reconstruction. The term reconstruction should have been defined already before this section I think? 
+
+% We are to refine these section and simplify the description since not all of this information is relevant. Skip the description of trains that does not matter here. 
+
+% One perspective that I have to insert here or in the next section should be that 
+
+% Notes from supervisor: 37,14 MHz bucket, how much in nanoseconds?. beam frequency  kollimerade elektroner först i ett fåtal pikosekunder, sen finns ett 2cmx8cm fönster. 
 
 The beam is divided into short time slots called radio-frequency buckets,
 which are delivered in groups called trains. Within a train, neighbouring
@@ -520,13 +581,13 @@ buckets are separated by \(26.9\,\mathrm{ns}\), corresponding to a
 \(37.14\,\mathrm{MHz}\) clock for the detector electronics. The nominal beam
 structure contains 20 filled buckets in each train at a train rate of
 \(1\,\mathrm{MHz}\), with an average of approximately one to two electrons
-per filled bucket. This gives the target rate of approximately 20 to 40
-million electrons per second quoted above \cite{ldmx2025-overview}.
+per filled bucket. 
+%The estimated frequency of electrons that hit the target is ...??? \textbf{need some input from Lene-Kristian here I think} \cite{ldmx2025-overview}.
 
-Storing the full detector response for every filled bucket is neither
-feasible nor desirable: the input rate is much larger than the available
-readout and storage rate, and almost all events arise from ordinary processes
-rather than the benchmark interaction. The online trigger
+Storing the full detector response for every filled bucket is neither feasible nor desirable:
+the input rate is much larger than the available readout and storage rate,
+and almost all events arise from ordinary processes not displaying the benchmark interaction. 
+The online trigger
 therefore receives compact information from the \gls{ts}, \gls{ecal} and
 \gls{hcal} at the full clock rate and decides in real time whether the complete
 event should be read out and stored. The Trigger Scintillator supplies an
@@ -535,7 +596,7 @@ basic online estimate is
 \begin{equation}
     E_{\mathrm{miss}}^{\mathrm{trig}}
     =
-    nE_{\mathrm{beam}} - E_{\mathrm{ECal}}^{\mathrm{trig}} .
+    nE_{\mathrm{beam}} - E_{\mathrm{ECal}}^{\mathrm{trig}} ,
 \end{equation}
 Here, \(E_{\mathrm{miss}}^{\mathrm{trig}}\) is the trigger-level estimate of
 the missing energy, \(n\) is the number of incoming electrons estimated by
@@ -557,9 +618,10 @@ decision. Online reconstruction occurs before storage and must satisfy strict
 limits on latency, memory and transferred information. It therefore uses
 reduced quantities such as ECal trigger-cell sums and Trigger Scintillator
 track candidates. Once an accepted event has been fully read out, offline
-reconstruction can use individual ECal cells and more computationally
+reconstruction (which techincally has no deadline) can use individual ECal cells and more computationally
 demanding algorithms to construct calibrated hits, tracks, showers and
 analysis quantities \cite{ldmx2025-overview}.
+
 
 The methods developed in this thesis use simulated ECal hits at the full cell
 granularity, together with reconstructed trigger-pad tracks. They
@@ -570,29 +632,42 @@ require reduced trigger inputs and a dedicated latency and hardware study.
 
 \subsubsection{Pile-Up, Reconstruction and Physics Reach}
 \label{sec:formalism}
+% This section is a bit all over the place, it has to be tightened and get a good logical flow. All information that I want to give is contained here it needs to be presented in the best format possibly simply. 
+
+% This section contains too much in one place. It should be broken up where pile-up is one section
+
+
+
+% Notes from my supervisor discussion: Multipliciteten beskrivs i en poissonfördelning och den är relativt bred så $\mu = 1$ ger också 2 och 3 elektroner. => det gör att endast $37\%$ av händelserna kan användas
+
+
+
+
+
+
 
 In this thesis, \gls{pile-up} mainly refers to \emph{in-time pile-up}, where
 two or more beam electrons arrive in the same time sample and their detector
-responses are recorded together. Residual signals from nearby time samples
-are instead called out-of-time pile-up. Trigger latency does not create
-in-time pile-up. It follows from the number of electrons delivered in the
-same bucket. Lowering the beam intensity would reduce it, but would also
+responses are recorded together. 
+\textbf{True?: Trigger latency does not create in-time pile-up. It follows from the number of electrons delivered in the same bucket.}
+Lowering the beam intensity would reduce it, but would also
 reduce the number of \gls{eot} accumulated per unit time. The practical
 challenge is therefore to retain the advantages of higher beam intensity
 without losing events because their detector responses are combined
 \cite{ldmx2025-overview}.
 
+% The approximation/assumption of independent electron propagation should be mentioned here, but I should also say that one is allowed to this to a very good approximation single electrons are abbysmal low chances of colliding or affecting each other. It is very handy that the eletrons can be approximated as independent since that simplifies computation nicely. 
 To a very good approximation, separate beam electrons propagate
 independently: the probability that two beam electrons interact directly with
-each other is negligible. This makes it possible to simulate their source
-events independently and then overlay their detector responses. Let
+each other is negligible. This simplifies simulation as their propagations 
+can be simulated independently and then \emph{overlayed} before simulating their detector responses. Let
 \(Z^{(k)}\) denote the true ECal energy-deposition pattern from source
-electron \(k\). Under the overlay assumption used in this thesis,
+electron \(k\).  Under this simulation assumption,
 \begin{equation}
     Z^{(k)} \perp\!\!\!\perp Z^{(\ell)}
     \qquad \text{for } k\neq\ell .
 \end{equation}
-After overlay and detector reconstruction, the observed hit collection is a
+After overlay and detector reconstruction, the observed hit collection from the detectors is a
 combined response,
 \begin{equation}
     \mathcal{H}
@@ -601,10 +676,10 @@ combined response,
         Z^{(1)},\ldots,Z^{(m)}
     \right).
 \end{equation}
-The response \(\mathcal{R}\) includes detector granularity, thresholds,
+The response \(\mathcal{R}\) is a nondeterministic mapping that includes detector granularity, thresholds,
 noise and hit reconstruction. Deposits from different electrons may then
 occupy the same cell or form overlapping showers. The observed collection
-\(\mathcal{H}\) cannot in general be divided into its original components by
+\(\mathcal{H}\) cannot in general be divided into its original components $Z^{(1)},\ldots,Z^{(m)}$ by
 a simple geometric cut.
 
 The overlap affects both triggering and later analysis. An
@@ -631,6 +706,10 @@ trigger efficiency from \(0.58\) to \(0.88\) at approximately the same
 \(1\,\mathrm{kHz}\) trigger budget. This result used a
 \(0.1\,\mathrm{GeV}\) dark-photon benchmark and the energy in the first 20
 ECal layers \cite{ldmx2025-overview}.
+
+% TODO: Add the supervisor's running-time estimate only after the assumed
+% beam intensity, target, one-electron selection and personal-communication
+% citation have been specified.
 
 Rejecting every multi-electron sample would discard part of the delivered
 beam and extend the time needed to reach a given exposure. If overlapping
@@ -883,6 +962,11 @@ subsubsection.
 
 
 \subsubsection{An analogy between the Transformer and the GNN}
+
+% What is this complexity? Is it approximate parameter count given input N? Does that correspond to the internal representation as well that could be interpreted as a graph as well for a transformer as for a gravnet? I think this perspective might be interesting to include in this section that highlights the differences and similarities between transformer and gnns. 
+Transformer $(O(N^2))$ 
+Gravnet $(O(Nk))$
+
 
 The Transformer is a special case of a \gls{gnn}. This analogy is relevant to be aware of, and the name \gls{gnn} refers rather to a large catalogue of different implementations but what they all have in common that the input has a suitable analogy as being seen as nodes in a graph in the learned representation of the network, and then message passing is performed along these. The input to a transformer are called tokens, or even sloppily called words in the context of natural language processing, but one can mathematically show how a generic \gls{gnn} could be molded into an equivalent network of a transformer, something Chaitanya K. Joshi has derived \cite{joshi2025transformersgnn}, adding to deconstructing the distinction around the terms nodes and tokens. 
 
