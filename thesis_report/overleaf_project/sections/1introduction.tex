@@ -1,9 +1,54 @@
+\Gls{dm} is an invisible form of matter whose subatomic nature remains
+unknown, motivating searches for physics beyond the \gls{sm}. The \gls{ldmx}
+searches for sub-GeV dark matter by comparing the momentum of an incoming
+electron with the visible final state after a fixed-target interaction.
+Missing momentum could indicate the production of invisible dark matter
+particles, making accurate reconstruction of the beam electrons and their
+detector activity essential
+\cite{cirelli2026-darkmatter,akesson2018-ldmx,ldmx2025-overview}.
 
-This shall be a 1 page-long comprehensive introduction to the topic. It shall essentially be the abstract but without summary of the methods or results.
+In experimental particle physics, \emph{reconstruction} uses detector
+measurements to infer physically meaningful properties of the underlying
+particle event. At increased beam intensity, several electrons can enter
+\gls{ldmx} within the same readout window and produce overlapping showers in
+the \gls{ecal} subdetector. This obscures which detector activity originated
+from each electron. Rejecting every such event would discard part of the
+delivered beam, whereas reliable reconstruction could make a larger fraction
+of recorded events useful and thereby improve the practical physics reach
+\cite{ldmx2025-overview}.
 
-\textbf{Content, in essence:}
+This thesis investigates supervised \gls{ml} methods for separating
+overlapping showers in simulated two-electron and three-electron events. The
+principal hit-level task assigns each selected \gls{ecal} hit to the electron
+responsible for the largest share of its deposited energy, as determined from
+simulation truth. An event is represented as a variable-size collection of
+\gls{ecal} hits, optionally supplemented with reconstructed trigger-pad-track
+observations from the \gls{ts} subdetector. Information from both subdetectors
+can therefore be processed jointly through representations learned by the
+models, without projecting the event onto a fixed image.
 
-This thesis investigates modern machine learning architectures including GNN-based and transformer-based reconstruction methods in particle physics for the Light Dark Matter eXperiment (LDMX), specifically tested under simulated pile-up conditions. The work is motivated by the search for light dark matter  and by recent progress in machine-learning-based event reconstruction in high-energy physics, particularly approaches inspired by machine-learned particle flow.
+Two controlled baseline models are studied: a \gls{gnn} using GravNet
+convolutions and a Transformer encoder. Both receive \gls{ecal} hits and
+reconstructed trigger-pad-track observations, with the value of the latter
+evaluated through inference-time ablation rather than separate
+\gls{ecal}-only training. Both architectures learn relations within unordered,
+irregular detector data. Their use is motivated by recent machine-learned
+particle-flow methods that interpret heterogeneous detector information with
+graph-based or Transformer-based models
+\cite{qasim2019-gravnet,pata2021-mlpf,pata2026-mlpf}. A secondary exploratory
+multitask Transformer also predicts energy fractions and electron count
+alongside hit assignment, following an approach inspired by particle-flow
+reconstruction.
 
+The study asks how reliably the models can assign hits in two-electron and
+three-electron pile-up events, which shower properties limit the separation,
+whether Trigger Scintillator inputs add useful context beyond the \gls{ecal},
+and how GravNet and Transformer encoders compare in reconstruction quality and
+computational properties.
 
-\textbf{The introduction should include an explanation for what reconstruction is in HEP and relevant for my thesis of ML based reconstruction and using heterogenrous subdetector data. This way I dont have to define or explain the term in a later stage and so far I more or less assume that the reader knows what reconstruction is. }
+The scope is limited to offline reconstruction of simulated inclusive
+non-signal events. It does not perform a \gls{dm} search or deploy a real-time
+trigger algorithm. The thesis also presents the reusable
+\texttt{ml\_ldmx} platform developed for the study, which prepares LDMX
+simulation data, trains models and produces hit-level and event-level
+diagnostics \cite{ml_ldmx-github}.
