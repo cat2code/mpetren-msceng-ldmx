@@ -1,0 +1,53 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        >=Latex,
+        node distance=6mm,
+        every node/.style={font=\normalsize},
+        stage/.style={draw, rounded corners, align=center,
+                     minimum height=12mm, text width=108mm,
+                     fill=RoyalBlue!8},
+        block/.style={draw, rounded corners, align=center,
+                     minimum height=18mm, text width=108mm,
+                     fill=ForestGreen!11},
+        arrow/.style={->, thick}
+    ]
+        \node[stage] (input) {
+            \textbf{Mixed detector nodes}\\
+            ECal and trigger-pad rows,
+            \(\mathbf{X}_{\mathrm{cat}}\in\mathbb{R}^{N_{\Sigma}\times 8}\)
+        };
+        \node[stage, below=of input] (projection) {
+            \textbf{Input projection}\\
+            \(\operatorname{Linear}(8,128)\rightarrow\operatorname{ReLU}\)
+        };
+        \node[block, below=of projection] (gravnet) {
+            \textbf{GravNet residual block \(\boldsymbol{\times 4}\)}\\
+            \(\operatorname{GravNetConv}(128,128;\ d_s=4,\ d_p=128,\ k=16)\)\\
+            \(\rightarrow\operatorname{ReLU}
+             \rightarrow\operatorname{Dropout}(0.1)
+             \rightarrow\text{residual addition}
+             \rightarrow\operatorname{BatchNorm1d}(128)\)
+        };
+        \node[stage, below=of gravnet] (head) {
+            \textbf{Per-node classification head}\\
+            \(\operatorname{Linear}(128,C)\), with
+            \(C=2\) for \(2e\) and \(C=3\) for \(3e\)
+        };
+        \node[stage, below=of head] (output) {
+            \textbf{ECal-supervised output}\\
+            Select ECal-node logits; trigger-pad nodes provide context only
+        };
+
+        \draw[arrow] (input) -- (projection);
+        \draw[arrow] (projection) -- (gravnet);
+        \draw[arrow] (gravnet) -- (head);
+        \draw[arrow] (head) -- (output);
+    \end{tikzpicture}
+    \caption{Architecture of the selected GravNet baseline. The learned-space
+    dimension is \(d_s=4\), the propagated-feature dimension is \(d_p=128\),
+    and each learned neighbourhood contains \(k=16\) nodes. 
+    %The \(2e\) and \(3e\) models contain \(267\,666\) and \(267\,795\) trainable parameters, respectively, and were trained with batch size 32.
+    }
+    \label{fig:gravnet_baseline_architecture}
+\end{figure}

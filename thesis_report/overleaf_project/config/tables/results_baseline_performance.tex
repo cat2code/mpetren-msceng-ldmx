@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{5pt}
+    \caption{Native canonical-label performance of the matched baseline
+    models. Pooled hit accuracy is evaluated on the test set. Mean event
+    accuracy, median event accuracy and mean event energy-weighted accuracy
+    are evaluated on the corresponding \(100{,}000\)-event validation sets.
+    All values are percentages.}
+    \label{tab:results_baseline_performance}
+    \begin{tabular}{llcccc}
+        \hline
+        Multiplicity & Model & Pooled test & Mean event & Median event & Energy-weighted \\
+        \hline
+        \(2e\) & Transformer & 83.31 & 82.85 & 85.96 & 88.36 \\
+        \(2e\) & GravNet & 83.09 & 82.63 & 85.81 & 88.15 \\
+        \(3e\) & Transformer & 73.11 & 72.58 & 75.54 & 80.30 \\
+        \(3e\) & GravNet & 72.63 & 72.13 & 74.93 & 79.79 \\
+        \hline
+    \end{tabular}
+\end{table}

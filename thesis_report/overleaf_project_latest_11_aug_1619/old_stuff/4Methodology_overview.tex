@@ -1,0 +1,208 @@
+\subsection{Overview}
+
+This section should answer the question \textbf{"what did you build and how?"}, while the next section (results) should answer the question \textbf{“how well did it work?”}. First simulations are made with the LDMX-SW framework to create datasets of millions of events with overlapping non-signal electrons (''pile-up electrons''). What will be built by me afterwards is an end-to-end pipeline that takes some simulation output as input and lastly spits out some metrics useful for LDMX, essentially ''going backwards'' compared to the simulation reconstructing, some physical interpretables. The detector description belongs to \textbf{before} this section (even though this section might reference it). Broadly speaking I believe this section should be outlined as follows: 
+
+\textbf{Overall strategy and workflow:} It can be useful to start with an overview merely stating the overall strategy very shortly (or perhaps referencing it from earlier sections)
+\begin{itemize}
+    \item Target task: electromagnetic shower separation and electron counting under pile-up conditions.
+    \item End-to-end pipeline: simulation $\rightarrow$ preprocessing $\rightarrow$ graph construction $\rightarrow$ model training $\rightarrow$ evaluation.
+    \item Reference: detector description and pile-up definition (earlier sections).
+\end{itemize}
+
+\begin{itemize}
+    
+    \item Data generation with Geant4 in LDMX-SW framewrok - creating datasets of millions of pile-up events with 2 electrons and 3 electrons per event respectively.
+    \begin{itemize}
+        \item Hans Alin (phd at Lund University Particle Physics) has provided me LDMX-SW simulated non-electrons with 1 electron per event
+        \item I used a configuration script with LDMX-SW framework to overlay these electrons to create datasets of 2 electrons per event and 3 electrons per event respective in totalt of 5 million events of either series and I made sure that every electron that has been overlayed are unique. 
+        \item Both of the above used COSMOS data cluster to calcuate everything. 
+    \end{itemize}
+    \item Hardware specification/choices, framework (Python packages and versions). All of this should be summarized in a table somehow somewhere. 
+    \item Tensorization
+    \begin{itemize}
+        \item With the datasets in place I opened them with uproot python package to extract relevant features from the events and to tensorize the data and save the tensors in .pt files in shards that are essentially relevant features from one .root event in tensor form in .pt file format. 
+        \item The shards are essentially ''ML-ready'' files. Tensors are defined within the torch python package and they are a data structure that work with GPU acceleration and they are optimized for training and for inference tasks. 
+    \end{itemize}
+    \item Input features
+    \begin{itemize}
+        \item Cover and give an overview with tables and equations of all the input features covering x, y, z, reconstructed energy, origin id, tpad pe, tpad centroid and the introduced is\_noise mask, tpad mask, ecal mask. 
+        \item Cananolization logic: cover how I treated the origin-id from root events and translated into a standard format where the centroid of one electron ecal-hit in y-direction is deciding the integer value id of the origin electron from 1 -> 3 (in .root it has value 0->2).
+        \item Cover how I treated the noise hits. 
+    \end{itemize}
+    \item Training Setup
+    \begin{itemize}
+        \item Preprocessing: cover preprocessing choices here normalizing float values
+        \item Cover rest of everything that belongs in this training category...
+    \end{itemize}
+    
+    \item Evaluation metric setups
+
+    \item Plots and other visualizations
+
+Full reconstruction pipeline (including generating dataset). There should be a figure showing the methodology logic loosely being like this pipeline schematic plot. This can be referred to from the text:
+
+ROOT files
+   ↓
+Event / hit extraction
+   ↓
+Feature construction
+   ↓
+ML-ready event shards
+   ↓
+Dataloader / batching
+   ↓
+Model
+   ↓
+Per-hit classification
+   ↓
+Evaluation / plots
+
+Model architecture pipeline: I think methodology should have a separate plot showing model internals in a pipeline schematic plot something like this:
+
+Input hit set
+[x, y, z, E, layer?, time?, ...]
+        ↓
+Feature embedding MLP
+        ↓
+GNN / Transformer blocks
+        ↓
+Per-hit latent representation
+        ↓
+Classification head
+        ↓
+origin_id prediction
+
+\end{itemize}
+
+
+
+
+
+
+\subsection{Data generation (this was written a while ago and parts may be outdated)}
+
+\subsubsection{Simulation framework: LDMX-Software}
+
+LDMX-SW, a Geant4-based simulation framework, is used to generate simulated data.   
+
+
+\subsubsection{Event types}
+
+3D plot of hits in event in ECal in cartesian coordinates here
+
+2 plots in 2D z vs x, z vs y of hits in ECal in cartesian coordinates here.  
+
+Show example of event with 1 electron, 2 electrons and 3 electrons
+
+Some plot visualizing the trigger scintillator information in some way. 
+
+\subsubsection{Preprocessing}
+
+
+\subsection{Architecture designs}
+
+\subsubsection{Introducing the MLDMX codebase}
+
+\subsubsection{Architecture design }
+
+\begin{itemize}
+    \item Input representation (features, detector objects, graph construction, etc.).
+    \item Layer types and ordering (e.g.\ GravNetConv $\rightarrow$ EdgeConv $\rightarrow$ MLP multi-task head).
+    \item Hidden dimensions, activations, normalization, pooling/readout.
+    \item Reference: detector description and pile-up definition (earlier sections).
+\end{itemize}
+
+\subsubsection{Evaluation metrics}
+
+true positives rate (TPR), false positives rate (FPR)
+
+
+
+\subsection{Methodology more in-depth}
+
+\begin{itemize}
+
+
+\item \textbf{Data generation and samples}
+\begin{itemize}
+    \item Use LDMX-SW (Geant4-based) simulated datasets with events that have overlayed signal electrons (lost energy to dark bremsstrahlung) + pile-up electrons.
+    \item \textit{There should also be some brief inclusion of explanation, specification or references to the Geant4 framework and the ldmx-sw framework. I could explain briefly explain the C/C++ + Python framework of ldmx-sw and the idea of configuration scripts (python), processors and producers (C/C++). }
+    \item \textit{Describe configuration scripts and different dataset produced for this study with varying levels of pile-up. The datasets are yet to be decided and are not made yet.}
+    \item Define train/validation/test splits.
+    \item List the simulation outputs and detector-level observables that will act as input for the model: simulated hits and reconstructed hits and reconstructed energy. Is physical truth data extracted as well? To what level of "rawness" is extracted here, digis or less raw? 
+    \item List the final list of extracted per-hit features before preprocessing: energy, position, layer index, timing (if used). \textbf{This is probably best done with some table.}
+\end{itemize}
+
+\item \textbf{Preprocessing}
+\begin{itemize}
+    \item This subsection is about how the simulation outputs become ML-ready structured datasets and it should specify every step.
+    \item Tensorized datasets? Normalization? How are the data vectors structued? Zero-padding? Other preprocessing steps? 
+    \item \textbf{Summarize all of this in a table or several tables.}
+\end{itemize}
+
+
+\item \textbf{Graph representation and data modelling}
+\begin{itemize}
+    \item Represent events as graphs with detector hits as nodes. Explain in high level terms the logic of how the input is represented as nodes in a graph. 
+    \item Define node features and truth labels for training. 
+    \item Construct edges using geometric proximity (e.g.\ $k$-NN or radius graphs or something else). 
+    \item Implement batching and dataset loading using PyTorch Geometric.
+    \item Figure: visualization of graph construction. (Might be unnecessary if there already is general graph visualisation earlier and final model visualisation later). 
+\end{itemize}
+
+\item \textbf{Model architectures}
+\begin{itemize}
+    \item Primary approach: MLPF-inspired GNN architectures (e.g.\ GravNet-style message passing).
+    \item Define message-passing blocks, aggregation strategy, and output heads.
+    \item Outputs: clustering assignments and/or electron multiplicity predictions.
+    \item \textbf{Figure: model architecture flowchart (most important figure in the whole project kind-of, that is a big deal!).} The flowchart will be MEGA proper and NICE showcasing the entire project basically. Show input to GNN, show GNN and show output. Ideally takes up half a page or an entire horizontal page
+\end{itemize}
+
+\item \textbf{Training procedure}
+\begin{itemize}
+    \item Define the use of objective functions (classification/clustering losses and auxiliary terms), theory-heavy content should however been covered earlier and I can reference backwards to that if necessary. 
+    \item Optimization setup: optimizer, learning-rate schedule, batch size.
+    \item Explain hyperparameter choices (but keep final hyperparameter values for results) 
+    \item Regularization strategies and early stopping.
+    \item Outputs: trained model checkpoints.
+    \item \textbf{Here I should also use tables to summarize and list what I have done very clearly.}
+\end{itemize}
+
+\item \textbf{Evaluation and performance metrics}
+\begin{itemize}
+    \item This should not contain results, but what I have built that spits out results and an explanation of what the metrics mean and what they measure
+    \item Electron counting accuracy and reconstruction efficiency.
+    \item Cluster energy purity and completeness.
+    \item Fraction of unclustered hits.
+    \item Performance as a function of pile-up level.
+    \begin{itemize}
+        \item \textit{"Pile-up level" is first and foremost the number of present electrons in an event, but the severity of the ambiguity is affected by for example spatial relations of the electrons present in the event. }
+        \item \textit{Here there is a loot of room for creativity and one can inspect different cases and varying degrees that makes data more difficult for a model to interpret or not. There can surely be new metrics that I define here.}
+    \end{itemize}
+    \item Comparison of metrics known from baseline reconstruction. 
+    \begin{itemize}
+        \item \textit{Explain if there are details in the metrics that differ depending on the model output and the metrics that are known from the rule-based reconstruction methods. }
+    \end{itemize}
+    \item Planned plots: efficiency curves, confusion matrices, event displays, ROC curves.
+    \begin{itemize}
+        \item Yet to be decided...
+    \end{itemize}
+\end{itemize}
+
+\item \textbf{Implementation and reproducibility}
+\begin{itemize}
+    \item \textbf{List the software versions and so on for reproducibility}
+    \item Software stack: LDMX-SW, Python, PyTorch, PyTorch Geometric.
+    \item Computing setup (CPU/GPU environment if relevant).
+    \item Version control and workflow reproducibility.
+\end{itemize}
+
+\item \textbf{Baseline rule-based reconstruction (CLUE/PF)}
+\begin{itemize}
+    \item Baseline comparison: CLUE clustering and existing PF + CLUE reconstruction workflows.
+    \item Briefly explain how the same datasets were used as input to already existing CLUE / PF rule-based reconstruction. Explain how the existing rule-based was applied on the same datasets and what happened to the output. 
+    \item \textit{The goal here is to show that what I have built corresponds to the same thing that the rule-based reconstruction does and that what I have built is a fair comparison, results come later.}
+    \item \textit{I dont want to make two methodology chapters, I want to find a way to cover method for utilizing the rule-based methods without it taking too much time and space. I should explain and also compare how data flows through the two different methods but I want to keep this brief as I am not presenting a new rule-based reconstruction. If I have made modifications (necessary or innovative) to the rule-based reconstruction‚ however, then I should of course cover those parts in more detail as it is not available anywhere else for the reader to read.}
+\end{itemize}
+
+\end{itemize}

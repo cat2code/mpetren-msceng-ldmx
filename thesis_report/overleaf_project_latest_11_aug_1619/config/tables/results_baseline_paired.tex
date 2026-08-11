@@ -1,0 +1,21 @@
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{7pt}
+    \caption{Paired Transformer-minus-GravNet differences in native
+    canonical-label metrics on the common \(100{,}000\)-event validation
+    samples. Differences and percentile-bootstrap \(95\,\%\) confidence
+    intervals are in percentage points. The bootstrap resamples complete
+    events.}
+    \label{tab:results_baseline_paired}
+    \begin{tabular}{llrr}
+        \hline
+        Multiplicity & Event metric & Difference & \(95\,\%\) CI \\
+        \hline
+        \(2e\) & Hit accuracy & \(+0.223\) & \([+0.207,+0.238]\) \\
+        \(2e\) & Energy-weighted accuracy & \(+0.203\) & \([+0.181,+0.224]\) \\
+        \(3e\) & Hit accuracy & \(+0.445\) & \([+0.425,+0.466]\) \\
+        \(3e\) & Energy-weighted accuracy & \(+0.510\) & \([+0.481,+0.540]\) \\
+        \hline
+    \end{tabular}
+\end{table}

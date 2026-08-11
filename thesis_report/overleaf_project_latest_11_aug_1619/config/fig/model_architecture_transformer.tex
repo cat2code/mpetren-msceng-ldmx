@@ -1,0 +1,64 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        >=Latex,
+        node distance=4mm,
+        every node/.style={font=\normalsize},
+        stage/.style={draw, rounded corners, align=center,
+                     minimum height=12mm, text width=108mm,
+                     fill=RoyalBlue!8},
+        block/.style={draw, rounded corners, align=center,
+                       minimum height=23mm, text width=108mm,
+                     fill=Orange!14},
+        arrow/.style={->, thick}
+    ]
+        \node[stage] (input) {
+            \textbf{Padded mixed-detector tokens}\\
+            ECal and trigger-pad rows,
+            \(\mathbf{X}_{\mathrm{pad}}\in
+            \mathbb{R}^{B\times N_{\max}\times 8}\)
+        };
+        \node[stage, below=of input] (projection) {
+            \textbf{Input projection}\\
+            \(\operatorname{Linear}(8,128)\rightarrow\operatorname{ReLU}
+            \rightarrow\operatorname{Linear}(128,128)\)
+        };
+        \node[block, below=of projection] (encoder) {
+            \textbf{Pre-layer-normalised Transformer encoder block
+            \(\boldsymbol{\times 3}\)}\\
+            \(\operatorname{LayerNorm}(128)
+            \rightarrow\text{four-head full self-attention}
+            \rightarrow\operatorname{Dropout}(0.1)
+            \rightarrow\text{residual addition}\)\\
+            \(\operatorname{LayerNorm}(128)
+            \rightarrow\text{FFN }128\!\rightarrow\!256\!\rightarrow\!128
+            \text{ (ReLU, dropout \(0.1\))}
+            \rightarrow\text{residual addition}\)
+        };
+        \node[stage, below=of encoder] (finalnorm) {
+            \textbf{Final encoder normalisation}\\
+            \(\operatorname{LayerNorm}(128)\)
+        };
+        \node[stage, below=of finalnorm] (head) {
+            \textbf{Per-token classification head}\\
+            \(\operatorname{Linear}(128,C)\), with
+            \(C=2\) for \(2e\) and \(C=3\) for \(3e\)
+        };
+        \node[stage, below=of head] (output) {
+            \textbf{ECal-supervised output}\\
+            Select ECal-token logits; trigger-pad tokens provide context only
+        };
+
+        \draw[arrow] (input) -- (projection);
+        \draw[arrow] (projection) -- (encoder);
+        \draw[arrow] (encoder) -- (finalnorm);
+        \draw[arrow] (finalnorm) -- (head);
+        \draw[arrow] (head) -- (output);
+    \end{tikzpicture}
+    \caption{Architecture of the selected pre-layer-normalised Transformer
+    baseline. Its model width is 128, the feed-forward width is 256, and its
+    four attention heads each have dimension 32. 
+    %The \(2e\) and \(3e\) models contain \(415\,618\) and \(415\,747\) trainable parameters, respectively, and were trained with batch size 64.
+    }
+    \label{fig:transformer_baseline_architecture}
+\end{figure}

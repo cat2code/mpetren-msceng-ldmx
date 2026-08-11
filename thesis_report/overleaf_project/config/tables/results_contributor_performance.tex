@@ -1,0 +1,25 @@
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{8pt}
+    \caption{Performance of the epoch-15 contributor-set slot model on its
+    \(100{,}000\)-event test set. Count, contributor-set and dominant-origin
+    results are accuracies; fraction errors are mean absolute errors.}
+    \label{tab:results_contributor_performance}
+    \begin{tabular}{lr}
+        \hline
+        Metric & Value \\
+        \hline
+        Derived electron-count accuracy, all events & \(99.983\,\%\) \\
+        Derived electron-count accuracy, true \(2e\) & \(99.994\,\%\) \\
+        Derived electron-count accuracy, true \(3e\) & \(99.972\,\%\) \\
+        Exact per-hit contributor-set accuracy & \(72.41\,\%\) \\
+        Per-hit dominant-origin accuracy & \(77.04\,\%\) \\
+        Mixed-hit precision & \(48.08\,\%\) \\
+        Mixed-hit recall & \(64.41\,\%\) \\
+        Mixed-hit \(F_1\) score & \(0.551\) \\
+        Fraction MAE, raw prediction & \(0.141\) \\
+        Fraction MAE, validity-masked prediction & \(0.115\) \\
+        \hline
+    \end{tabular}
+\end{table}

@@ -1,0 +1,95 @@
+\begin{figure}[htbp]
+    \centering
+    \resizebox{0.99\linewidth}{!}{%
+    \begin{tikzpicture}[
+        >=Latex,
+        every node/.style={font=\small},
+        block/.style={
+            draw,
+            rounded corners,
+            align=center,
+            minimum height=11mm,
+            text width=25mm,
+            inner sep=2pt,
+            fill=RoyalBlue!8
+        },
+        learned/.style={
+            block,
+            fill=ForestGreen!11
+        },
+        operation/.style={
+            block,
+            text width=24mm,
+            fill=ForestGreen!11
+        },
+        graphnode/.style={
+            circle,
+            draw=ForestGreen!70!black,
+            fill=ForestGreen!18,
+            minimum size=5mm,
+            inner sep=0pt
+        },
+        targetnode/.style={
+            graphnode,
+            draw=Orange!80!black,
+            fill=Orange!35,
+            very thick
+        },
+        arrow/.style={->, thick},
+        graph/.style={ForestGreen!65!black, thick},
+        residual/.style={->, thick, dashed, RoyalBlue!75!black}
+    ]
+        \node[block] (input) at (-6.2,0)
+            {current node\\representations \(\mathbf{h}_i\)};
+        \node[learned] (coords) at (-3.75,1.25)
+            {learned coordinates\\\(\mathbf{s}_i=\mathbf{W}_s\mathbf{h}_i+\mathbf{b}_s\)};
+        \node[learned] (features) at (-3.75,-1.25)
+            {propagated features\\\(\mathbf{f}_i=\mathbf{W}_f\mathbf{h}_i+\mathbf{b}_f\)};
+
+        \draw[rounded corners, fill=ForestGreen!4, draw=ForestGreen!55!black]
+            (-2.05,0.15) rectangle (1.15,2.35);
+        \node[font=\small\bfseries] at (-0.45,2.05)
+            {learned \(k\)-NN graph};
+        \node[targetnode] (gi) at (-0.45,1.12) {\(i\)};
+        \node[graphnode] (g1) at (-1.55,1.67) {};
+        \node[graphnode] (g2) at (0.55,1.75) {};
+        \node[graphnode] (g3) at (-1.35,0.55) {};
+        \node[graphnode] (g4) at (0.65,0.55) {};
+        \draw[graph, ->] (g1) -- (gi);
+        \draw[graph, ->, line width=1.1pt] (g2) -- (gi);
+        \draw[graph, ->, line width=1.7pt] (g3) -- (gi);
+        \draw[graph, ->, line width=0.7pt] (g4) -- (gi);
+
+        \node[operation] (messages) at (2.85,0)
+            {distance-weighted messages\\
+             \(\mathbf{m}_{j\rightarrow i}=w_{ij}\mathbf{f}_j\)\\[-1mm]
+             {\scriptsize \(w_{ij}=e^{-10d_{ij}^{2}}\)}};
+        \node[operation] (aggregate) at (5.75,0)
+            {element-wise\\mean and maximum\\
+             \([\mathbf{a}^{\mathrm{mean}}_i
+             \Vert\mathbf{a}^{\mathrm{max}}_i]\)};
+        \node[block, text width=21mm] (output) at (8.35,0)
+            {updated node\\representation \(\mathbf{h}'_i\)};
+        \node[block] (self) at (2.85,-2.0)
+            {linear transform of\\the original \(\mathbf{h}_i\)};
+
+        \draw[arrow] (input) -- (coords);
+        \draw[arrow] (input) -- (features);
+        \draw[arrow] (coords) -- (-2.05,1.25);
+        \draw[arrow] (1.15,1.25) -| (messages.north);
+        \draw[arrow] (features) -- (messages);
+        \draw[arrow] (messages) -- (aggregate);
+        \draw[arrow] (aggregate) -- (output);
+        \draw[residual] (input.south) |- (self.west);
+        \draw[residual] (self.east) -| (output.south);
+    \end{tikzpicture}%
+    }
+    \caption{Data flow through one \texttt{GravNetConv} operation. Each node
+    is projected into a learned coordinate space and connected to its
+    \(k\) nearest neighbours within the event. Neighbour features are weighted
+    by learned-space distance, aggregated by their element-wise mean and
+    maximum, and combined with a transformed copy of the original node.
+    Original diagram based on the GravNet operation introduced in
+    Ref.~\cite{qasim2019-gravnet}.}
+    \label{fig:gravnet_convolution}
+\end{figure}

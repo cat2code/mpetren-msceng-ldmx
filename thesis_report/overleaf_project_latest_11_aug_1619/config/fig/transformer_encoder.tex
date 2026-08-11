@@ -1,0 +1,118 @@
+\begin{figure}[htbp]
+    \centering
+    \resizebox{0.98\linewidth}{!}{%
+    \begin{tikzpicture}[
+        >=Latex,
+        every node/.style={font=\small},
+        block/.style={
+            draw,
+            rounded corners,
+            align=center,
+            minimum height=10mm,
+            text width=25mm,
+            inner sep=2pt,
+            fill=RoyalBlue!8
+        },
+        projection/.style={
+            block,
+            text width=16mm,
+            fill=Orange!14
+        },
+        operation/.style={
+            block,
+            text width=29mm,
+            fill=Orange!14
+        },
+        layer/.style={
+            draw,
+            rounded corners,
+            align=center,
+            minimum height=9mm,
+            text width=17mm,
+            inner sep=2pt,
+            fill=RoyalBlue!8
+        },
+        add/.style={
+            circle,
+            draw,
+            fill=white,
+            minimum size=7mm,
+            inner sep=0pt
+        },
+        arrow/.style={->, thick},
+        residual/.style={->, thick, dashed, RoyalBlue!75!black}
+    ]
+        \node[font=\normalsize\bfseries] at (0,2.75)
+            {(a) Multi-head self-attention};
+
+        \node[block] (hidden) at (-6.0,0.75)
+            {event tokens\\\(\mathbf{H}\in\mathbb{R}^{N\times d}\)};
+        \node[projection] (query) at (-3.65,1.55)
+            {query\\\(\mathbf{Q}\)};
+        \node[projection] (key) at (-3.65,0.75)
+            {key\\\(\mathbf{K}\)};
+        \node[projection] (value) at (-3.65,-0.05)
+            {value\\\(\mathbf{V}\)};
+        \node[operation] (weights) at (-0.65,1.15)
+            {compare every token pair\\
+             scaled dot products\\
+             row-wise softmax \(\rightarrow\boldsymbol{\alpha}\)};
+        \node[operation] (weighted) at (3.05,0.75)
+            {weighted information\\[-1mm]
+             \(\mathbf{Z}=\boldsymbol{\alpha}\mathbf{V}\)};
+        \node[block, text width=22mm] (heads) at (6.25,0.75)
+            {repeat over heads,\\concatenate and project};
+
+        \draw[arrow] (hidden) -- (query);
+        \draw[arrow] (hidden) -- (key);
+        \draw[arrow] (hidden) -- (value);
+        \draw[arrow] (query) -- (weights);
+        \draw[arrow] (key) -- (weights);
+        \draw[arrow] (weights) -- (weighted);
+        \draw[arrow] (value) -- (weighted);
+        \draw[arrow] (weighted) -- (heads);
+
+        \draw[RoyalBlue!35, thick] (-7.25,-0.75) -- (7.25,-0.75);
+
+        \node[font=\normalsize\bfseries] at (0,-1.35)
+            {(b) One pre-layer-normalized encoder block};
+
+        \node[layer] (hin) at (-6.3,-3.15)
+            {input\\\(\mathbf{H}^{(\ell)}\)};
+        \node[layer] (lnone) at (-4.35,-3.15)
+            {LayerNorm};
+        \node[layer, fill=Orange!14] (mha) at (-2.25,-3.15)
+            {multi-head\\attention};
+        \node[add] (addone) at (-0.25,-3.15) {\(+\)};
+        \node[layer] (lntwo) at (1.65,-3.15)
+            {LayerNorm};
+        \node[layer, fill=Orange!14] (ffn) at (3.75,-3.15)
+            {token-wise\\feed-forward};
+        \node[add] (addtwo) at (5.65,-3.15) {\(+\)};
+        \node[layer] (hout) at (7.2,-3.15)
+            {output\\\(\mathbf{H}^{(\ell+1)}\)};
+
+        \draw[arrow] (hin) -- (lnone);
+        \draw[arrow] (lnone) -- (mha);
+        \draw[arrow] (mha) -- (addone);
+        \draw[arrow] (addone) -- (lntwo);
+        \draw[arrow] (lntwo) -- (ffn);
+        \draw[arrow] (ffn) -- (addtwo);
+        \draw[arrow] (addtwo) -- (hout);
+        \draw[residual] (hin.north) -- ++(0,0.75) -|
+            node[pos=0.25, above, font=\scriptsize] {residual}
+            (addone.north);
+        \draw[residual] (addone.south) -- ++(0,-0.75) -|
+            node[pos=0.25, below, font=\scriptsize] {residual}
+            (addtwo.south);
+    \end{tikzpicture}%
+    }
+    \caption{Transformer operations used in this thesis. Panel (a) shows how
+    one attention head compares every valid token pair and forms a weighted
+    mixture of their value vectors; several heads repeat the operation with
+    independent projections. Panel (b) shows the pre-layer-normalized encoder
+    block used by the reported models. Diagram conventions are adapted from
+    NNTikZ \cite{nntikz}; the operations follow
+    Ref.~\cite{vaswani2017attention}.}
+    \label{fig:transformer_encoder}
+\end{figure}

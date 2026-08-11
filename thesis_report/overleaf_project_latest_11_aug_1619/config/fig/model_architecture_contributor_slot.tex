@@ -1,0 +1,73 @@
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[
+        >=Latex,
+        node distance=4mm and 3mm,
+        every node/.style={font=\normalsize},
+        shared/.style={draw, rounded corners, align=center,
+                      minimum height=12mm, text width=108mm,
+                      fill=RoyalBlue!8},
+        encoder/.style={draw, rounded corners, align=center,
+                       minimum height=18mm, text width=108mm,
+                       fill=Orange!14},
+        token/.style={draw, rounded corners, align=center,
+                     minimum height=29mm, text width=58mm,
+                     fill=ForestGreen!11},
+        event/.style={draw, rounded corners, align=center,
+                     minimum height=29mm, text width=58mm,
+                     fill=Purple!10},
+        arrow/.style={->, thick}
+    ]
+        \node[shared] (embedding) {
+            \textbf{Padded mixed-detector input and embedding}\\
+            \(\mathbf{X}_{\mathrm{pad}}\in
+            \mathbb{R}^{B\times N_{\max}\times 8}\),
+            feature MLP \(8\!\rightarrow\!192\!\rightarrow\!192\) (ReLU),
+            plus \(\operatorname{Embedding}(2,192)\)
+        };
+        \node[encoder, below=of embedding] (backbone) {
+            \textbf{Shared pre-LN Transformer block
+            \(\boldsymbol{\times 3}\)}\\
+            width \(192\), eight heads,
+            FFN \(192\!\rightarrow\!384\!\rightarrow\!192\),
+            ReLU, dropout \(0.1\), residual connections; final
+            \(\operatorname{LayerNorm}(192)\)
+        };
+
+        \node[token, below=5mm of backbone, xshift=-34mm] (tokenheads) {
+            \textbf{ECal-supervised token heads}\\
+            Contributor set:
+            \(192\!\rightarrow\!192\!\rightarrow\!8\)\\
+            Fractions:
+            \(192\!\rightarrow\!192\!\rightarrow\!4\)\\
+            ReLU and dropout \(0.1\)
+        };
+        \node[event, below=5mm of backbone, xshift=34mm] (eventpath) {
+            \textbf{Event-level branch}\\
+            masked mean \(+\) max \(+\log(1+N)\): \(385\)\\
+            summary: \(385\!\rightarrow\!192\!\rightarrow\!192\)\\
+            slot validity: \(192\!\rightarrow\!192\!\rightarrow\!3\)\\
+            ReLU and dropout \(0.1\)
+        };
+
+        \node[shared, below=5mm of eventpath, xshift=-34mm] (postprocess) {
+            \textbf{Coherent post-processing}\\
+            Enforce a legal slot prefix and gate the fractions; derive
+            electron count, dominant origin and pure-versus-mixed labels
+            without separate heads
+        };
+
+        \draw[arrow] (embedding) -- (backbone);
+        \draw[arrow] (backbone) -- (tokenheads);
+        \draw[arrow] (backbone) -- (eventpath);
+        \draw[arrow] (tokenheads) -- (postprocess);
+        \draw[arrow] (eventpath) -- (postprocess);
+    \end{tikzpicture}
+    \caption{Architecture of the selected MLPF-inspired contributor-set slot
+    model. The eight contributor-set classes encode all subsets of three
+    electron slots; the four fraction components represent background and the
+    three slots. 
+    %The model contains \(1\,155\,855\) trainable parameters and was trained with batch size 32.
+    }
+    \label{fig:contributor_slot_architecture}
+\end{figure}
