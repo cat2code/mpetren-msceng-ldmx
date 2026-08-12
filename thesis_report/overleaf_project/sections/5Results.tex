@@ -1,3 +1,5 @@
+%\textbf{I DONT KNOW THE BEST NAMING FOR THIS SUBSECTION OR IF IT SHOULD BE SEVERAL SECTIONS BUT I SHOULD ALSO INCLUDE THE PLOTS THAT I HAVE MADE THAT SHOW STATISTICS GIVING THE READER AN IDEA OF THE TYPICAL EVENTS AND ALSO SHOWCASING WHAT THE ACTUALY PHYSICS PROBLEM SHOULD BE, THIS SHOULD BE SHOWN BEFORE THE MODEL PERFORMANCES IDEALLY}
+
 This chapter first characterises the simulated overlay events and the
 geometric shower-overlap problem. It then evaluates Transformer and GravNet
 baselines with fixed electron multiplicity before turning to the additional
@@ -17,6 +19,11 @@ cache prefixes containing \(1{,}000{,}000\) \(2e\) events and
 events. These distributions characterise the simulated samples; they are not
 used to select a model or tune a decision threshold.
 
+% Draft note: replace the 20k descriptive figures and refresh their numerical
+% summaries when the 1M or full-cache COSMOS statistics are available.
+
+%\subsubsection{Detector Occupancy and Longitudinal Shower Development}
+% Below is a new suggested title
 \subsubsection{Detector Occupancy and Longitudinal Shower Development}
 
 Figure~\ref{fig:results_shower_xy_context} shows the pooled transverse
@@ -154,7 +161,8 @@ expecting the \(3e\) hit-assignment task to be more difficult.
 \end{wrapfigure}
 The \gls{tpad} tracks provide a small set of upstream position and
 photoelectron measurements in addition to the \gls{ecal} hits. Their token
-multiplicity is already an informative electron-count proxy, but it is not a
+multiplicity is already an informative 
+electron-count proxy, but it is not a
 complete one. Figure~\ref{fig:results_tpad_multiplicity} shows that the
 observed multiplicity equals the generated count in \(85.7\,\%\) of \(2e\)
 events and \(74.0\,\%\) of \(3e\) events. Most of the remaining \(2e\) events
@@ -168,6 +176,8 @@ from determining the electron count by itself. This motivates testing whether
 a model can combine the \gls{tpad} observations with the \gls{ecal} shower
 pattern.
 
+\clearpage
+
 In summary, the event statistics establish the expectations used to
 interpret the model results. The individual shower widths change little from
 \(2e\) to \(3e\), whereas the closest-pair separation decreases
@@ -175,9 +185,15 @@ substantially for \(3e\); the additional difficulty should therefore
 arise mainly from overlap rather than broader individual showers. The
 \gls{tpad} multiplicity supplies useful but incomplete event-level context.
 
+\textbf{THE REST OF THE RESULTS SECTION WILL INCLUDE ALL THE RESULTS AND ALSO DISCUSS THEM IN A NATURAL WAY AS WE GO ALONG
+I WANT TO DIVIDE IT INTO SUBSECTIONS THAT FIRST COVER THE BASELINE MODELS AND INVESTIGATE THE SO-CALLED PRINCIPAL TASK OF THIS THESIS AND STUDY OF ELECTRON SHOWER SEPARATION IN THE FORM OF HIT ASSIGNMENTS. ONE SUBSUBSECTION CAN NATURALLY LEAD INTO THE OTHER. 
+ONCE THE BASELINE MODELS HAVE BEEN COVERED I HAVE ALREADY INTRODUCED MANY TYPES OF ANALYSES AND PLOTS AND I CAN REUSE ARGUMENTS AND I CAN UTILIZE THE FACT THAT STUFF HAS ALREADY BEEN EXPLAINED AND CONCEPTS DISCUSSED WHEN I GO INTO THE NEXT SECTION
+THE SECTION AFTER THE BASELINE MODEL SECTION IS COVERING THE MLPF INSPIRED MULTI TASK SLOT TRANSFORMER MODEL. HERE ALL THE SUBSUBSECTIONS WILL PRESENT THE RESULTS THAT ARE RELATED TO THIS MODEL AND THIS MODEL HAS NEW TASKS THAT THE BASELINE MODELS DOES NOT HAVE SO I HAVE TO GO THROUGH THESE AND DISCUSS AND EXPLAIN/COMMENT THE RESULTS (AND NOT EXPLAIN STUFF THAT I HAVE ALREADY EXPLAINED IN THE METHODOLOGY OF COURSE). I CAN USE THE SAME ANALYSIS PLOTS THAT I USED FOR THE HIT ASSIGNMENTS FOR THIS MODEL AS WELL AND INVESTIGATE IF THEY ARE SIMILAR OR DIFFERENT AND DISCUSS WHY THAT MIGHT BE THE CASE.}
+
 
 \clearpage
 \subsection{Baseline Models}
+
 
 \subsubsection{Baseline Performance Comparison}
 
@@ -188,7 +204,45 @@ architecture and multiplicity using \(1{,}000{,}000\) selected events:
 for testing. Table~\ref{tab:results_baseline_architecture} summarises model
 size and observed training time.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Baseline Architecture Comparison}
+
+The headline baseline comparison uses \(1{,}000{,}000\) selected events for
+each electron multiplicity: \(800{,}000\) training, \(100{,}000\) validation
+and \(100{,}000\) test events.
+Both architectures receive the same log-transformed ECal and trigger-pad-track
+features and use a hidden width of 128. The Transformer contains three
+pre-layer-normalised self-attention layers with four attention heads and a
+final layer normalisation. The GravNet model contains four neighbourhood
+aggregation blocks, each using \(k=16\) neighbours, with batch normalisation
+between blocks. Table~\ref{tab:results_baseline_architecture} summarises the
+resulting model sizes and observed training times.
+
 \input{config/tables/results_baseline_architecture}
+
+As described in Section~\ref{sec:method_capacity_selection}, these models were
+selected as performance-oriented reference configurations rather than through
+an exhaustive capacity search. The comparison below therefore evaluates the
+implemented architectures, not an optimal accuracy--parameter or
+accuracy--latency frontier. In particular, the use of contemporary \gls{mlpf}
+models as a qualitative scale reference does not imply matched capacity: the
+CMS particle-flow problem has different inputs, outputs and reconstruction
+scope. No pruning or other compression study was performed.
+
 
 The GravNet baseline has approximately \(36\,\%\) fewer trainable parameters
 and correspondingly smaller model weights and checkpoints. In these runs,
@@ -238,6 +292,72 @@ and~\ref{tab:results_baseline_paired} provide the headline comparison of the
 larger matched runs.
 
 \clearpage
+
+
+
+\subsection{Baseline Models}
+
+\subsubsection{Baseline Architecture Comparison}
+
+The headline baseline comparison uses \(1{,}000{,}000\) selected events for
+each electron multiplicity: \(800{,}000\) training, \(100{,}000\) validation
+and \(100{,}000\) test events.
+Both architectures receive the same log-transformed ECal and trigger-pad-track
+features and use a hidden width of 128. The Transformer contains three
+pre-layer-normalised self-attention layers with four attention heads and a
+final layer normalisation. The GravNet model contains four neighbourhood
+aggregation blocks, each using \(k=16\) neighbours, with batch normalisation
+between blocks. Table~\ref{tab:results_baseline_architecture} summarises the
+resulting model sizes and observed training times.
+
+\input{config/tables/results_baseline_architecture}
+
+The GravNet baseline has approximately \(36\,\%\) fewer trainable parameters
+and correspondingly smaller model weights and checkpoints. In these runs,
+however, this did not translate into shorter epochs: Transformer optimisation
+took approximately 38--40 minutes per epoch, compared with 47--50 minutes for
+GravNet. The learned neighbour search and aggregation are more expensive than
+the parameter count alone suggests. This timing comparison remains
+descriptive rather than controlled because the Transformer used a batch size
+of 64 and GravNet used 32.
+
+Table~\ref{tab:results_baseline_performance} shows that both architectures
+reach very similar shower-assignment performance. The \(3e\) task is
+consistently harder than the \(2e\) task, independent of architecture. Energy
+weighting increases all four accuracies, which indicates that misassigned
+hits tend to carry less energy than correctly assigned hits.
+
+\input{config/tables/results_baseline_performance}
+
+Because both models were evaluated on the same validation events, their
+event-wise results can be compared directly. Table~\ref{tab:results_baseline_paired}
+reports paired bootstrap intervals for this comparison. The Transformer has a
+\(0.223\)-percentage-point advantage in mean \(2e\) event accuracy and a
+\(0.445\)-percentage-point advantage for \(3e\). The corresponding
+energy-weighted advantages are \(0.203\) and \(0.510\) percentage points. All
+four intervals exclude zero. The large event samples therefore resolve a
+consistent Transformer advantage for these trained models, but its magnitude
+remains approximately half a percentage point or less. Moreover, the
+confidence intervals describe finite-event uncertainty for fixed trained
+models; they do not include variation between random initialisations or
+training samples. The results support similar practical performance with a
+small advantage to the Transformer in this campaign, not a universal ranking
+of the two architectures.
+
+\input{config/tables/results_baseline_paired}
+
+Since the two baselines behave similarly and the Transformer gives the higher
+headline accuracy, the following detailed diagnostic plots use it as the
+representative fixed-multiplicity model instead of duplicating every plot for
+GravNet. These diagnostics were produced from the earlier
+\(20{,}000\)-event development runs. They are retained to examine where
+assignment fails, while Tables~\ref{tab:results_baseline_performance}
+and~\ref{tab:results_baseline_paired} provide the headline comparison of the
+larger matched runs.
+
+\clearpage
+
+%\textbf{THIS SUBSECTION SHOULD BE CONCISE. IT WILL INCLUDE ACCURACY (NOT PERMUTATION INVARIANT) OVER EPOCHS AND ALSO A LOSS OVER EPOCHS FIGURE AND THESE FROM THE 3E TRANSFORMER BASELINE MODEL SINCE IT REPRESENTS THE SAME BEHAVIOUR AS ALL OTHER MODELS THEY ALL LOOK VERY SIMILAR. IF THE EPOCH ENDS BEFORE 15 EPOCHS THIS ALSO SHOWS THAT THE EARLY STOPPING WAS ACTIVATED FOR THE MODEL WITH PATIENCE OF 3 EPOCHS IF THE ACCURACY DOES NOT IMPROVE IN A MEANINGFUL STEP 3 TIMES IN A ROW. THE DISCUSSION AF THE RESULTS CAN STATE THAT THE MODELS APPARENTLY DOES NOT NEED SO MANY EVENTS TO LEARN THE HIT ASSIGNMENT AND ACCURACY STARTS HIGH AND THE GRAPH IS ALMOST HORIZONTALLY FLAT, THUS THE MINIMUM EPOCH WAS SET TO 5 AND THE MAXIMUM EPOCH WAS SET TO 15 AND PATIENCE WAS SET TO 3. IN DEVELOPMENT IT WAS FOUND AS A GENERAL RULE THAT 10 K EVENTS WAS ENOUGH AS A GENERAL RULE TO ACHIEVE PRELIMINARY RESULTS THAT REPRESENTED THE FINAL RESULTS QUITE WELL. REGARDING THE LOSS WE CAN SEE THAT IT IS DEFINITELY REDUCED ALONG THE EPOCHS, BUT WITH DIMINISHING RETURNS. THE READER SHOW HOWEVER NOTE THAT THE SCALE OF THE LOSS IS NOT VERY BIG SO THE REDUCTION OF LOSS ALONG EPOCHS IS NOT LARGE WE ARE TAKING ABOUT LOSS GAINS OF ABOUT 0.1 ALONG ALL THE EPOCHS THAT REPRESENTS 1/7 OF THE STARTING LOSS. WE SHOULD ALSO MENTION HERE SOMEWHERE THAT FOR THE SCOPE OF THIS THESIS AND THIS STUDY THERE WAS NOT ENOUGH TIME TO DIVE DEEP INTO FINDING OPTIMAL MODELS (THIS SHOULD HAVE BEEN MENTIONED SOMETIME BEFORE THIS SUBSECTION AS WELL. THE GENERAL STRATEGY WHEN DESIGNING AND TRAINING THE MODELS WAS TO START WITH A HIGH PARAMETER COUND AND GIVE THE MODELS A LOT OF MUSCLE, PROBABLY TOO MUCH MUSCLE, IN ORDER TO FIND A HIGH PERFORMANCE. THIS THESIS DOES NOT INCLUDE A SOPHISTICATED HYPERPARAMETER SWEEP AND IT DOES NOT ATTEMPT TO COMPRESS THE MODELS AND THE NUMBER OF PARAMETERS WHILE RETAINING ACCURACY TRYING TO FIND AN OPTIMAL SIZE THIS WAS OUT OF SCOPE FOR THIS MASTER THESIS. I DONT KNOW IF I SHOULD MENTION THIS BUT AS A REFERENCE THE SIZE OF THE MLPF ARCHITECTURE WAS LOOKED AT, SINCE THAT HAS SURELY UNDERGONE OPTIMIZATION BY A WHOLE TEAM OF RESEARCHERS AND IT HAS A MUCH MORE COMPLEX PROBLEM TO SOLVE SINCE THE INPUT SET FROM THE CMS DETECTOR IS MUCH MUCH LARGER) AND THIS MEANT THAT I FELT SATISFIED WITH THESE TRAINING PLOTS AND THAT THERE WAS NOT ENOUGH TIME TO TEST RUNNING THE MODELS FOR MANY MANY EPOCHS.  I FIND IT A BIT PECULIAR THAT THE LOSS OF THE VALIDATION SET IS LOWER THAN THE TRAINING SET FOR ALL LEVELS I DO NOT KNOW WHY THIS IS IT MIGHT BE SOMETHING THAT IS WRONG IF I AM NOT MISTAKEN BECAUSE IT FEELS NOT INTUITIVE SO I SHOULD COMMENT THAT. THE LOSS OF THE TRAIN AND THE VALIDATION DO FOLLOW EACH OTHERS TRENDS BUT THE VALIDATION SET WAS FOUND TO HAVE A LOWER LOSS GENERALLY. DO I MENTION THE CHOICE OF OPTIMIZER HERE OR SHOULD I HAVE DONE THAT EARLIER IN THE METHODOLOGY AND IN THAT CASE WHERE? I USE THE AdamW OPTIMIZER AND I SHOULD MOTIVATE WHY I USE THIS (THE MOTIVATION FOR THIS IS PROBABLY SIMILAR TO THE MOTIVATION FOR MY TRAINING STRATEGY: I WANT TO USE A GENERAL PURPOSE EFFECTIVE WAY TO FIND HIGH ACCURACY AND BEING HUMBLE THAT THE SCOPE OF MY THESIS CANNOT INCLUDE FINDING THE ABSOLUTELY OPTIMAL MODELS.}
 \subsubsection{Representative Training Behaviour}
 
 Figure~\ref{fig:results_training_history} shows the training history of the
@@ -296,6 +416,8 @@ million-event campaigns.
 \subsubsection{Hit Assignment Performance}
 \label{sec:results_detailed_hit_assignment}
 
+\textbf{THIS SUBSECTION SHOULD COVER THE OVERALL ACCURACIES AND PERFORMANCES OF THE BASELINE MODELS FOR THE PRINCIPAL TASK OF HIT ASSIGNMENTS (OR NODE ASSIGNMENTS AS IT IS CALLED GENERALLY IN MACHINE LEARNING). IT PRESENTS AN EVENT-AVERAGED (PERMUTATION INVARIANT) ACCURACY FOR THE 2E AND 3E MODELS THAT IS RELEVANT TO THE LDMX WHERE CAN SEE THAT THE DISTRIBUTION IS WIDE AND WHERE WE CAN SEE WHAT THE MOST COMMON EVENT WIDE ACCURACY PERCENTAGE IS AND WHERE WE SEE CLEARLY THAT THE 2E EVENTS ARE EASIER TO ASSIGN AND THAT THE 3E EVENTS ARE MORE DIFFICULT TO ASSIGN. WE PRESENT ALSO HIT CONFUSION MATRICES THAT SHOW **POOLED** HIT ACCURACIES AND ALSO 4X4 CONFUSION MATRICES THAT IMPLY THAT THE HIT ACCURACY SEEMS TO BE LOWER DEEPER INTO THE ECAL LAYERS (BUT ALSO THAT MOST HITS ARE FOUND IN THE FIRST 20 ECAL LAYERS SINCE THAT ACCURACY IS ABOUT THE SAME AS THE ACCURACY ACROSS ALL ECAL LAYERS). THE ECAL LAYERS 1-20 HAS BEEN CHOSEN SPECIFICALLY BECAUSE THESE ARE USED FOR THE TRIGGER-LEVEL ONLINE RECONSTRUCTION, BUT OF COURSE IT THIS SCENARIO THE LOWER GRANULARITY TRIGGER CELLS ARE USED INSTEAD OF THE FULL RESOLUTION CELLS THAT WE HAVE NOW. THE ECAL LAYER POOLED HIT CONFUSION MATRICES LEAD PERFECTLY INTO THE NEXT SUBSECTION WHERE WE SHOW ACCURACY ACROSS ECAL DEPTH}
+
 The event-wise distributions in Figure~\ref{fig:results_event_accuracy}
 show that reconstruction quality varies substantially between events. The
 median permutation-aligned event hit accuracy is \(0.854\) for \(2e\) and
@@ -328,7 +450,7 @@ as the all-layer result.
 \begin{figure}[htbp]
     \centering
     \includegraphics[height=0.76\textheight,keepaspectratio]{config/fig/results/hit_confusion_matrices.png}
-    \caption{Row-normalized hit confusion matrices after one event-wide label
+    \caption{\textbf{WE SHOULD HAVE AN ENERGY-WEIGHTED CONFUSION MATRIX CORRESPONDING TO THIS AS WELL?} Row-normalized hit confusion matrices after one event-wide label
     alignment. Rows are true groups and columns are predicted groups. The top
     row uses all ECal layers, the middle row uses layers 1--20 and the bottom
     row uses layers 21--32. Percentages are conditional on the true group, and
@@ -489,6 +611,8 @@ calibration.
 \clearpage
 \subsubsection{Trigger-Pad Ablation}
 
+\textbf{THIS SUBSECTION SHOULD COVER TRIGGER-PAD ABLATION-RELATED RESULTS AND DISCUSS IF THE BASELINE MODELS ARE ABLE TO SQUEEZE SOMETHING OUT OF THE TPAD INFORMATION OR NOT}
+
 Figure~\ref{fig:results_tpad_ablation} removes trigger-pad-track tokens at
 inference time from one trained \(3e\) \texttt{ECalTpadTransformer}. The
 reference and ablated event accuracies are almost identical. Across the
@@ -499,7 +623,7 @@ trigger-pad inputs is \(1.26\times10^{-4}\), the mean event-accuracy gain is
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.98\linewidth]{config/fig/results/tpad_ablation_3e.png}
-    \caption{Paired inference-time ablation of trigger-pad-track tokens for a
+    \caption{\textbf{THIS FIG SUCKS I WILL REPLACE}Paired inference-time ablation of trigger-pad-track tokens for a
     trained \(3e\) \texttt{ECalTpadTransformer} on \(3{,}000\) validation
     events. The upper panels compare event accuracy with and without the
     trigger-pad inputs. The lower panels divide the comparison by completeness
@@ -523,29 +647,25 @@ the number of electrons in an event.
 
 The experimental contributor-set slot model extends the fixed-multiplicity
 assignment problem to a particle-flow-like multi-task setting. It was trained
-on \(500{,}000\) \(2e\) and \(500{,}000\) \(3e\) events and evaluated using
-the best checkpoint at epoch 15, which was also the final epoch. The backbone
-has hidden width 192,
+on \(50{,}000\) \(2e\) and \(50{,}000\) \(3e\) events and evaluated here using
+the best checkpoint, selected at epoch 14. The backbone has hidden width 192,
 three pre-layer-normalised Transformer layers and eight attention heads,
 corresponding to approximately \(1.16\) million trainable parameters. The
-test set contains \(100{,}000\) events and \(30{,}079{,}515\) ECal hits.
+test set contains \(10{,}000\) events and \(3{,}025{,}349\) ECal hits.
 
 The model predicts three electron-slot validity scores for each event and a
 contributor-set distribution and energy fractions for each hit. The electron
 count is derived from the valid slots; it is not produced by a separate count
 head. Similarly, the dominant-origin label is derived from the predicted
 fractions. This post-processing keeps the reported quantities consistent with
-the model's underlying set-valued prediction. These multi-task metrics retain
-the canonical slot ordering because contributor-set, fraction and validity
-outputs must be evaluated coherently; they are not permutation-aligned
-independently task by task.
+the model's underlying set-valued prediction.
 
 \input{config/tables/results_contributor_performance}
 
 Figure~\ref{fig:results_contributor_set_confusion} resolves the exact
 contributor-set task. Pure one-electron contributions dominate the data and
 are generally reconstructed more reliably than mixed sets. The overall exact
-set accuracy is \(72.41\,\%\), so this is substantially more demanding than
+set accuracy is \(72.39\,\%\), so this is substantially more demanding than
 electron counting. In particular, a contributor-set error can occur even when
 the predicted dominant origin and the event electron count remain correct.
 
@@ -560,11 +680,11 @@ the predicted dominant origin and the event electron count remain correct.
 \end{figure}
 
 Figure~\ref{fig:results_contributor_hit_tasks} shows two useful reductions of
-the same predictions. Dominant-origin accuracy reaches \(77.04\,\%\), which is
+the same predictions. Dominant-origin accuracy reaches \(77.09\,\%\), which is
 comparable in scale to the fixed-multiplicity \(3e\) baseline despite the
 additional event-count and fraction tasks. Mixed-hit detection reaches
-\(64.41\,\%\) recall but only \(48.08\,\%\) precision, giving an \(F_1\) score
-of \(0.551\). The model therefore identifies a majority of truth-mixed hits but
+\(64.69\,\%\) recall but only \(46.49\,\%\) precision, giving an \(F_1\) score
+of \(0.541\). The model therefore identifies a majority of truth-mixed hits but
 also labels a sizeable number of pure hits as mixed. This task should not be
 summarised by ordinary accuracy alone because pure hits are much more common.
 
@@ -579,7 +699,7 @@ summarised by ordinary accuracy alone because pure hits are much more common.
 \end{figure}
 
 Applying the predicted slot-validity mask before normalising the energy
-fractions reduces their mean absolute error from \(0.141\) to \(0.115\). This
+fractions reduces their mean absolute error from \(0.144\) to \(0.115\). This
 improvement illustrates one purpose of coupling the tasks: the event-level
 validity prediction constrains which electron fractions are physically
 available during post-processing. Nevertheless, the contributor-set and
@@ -587,17 +707,17 @@ mixed-hit results show that resolving overlap at hit level remains the main
 weakness of this preliminary model.
 
 
+\clearpage
 \subsubsection{Electron Counting and the Contribution of Trigger-Pad Information}
 
+SKA DISKUTERA ELECTRON COUNTING BÄTTRE
+
 Electron counting is the strongest result of the contributor-set model. The
-derived count is correct for \(99.983\,\%\) of the headline
-\(100{,}000\)-event test set, reaching \(99.994\,\%\) for true \(2e\) and
-\(99.972\,\%\) for true \(3e\) events. A paired mechanism study was available
-for an earlier \(100{,}000\)-event development model, evaluated on its
-\(10{,}000\)-event test set. Table~\ref{tab:results_tpad_count} compares that
-checkpoint with inference-time removal of the trigger-pad tokens and with a
-direct trigger-pad multiplicity heuristic. These ablation values are
-supporting evidence and are not the headline model's test metrics.
+derived count is correct for \(99.79\,\%\) of test events, with similar
+performance for true \(2e\) and \(3e\) samples. Table~\ref{tab:results_tpad_count}
+compares this result with both an inference-time removal of the trigger-pad
+tokens and a direct heuristic that equates observed trigger-pad multiplicity
+with electron count.
 
 \input{config/tables/results_tpad_count}
 
@@ -609,23 +729,16 @@ points, with a \(95\,\%\) event-bootstrap interval of
 that this trained network uses the trigger-pad input for the variable-count
 task.
 
-The trigger-pad multiplicity by itself is not an adequate electron counter.
-As Figure~\ref{fig:results_count_confusions} shows, it classifies every \(2e\)
-event correctly but misclassifies \(1{,}569\) of the \(5{,}081\) true \(3e\)
-events. The neural model makes only 21 count errors over the full \(10{,}000\)
-events. Its overall advantage over the heuristic is \(15.48\) percentage
-points, with a \(95\,\%\) interval of \([14.79,16.22]\) percentage points.
-The result indicates that the model combines ECal shower information and
-trigger-pad observations rather than merely reproducing the observed number
-of trigger-pad tokens.
+% LÄGG IN HÄR
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.98\linewidth]{config/fig/results/contributor_count_neural_vs_tpad_heuristic.png}
-    \caption{Row-normalised electron-count confusion matrices for the
-    \(10{,}000\)-event companion ablation. Left: count derived from the
-    development model's slot-validity predictions using ECal and trigger-pad
-    inputs. Right: direct trigger-pad multiplicity heuristic.}
+    \caption{Row-normalised electron-count confusion matrices on the common
+    test events. Left: count derived from the contributor model's slot-validity
+    predictions using ECal and trigger-pad inputs. Right: direct trigger-pad
+    multiplicity heuristic. Counts and row percentages are shown in each
+    cell.}
     \label{fig:results_count_confusions}
 \end{figure}
 
@@ -639,4 +752,4 @@ inference time. A separately trained ECal-only contributor model is needed to
 complete the controlled architecture comparison and is treated as follow-up
 work rather than folded into the current estimate.
 
-\clearpage
+

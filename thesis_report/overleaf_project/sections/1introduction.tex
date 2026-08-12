@@ -52,4 +52,39 @@ trigger algorithm. This thesis presents the reusable
 simulation data, trains models and produces hit-level and event-level
 diagnostics \cite{ml_ldmx-github}.
 
+\clearpage
+\subsection{Aim and Study Strategy}
+
+The work was organised around the following objectives:
+
+\begin{itemize}
+    \item \textbf{Investigate shower separation:} determine how reliably
+    supervised models can assign ECal hits to their originating electrons in
+    simulated \(2e\) and \(3e\) pile-up events.
+
+    \item \textbf{Build a reusable research platform:} develop the
+    \texttt{ml\_ldmx} pipeline for extracting LDMX simulation data,
+    constructing truth targets, training models and evaluating predictions.
+
+    \item \textbf{Compare model architectures:} evaluate GravNet and
+    Transformer baselines using common inputs and targets, considering both
+    reconstruction quality and practical computational properties.
+
+    \item \textbf{Identify limiting conditions:} relate reconstruction
+    performance to electron multiplicity, shower overlap, ECal depth and model
+    confidence.
+
+    \item \textbf{Assess heterogeneous detector information:} test whether
+    reconstructed trigger-pad observations provide useful context beyond the
+    ECal measurements.
+
+    \item \textbf{Explore a broader reconstruction task:} extend fixed-count
+    hit assignment with a mixed-multiplicity Transformer that predicts electron
+    count, contributing-electron sets and energy fractions.
+\end{itemize}
+
+The intended outcome is an offline proof of concept and a documented basis for
+continued reconstruction studies, rather than a production trigger algorithm,
+a complete detector reconstruction chain or a dark-matter sensitivity study.
+
 \glsresetall
