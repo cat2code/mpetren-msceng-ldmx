@@ -1,13 +1,12 @@
 %\textbf{I DONT KNOW THE BEST NAMING FOR THIS SUBSECTION OR IF IT SHOULD BE SEVERAL SECTIONS BUT I SHOULD ALSO INCLUDE THE PLOTS THAT I HAVE MADE THAT SHOW STATISTICS GIVING THE READER AN IDEA OF THE TYPICAL EVENTS AND ALSO SHOWCASING WHAT THE ACTUALY PHYSICS PROBLEM SHOULD BE, THIS SHOULD BE SHOWN BEFORE THE MODEL PERFORMANCES IDEALLY}
 
-This chapter first characterises the simulated overlay events and the
-geometric shower-overlap problem. It then evaluates Transformer and GravNet
+This chapter first characterises the simulated overlay events and presents the
+geometric shower-overlap problem at hand. It then evaluates Transformer and GravNet
 baselines with fixed electron multiplicity before turning to the additional
 counting, contributor-set and energy-fraction tasks of the experimental model
 inspired by particle-flow reconstruction. Results and their immediate
 interpretation are presented together.
 
-\clearpage
 \subsection{Event Characteristics and the Shower-Overlap Problem}
 \label{sec:results_event_characteristics}
 
@@ -16,8 +15,8 @@ detector, longitudinal and transverse scales of the problem that they must
 solve. Unless stated otherwise, the descriptive figures use deterministic
 cache prefixes containing \(1{,}000{,}000\) \(2e\) events and
 \(1{,}000{,}000\) \(3e\)
-events. These distributions characterise the simulated samples; they are not
-used to select a model or tune a decision threshold.
+events. 
+%These distributions characterise the simulated samples; they are not used to select a model or tune a decision threshold.
 
 % Draft note: replace the 20k descriptive figures and refresh their numerical
 % summaries when the 1M or full-cache COSMOS statistics are available.
@@ -27,16 +26,20 @@ used to select a model or tune a decision threshold.
 \subsubsection{Detector Occupancy and Longitudinal Shower Development}
 
 Figure~\ref{fig:results_shower_xy_context} shows the pooled transverse
-distribution of reconstructed \gls{ecal} hits in detector coordinates. The
-highest occupancy and energy density occur around the beam region, although
-hits populate a much larger fraction of the instrumented area. The discrete
-pattern of populated bins follows the hexagonal cell geometry and should not
-be interpreted as a continuous image. Increasing the multiplicity from
-\(2e\) to \(3e\) raises both the occupancy and the summed energy density while
-preserving the detector-scale structure. On average, the selected \(2e\)
-events contain \(247.2\) reconstructed hits and \(16.01\,\mathrm{GeV}\) of
+distribution of reconstructed \gls{ecal} hits, in detector coordinates. The hits are pooled together along the beam direction flattened into a two-dimensional image. Hits are registered over the entire field, but the
+highest occupancy and energy density occur near the beam region (which can be reminded is $8\text{cm} \times 2 \text{cm}$) located at the center. The width of the highest density seems to be wider than $2\text{cm}$ which is explained by the vertical magnetic field inferred by the dipole magnet that distorts the beam in the horizontal direction due to Lenz's law. The energy density is also comparatively more gravitated to the center compared to the transverse distribution of hits. The energy is weighted to the center because the first hits are more energetic and located near the beam region. As the shower develops through the layers it spreads in the transverse direction but this also corresponds to loss of energy. The discrete pattern of populated bins follows the hexagonal cell geometry and should not be interpreted as a continuous image. On average, the selected \(2e\) events contain \(247.2\) reconstructed hits and \(16.01\,\mathrm{GeV}\) of
 reconstructed energy, compared with \(354.6\) hits and
 \(24.02\,\mathrm{GeV}\) for \(3e\).
+
+Simulation-flagged noise hits are rare in the production sample. Across the
+one-million-event mixed-multiplicity sample used for the final contributor
+model, \(27{,}603\) of \(300{,}828{,}260\) retained \gls{ecal} hits carry the
+noise flag. This corresponds to \(0.0092\,\%\) of the hits, or \(0.0276\)
+flagged noise hits per event on average (approximately one per 36 events).
+The latter is a hit-level rate and should not be interpreted as the fraction
+of events containing noise. The baseline models and the descriptive shower
+figures remove these hits, whereas the contributor model retains them as a
+background class for prediction. 
 
 \begin{figure}[htbp]
     \centering
@@ -48,8 +51,7 @@ reconstructed energy, compared with \(354.6\) hits and
     \caption{Transverse \gls{ecal} hit occupancy (left) and summed
     reconstructed energy density (right) for \(1{,}000{,}000\) \(2e\) events
     (top) and \(1{,}000{,}000\) \(3e\) events (bottom). The histograms use the
-    detector \(x\)--\(y\) coordinates and logarithmic colour scales. White regions are
-    unpopulated spatial bins.}
+    detector \(x\)--\(y\) coordinates and logarithmic colour scales. White regions are unpopulated spatial bins in this coordinate system, but in reality the hexagonal cell pattern of the \gls{ecal} fill the entire transverse region.}
     \label{fig:results_shower_xy_context}
 \end{figure}
 
@@ -62,7 +64,7 @@ Both quantities subsequently decrease through a long tail in the calorimeter.
 The \(3e\) profiles have larger amplitudes but nearly the same longitudinal
 shape as the \(2e\) profiles. Adding an electron therefore primarily increases
 the number and energy of simultaneous deposits rather than shifting the
-characteristic shower maximum. The sizeable event-to-event RMS values near
+characteristic shower maximum. The sizeable event-to-event \gls{rms} values near
 the peak also demonstrate that the mean profile is not representative of
 every individual event.
 
@@ -71,26 +73,29 @@ every individual event.
     \includegraphics[width=0.99\linewidth]{config/fig/results/shower_longitudinal_context.png}
     \caption{Mean longitudinal \gls{ecal} hit multiplicity (left) and reconstructed
     energy (right) per event. Error bars show the event-to-event population
-    RMS at each layer, not the uncertainty on the mean. The lower horizontal
+    \gls{rms} at each layer. The lower horizontal
     axes give ECal layer number and the upper axes give the corresponding
     physical \(z\) coordinate. Each profile contains \(1{,}000{,}000\) events.}
     \label{fig:results_shower_longitudinal}
 \end{figure}
 
-\clearpage
+
 \subsubsection{Truth-Level Transverse Shower Geometry}
 
-The truth-assisted geometry is defined in
+The truth-assisted geometry (that we can know only because the data is simulated) is defined in
 Equations~\eqref{eq:shower_geometry_weight}--\eqref{eq:min_shower_separation}.
 It weights each hit by reconstructed energy and the simulated contribution
 fraction, so a mixed hit can contribute to several shower geometries. These
 quantities are unavailable in measured detector data and are used only to
 characterise the sample and interpret model performance.
 
-Figure~\ref{fig:results_truth_centroid_separation} reports the closest
-pair of resulting shower centroids in each event, resolved separately along
-the two transverse coordinates.
-The effective Moli\`ere radius \(R_{\mathrm{M}}=25\,\mathrm{mm}\) provides the
+Figure~\ref{fig:results_truth_shower_geometry} combines the closest pair of
+resulting shower centroids in each event with the corresponding truth-shower
+width distributions. The left column resolves separation along the two
+transverse coordinates and then normalises the two-dimensional centroid
+distance by the combined radial shower width. The right column shows the
+individual shower widths in \(x\), \(y\) and radius.
+The effective Moli\`ere radius \(R_{\mathrm{M}}=25\,\mathrm{mm}\) provides a
 reference scale. For \(2e\) events, the median minimum separation is
 \(0.253R_{\mathrm{M}}\) (\(6.3\,\mathrm{mm}\)) in \(x\) and
 \(0.946R_{\mathrm{M}}\) (\(23.7\,\mathrm{mm}\)) in \(y\). The corresponding
@@ -99,26 +104,13 @@ reference scale. For \(2e\) events, the median minimum separation is
 \(x\) and \(y\)
 distributions is a property of the generated sample rather than a universal
 detector-resolution limit. Moreover, a \(3e\) event contains three distinct
-electron pairs instead of one. Taking the closest pair therefore shifts the
+combinations of electron pairs instead of one. Taking the closest pair therefore shifts the
 minimum-separation distribution towards smaller values even if the
 distribution for a single pair were unchanged.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.99\linewidth]{config/fig/results/shower_centroid_separation.png}
-    \caption{Minimum pairwise separation of energy-fraction-weighted truth
-    shower centroids along \(x\) (left) and \(y\) (right). The lower axes use
-    units of \(R_{\mathrm{M}}=25\,\mathrm{mm}\), while the upper axes show the
-    corresponding physical distance. Points and vertical bars show bin
-    fractions and their Poisson RMS counting uncertainties. Values beyond the
-    plotted range are collected in the final bin. Each distribution contains
-    \(1{,}000{,}000\) events.}
-    \label{fig:results_truth_centroid_separation}
-\end{figure}
-
-Figure~\ref{fig:results_truth_shower_widths} separates the scale of an
-individual shower from the distance between showers. The median transverse
-widths are almost independent of event multiplicity: for both samples,
+The width panels separate the scale of an individual shower from the distance
+between showers. The median transverse
+widths are independent of event multiplicity: for both samples,
 \(\sigma_x\simeq0.67R_{\mathrm{M}}\),
 \(\sigma_y\simeq0.65R_{\mathrm{M}}\) and
 \(\sigma_r\simeq0.96R_{\mathrm{M}}\). In contrast, the median minimum
@@ -126,9 +118,10 @@ width-normalised separation from
 Equation~\eqref{eq:normalised_shower_separation} decreases from \(0.724\) for
 \(2e\) to \(0.353\) for \(3e\). The individual
 showers therefore have similar transverse dimensions in the two samples, but
-the closest competing showers occupy a substantially more overlapping regime
-when a third electron is present. This provides a physical explanation for
-expecting the \(3e\) hit-assignment task to be more difficult.
+the showers occupy a substantially more overlapping regime
+when a third electron is present. This is the main physical explanation for
+expecting the \(3e\) hit-assignment task to be more difficult, as more overlap implies more non-reversible ambiguity that complicates inference, yielding worse predictions.
+
 
 \begin{figure}[htbp]
     \centering
@@ -136,19 +129,22 @@ expecting the \(3e\) hit-assignment task to be more difficult.
         width=0.99\linewidth,
         height=0.79\textheight,
         keepaspectratio
-    ]{config/fig/results/shower_widths_and_normalized_separation.png}
-    \caption{Energy-fraction-weighted transverse truth-shower widths in
-    \(x\), \(y\) and radius, together with the event minimum of the
-    width-normalised centroid separation defined in
-    Equation~\eqref{eq:normalised_shower_separation}. The three width panels include
-    secondary physical-distance axes. Points and vertical bars show bin
-    fractions and Poisson RMS counting uncertainties; final bins include
-    overflow. The \(2e\) and \(3e\) samples each contain
+    ]{config/fig/results/shower_geometry_and_separation.png}
+    \caption{Truth-assisted transverse shower geometry for the \(2e\) and
+    \(3e\) samples. The left column shows the minimum pairwise centroid
+    separation in \(x\) and \(y\), followed by the dimensionless minimum
+    width-normalised separation from
+    Equation~\eqref{eq:normalised_shower_separation}. The right column shows
+    the energy-fraction-weighted truth-shower widths in \(x\), \(y\) and
+    radius. Moli\`ere-scaled quantities include secondary physical-distance
+    axes; the width-normalised separation is dimensionless. Points and
+    vertical bars show bin fractions and Poisson \gls{rms} counting
+    uncertainties, and final bins include overflow. Each sample contains
     \(1{,}000{,}000\) events.}
-    \label{fig:results_truth_shower_widths}
+    \label{fig:results_truth_shower_geometry}
 \end{figure}
 
-\clearpage
+
 \subsubsection{Trigger-Pad Multiplicity as Event-Level Context}
 \begin{wrapfigure}[30]{r}{0.44\textwidth}
     \centering
@@ -159,72 +155,38 @@ expecting the \(3e\) hit-assignment task to be more difficult.
     between the token and generated counts.}
     \label{fig:results_tpad_multiplicity}
 \end{wrapfigure}
-The \gls{tpad} tracks provide a small set of upstream position and
-photoelectron measurements in addition to the \gls{ecal} hits. Their token
-multiplicity is already an informative 
-electron-count proxy, but it is not a
-complete one. Figure~\ref{fig:results_tpad_multiplicity} shows that the
+The \gls{tpad} tracks provide a small set of online reconstructed upstream position and
+photoelectron measurements in addition to the offline reconstructed \gls{ecal} hits. Their token multiplicity is already an informative  electron-count proxy, but it is not a complete one. Figure~\ref{fig:results_tpad_multiplicity} shows that the
 observed multiplicity equals the generated count in \(85.7\,\%\) of \(2e\)
 events and \(74.0\,\%\) of \(3e\) events. Most of the remaining \(2e\) events
 contain one token (\(13.9\,\%\)), while \(23.7\,\%\) of the \(3e\) events
 contain only two. A further \(2.2\,\%\) of the \(3e\) sample contains only one
-token, whereas overcounting is negligible for both multiplicities. Across the
+token, whereas overcounting is negligible for both multiplicities, which is an intended result of the design and implementation of the \gls{tpad}. Across the
 balanced \(2e/3e\) sample, direct equality gives \(79.9\,\%\)
 electron-count accuracy. The multiplicity therefore carries useful global
 information, but missing, merged or otherwise unresolved tracks prevent it
 from determining the electron count by itself. This motivates testing whether
 a model can combine the \gls{tpad} observations with the \gls{ecal} shower
-pattern.
+pattern, at least in offline reconstruction it is highly expected that a reconstruction model can improve the electron count.
 
-\clearpage
+\subsubsection{Summarizing discussion}
 
 In summary, the event statistics establish the expectations used to
-interpret the model results. The individual shower widths change little from
-\(2e\) to \(3e\), whereas the closest-pair separation decreases
-substantially for \(3e\); the additional difficulty should therefore
-arise mainly from overlap rather than broader individual showers. The
-\gls{tpad} multiplicity supplies useful but incomplete event-level context.
+interpret the model results. The individual shower have the same characteristics in
+\(2e\) and \(3e\) events, but the closest-pair separation decreases
+substantially for \(3e\) and showers have a higher degree of overlap, and this should be the main cause of increased difficulty in separating the electro showers in reconstruction. The \gls{tpad} multiplicity supplies useful but incomplete event-level context.
 
-\textbf{THE REST OF THE RESULTS SECTION WILL INCLUDE ALL THE RESULTS AND ALSO DISCUSS THEM IN A NATURAL WAY AS WE GO ALONG
-I WANT TO DIVIDE IT INTO SUBSECTIONS THAT FIRST COVER THE BASELINE MODELS AND INVESTIGATE THE SO-CALLED PRINCIPAL TASK OF THIS THESIS AND STUDY OF ELECTRON SHOWER SEPARATION IN THE FORM OF HIT ASSIGNMENTS. ONE SUBSUBSECTION CAN NATURALLY LEAD INTO THE OTHER. 
-ONCE THE BASELINE MODELS HAVE BEEN COVERED I HAVE ALREADY INTRODUCED MANY TYPES OF ANALYSES AND PLOTS AND I CAN REUSE ARGUMENTS AND I CAN UTILIZE THE FACT THAT STUFF HAS ALREADY BEEN EXPLAINED AND CONCEPTS DISCUSSED WHEN I GO INTO THE NEXT SECTION
-THE SECTION AFTER THE BASELINE MODEL SECTION IS COVERING THE MLPF INSPIRED MULTI TASK SLOT TRANSFORMER MODEL. HERE ALL THE SUBSUBSECTIONS WILL PRESENT THE RESULTS THAT ARE RELATED TO THIS MODEL AND THIS MODEL HAS NEW TASKS THAT THE BASELINE MODELS DOES NOT HAVE SO I HAVE TO GO THROUGH THESE AND DISCUSS AND EXPLAIN/COMMENT THE RESULTS (AND NOT EXPLAIN STUFF THAT I HAVE ALREADY EXPLAINED IN THE METHODOLOGY OF COURSE). I CAN USE THE SAME ANALYSIS PLOTS THAT I USED FOR THE HIT ASSIGNMENTS FOR THIS MODEL AS WELL AND INVESTIGATE IF THEY ARE SIMILAR OR DIFFERENT AND DISCUSS WHY THAT MIGHT BE THE CASE.}
+%\textbf{THE REST OF THE RESULTS SECTION WILL INCLUDE ALL THE RESULTS AND ALSO DISCUSS THEM IN A NATURAL WAY AS WE GO ALONG I WANT TO DIVIDE IT INTO SUBSECTIONS THAT FIRST COVER THE BASELINE MODELS AND INVESTIGATE THE SO-CALLED PRINCIPAL TASK OF THIS THESIS AND STUDY OF ELECTRON SHOWER SEPARATION IN THE FORM OF HIT ASSIGNMENTS. ONE SUBSUBSECTION CAN NATURALLY LEAD INTO THE OTHER. ONCE THE BASELINE MODELS HAVE BEEN COVERED I HAVE ALREADY INTRODUCED MANY TYPES OF ANALYSES AND PLOTS AND I CAN REUSE ARGUMENTS AND I CAN UTILIZE THE FACT THAT STUFF HAS ALREADY BEEN EXPLAINED AND CONCEPTS DISCUSSED WHEN I GO INTO THE NEXT SECTION THE SECTION AFTER THE BASELINE MODEL SECTION IS COVERING THE MLPF INSPIRED MULTI TASK SLOT TRANSFORMER MODEL. HERE ALL THE SUBSUBSECTIONS WILL PRESENT THE RESULTS THAT ARE RELATED TO THIS MODEL AND THIS MODEL HAS NEW TASKS THAT THE BASELINE MODELS DOES NOT HAVE SO I HAVE TO GO THROUGH THESE AND DISCUSS AND EXPLAIN/COMMENT THE RESULTS (AND NOT EXPLAIN STUFF THAT I HAVE ALREADY EXPLAINED IN THE METHODOLOGY OF COURSE). I CAN USE THE SAME ANALYSIS PLOTS THAT I USED FOR THE HIT ASSIGNMENTS FOR THIS MODEL AS WELL AND INVESTIGATE IF THEY ARE SIMILAR OR DIFFERENT AND DISCUSS WHY THAT MIGHT BE THE CASE.}
 
 
-\clearpage
-\subsection{Baseline Models}
+\subsection{Baseline Models and Establishing a Baseline for Shower Separation}
 
-
-\subsubsection{Baseline Performance Comparison}
-
-The headline comparison uses the architectures defined in
-Section~\ref{sec:method_models}. A separate model was trained for each
-architecture and multiplicity using \(1{,}000{,}000\) selected events:
-\(800{,}000\) for training, \(100{,}000\) for validation and \(100{,}000\)
-for testing. Table~\ref{tab:results_baseline_architecture} summarises model
-size and observed training time.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\subsubsection{Baseline Architecture Comparison}
+\subsubsection{Baseline Architecture and Performance Comparison}
 
 The headline baseline comparison uses \(1{,}000{,}000\) selected events for
 each electron multiplicity: \(800{,}000\) training, \(100{,}000\) validation
 and \(100{,}000\) test events.
-Both architectures receive the same log-transformed ECal and trigger-pad-track
+Both architectures receive the same log-transformed ECal and \gls{tpad}-track
 features and use a hidden width of 128. The Transformer contains three
 pre-layer-normalised self-attention layers with four attention heads and a
 final layer normalisation. The GravNet model contains four neighbourhood
@@ -237,125 +199,57 @@ resulting model sizes and observed training times.
 As described in Section~\ref{sec:method_capacity_selection}, these models were
 selected as performance-oriented reference configurations rather than through
 an exhaustive capacity search. The comparison below therefore evaluates the
-implemented architectures, not an optimal accuracy--parameter or
-accuracy--latency frontier. In particular, the use of contemporary \gls{mlpf}
+implemented architectures, not necessarily an optimal accuracy-parameter or
+accuracy-latency frontier. Simply put, these hyperparameter choices were the best found for the scope of this thesis, and one extra block was given to the GravNet model since it has a lower parameter count per layer compared to the transformer. In particular, the use of contemporary \gls{mlpf}
 models as a qualitative scale reference does not imply matched capacity: the
-CMS particle-flow problem has different inputs, outputs and reconstruction
-scope. No pruning or other compression study was performed.
+CMS particle-flow problem has a substantially larger size of input, different inputs, outputs and reconstruction scope. No pruning or other sophisticated compression study was performed.
 
 
 The GravNet baseline has approximately \(36\,\%\) fewer trainable parameters
 and correspondingly smaller model weights and checkpoints. In these runs,
 however, this did not translate into shorter epochs: Transformer optimisation
 took approximately 38--40 minutes per epoch, compared with 47--50 minutes for
-GravNet. The learned neighbour search and aggregation are more expensive than
+GravNet both training on NVIDIA A100 \gls{gpu}s. The learned neighbour search and aggregation are more expensive than
 the parameter count alone suggests. This timing comparison remains
 descriptive rather than controlled because the Transformer used a batch size
-of 64 and GravNet used 32. As discussed in
-Section~\ref{sec:method_capacity_selection}, these are performance-oriented
-reference configurations rather than a capacity-optimised comparison.
+of 64 and GravNet used 32, though separate testing not presented here has not indicated that increasing the batch size of the GravNet to 64 would change this fact.
 
-Table~\ref{tab:results_baseline_performance} shows that both architectures
-reach very similar shower-assignment performance. The \(3e\) task is
-consistently harder than the \(2e\) task, independent of architecture. Energy
-weighting increases all four accuracies, which indicates that misassigned
-hits tend to carry less energy than correctly assigned hits. These headline
-trainer summaries retain the canonical labels; the permutation-aligned
-diagnostics begin in Section~\ref{sec:results_detailed_hit_assignment}.
+Table~\ref{tab:results_baseline_performance} compares the checkpoints selected
+by minimum validation loss on the held-out test sets. All assignment metrics
+use one optimal event-wide
+permutation of the predicted electron labels. Both architectures reach similar
+performance, while the \(3e\) task is consistently more difficult than the
+\(2e\) task. Energy weighting increases every accuracy, showing that the
+misassigned hits carry less reconstructed energy on average than the correctly
+assigned hits.
 
 \input{config/tables/results_baseline_performance}
 
-Because both models were evaluated on the same validation events, their
+Because both models were evaluated on the same test events, their
 event-wise results can be compared directly. Table~\ref{tab:results_baseline_paired}
-reports paired bootstrap intervals for this comparison. The Transformer has a
-\(0.223\)-percentage-point advantage in mean \(2e\) event accuracy and a
-\(0.445\)-percentage-point advantage for \(3e\). The corresponding
-energy-weighted advantages are \(0.203\) and \(0.510\) percentage points. All
-four intervals exclude zero. The large event samples therefore resolve a
-consistent Transformer advantage for these trained models, but its magnitude
-remains approximately half a percentage point or less. Moreover, the
+reports paired bootstrap intervals for this comparison. The Transformer has
+an advantage of \(0.417\) percentage points in mean \(2e\) event accuracy and
+\(0.850\) percentage points for \(3e\). The corresponding energy-weighted
+differences are \(0.505\) and \(1.048\) percentage points. All four intervals
+exclude zero. The large test samples therefore resolve a consistent
+Transformer advantage for these trained models, but its magnitude remains
+about one percentage point or less. Moreover, the
 confidence intervals describe finite-event uncertainty for fixed trained
-models; they do not include variation between random initialisations or
+models and it is important to underline that they do not include variation between random initialisations or
 training samples. The results support similar practical performance with a
-small advantage to the Transformer in this campaign, not a universal ranking
-of the two architectures.
+small advantage to the Transformer in this campaign, but this is not an exhaustive study and cannot with certainty be interpreted as an universal ranking of the two architectures.
 
 \input{config/tables/results_baseline_paired}
 
-Since the two baselines behave similarly and the Transformer gives the higher
-headline accuracy, the following detailed diagnostic plots use it as the
+Since the two baselines were observed to behave very similarly in the coming study, and the Transformer gives the higher
+headline accuracy, the following detailed diagnostics use it as the
 representative fixed-multiplicity model instead of duplicating every plot for
-GravNet. These diagnostics were produced from the earlier
-\(20{,}000\)-event development runs. They are retained to examine where
-assignment fails, while Tables~\ref{tab:results_baseline_performance}
-and~\ref{tab:results_baseline_paired} provide the headline comparison of the
-larger matched runs.
-
-\clearpage
+GravNet. They use the best Transformer checkpoints and the held-out
+\(100{,}000\)-event test sets from the same million-event campaigns.
 
 
 
-\subsection{Baseline Models}
 
-\subsubsection{Baseline Architecture Comparison}
-
-The headline baseline comparison uses \(1{,}000{,}000\) selected events for
-each electron multiplicity: \(800{,}000\) training, \(100{,}000\) validation
-and \(100{,}000\) test events.
-Both architectures receive the same log-transformed ECal and trigger-pad-track
-features and use a hidden width of 128. The Transformer contains three
-pre-layer-normalised self-attention layers with four attention heads and a
-final layer normalisation. The GravNet model contains four neighbourhood
-aggregation blocks, each using \(k=16\) neighbours, with batch normalisation
-between blocks. Table~\ref{tab:results_baseline_architecture} summarises the
-resulting model sizes and observed training times.
-
-\input{config/tables/results_baseline_architecture}
-
-The GravNet baseline has approximately \(36\,\%\) fewer trainable parameters
-and correspondingly smaller model weights and checkpoints. In these runs,
-however, this did not translate into shorter epochs: Transformer optimisation
-took approximately 38--40 minutes per epoch, compared with 47--50 minutes for
-GravNet. The learned neighbour search and aggregation are more expensive than
-the parameter count alone suggests. This timing comparison remains
-descriptive rather than controlled because the Transformer used a batch size
-of 64 and GravNet used 32.
-
-Table~\ref{tab:results_baseline_performance} shows that both architectures
-reach very similar shower-assignment performance. The \(3e\) task is
-consistently harder than the \(2e\) task, independent of architecture. Energy
-weighting increases all four accuracies, which indicates that misassigned
-hits tend to carry less energy than correctly assigned hits.
-
-\input{config/tables/results_baseline_performance}
-
-Because both models were evaluated on the same validation events, their
-event-wise results can be compared directly. Table~\ref{tab:results_baseline_paired}
-reports paired bootstrap intervals for this comparison. The Transformer has a
-\(0.223\)-percentage-point advantage in mean \(2e\) event accuracy and a
-\(0.445\)-percentage-point advantage for \(3e\). The corresponding
-energy-weighted advantages are \(0.203\) and \(0.510\) percentage points. All
-four intervals exclude zero. The large event samples therefore resolve a
-consistent Transformer advantage for these trained models, but its magnitude
-remains approximately half a percentage point or less. Moreover, the
-confidence intervals describe finite-event uncertainty for fixed trained
-models; they do not include variation between random initialisations or
-training samples. The results support similar practical performance with a
-small advantage to the Transformer in this campaign, not a universal ranking
-of the two architectures.
-
-\input{config/tables/results_baseline_paired}
-
-Since the two baselines behave similarly and the Transformer gives the higher
-headline accuracy, the following detailed diagnostic plots use it as the
-representative fixed-multiplicity model instead of duplicating every plot for
-GravNet. These diagnostics were produced from the earlier
-\(20{,}000\)-event development runs. They are retained to examine where
-assignment fails, while Tables~\ref{tab:results_baseline_performance}
-and~\ref{tab:results_baseline_paired} provide the headline comparison of the
-larger matched runs.
-
-\clearpage
 
 %\textbf{THIS SUBSECTION SHOULD BE CONCISE. IT WILL INCLUDE ACCURACY (NOT PERMUTATION INVARIANT) OVER EPOCHS AND ALSO A LOSS OVER EPOCHS FIGURE AND THESE FROM THE 3E TRANSFORMER BASELINE MODEL SINCE IT REPRESENTS THE SAME BEHAVIOUR AS ALL OTHER MODELS THEY ALL LOOK VERY SIMILAR. IF THE EPOCH ENDS BEFORE 15 EPOCHS THIS ALSO SHOWS THAT THE EARLY STOPPING WAS ACTIVATED FOR THE MODEL WITH PATIENCE OF 3 EPOCHS IF THE ACCURACY DOES NOT IMPROVE IN A MEANINGFUL STEP 3 TIMES IN A ROW. THE DISCUSSION AF THE RESULTS CAN STATE THAT THE MODELS APPARENTLY DOES NOT NEED SO MANY EVENTS TO LEARN THE HIT ASSIGNMENT AND ACCURACY STARTS HIGH AND THE GRAPH IS ALMOST HORIZONTALLY FLAT, THUS THE MINIMUM EPOCH WAS SET TO 5 AND THE MAXIMUM EPOCH WAS SET TO 15 AND PATIENCE WAS SET TO 3. IN DEVELOPMENT IT WAS FOUND AS A GENERAL RULE THAT 10 K EVENTS WAS ENOUGH AS A GENERAL RULE TO ACHIEVE PRELIMINARY RESULTS THAT REPRESENTED THE FINAL RESULTS QUITE WELL. REGARDING THE LOSS WE CAN SEE THAT IT IS DEFINITELY REDUCED ALONG THE EPOCHS, BUT WITH DIMINISHING RETURNS. THE READER SHOW HOWEVER NOTE THAT THE SCALE OF THE LOSS IS NOT VERY BIG SO THE REDUCTION OF LOSS ALONG EPOCHS IS NOT LARGE WE ARE TAKING ABOUT LOSS GAINS OF ABOUT 0.1 ALONG ALL THE EPOCHS THAT REPRESENTS 1/7 OF THE STARTING LOSS. WE SHOULD ALSO MENTION HERE SOMEWHERE THAT FOR THE SCOPE OF THIS THESIS AND THIS STUDY THERE WAS NOT ENOUGH TIME TO DIVE DEEP INTO FINDING OPTIMAL MODELS (THIS SHOULD HAVE BEEN MENTIONED SOMETIME BEFORE THIS SUBSECTION AS WELL. THE GENERAL STRATEGY WHEN DESIGNING AND TRAINING THE MODELS WAS TO START WITH A HIGH PARAMETER COUND AND GIVE THE MODELS A LOT OF MUSCLE, PROBABLY TOO MUCH MUSCLE, IN ORDER TO FIND A HIGH PERFORMANCE. THIS THESIS DOES NOT INCLUDE A SOPHISTICATED HYPERPARAMETER SWEEP AND IT DOES NOT ATTEMPT TO COMPRESS THE MODELS AND THE NUMBER OF PARAMETERS WHILE RETAINING ACCURACY TRYING TO FIND AN OPTIMAL SIZE THIS WAS OUT OF SCOPE FOR THIS MASTER THESIS. I DONT KNOW IF I SHOULD MENTION THIS BUT AS A REFERENCE THE SIZE OF THE MLPF ARCHITECTURE WAS LOOKED AT, SINCE THAT HAS SURELY UNDERGONE OPTIMIZATION BY A WHOLE TEAM OF RESEARCHERS AND IT HAS A MUCH MORE COMPLEX PROBLEM TO SOLVE SINCE THE INPUT SET FROM THE CMS DETECTOR IS MUCH MUCH LARGER) AND THIS MEANT THAT I FELT SATISFIED WITH THESE TRAINING PLOTS AND THAT THERE WAS NOT ENOUGH TIME TO TEST RUNNING THE MODELS FOR MANY MANY EPOCHS.  I FIND IT A BIT PECULIAR THAT THE LOSS OF THE VALIDATION SET IS LOWER THAN THE TRAINING SET FOR ALL LEVELS I DO NOT KNOW WHY THIS IS IT MIGHT BE SOMETHING THAT IS WRONG IF I AM NOT MISTAKEN BECAUSE IT FEELS NOT INTUITIVE SO I SHOULD COMMENT THAT. THE LOSS OF THE TRAIN AND THE VALIDATION DO FOLLOW EACH OTHERS TRENDS BUT THE VALIDATION SET WAS FOUND TO HAVE A LOWER LOSS GENERALLY. DO I MENTION THE CHOICE OF OPTIMIZER HERE OR SHOULD I HAVE DONE THAT EARLIER IN THE METHODOLOGY AND IN THAT CASE WHERE? I USE THE AdamW OPTIMIZER AND I SHOULD MOTIVATE WHY I USE THIS (THE MOTIVATION FOR THIS IS PROBABLY SIMILAR TO THE MOTIVATION FOR MY TRAINING STRATEGY: I WANT TO USE A GENERAL PURPOSE EFFECTIVE WAY TO FIND HIGH ACCURACY AND BEING HUMBLE THAT THE SCOPE OF MY THESIS CANNOT INCLUDE FINDING THE ABSOLUTELY OPTIMAL MODELS.}
 \subsubsection{Representative Training Behaviour}
@@ -408,57 +302,57 @@ dropout being active while training metrics are accumulated, but disabled for
 validation, which is evaluated once after each epoch with fixed parameters.
 Smaller \(10{,}000\)-event runs showed similar qualitative behaviour and were
 therefore useful for development, while all headline comparisons use the
-million-event campaigns.
+million-event campaigns to make sure the models have proper exposure to the input data.
 
 
 
-\clearpage
-\subsubsection{Hit Assignment Performance}
+
+\subsubsection{\gls{ecal} Hit Assignment Performance}
 \label{sec:results_detailed_hit_assignment}
 
-\textbf{THIS SUBSECTION SHOULD COVER THE OVERALL ACCURACIES AND PERFORMANCES OF THE BASELINE MODELS FOR THE PRINCIPAL TASK OF HIT ASSIGNMENTS (OR NODE ASSIGNMENTS AS IT IS CALLED GENERALLY IN MACHINE LEARNING). IT PRESENTS AN EVENT-AVERAGED (PERMUTATION INVARIANT) ACCURACY FOR THE 2E AND 3E MODELS THAT IS RELEVANT TO THE LDMX WHERE CAN SEE THAT THE DISTRIBUTION IS WIDE AND WHERE WE CAN SEE WHAT THE MOST COMMON EVENT WIDE ACCURACY PERCENTAGE IS AND WHERE WE SEE CLEARLY THAT THE 2E EVENTS ARE EASIER TO ASSIGN AND THAT THE 3E EVENTS ARE MORE DIFFICULT TO ASSIGN. WE PRESENT ALSO HIT CONFUSION MATRICES THAT SHOW **POOLED** HIT ACCURACIES AND ALSO 4X4 CONFUSION MATRICES THAT IMPLY THAT THE HIT ACCURACY SEEMS TO BE LOWER DEEPER INTO THE ECAL LAYERS (BUT ALSO THAT MOST HITS ARE FOUND IN THE FIRST 20 ECAL LAYERS SINCE THAT ACCURACY IS ABOUT THE SAME AS THE ACCURACY ACROSS ALL ECAL LAYERS). THE ECAL LAYERS 1-20 HAS BEEN CHOSEN SPECIFICALLY BECAUSE THESE ARE USED FOR THE TRIGGER-LEVEL ONLINE RECONSTRUCTION, BUT OF COURSE IT THIS SCENARIO THE LOWER GRANULARITY TRIGGER CELLS ARE USED INSTEAD OF THE FULL RESOLUTION CELLS THAT WE HAVE NOW. THE ECAL LAYER POOLED HIT CONFUSION MATRICES LEAD PERFECTLY INTO THE NEXT SUBSECTION WHERE WE SHOW ACCURACY ACROSS ECAL DEPTH}
+%\textbf{THIS SUBSECTION SHOULD COVER THE OVERALL ACCURACIES AND PERFORMANCES OF THE BASELINE MODELS FOR THE PRINCIPAL TASK OF HIT ASSIGNMENTS (OR NODE ASSIGNMENTS AS IT IS CALLED GENERALLY IN MACHINE LEARNING). IT PRESENTS AN EVENT-AVERAGED (PERMUTATION INVARIANT) ACCURACY FOR THE 2E AND 3E MODELS THAT IS RELEVANT TO THE LDMX WHERE CAN SEE THAT THE DISTRIBUTION IS WIDE AND WHERE WE CAN SEE WHAT THE MOST COMMON EVENT WIDE ACCURACY PERCENTAGE IS AND WHERE WE SEE CLEARLY THAT THE 2E EVENTS ARE EASIER TO ASSIGN AND THAT THE 3E EVENTS ARE MORE DIFFICULT TO ASSIGN. WE PRESENT ALSO HIT CONFUSION MATRICES THAT SHOW **POOLED** HIT ACCURACIES AND ALSO 4X4 CONFUSION MATRICES THAT IMPLY THAT THE HIT ACCURACY SEEMS TO BE LOWER DEEPER INTO THE ECAL LAYERS (BUT ALSO THAT MOST HITS ARE FOUND IN THE FIRST 20 ECAL LAYERS SINCE THAT ACCURACY IS ABOUT THE SAME AS THE ACCURACY ACROSS ALL ECAL LAYERS). THE ECAL LAYERS 1-20 HAS BEEN CHOSEN SPECIFICALLY BECAUSE THESE ARE USED FOR THE TRIGGER-LEVEL ONLINE RECONSTRUCTION, BUT OF COURSE IT THIS SCENARIO THE LOWER GRANULARITY TRIGGER CELLS ARE USED INSTEAD OF THE FULL RESOLUTION CELLS THAT WE HAVE NOW. THE ECAL LAYER POOLED HIT CONFUSION MATRICES LEAD PERFECTLY INTO THE NEXT SUBSECTION WHERE WE SHOW ACCURACY ACROSS ECAL DEPTH}
 
 The event-wise distributions in Figure~\ref{fig:results_event_accuracy}
 show that reconstruction quality varies substantially between events. The
-median permutation-aligned event hit accuracy is \(0.854\) for \(2e\) and
-\(0.757\) for \(3e\) events. The corresponding event means are \(0.829\) and
-\(0.744\), while the pooled hit accuracies are \(0.833\) and \(0.748\).
-The additional electron therefore makes the assignment task more difficult,
-but the broad distributions also show that electron multiplicity alone does
-not determine whether an event is reconstructed well.
+median (permutation-aligned) event hit accuracy is \(0.859\) for \(2e\) and
+\(0.758\) for \(3e\) events. The corresponding event means are \(0.837\) and
+\(0.744\), while the pooled hit accuracies are \(0.842\) and \(0.748\) (Figure \ref{fig:results_confusion}).
+The additional electron therefore clearly makes the assignment task more difficult,
+but the broad distributions also show that electron multiplicity is not the sole factor for whether an event is reconstructed well or not.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.98\linewidth]{config/fig/results/event_accuracy_distribution.png}
-    \caption{Distribution of permutation-aligned event hit accuracy for
-    \(3{,}000\) \(2e\) and \(3{,}000\) \(3e\) validation events. Every event
+    \caption{Distribution of permutation-aligned event hit accuracy for the
+    \(100{,}000\) \(2e\) and \(100{,}000\) \(3e\) test events. Every event
     contributes equally to the histogram and box-plot summary. Dashed lines
     indicate the sample medians.}
     \label{fig:results_event_accuracy}
 \end{figure}
 
-Figure~\ref{fig:results_confusion} separates the same result by true and
-predicted electron group. For \(2e\), the two groups have similar overall
-recall. For \(3e\), the middle canonical group is confused more frequently
-with both neighbouring groups than either outer group. The decrease in the
-last twelve ECal layers is visible for both multiplicities: pooled accuracy is
-\(0.693\) for \(2e\) and \(0.556\) for \(3e\), compared with \(0.836\) and
-\(0.751\) in layers 1--20. The last-layer group contains only about \(1.5\,\%\)
-of the hits in each sample and should not be given the same statistical weight
-as the all-layer result.
+The confusion matrices in figure~\ref{fig:results_confusion} show \textit{pooled} hit accuracy, which means we are inspecting the model performance for predicting individual hits rather than whole events, and the accuracy is still reported as permutation invariant where the global swap that yielded the highest accuracy classifying the electron into groups is considered. The predicted group is still reported in the original canonical ordering and from the $3e$ events it is apparent that the performance is weaker in predicting the origin electron with the label $2$. This is not a coincidence as this electron shower is the one with a centroid in between the other two in the $y$-direction. This explains why the accuracy is lower for the hits that belong to this shower, it is placed in between two showers and it should thus have more overlap and hits that are in between the showers have higher ambiguity. The confusion also show that for incorrect label predictions, the origin electron label is most likely to be confused with the nearest electron shower. The confusion matrices implies that closeness of the showers makes them harder to separate, this will be studied in subsequent parts. 
+
+The pooled hit accuracy across all layers of the \gls{ecal} does not tell the whole story, as it is evident that there is a decrease in the last twelve ECal layers, visible for both multiplicities. The pooled accuracy is \(0.705\) for \(2e\) and
+\(0.565\) for \(3e\), compared with \(0.844\) and \(0.751\) in layers 1--20, and these are very close to the accuracy across all layers, mainly because most hits occur in this grouping.
+Layers 21--32 contain only \(1.45\,\%\) and \(1.51\,\%\) of the respective
+test-set hits, so their lower accuracies does not have the same
+statistical weight as the all-layer result, but there are enough to state that the models perform worse in the layers furthest in the \gls{ecal}. This is likely due to the fact that the hit assignment becomes more difficult further along the beam direction where electron showers have developed and widened increasing their overlap and increasing ambiguity.
+Layers 1--20 were chosen since they are also the depth used by the trigger-level ECal readout, although that system uses coarser
+trigger cells rather than the full-resolution hits evaluated here in this offline reconstruction analysis. These results lead to the next subsection where we investigate performance along shower depth further.  
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[height=0.76\textheight,keepaspectratio]{config/fig/results/hit_confusion_matrices.png}
-    \caption{\textbf{WE SHOULD HAVE AN ENERGY-WEIGHTED CONFUSION MATRIX CORRESPONDING TO THIS AS WELL?} Row-normalized hit confusion matrices after one event-wide label
-    alignment. Rows are true groups and columns are predicted groups. The top
+    \caption{
+    %\textbf{WE SHOULD HAVE AN ENERGY-WEIGHTED CONFUSION MATRIX CORRESPONDING TO THIS AS WELL?} 
+    Row-normalised hit confusion matrices after one event-wide label alignment. Rows are true groups and columns are predicted groups. The top
     row uses all ECal layers, the middle row uses layers 1--20 and the bottom
     row uses layers 21--32. Percentages are conditional on the true group, and
-    counts are pooled over validation hits.}
+    counts are pooled over test-set hits.}
     \label{fig:results_confusion}
 \end{figure}
 
-\clearpage
+
 \subsubsection{Performance Across the Electron Shower Depth}
 
 Figures~\ref{fig:results_layer_hit_accuracy}
@@ -467,7 +361,7 @@ by ECal layer and therefore along the depth of the electron showers. The mean
 hit accuracy decreases with ECal depth for both event
 multiplicities, with the \(3e\) sample remaining below the \(2e\) sample. The
 late-layer fluctuations and confidence intervals should be interpreted
-cautiously because relatively few event-layer observations remain there.
+with some caution because fewer event-layer observations remain there. From the figure one can see that at this depth the model is almost always completely accurate $100\%$ within a layer or completely inaccurate $0\%$ within a layer where the rectangular bins are filled at the top or bottom of the figure. This pattern arises also due to the reason that there are few hits at this depth and most often there are only single hits causing this pattern where there are empty rectangular bins in between. For the $2e$ plot there is a horizontal line of rectangular bins at $50\%$ and for the $3e$ plot there are horizontal lines of rectangular bins at $33\%$ and $67\%$ caused by the same combinatorics. 
 
 \begin{figure}[htbp]
     \centering
@@ -475,10 +369,12 @@ cautiously because relatively few event-layer observations remain there.
     \vspace{0.5em}
     \includegraphics[width=0.98\linewidth]{config/fig/results/hit_accuracy_by_layer_3e.png}
     \caption{Distribution of permutation-aligned event-layer hit accuracy for
-    \(2e\) events (top) and \(3e\) events (bottom). Color shows the number of
+    \(2e\) events (top) and \(3e\) events (bottom). Colour shows the number of
     event-layer observations in each rectangular bin on a logarithmic scale.
-    White points show event-balanced means with \(95\,\%\) bootstrap confidence
-    intervals.}
+    The colour scale starts at one observation. White points show
+    event-balanced means with \(95\,\%\) confidence intervals. The lower
+    horizontal axes give the ECal layer number, while the upper axes give the
+    corresponding physical ECal depth \(z\) in millimetres.}
     \label{fig:results_layer_hit_accuracy}
 \end{figure}
 
@@ -487,31 +383,33 @@ cautiously because relatively few event-layer observations remain there.
     \includegraphics[width=0.98\linewidth]{config/fig/results/energy_weighted_accuracy_by_layer_2e.png}
     \vspace{0.5em}
     \includegraphics[width=0.98\linewidth]{config/fig/results/energy_weighted_accuracy_by_layer_3e.png}
-    \caption{Distribution of raw-energy-weighted event-layer accuracy for
+    \caption{Distribution of raw-energy-weighted permutation-aligned accuracy at event-layer for
     \(2e\) events (top) and \(3e\) events (bottom), using the same event-wide
-    label alignment as Figure~\ref{fig:results_layer_hit_accuracy}. White
-    points show event-balanced means with \(95\,\%\) bootstrap confidence
-    intervals.}
+    label alignment as Figure~\ref{fig:results_layer_hit_accuracy}. The colour
+    scale starts at one observation. White points show event-balanced means
+    with \(95\,\%\) confidence intervals. The lower horizontal axes give the
+    ECal layer number, while the upper axes give the corresponding physical
+    ECal depth \(z\) in millimetres.}
     \label{fig:results_layer_energy_accuracy}
 \end{figure}
 
-Over all layers, the energy-weighted accuracies are \(0.888\) for \(2e\) and
-\(0.825\) for \(3e\), both higher than their corresponding unweighted hit
-accuracies. Within this development sample, incorrectly assigned hits
+Over all layers, the pooled and \textit{energy-weighted} accuracies are \(0.898\) for
+\(2e\) and \(0.832\) for \(3e\), both higher than their corresponding
+unweighted hit accuracies. Within the test samples, incorrectly assigned hits
 therefore carry less reconstructed energy on average than correctly assigned
 hits. The depth dependence nevertheless remains, showing that energy weighting
-does not remove the loss of separation quality in the later shower region.
+does not remove the loss of separation quality in the later shower region. The rectangular bin pattern explained earlier is partly lost here since deposited energy are float values, smearing the accuracy values across the vertical direction so most bins are filled. 
 
-\clearpage
+
 \subsubsection{Dependence on Shower Separation}
 
 The following plots relate event accuracy to the truth-assisted shower
 geometry defined in Section~\ref{sec:method_evaluation}.
 Figure~\ref{fig:results_moliere_separation} uses the smallest pairwise
 distance between the energy-fraction-weighted truth-shower centroids. Dividing by the
-reference Moli\`ere radius \(R_{\mathrm{M}}=25\,\mathrm{mm}\) supplies an
+reference Moli\`ere radius \(R_{\mathrm{M}}=25\,\mathrm{mm}\) supplies some
 interpretable detector scale, but the line at one Moli\`ere radius is not a hard
-resolution boundary.
+resolution boundary. For these plots presented, the $2e$ plots have only empty rectangular bins below $50\%$ since the global swap of the permutation invariant accuracy guaranties that a model guess cannot be made worse than this (imagine a situation where all hits were assigned the same label), and the $3e$ plots have for the same reason only empty rectangular bins below $33\%$. 
 
 \begin{figure}[htbp]
     \centering
@@ -520,8 +418,10 @@ resolution boundary.
     minimum energy-fraction-weighted truth-centroid separation in units of
     \(R_{\mathrm{M}}=25\,\mathrm{mm}\), for \(2e\) events (top) and \(3e\)
     events (bottom). White points show equal-population bin means with
-    \(95\,\%\) bootstrap confidence intervals. The red line marks one Moli\`ere
-    radius as an interpretive scale.}
+    \(95\,\%\) confidence intervals. The red line marks one Moli\`ere
+    radius as an interpretive scale. The lower horizontal axes show
+    \(d_{\min}/R_{\mathrm{M}}\), and the upper axes show the corresponding
+    centroid distance \(d_{\min}\) in millimetres.}
     \label{fig:results_moliere_separation}
 \end{figure}
 
@@ -532,42 +432,54 @@ distance also shows that centroid separation is not a complete description of
 event difficulty.
 
 Figure~\ref{fig:results_width_separation} instead divides the minimum centroid
-distance by the combined energy-fraction-weighted root-mean-square widths of
-the two showers. This produces a dimensionless overlap measure and separates the
-all-layer geometry from the geometry in the first three layers.
+distance by the combined energy-fraction-weighted \gls{rms} widths of
+the two showers, attempting to also capture the shower spread as a factor that factors prediction difficulty. This produces a dimensionless overlap measure in which values below unity indicate that the centroid distance is smaller than the combined transverse shower-width scale.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.99\linewidth]{config/fig/results/width_normalized_separation.png}
     \caption{Permutation-aligned event hit accuracy as a function of minimum
     energy-fraction-weighted truth-centroid distance divided by combined
-    shower width. The
-    left column uses all ECal layers and the right column uses layers 1--3;
-    \(2e\) events are shown above \(3e\) events. The horizontal axes are
-    logarithmic.}
+    shower width, using all ECal layers. Results for \(2e\) events are shown
+    above those for \(3e\) events. White points show equal-population bin means
+    with \(95\,\%\) confidence intervals.}
     \label{fig:results_width_separation}
 \end{figure}
 
-The all-layer profiles again show increasing accuracy with separation. The
-first-three-layer profiles retain a weaker trend, indicating that the initial
-shower geometry contains useful information but does not fully determine the
-separability of the developed shower.
+The profiles again show increasing accuracy with separation. The broad
+vertical distributions remain important: even after normalising by shower
+width, events with similar geometric separation can have substantially
+different assignment accuracy. The observed relation is therefore treated still as
+a correlation with overlap, not as a fitted functional law. Generally it also seems that the $3e$ events have a broader vertical distribution compared to the $2e$ events.
 
-\clearpage
-\subsubsection{Confidence and Selective Performance}
 
-The negative relation between prediction entropy and event accuracy in
-Figure~\ref{fig:results_entropy} shows that the model is generally less
-certain on events that it reconstructs poorly. Mean normalised entropy can
-therefore help rank difficult events, although this correlation does not make
-it a complete or independently calibrated measure of reconstruction quality.
+\subsubsection{Confidence, Entropy and Selective Performance}
+
+%This perspective should be brought up! Since we are introducing ML models compared to rule-based ones. 
+% I wrote a lot myself here and the flow of the text is not great and it needs to be formalized and improved upon, assist here. 
+Next up metrics that are rather unique for \gls{ml}-based models, compared to rule-based ones, shall be investigated and it will be explored how these could potentially be exploited, if one desires to artificially boost accuracy or if one is OK with omitting some hits. Confidence and entropy are based on the logit outputs of the baseline models. The logit outputs are bounded between $p \, \in [0,1]$ and they provide a metric that could be interpreted as a probability, though these two does not have a perfect correspondence and they should not be confused with each other. \textit{Confidence} in Figure~\ref{fig:results_confidence} is defined as the mean max-softmax confidence, i.e the largest logit value in the vector that holds the logits corresponding to each electron label, and then calculating the mean over the whole event. The plot shows that high mean hit confidence is
+associated with high event accuracy, while
+Figure~\ref{fig:results_entropy} shows the complementary negative relation
+between normalised prediction entropy and accuracy. Entropy is perhaps the more interesting metric of ''confidence'' as it captures the spread of logits of the different labels. Both summaries can
+therefore rank difficult events, although neither relation by itself
+establishes probability calibration. One also has to be somewhat careful with these metrics as they compare accuracy against a model derived metric, a metric only indirectly based on the actual properties of the event. This shown correlation is perhaps not surprising, if this pattern was not apparent the models would not be able to make successful predictions these go hand in hand, but these metrics could be interesting to explore deeper in how they could be exploited if a practical application arises. 
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.98\linewidth]{config/fig/results/confidence_vs_event_accuracy.png}
+    \caption{Mean hit confidence against permutation-aligned event hit
+    accuracy for \(2e\) events (left) and \(3e\) events (right). Colour shows
+    event density on a logarithmic scale beginning at one event. White points
+    show equal-population bin means with \(95\,\%\) confidence intervals.}
+    \label{fig:results_confidence}
+\end{figure}
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.96\linewidth,height=0.72\textheight,keepaspectratio]{config/fig/results/entropy_vs_event_accuracy.png}
     \caption{Mean normalized prediction entropy against permutation-aligned
     event hit accuracy for \(2e\) events (top) and \(3e\) events (bottom).
-    White points show equal-population bin means with \(95\,\%\) bootstrap
+    White points show equal-population bin means with \(95\,\%\)
     confidence intervals.}
     \label{fig:results_entropy}
 \end{figure}
@@ -576,7 +488,7 @@ Figure~\ref{fig:results_accuracy_coverage} makes the corresponding selection
 trade-off explicit. Retaining only high-confidence hits increases their
 accuracy, but reduces hit coverage. The retained energy fraction decreases
 more slowly than the retained hit fraction, indicating that many of the first
-hits removed carry relatively little reconstructed energy. Selecting complete
+hits removed carry less reconstructed energy. Selecting complete
 events by confidence gives a smaller but consistent increase in mean event
 accuracy as coverage is reduced.
 
@@ -598,6 +510,7 @@ layers, where the per-layer estimate is least stable. Agreement between the
 two layer means does not by itself establish hit-level probability
 calibration.
 
+% Remove? Why / why not?
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.96\linewidth]{config/fig/results/confidence_accuracy_by_layer.png}
@@ -608,66 +521,64 @@ calibration.
     \label{fig:results_layer_confidence}
 \end{figure}
 
-\clearpage
+
 \subsubsection{Trigger-Pad Ablation}
 
-\textbf{THIS SUBSECTION SHOULD COVER TRIGGER-PAD ABLATION-RELATED RESULTS AND DISCUSS IF THE BASELINE MODELS ARE ABLE TO SQUEEZE SOMETHING OUT OF THE TPAD INFORMATION OR NOT}
-
-Figure~\ref{fig:results_tpad_ablation} removes trigger-pad-track tokens at
+% There will be a \gls{tpad} ablation discussion at the end with a summarizing discussion that discusses the value of the trigger pad in the hit assignemnt task and the electron count tast. This subsection should only cover the hit assignment task and should not discuss it too deeply.
+Figure~\ref{fig:results_tpad_ablation} removes \gls{tpad}-track tokens at
 inference time from one trained \(3e\) \texttt{ECalTpadTransformer}. The
 reference and ablated event accuracies are almost identical. Across the
 \(3{,}000\) validation events, the pooled hit-accuracy gain from retaining the
-trigger-pad inputs is \(1.26\times10^{-4}\), the mean event-accuracy gain is
+\gls{tpad} inputs is \(1.26\times10^{-4}\), the mean event-accuracy gain is
 \(1.32\times10^{-4}\), and the median event-accuracy gain is zero.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.98\linewidth]{config/fig/results/tpad_ablation_3e.png}
-    \caption{\textbf{THIS FIG SUCKS I WILL REPLACE}Paired inference-time ablation of trigger-pad-track tokens for a
+    \caption{\textbf{THIS FIG SUCKS I WILL REPLACE}Paired inference-time ablation of \gls{tpad}-track tokens for a
     trained \(3e\) \texttt{ECalTpadTransformer} on \(3{,}000\) validation
     events. The upper panels compare event accuracy with and without the
-    trigger-pad inputs. The lower panels divide the comparison by completeness
-    and observed trigger-pad multiplicity.}
+    \gls{tpad} inputs. The lower panels divide the comparison by completeness
+    and observed \gls{tpad} multiplicity.}
     \label{fig:results_tpad_ablation}
 \end{figure}
 
-For this trained model and validation sample, the available trigger-pad inputs
+For this trained model and validation sample, the available \gls{tpad} inputs
 therefore have negligible influence on fixed-multiplicity hit assignment. The
 ablation removes tokens from an already trained model and does not replace a
 controlled comparison between separately trained ECal-only and
-ECal-plus-trigger-pad models. More importantly, the result is specific to a
+ECal-plus-\gls{tpad} models. More importantly, the result is specific to a
 task for which the electron multiplicity is already fixed. It does not imply
-that trigger-pad information is uninformative when the model must also infer
+that \gls{tpad} information is uninformative when the model must also infer
 the number of electrons in an event.
 
-\clearpage
-\subsection{MLPF-Inspired Slot Model}
 
-\subsubsection{MLPF-Inspired Contributor-Set Reconstruction}
+\subsection{MLPF-Inspired Multi-Task Slot Model}
+
+\subsubsection{Multi-Task Reconstruction Performance}
 
 The experimental contributor-set slot model extends the fixed-multiplicity
 assignment problem to a particle-flow-like multi-task setting. It was trained
-on \(50{,}000\) \(2e\) and \(50{,}000\) \(3e\) events and evaluated here using
-the best checkpoint, selected at epoch 14. The backbone has hidden width 192,
-three pre-layer-normalised Transformer layers and eight attention heads,
-corresponding to approximately \(1.16\) million trainable parameters. The
-test set contains \(10{,}000\) events and \(3{,}025{,}349\) ECal hits.
+on \(500{,}000\) \(2e\) and \(500{,}000\) \(3e\) events. The combined sample
+was divided into \(800{,}000\) training, \(100{,}000\) validation and
+\(100{,}000\) test events. With canonical ordering, $2e$ has roughly an equal distribution of \gls{ecal} hits with labels 1 and $3e$ events has also roughly and equal distribution of hits labels 1, 2 and 3. This means that the dataset has a lower number of \gls{ecal} hits with the label 3 and it means that all the hits with that specific label comes from a $3e$ event, while the hits with label 1 and 2 is mixed from both $2e$ and $3e$ events. Results use the epoch-15 checkpoint selected by
+minimum validation loss. The
+backbone has hidden width 192, three pre-layer-normalised Transformer layers
+and eight attention heads (increased from 4 in the baseline model), corresponding to approximately \(1.16\) million
+trainable parameters. The test set contains \(30{,}079{,}515\) ECal hits.
 
-The model predicts three electron-slot validity scores for each event and a
+The model outputs logits in pre-determined vector sizes, and loss is based on these float values and the reconstructed metrics are based on a post-processing assessment based on these, thus yielding a ''slot based design'' inspired by the \gls{mlpf} model. The model predicts three electron-slot validity scores for each event and a
 contributor-set distribution and energy fractions for each hit. The electron
-count is derived from the valid slots; it is not produced by a separate count
-head. Similarly, the dominant-origin label is derived from the predicted
-fractions. This post-processing keeps the reported quantities consistent with
-the model's underlying set-valued prediction.
+count is derived from the valid slots (note that it is not produced by a separate count head as it was with the baseline model). Similarly, the dominant-origin label is derived from the predicted fractions. This post-processing keeps the reported quantities consistent with the model's underlying set-valued prediction. Table~\ref{tab:results_contributor_performance} summarises the native multi-task outputs.
 
 \input{config/tables/results_contributor_performance}
 
 Figure~\ref{fig:results_contributor_set_confusion} resolves the exact
 contributor-set task. Pure one-electron contributions dominate the data and
-are generally reconstructed more reliably than mixed sets. The overall exact
-set accuracy is \(72.39\,\%\), so this is substantially more demanding than
-electron counting. In particular, a contributor-set error can occur even when
-the predicted dominant origin and the event electron count remain correct.
+are generally reconstructed more reliably than mixed sets, but among them the hits with label 2 has the lowest accuracy due to the same effect discussed in \ref{sec:results_detailed_hit_assignment} and about 1/3 of these hits should come from a $3e$ event. The overall exact
+set accuracy is \(72.41\,\%\), so this is substantially more demanding than
+electron counting. 
+A contributor-set error can still occur when the predicted dominant origin and the event electron count remain correct. The model performs the worst in predicting mixed hits with labels $1 + 3$, which has a geometric interpretation as these showers are in mean the furthest away, according to the canonical ordering. 
 
 \begin{figure}[htbp]
     \centering
@@ -680,11 +591,11 @@ the predicted dominant origin and the event electron count remain correct.
 \end{figure}
 
 Figure~\ref{fig:results_contributor_hit_tasks} shows two useful reductions of
-the same predictions. Dominant-origin accuracy reaches \(77.09\,\%\), which is
-comparable in scale to the fixed-multiplicity \(3e\) baseline despite the
-additional event-count and fraction tasks. Mixed-hit detection reaches
-\(64.69\,\%\) recall but only \(46.49\,\%\) precision, giving an \(F_1\) score
-of \(0.541\). The model therefore identifies a majority of truth-mixed hits but
+the same predictions. The native dominant-origin accuracy, including the
+noise class and without an event-wise label permutation, is \(77.04\,\%\).
+Mixed-hit detection reaches \(64.41\,\%\) recall and \(48.08\,\%\) precision,
+giving an \(F_1\) score of \(0.551\). The model therefore identifies a majority
+of truth-mixed hits but
 also labels a sizeable number of pure hits as mixed. This task should not be
 summarised by ordinary accuracy alone because pure hits are much more common.
 
@@ -699,7 +610,7 @@ summarised by ordinary accuracy alone because pure hits are much more common.
 \end{figure}
 
 Applying the predicted slot-validity mask before normalising the energy
-fractions reduces their mean absolute error from \(0.144\) to \(0.115\). This
+fractions reduces their mean absolute error from \(0.141\) to \(0.115\). This
 improvement illustrates one purpose of coupling the tasks: the event-level
 validity prediction constrains which electron fractions are physically
 available during post-processing. Nevertheless, the contributor-set and
@@ -708,46 +619,114 @@ weakness of this preliminary model.
 
 
 \clearpage
+\subsubsection{Comparison with Fixed-Multiplicity Hit Assignment}
+
+For a direct comparison with the principal baseline task, the contributor
+model's dominant-origin predictions were separated by true event multiplicity,
+truth-noise hits were excluded, and the three slot labels were aligned once per
+event. Table~\ref{tab:results_contributor_baseline_comparison} shows that the
+resulting accuracies are close to those of the fixed-multiplicity Transformer.
+For \(2e\), the pooled hit accuracies differ by \(0.07\) percentage points;
+for \(3e\), they differ by \(0.45\) percentage points. The energy-weighted
+differences are similarly small. The comparison is descriptive rather than
+paired because the mixed-multiplicity model and the baselines use different
+held-out event selections.
+
+\input{config/tables/results_contributor_baseline_comparison}
+
+Figure~\ref{fig:results_contributor_event_accuracy} shows that this agreement
+is not limited to a pooled average: the event-accuracy distributions retain the
+same broad shape and the same reduction from \(2e\) to \(3e\) seen for the
+baseline Transformer. The median aligned event accuracy is \(0.858\) for
+\(2e\) and \(0.754\) for \(3e\), compared with \(0.859\) and \(0.758\) for
+the fixed-multiplicity models.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.98\linewidth]{config/fig/results/contributor_event_accuracy_distribution.png}
+    \caption{Permutation-aligned dominant-origin event accuracy for the
+    contributor model on the \(49{,}934\) \(2e\) events and \(50{,}066\)
+    \(3e\) events in its test set. Truth-noise hits are excluded. Every event
+    contributes equally to the histogram and box-plot summary.}
+    \label{fig:results_contributor_event_accuracy}
+\end{figure}
+
+The dependence on width-normalised truth-shower separation in
+Figure~\ref{fig:results_contributor_width_separation} also follows the baseline
+pattern: mean accuracy rises as the showers become more distinct, but a broad
+spread remains at fixed separation. Thus, the added validity,
+contributor-set and fraction objectives do not remove the overlap dependence,
+yet they preserve approximately the same dominant-origin performance while
+supporting the additional reconstruction outputs.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.99\linewidth]{config/fig/results/contributor_width_normalized_separation.png}
+    \caption{Permutation-aligned contributor-model dominant-origin accuracy
+    as a function of the minimum truth-centroid distance divided by combined
+    shower width, for \(2e\) events (top) and \(3e\) events (bottom). White
+    points show equal-population bin means with \(95\,\%\) confidence
+    intervals. Truth-noise hits are excluded.}
+    \label{fig:results_contributor_width_separation}
+\end{figure}
+
+
 \subsubsection{Electron Counting and the Contribution of Trigger-Pad Information}
 
-SKA DISKUTERA ELECTRON COUNTING BÄTTRE
-
 Electron counting is the strongest result of the contributor-set model. The
-derived count is correct for \(99.79\,\%\) of test events, with similar
-performance for true \(2e\) and \(3e\) samples. Table~\ref{tab:results_tpad_count}
-compares this result with both an inference-time removal of the trigger-pad
-tokens and a direct heuristic that equates observed trigger-pad multiplicity
-with electron count.
+derived count is correct for \(99.983\,\%\) of the \(100{,}000\) test events
+%: \(49{,}931\) of \(49{,}934\) true \(2e\) events and \(50{,}052\) of \(50{,}066\) true \(3e\) events. As shown in
+. Figure~\ref{fig:results_count_confusion}, errors occur in both directions but
+are rare. This result should be interpreted within the restricted
+scope of the experiment. The model is evaluated only on \(2e\) and \(3e\)
+events and it should be recognzied that this is a simpler task. The model essentially solves a binary multiplicity distinction through its three
+slot-validity predictions and it has not been trained to count an unrestricted range of incident electrons, as compared to the \gls{tpad} for example.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.72\linewidth]{config/fig/results/contributor_count_neural_1m.png}
+    \caption{Electron count derived from the contributor model's predicted
+    slot-validity mask on the \(100{,}000\)-event test set. The model receives
+    both ECal and \gls{tpad} inputs. Rows are normalized within the true
+    electron count; cell annotations show the event count and row percentage.}
+    \label{fig:results_count_confusion}
+\end{figure}
+
+The raw \gls{tpad} multiplicity in
+Figure~\ref{fig:results_tpad_multiplicity} provides detector context rather
+than a competing trained classifier. Its disagreement with the true electron count is strongly asymmetric and almost every mismatch is an undercount,
+while there are som spurious overcounts. This is consistent with the
+conservative \gls{tpad} track construction, for which an incident electron
+may fail to produce a separate reconstructed candidate when signals are
+missing or merged. Direct token-count equality therefore reaches \(79.9\,\%\)
+over the balanced \(2e/3e\) sample, but it is not equivalent to the neural
+task. The neural model may combine the ECal shower pattern with \gls{tpad}
+positions, photoelectron measurements and multiplicity, and it only has to
+distinguish \(2e\) from \(3e\). Its much higher accuracy should therefore
+not be read as an apples-to-apples improvement over a stand-alone \gls{tpad} counting algorithm, but it does show promise to explore the electron counting assignment further in future work.
+
+The contribution of \gls{tpad} information is instead tested by removing its
+tokens from the same trained network at inference time.
+Table~\ref{tab:results_tpad_count} reports this paired companion study using
+the earlier \(100{,}000\)-event development model and its \(10{,}000\)-event
+test set.
 
 \input{config/tables/results_tpad_count}
 
 The paired ablation reduces overall count accuracy by \(1.64\) percentage
 points, with a \(95\,\%\) event-bootstrap interval of
 \([1.39,1.89]\) percentage points. Almost the entire effect occurs in true
-\(3e\) events, for which removing trigger-pad information reduces accuracy by
+\(3e\) events, for which removing \gls{tpad} information reduces accuracy by
 \(3.25\) percentage points. The interval excludes zero, providing evidence
-that this trained network uses the trigger-pad input for the variable-count
+that this trained network uses the \gls{tpad} input for the variable-count
 task.
-
-% LÄGG IN HÄR
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.98\linewidth]{config/fig/results/contributor_count_neural_vs_tpad_heuristic.png}
-    \caption{Row-normalised electron-count confusion matrices on the common
-    test events. Left: count derived from the contributor model's slot-validity
-    predictions using ECal and trigger-pad inputs. Right: direct trigger-pad
-    multiplicity heuristic. Counts and row percentages are shown in each
-    cell.}
-    \label{fig:results_count_confusions}
-\end{figure}
 
 Together with the fixed-count ablation in
 Figure~\ref{fig:results_tpad_ablation}, these results show a task-dependent
-role for trigger-pad information: it has negligible measured effect on the
+role for \gls{tpad} information: it has negligible measured effect on the
 baseline's hit assignment when multiplicity is given, but a clear effect when
 the contributor model must infer multiplicity. The present ablation still
-introduces a distribution shift because trigger-pad inputs are removed only at
+introduces a distribution shift because \gls{tpad} inputs are removed only at
 inference time. A separately trained ECal-only contributor model is needed to
 complete the controlled architecture comparison and is treated as follow-up
 work rather than folded into the current estimate.

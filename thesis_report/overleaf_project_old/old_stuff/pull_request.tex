@@ -1,0 +1,59 @@
+\subsection{\textbf{WILL REMOVE THIS:} LDMX-SW pull request \#2032
+ - \textit{Fix origin ID handling in OverlayProducer}}
+
+\label{app:origin-id-pr}
+
+This appendix summarizes the code changes introduced in pull request
+\cite{petren2026-ldmx-origin-id-pr} that got merged into \gls{ldmxsw}. The purpose of the changes was to preserve
+the \texttt{origin\_id} information in overlayed simulated calorimeter hits, while
+keeping the new bitwise track-ID encoding introduced in \texttt{ldmx-sw} separate
+from the origin labels used for downstream truth-level analysis. The origin labels were necessary truth labels to extract from simulations for the scope of this thesis.
+
+The pull request modifies two files:
+\begin{itemize}
+    \item \texttt{Recon/src/Recon/OverlayProducer.cxx}
+    \item \texttt{SimCore/src/SimCore/Event/SimCalorimeterHit.cxx}
+\end{itemize}
+
+\subsubsection{Changes in \texttt{OverlayProducer.cxx}}
+
+The main change in \texttt{OverlayProducer.cxx} is that the overlay-event index is
+now taken directly from the loop variable \texttt{i\_ev}, and the corresponding
+\texttt{origin\_id} value is propagated when adding calorimeter hit contributions.
+A guard was also added to prevent more than seven overlay events, since the
+bitwise track-ID encoding reserves three bits for the overlay-event index.
+
+\begin{lstlisting}[language=C++, caption={Excerpt of the origin-ID handling change in \texttt{OverlayProducer.cxx}.}, label={lst:overlay-origin-id}]
+if (i_ev + 1 > 7) {
+  ldmx_log(error) << "Too many overlay events! Maximum events that can "
+                     "be overlayed is 7.";
+  return;
+}
+
+...
+
+this_coll_hit_map[overlay_hit_id].addContrib(
+    contrib.incident_id_, contrib.track_id_, contrib.pdg_code_,
+    contrib.edep_, contrib.time_ + time_offset,
+    contrib.origin_id_ + i_ev + 1);
+\end{lstlisting}
+
+\subsubsection{Changes in \texttt{SimCalorimeterHit.cxx}}
+
+The change in \texttt{SimCalorimeterHit.cxx} removes \texttt{origin\_id} from the
+track-ID encoding step. This preserves \texttt{origin\_id} as a direct truth label,
+rather than treating it as an encoded track-like identifier.
+
+\begin{lstlisting}[language=C++, caption={Origin ID is no longer encoded in \texttt{SimCalorimeterHit::encodeTracks}.}, label={lst:simcalorimeterhit-origin-id}]
+void SimCalorimeterHit::encodeTracks(
+    const std::function<int(int, unsigned, unsigned)> &encodeFunc,
+    unsigned int encoding_version, unsigned int event_index) {
+  this->track_id_ = encodeFunc(this->track_id_, encoding_version, event_index);
+  for (int i_contrib{0}; i_contrib < this->getNumberOfContribs(); i_contrib++) {
+    this->track_id_contribs_[i_contrib] = encodeFunc(
+        this->track_id_contribs_[i_contrib], encoding_version, event_index);
+    this->incident_id_contribs_[i_contrib] = encodeFunc(
+        this->incident_id_contribs_[i_contrib], encoding_version, event_index);
+  }
+}
+\end{lstlisting}

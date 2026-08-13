@@ -1,0 +1,131 @@
+\begin{figure}[p]
+    \centering
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \vspace{0pt}
+        \textbf{(a) GravNet baseline}\par\vspace{3mm}
+        \begin{tikzpicture}[
+            >=Latex,
+            node distance=5mm,
+            every node/.style={font=\normalsize},
+            stage/.style={draw, rounded corners, align=center,
+                         minimum height=14mm, text width=62mm,
+                         fill=RoyalBlue!8},
+            block/.style={draw, rounded corners, align=center,
+                         minimum height=28mm, text width=62mm,
+                         fill=ForestGreen!11},
+            arrow/.style={->, thick}
+        ]
+            \node[stage] (g-input) {
+                \textbf{Mixed detector nodes}\\
+                ECal and trigger-pad rows,\\
+                \(\mathbf{X}_{\mathrm{cat}}
+                \in\mathbb{R}^{N_{\Sigma}\times 8}\)
+            };
+            \node[stage, below=of g-input] (g-projection) {
+                \textbf{Input projection}\\
+                \(\operatorname{Linear}(8,128)\)\\
+                \(\rightarrow\operatorname{ReLU}\)
+            };
+            \node[block, below=of g-projection] (g-gravnet) {
+                \textbf{GravNet residual block}\\
+                \(\boldsymbol{\times 4}\)\\
+                \(\operatorname{GravNetConv}(128,128;\)\\
+                \(d_s=4,\ d_p=128,\ k=16)\)\\
+                \(\rightarrow\operatorname{ReLU}
+                \rightarrow\operatorname{Dropout}(0.1)\)\\
+                \(\rightarrow\text{residual addition}\)\\
+                \(\rightarrow\operatorname{BatchNorm1d}(128)\)
+            };
+            \node[stage, below=of g-gravnet] (g-head) {
+                \textbf{Per-node classification head}\\
+                \(\operatorname{Linear}(128,C)\), with\\
+                \(C=2\) for \(2e\) and \(C=3\) for \(3e\)
+            };
+            \node[stage, below=of g-head] (g-output) {
+                \textbf{ECal-supervised output}\\
+                Select ECal-node logits;\\
+                trigger-pad nodes provide context only
+            };
+
+            \draw[arrow] (g-input) -- (g-projection);
+            \draw[arrow] (g-projection) -- (g-gravnet);
+            \draw[arrow] (g-gravnet) -- (g-head);
+            \draw[arrow] (g-head) -- (g-output);
+        \end{tikzpicture}
+    \end{minipage}%
+    \hfill
+    \begin{minipage}[t]{0.48\textwidth}
+        \centering
+        \vspace{0pt}
+        \textbf{(b) Transformer baseline}\par\vspace{3mm}
+        \begin{tikzpicture}[
+            >=Latex,
+            node distance=5mm,
+            every node/.style={font=\normalsize},
+            stage/.style={draw, rounded corners, align=center,
+                         minimum height=14mm, text width=62mm,
+                         fill=RoyalBlue!8},
+            block/.style={draw, rounded corners, align=center,
+                         minimum height=38mm, text width=62mm,
+                         fill=Orange!14},
+            arrow/.style={->, thick}
+        ]
+            \node[stage] (t-input) {
+                \textbf{Padded mixed-detector tokens}\\
+                ECal and trigger-pad rows,\\
+                \(\mathbf{X}_{\mathrm{pad}}\in
+                \mathbb{R}^{B\times N_{\max}\times 8}\)
+            };
+            \node[stage, below=of t-input] (t-projection) {
+                \textbf{Input projection}\\
+                \(\operatorname{Linear}(8,128)\)\\
+                \(\rightarrow\operatorname{ReLU}\)\\
+                \(\rightarrow\operatorname{Linear}(128,128)\)
+            };
+            \node[block, below=of t-projection] (t-encoder) {
+                \textbf{Pre-layer-normalised}\\
+                \textbf{Transformer encoder block}\\
+                \(\boldsymbol{\times 3}\)\\
+                \(\operatorname{LayerNorm}(128)\)\\
+                \(\rightarrow\text{four-head full self-attention}\)\\
+                \(\rightarrow\operatorname{Dropout}(0.1)\)\\
+                \(\rightarrow\text{residual addition}\)\\
+                \(\operatorname{LayerNorm}(128)\)\\
+                \(\rightarrow\text{FFN }128\!\rightarrow\!256
+                \!\rightarrow\!128\)\\
+                (ReLU, dropout \(0.1\))\\
+                \(\rightarrow\text{residual addition}\)
+            };
+            \node[stage, below=of t-encoder] (t-finalnorm) {
+                \textbf{Final encoder normalisation}\\
+                \(\operatorname{LayerNorm}(128)\)
+            };
+            \node[stage, below=of t-finalnorm] (t-head) {
+                \textbf{Per-token classification head}\\
+                \(\operatorname{Linear}(128,C)\), with\\
+                \(C=2\) for \(2e\) and \(C=3\) for \(3e\)
+            };
+            \node[stage, below=of t-head] (t-output) {
+                \textbf{ECal-supervised output}\\
+                Select ECal-token logits;\\
+                trigger-pad tokens provide context only
+            };
+
+            \draw[arrow] (t-input) -- (t-projection);
+            \draw[arrow] (t-projection) -- (t-encoder);
+            \draw[arrow] (t-encoder) -- (t-finalnorm);
+            \draw[arrow] (t-finalnorm) -- (t-head);
+            \draw[arrow] (t-head) -- (t-output);
+        \end{tikzpicture}
+    \end{minipage}
+    \caption{Architectures of the selected (a) GravNet and (b)
+    pre-layer-normalised Transformer baselines. For GravNet, the learned-space
+    dimension is \(d_s=4\), the propagated-feature dimension is \(d_p=128\),
+    and each learned neighbourhood contains \(k=16\) nodes. The Transformer
+    has model width 128, feed-forward width 256, and four attention heads of
+    dimension 32.}
+    \label{fig:baseline_architectures}
+    \label{fig:gravnet_baseline_architecture}
+    \label{fig:transformer_baseline_architecture}
+\end{figure}

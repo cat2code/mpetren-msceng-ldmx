@@ -1,34 +1,286 @@
+This appendix collects implementation and supporting material that is useful
+for reproducibility but is not required to follow the scientific method in
+Section~\ref{sec:method}, and a statement on the use of generative AI tools for this thesis project at the end.
 
-Additional plots and tables.
-Hyperparameter settings.
-Extended implementation details.
+\subsection{Simulation Production Details}
+\label{sec:appendix_overlay}
 
+The source pool was distributed across \texttt{ROOT} files that usually
+contained \(10^4\) events, although some files contained fewer. The actual
+entry count was therefore read for each input file before overlay jobs were
+constructed.
 
+The \gls{ldmxsw} overlay workflow reads one file as the \emph{main} event
+stream and another as the \emph{overlay} stream. These names describe their
+software roles; both contain the same kind of inclusive single-electron event.
+For requested multiplicity \(p\in\{2,3\}\), each output combines one main
+electron with \(p-1\) overlay electrons. Poisson sampling was disabled.
 
+Jobs used disjoint source inputs. The overlay reader has a implemented wrap-around logic if the pile up electron source runs out and to prevent it from doing so and reusing an electron (which would break a guarantee of uniquely simulated electron in every event) the number of events produced by one job was bounded by
+\begin{equation}
+    N_{\mathrm{out}}
+    \leq
+    \min\left(
+        N_{\mathrm{main}},
+        \left\lfloor
+            \frac{N_{\mathrm{overlay}}}{p-1}
+        \right\rfloor
+    \right),
+    \label{eq:appendix_overlay_limit}
+\end{equation}
+where \(N_{\mathrm{main}}\) and \(N_{\mathrm{overlay}}\) are the measured
+input entry counts. With \(10^4\)-event source files, one job consequently
+produced \(10^4\) \(2e\) events or \(5\times10^3\) \(3e\) events.
 
-\subsection{ROOT reading and tensorization logic}
+\subsection{ROOT Extraction and Truth Matching}
+\label{sec:appendix_root_conversion}
+
+The simulations are stored in \texttt{ROOT} files. A \texttt{TTree} stores
+each event as one entry and divides its quantities into compressed,
+column-oriented branches \cite{ROOT_NIMA_1997,root_about,root_ttree}. The
+conversion pipeline uses \texttt{uproot} to read the selected branches without
+the C++ ROOT runtime and \texttt{Awkward} arrays to represent the nested,
+variable-length data \cite{uproot_docs,awkward_docs}.
+
+Table~\ref{tab:selected_root_fields} lists the fields used by the maintained
+pipeline. A complete branch path has the form
+''\path{collection/collection.member_}''... collection and member names are shown
+separately for readability.
+
+\begin{table}[htbp]
+    \centering
+    \footnotesize
+    \setlength{\tabcolsep}{4pt}
+    \caption{Selected fields from the \texttt{LDMX\_Events} tree and their
+    roles in the supervised pipeline.}
+    \label{tab:selected_root_fields}
+    \begin{tabular}{p{0.25\linewidth} p{0.29\linewidth} p{0.36\linewidth}}
+        \hline
+        Collection & Members read & Role \\
+        \hline
+        \path{EcalRecHits_overlay} &
+        \path{id_}, \path{xpos_}, \path{ypos_}, \path{zpos_},
+        \path{energy_}, \path{is_noise_} &
+        Cell matching, reconstructed ECal position and energy, and the
+        training-time noise policy \\
+
+        \path{EcalSimHitsOverlay_overlay} &
+        \path{id_}, \path{track_id_contribs_},
+        \path{edep_contribs_}, \path{origin_contribs_},
+        \path{n_contribs_} &
+        Cell matching and target construction from deposited-energy and origin
+        arrays \\
+
+        \path{TriggerPadTracks_overlay} &
+        \path{centroid_}, \path{pe_} &
+        Reconstructed trigger-pad context supplied to the heterogeneous models
+        \\
+        \hline
+    \end{tabular}
+\end{table}
+
+The selected collections are read in configurable chunks so that a worker
+holds only part of a source file in memory. Reconstructed and simulated ECal
+hits may use different row orders, so a lookup keyed by detector-cell
+identifier attaches the simulated contribution arrays to each reconstructed
+hit while preserving reconstructed-hit order. A non-noise reconstructed hit
+without a simulated match cannot receive a supported target and causes
+conversion to stop.
+
+The intermediate event record contains variable-length lists of reconstructed
+identifiers, positions, energies and noise flags; matched deposited-energy,
+origin and track contributions; and a nested trigger-pad record. Track
+identifiers and contribution counts are retained temporarily for inspection
+but are not model inputs. Figure~\ref{fig:io_and_tensor} summarises the full IO/Root reading and tensorization
+conversion going from the source collections that store the simulation to the stored tensor event that stores only the relevant parts from the original simulation.
+
+\subsection{Tensor Dataset, Scaling and Provenance}
+\label{sec:appendix_tensor_storage}
+
+The conversion writes one \texttt{PyTorch} \texttt{.pt} shard for each
+selected \texttt{.root} source file \cite{pytorch_docs}. A shard is not a complete copy of
+the source \texttt{ROOT} file: it contains the inputs, targets, masks, raw
+values and metadata required for the tasks in this thesis. Once conversion is
+complete, training and evaluation do not reopen the source file, thus saving time and resources.
+
+Each shard records its schema version, source information and preprocessing
+configuration. Every retained event contains the combined detector input,
+detector masks, raw detector values, hit-level targets and source metadata.
+The simulation-derived dominant-origin target is stored separately from the
+class index used by the training loss. Original origin identifiers and source
+indices are retained when applicable so that canonical classes and tensor rows
+can be traced back to the simulated event. Event multiplicity is retained as
+metadata and as a target for the slot model, but is never an input feature.
+
+The dataset is described by two JSON files. \texttt{manifest.json} records the
+source files, accepted labels, noise treatment, input transformations, target
+definition and feature layout. \texttt{index.json} records shard locations,
+event ranges, the total event count and skipped source files (if there are any). During training,
+shards are loaded on demand and a bounded cache retains recently used shards.
+This avoids requiring the full dataset in memory or repeating conversion for
+each model run.
+
+Standardisation is applied after ECal and trigger-pad rows have been placed in
+the common tensor. Means and standard deviations are calculated
+from the continuous columns (3--6 of Eq. \ref{eq:combined_event_tensor}) of the heterogeneous training representation,
+including zero-filled fields, before a model-specific view is selected. The
+binary detector-type mask columns retain the row identity after scaling.
+Then the model view is selected to be restricted to only the \gls{ecal} then it uses the same scaling fitted on the common representation.
+
 
 \begin{landscape}
-    \begin{figure*}
-    %\centering
-    \hspace{-3cm}
-    \vspace{-0.7cm}
-    \includegraphics[height=12cm]{config/fig/io_and_tensor.jpg}
-    \vspace{-0.5cm}
-    \caption{Write caption here...}
-    \label{fig:io_and_tensor}
-    \end{figure*}
-\end{landscape}\makebox[0pt]{}
+    \begin{figure}[p]
+        \centering
+        \includegraphics[width=\linewidth,height=0.76\textheight,keepaspectratio]{config/fig/io_and_tensor.jpg}
+        \caption{Detailed data flow from selected reconstructed and simulated
+        \texttt{ROOT} collections through hit matching and target construction
+        to the model-ready tensor event.}
+        \label{fig:io_and_tensor}
+    \end{figure}
+\end{landscape}
+
+Figure~\ref{fig:skew_and_log} shows the separate logarithmic transformation of
+the two non-negative intensity inputs defined in
+Equation~\eqref{eq:input_log_transforms}.
 
 
-
-\subsection{Interactive 3D \gls{ecal} Event Display}
-
-\begin{figure}[H]
+% TODO: UPDATETHIS FIG
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\linewidth]{config/fig/interactive_event_display.jpeg}
-    \caption{Screenshot of the 3D interactive \gls{ecal} event display of a 3e event opened in a browser. The truth + incorrect view is selected in the drop down menu and correctly predicted hits have their respective true label coloring and incorrect predictions are marked in red squares. The user hovers the mouse over an incorrectly predicted \gls{ecal} hit that displays more information about it.}
+    \includegraphics[width=0.78\textwidth]{config/fig/log1p_2x2.png}
+    \caption{Reconstructed ECal-energy and trigger-pad photoelectron
+    distributions before and after the input \(\log(1+x)\) transformation.}
+    \label{fig:skew_and_log}
+\end{figure}
+
+\subsection{Mini-Batch Implementation of Variable-Sized Events}
+\label{sec:appendix_batching}
+
+Figure~\ref{fig:baseline_batching} gives the complete logic of creating mini-batches of the variable-sized event hit collections. Transformer batches are padded to the longest event in the batch,
+whereas GravNet batches does not introduce padded entries but it simply concatenate nodes and carry an event-assignment vector instead.
+Both paths retain an \gls{ecal} mask so that trigger-pad objects can contribute
+context without entering the hit-origin loss.
+
+\begin{figure}[p]
+    \centering
+    \begin{tikzpicture}[
+        >=Latex,
+        node distance=6mm and 4mm,
+        every node/.style={font=\normalsize},
+        common/.style={draw, rounded corners, align=center,
+                      minimum height=11mm, text width=108mm,
+                      fill=RoyalBlue!8},
+        transformer/.style={draw, rounded corners, align=center,
+                           minimum height=14mm, text width=59mm,
+                           fill=Orange!13},
+        gravnet/.style={draw, rounded corners, align=center,
+                       minimum height=14mm, text width=59mm,
+                       fill=ForestGreen!10},
+        arrow/.style={->, thick}
+    ]
+        \node[common] (events) {
+            \textbf{1. Select up to \(B\) variable-size events}\\
+            \(\{\mathbf{X}_b\in\mathbb{R}^{n_b\times F}\}_{b=1}^{B}\)
+        };
+
+        \node[common, below=of events] (views) {
+            \textbf{2. Construct the model-specific view}\\
+            ECal-only, or ECal plus trigger-pad context;\\
+            the ECal mask marks supervised rows
+        };
+
+        \node[transformer, below=8mm of views, xshift=-34mm] (tpad) {
+            \textbf{3T. Pad and stack}\\
+            \(N_{\max}=\max_b n_b\), \qquad
+            \(\mathbf{X}_{\mathrm{pad}}
+            \in\mathbb{R}^{B\times N_{\max}\times F}\)
+        };
+        \node[gravnet, below=8mm of views, xshift=34mm] (gcat) {
+            \textbf{3G. Concatenate all nodes}\\
+            \(N_{\Sigma}=\sum_{b=1}^{B}n_b\), \qquad
+            \(\mathbf{X}_{\mathrm{cat}}
+            \in\mathbb{R}^{N_{\Sigma}\times F}\)
+        };
+
+        \node[transformer, below=of tpad] (tmasks) {
+            \textbf{4T. Construct masks}\\
+            \(\mathbf{M}_{\mathrm{valid}},\mathbf{M}_{\mathrm{ECal}}
+            \in\{0,1\}^{B\times N_{\max}}\)\\
+            Valid tokens include both ECal and trigger-pad rows
+        };
+        \node[gravnet, right=3mm of tmasks] (gindex) {
+            \textbf{4G. Assign every node to an event}\\
+            \(\mathbf{g}\in\{0,\ldots,B-1\}^{N_{\Sigma}}\), \qquad
+            \(\mathbf{M}_{\mathrm{ECal}}\in\{0,1\}^{N_{\Sigma}}\)
+        };
+
+        \node[transformer, below=of tmasks] (tmodel) {
+            \textbf{5T. Transformer forward pass}\\
+            Full self-attention is evaluated\\
+            separately for each batch slice \(b\)\\
+            \(\neg\mathbf{M}_{\mathrm{valid}}\) masks padding\\
+            \(\mathbf{Z}\in
+            \mathbb{R}^{B\times N_{\max}\times C}\)
+        };
+        \node[gravnet, right=3mm of tmodel] (gmodel) {
+            \textbf{5G. GravNet forward pass}\\
+            \(\mathbf{g}\) is passed to each\\
+            \texttt{GravNetConv} layer; learned\\
+            \(k\)-NN neighbours remain event-local\\
+            \(\mathbf{Z}\in
+            \mathbb{R}^{N_{\Sigma}\times C}\)
+        };
+
+        \node[common, below=9mm of tmodel, xshift=34mm] (loss) {
+            \textbf{6. Select ECal logits and compute one batch loss}\\
+            \(\displaystyle
+              \mathcal{L}_{\mathrm{batch}}
+              =\frac{1}{H}\sum_{b=1}^{B}
+               \sum_{i\in\mathcal{E}_b}
+               \operatorname{CE}(\mathbf{z}_{bi},y_{bi}),
+              \quad H=\sum_{b=1}^{B}|\mathcal{E}_b|\)
+        };
+        \node[common, below=of loss] (update) {
+            \textbf{7. Backpropagate, clip gradients and update the model}
+        };
+
+        \draw[arrow] (events) -- (views);
+        \draw[arrow] (views) -- (tpad);
+        \draw[arrow] (views) -- (gcat);
+        \draw[arrow] (tpad) -- (tmasks);
+        \draw[arrow] (gcat) -- (gindex);
+        \draw[arrow] (tmasks) -- (tmodel);
+        \draw[arrow] (gindex) -- (gmodel);
+        \draw[arrow] (tmodel) -- (loss);
+        \draw[arrow] (gmodel) -- (loss);
+        \draw[arrow] (loss) -- (update);
+    \end{tikzpicture}
+    \caption{Mini-batch construction for the Transformer and GravNet
+    baselines. Here \(F\) is the input-feature dimension, \(C\) is the number
+    of output classes and \(\mathcal{E}_b\) is the set of ECal rows in event
+    \(b\). Trigger-pad rows provide context but do not enter the hit-origin
+    loss.}
+    \label{fig:baseline_batching}
+\end{figure}
+
+\subsection{Supporting Evaluation Diagnostics}
+\label{sec:appendix_diagnostics}
+
+Short comment here of what is found here...
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{config/fig/interactive_event_display.jpeg}
+    \caption{Screenshot of the interactive three-dimensional ECal event
+    display for a \(3e\) event. In the currently selected view "truth + incorrect" from the drop-down menu, the correctly assigned hits use their truth-group
+    colours and incorrectly assigned hits are marked with red squares, and hover
+    text exposes more hit-level information.}
     \label{fig:interactive_event_display}
 \end{figure}
 
+\clearpage
+
+\subsection{Statement on the Use of Generative AI Tools}
+
+Generative AI tools, primarily ChatGPT 5.6 Sol, were used in writing this thesis as an auxiliary tool for language editing, enhancing clarity and structure, assistance with LaTeX, and Codex as a development tool for the \texttt{ml\_ldmx} framework \cite{ml_ldmx-github}. The tools were also used to discuss technical concepts and possible approaches during development. All generated content has been reviewed and if necessary modified by the author. The scientific methodology, implementation choices, analysis of results and conclusions were made by the author with the support of the supervisors and the final content of the thesis remains the responsibility of the author.
 

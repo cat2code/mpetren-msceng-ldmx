@@ -1,0 +1,48 @@
+\subsection{Scope of the Preliminary Results}
+\label{sec:results_model_presentation}
+
+The results in this chapter are provisional development results included to
+document the current state of the study. The detailed shower-separation plots
+use separately trained \(2e\) and \(3e\) \texttt{ECalTpadTransformer} models.
+Each model used a sample of \(20{,}000\) events, divided into \(16{,}000\)
+training events, \(3{,}000\) validation events and \(1{,}000\) held-out test
+events. The plots below are calculated from the validation split using the
+checkpoint with the lowest validation loss. They should therefore be treated
+as exploratory diagnostics rather than final, unbiased estimates of model
+performance. The final comparison will use the held-out test samples after the
+model choices have been fixed.
+
+The training history and trigger-pad ablation were produced by an earlier,
+similarly configured \(3e\) development run. They illustrate training and
+ablation behaviour, but they are not provenance-matched to the checkpoints
+used for the remaining validation figures.
+
+For most shower-separation diagnostics, the numerical group labels are treated
+as interchangeable. One whole-event permutation is chosen to maximise the
+number of correctly grouped ECal hits, and that same permutation is then kept
+for all layers, energy weights and confidence selections within the event.
+The reported quantity is consequently a permutation-aligned grouping accuracy.
+This evaluates whether the showers have been separated independently of the
+names assigned to the groups. The training curves and trigger-pad ablation are
+exceptions and use the native class labels of their respective run.
+
+The currently available detailed figures focus on the Transformer with ECal
+and trigger-pad-track inputs. The controlled comparison with the GravNet
+models, the ECal-only variants and the exploratory multi-task model remains to
+be added.
+
+
+
+
+\clearpage
+\subsection{Pending Comparisons}
+
+The current figures establish the evaluation framework and show the behaviour
+of the preliminary Transformer models, but they do not yet answer every
+research question. The final chapter will add held-out test comparisons for
+all four baseline models, including model size and inference-time information,
+and will present the outputs of the exploratory multi-task model. No final
+ranking of GravNet and Transformer architectures is inferred from the figures
+presented here. Qualitatively similar trends have been observed during larger
+ongoing runs, but their numerical results are not included until the complete
+training and evaluation procedure has been fixed.

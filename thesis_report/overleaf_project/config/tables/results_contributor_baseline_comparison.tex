@@ -1,0 +1,24 @@
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{5pt}
+    \caption{Permutation-aligned dominant-origin assignment on held-out test
+    events. The baseline Transformer is evaluated on \(100{,}000\)
+    events of each multiplicity. The slot model Transformer is evaluated on the
+    corresponding \(49{,}934\) \(2e\) and \(50{,}066\) \(3e\) portions of its
+    mixed-multiplicity test set. Truth-noise hits are excluded from the
+    contributor-model comparison. Values are percentages.}
+    \label{tab:results_contributor_baseline_comparison}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{llcccc}
+        \hline
+        Multiplicity & Model & Pooled hit & Mean event & Median event & Energy-weighted \\
+        \hline
+        \(2e\) & Baseline Transformer & 84.20 & 83.73 & 85.90 & 89.76 \\
+        \(2e\) & Slot Model Transformer & 84.13 & 83.67 & 85.78 & 89.73 \\
+        \(3e\) & Baseline Transformer & 74.84 & 74.40 & 75.82 & 83.18 \\
+        \(3e\) & Slot Model Transformer & 74.39 & 73.93 & 75.43 & 82.93 \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}

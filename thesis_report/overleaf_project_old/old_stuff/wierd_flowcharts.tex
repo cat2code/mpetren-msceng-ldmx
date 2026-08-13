@@ -1,0 +1,100 @@
+\begin{figure}[H]
+    \centering
+    \resizebox{0.96\textwidth}{!}{%
+    \begin{tikzpicture}[
+        >=Latex,
+        node distance=7mm and 8mm,
+        every node/.style={font=\small},
+        box/.style={draw, rounded corners, align=center,
+                    minimum height=10mm, minimum width=27mm,
+                    fill=RoyalBlue!8},
+        operation/.style={box, fill=ForestGreen!10},
+        arrow/.style={->, thick}
+    ]
+        \node[box] (input) {node features\\\(\mathbf{h}_i\)};
+        \node[box, above right=3mm and 8mm of input] (space)
+            {learned coordinates\\\(\mathbf{s}_i\) and \(k\)-NN graph};
+        \node[box, below right=3mm and 8mm of input] (features)
+            {propagated features\\\(\mathbf{f}_i\)};
+        \node[operation, right=13mm of features] (messages)
+            {Gaussian-weighted\\neighbour messages};
+        \node[operation, right=8mm of messages] (aggregate)
+            {mean and maximum\\aggregation};
+        \node[box, right=8mm of aggregate] (output)
+            {updated feature\\\(\mathbf{h}'_i\)};
+        \node[box, below=10mm of aggregate] (self)
+            {transformed input\\feature};
+
+        \draw[arrow] (input) -- (space);
+        \draw[arrow] (input) -- (features);
+        \draw[arrow] (space.east) -| (messages.north);
+        \draw[arrow] (features) -- (messages);
+        \draw[arrow] (messages) -- (aggregate);
+        \draw[arrow] (aggregate) -- (output);
+        \draw[arrow] (input.south) |- (self.west);
+        \draw[arrow] (self.east) -| (output.south);
+    \end{tikzpicture}%
+    }
+    \caption{Simplified data flow through a \texttt{GravNetConv} layer. Shared
+    projections produce learned coordinates and propagated features for every
+    node. A \(k\)-nearest-neighbour graph is constructed in the learned space.
+    Distance-weighted messages are aggregated using their element-wise mean
+    and maximum, then combined with a transformed copy of the input feature to
+    update each node. Based on the GravNet operation introduced in
+    Ref.~\cite{qasim2019-gravnet}.}
+    \label{fig:gravnet_convolution}
+\end{figure}
+
+
+
+\begin{figure}[H]
+    \centering
+    \resizebox{0.96\textwidth}{!}{%
+    \begin{tikzpicture}[
+        >=Latex,
+        node distance=7mm and 7mm,
+        every node/.style={font=\small},
+        box/.style={draw, rounded corners, align=center,
+                    minimum height=11mm, text width=28mm,
+                    fill=RoyalBlue!8},
+        operation/.style={box, fill=Orange!15},
+        arrow/.style={->, thick}
+    ]
+        \node[box] (tokens) {detector-feature\\tokens \(\mathbf{x}_i\)};
+        \node[box, right=of tokens] (embed)
+            {shared input\\projection \(\mathbf{H}\)};
+        \node[operation, right=of embed] (attention)
+            {learned \(\mathbf{Q},\mathbf{K},\mathbf{V}\) projections\\multi-head self-attention};
+        \node[box, right=of attention] (normone)
+            {add and layer\\normalization};
+        \node[operation, below=of normone] (ffn)
+            {token-wise\\feed-forward network};
+        \node[box, left=of ffn] (normtwo)
+            {add and layer\\normalization};
+        \node[box, left=of normtwo] (output)
+            {updated token\\representations};
+        \coordinate[below=5mm of normtwo] (skipbottom);
+
+        \draw[arrow] (tokens) -- (embed);
+        \draw[arrow] (embed) -- (attention);
+        \draw[arrow] (attention) -- (normone);
+        \draw[arrow] (normone) -- (ffn);
+        \draw[arrow] (ffn) -- (normtwo);
+        \draw[arrow] (normtwo) -- (output);
+        \draw[arrow] (embed.north) to[bend left=24]
+            node[above, font=\scriptsize] {residual} (normone.north);
+        \draw[arrow] (normone.east) -- ++(7mm,0) |-
+            node[pos=0.3, right, font=\scriptsize] {residual} (skipbottom)
+            -- (normtwo.south);
+    \end{tikzpicture}%
+    }
+    \caption{One Transformer encoder layer for detector-object tokens, shown
+    after the shared input projection. Multi-head self-attention is followed
+    by a token-wise feed-forward network, with residual connections and layer
+    normalization around both operations.
+    The attention operation uses the learned query, key and value projections
+    in Equations~\ref{eq:transformer_qkv}
+    and~\ref{eq:scaled_dot_product_attention}. Simplified from the Transformer
+    encoder and attention operations in Ref.~\cite{vaswani2017attention}.}
+    \label{fig:transformer_encoder}
+\end{figure}

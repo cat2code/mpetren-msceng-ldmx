@@ -1,0 +1,1101 @@
+%\textbf{The methodology was written before the finalised models and the mlpf inspired experimental model.  In order to make this methodology as comprehensive and readable as possible, we should consider to move out content to the appendix to free up space here. Consider what parts of the methodology that would be best to move to the appendix. The parts that are mostly practical and that does not have too much importance in chosen research  methodology related to the research question could be moved to the appendix.  ROOT reading could probably be moved to appendix.}
+
+%\textbf{I should include a definition of permutation-invariant accuracy in methodology and I think that I should also include in this section as well the "can a global label swap recover the event?" plot that validates exactly this as an argument and then I should very clearly state that the accuracies that I report henceforth will be the permutation invariant accuracy, i.e the global swap permutation that yields the highest accuracy and then I should argue for why this accuracy is in fact the only interesting and relevant one for ldmx since electron has no inherent ordering and what we are in fact trying to achieve is electron shower separation and we are trying to form groups, there is no ordering difference the y-axis centroid ordering is a practical solution and just "arbitrarily" chosen}
+
+% I want to communicate to the reader that much care and careful consideration went into these parts since I had the ambition that I would establish a platform that could be re-used and generalize for future deep learnig model implementations and optimizing models. Dont know where this is communicated best, maybe in start of methodology I think?
+
+% Something in the style of "much care and effort went into implementing the root reading and tensorization, with the intention of establishing a platform, ml_ldmx, to allow for future studies and development of deep learning models on simulations of ldmx, either future student-projects or ldmx researchers. The intent is to implement a re-usable logic that extracts relevant information from ldmx simulations in root collections and pre-processes and prepares the data to apply deep learning models implemented in pytorch with these effectively and more easily. 
+
+This chapter describes the complete experimental method: simulated event
+production, construction of supervised targets and model-ready tensors, the
+three neural-network architectures, their training procedures and the metrics
+used for evaluation. 
+% I like this formulation keep this or make it flow better with the text.
+In simpler terms it could be said that this chapter will answer the question for the reader ''what was built, what was tested and how was it done?''. 
+
+This chapter also presents and describes the intended reusable
+\texttt{ml\_ldmx} framework \cite{ml_ldmx-github}, with the aim of separating
+data conversion and target construction from any individual model. Simulation,
+large-scale conversion and training were performed on the COSMOS Linux
+\gls{hpc} cluster at Lund University with \gls{cpu} and \gls{gpu} resources available \cite{lunarc_cosmos}.
+
+The chapter follows the processing chain from simulated events to supervised
+targets, model inputs, neural-network training and evaluation. Technical
+details that are more in-depth in nature necessary to reproduce this study
+are collected in Appendix~\ref{sec:appendix}.
+
+
+\subsection{Workflow and Reconstruction Tasks}
+
+
+\subsubsection{Simulation and Data Pipeline Overview}
+\label{sec:sim_overview}
+
+Event production begins in the open-source \gls{ldmxsw} framework
+\cite{ldmx-github}, which uses \gls{geant4} to simulate particle transport and
+detector response \cite{geant4}. The physics single-electron \(1e\)
+events are independently simulated and afterwards \textit{overlaid} to form \(2e\) and \(3e\) readout windows. Afterwards the detector response is simulated (''digitisation'') and
+reconstruction algorithms are then performed on the combined detector deposits generating objects but also calculating energy readout. The
+selected reconstructed quantities and simulation truth are extracted, within the \texttt{ml\_ldmx} framework, from the
+resulting \texttt{ROOT} files and converted to variable-size \texttt{PyTorch}
+tensors and stored in \gls{ml} model-ready \textit{''shards''}. Figure~\ref{fig:data_pipeline}
+summarises this workflow from simulation to training in a high-level overview.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.85\textwidth]{config/fig/data_pipeline.jpg}
+    \caption{High-level data flow pipeline from \gls{ldmx} simulation through target
+    construction and tensorization to model training and evaluation.}
+    \label{fig:data_pipeline}
+\end{figure}
+
+
+
+\subsubsection{Reconstruction Formulation}
+\label{sec:reconstr_formulation}
+
+For one event, the observed \gls{ecal} response is represented as the
+variable-size set
+\begin{equation}
+    \mathcal{H} =
+    \left\{
+    \left(\boldsymbol{r}_i,E_i\right)
+    \right\}_{i=1}^{N_{\mathrm{ECal}}},
+    \qquad
+    \boldsymbol{r}_i=(x_i,y_i,z_i),
+\end{equation}
+where $\mathcal{H}$ is the hit collection extracted from the \gls{ecal} subdetector, \(E_i\) is the reconstructed energy of hit \(i\) and $\boldsymbol{r}_i=(x_i,y_i,z_i)$ is the coordinates in 3D space. The standard event
+representation also includes the variable-size set of
+reconstructed \gls{ts} track observations
+\begin{equation}
+    \mathcal{T} =
+    \left\{
+    \left(c_j,n^{\mathrm{pe}}_j\right)
+    \right\}_{j=1}^{N_{\mathrm{TS}}},
+\end{equation}
+where $\mathcal{T}$ is the collection extracted from the \gls{ts} subdetector, \(c_j\) is the reconstructed object of a one-dimensional track centroid and
+\(n^{\mathrm{pe}}_j\) is the corresponding reconstructed number of
+photoelectrons. The complete event input set is therefore represented by the pair
+\(\mathcal{X}=(\mathcal{H},\mathcal{T})\), using an \gls{ecal}-only model view corresponds to the input set \(\mathcal{X}=\mathcal{H}\). 
+% The \gls{ecal}-only model variants use the restricted input \(\mathcal{X}=\mathcal{H}\), omitting \(\mathcal{T}\).
+
+%MATH HERE DEFINING TRIGGER SCINTILLATOR SET centroid and pe (variable size as well but low size nonetheless). It Previous paragraph should be rephrased as including ECal and TS data is standard and depending on the model the set omitts the set T from the TS. 
+
+The principal supervised task is a \textit{node classification} task \cite{duarte2020-gnn-tracking} and each selected \gls{ecal} hit is assigned to the
+electron contributing the largest simulated deposited energy in that cell.
+As a simplified starting point, this fixed-multiplicity task is studied with GravNet and Transformer baselines.
+Because a reconstruction method that is useful in practice should not require a known electron
+count in advance, this motivated an expansion a multi-task
+Transformer model, more experimental in nature, that additionally predicts the valid electron slots in a mixed \(2e/3e\) sample, the set of contributors and their energy fractions, drawing inspiration from particle flow-type metrics. 
+
+\subsection{Simulation}
+
+The samples used in this study were produced with \gls{ldmxsw}. Its
+versioned Docker\footnote{Explain docker here} container release captures the framework and its software
+dependencies, including \gls{geant4}. The relevant configuration is summarized
+in Table~\ref{tab:version_summary}; the exact simulation, overlay and
+job-launch scripts are archived with the thesis code
+\cite{ml_ldmx-github}. 
+
+% TODO before submission: cite an immutable release or commit of the thesis repository.
+\begin{table}[htbp]
+    \centering
+    \small
+    \caption{Software and execution configuration used for event production.}
+    \label{tab:version_summary}
+    \begin{tabular}{p{0.27\linewidth} p{0.63\linewidth}}
+        \hline
+        Item & Configuration \\
+        \hline
+        Simulation framework & \gls{ldmxsw} container
+        \path{ldmx/pro:v4.7.3} \\
+        Detector geometry & \path{ldmx-det-v15-8gev} with the minimal
+        scoring planes enabled \\
+        Beam configuration & One \(8\,\mathrm{GeV}\) electron generated
+        upstream of the tagging tracker \\
+        Execution environment & \texttt{COSMOS} Linux \gls{hpc} cluster;
+        jobs submitted with Slurm \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+\subsubsection{Single Electron ($1e$) Event Simulations}
+\label{sec:1e_sim}
+
+% the config script that generated the (altough maybe not exact) is found in
+%/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/thesis_report/config_that_generated_single_electron_dataset.py
+
+The single-electron source sample was generated with the configuration in
+Table~\ref{tab:version_summary}, using the
+\path{single_8gev_e_upstream_tagger()} beam generator. No interaction biasing
+or event-level filter was applied.
+
+The resulting events are referred to as \emph{inclusive}: they were not
+selected for a particular interaction process. Instead, an electron was
+delivered from the upstream beam position and its subsequent
+interactions were determined by the transport simulation. The sample is
+therefore dominated by electrons without a hard target interaction, while
+\gls{sm} interactions remain present at their simulated rates
+\cite{ldmx2025-overview}. No dark-sector signal process was injected. For clarity in this
+report, the electrons drawn from this inclusive sample are called
+\emph{non-signal electrons}. In the broader LDMX context they may also be
+called \emph{pile-up electrons} when used as additional ''uninteresting'' interactions in an overlay. An existing source pool of about \(10^9\) such events was available for this study. 
+%TODO: should I reference or credit Hans Alin in some way here? 
+%Source files were assigned so that no simulated electron was reused in the generated multi-electron sample, a principle of \textit{unique} simulated electrons in every input event were held. The production logic details is found in Appendix~\ref{sec:appendix_overlay}.
+
+\subsubsection{Multi-Electron (\(2e\) and \(3e\)) Event Simulation}
+\label{sec:2e_sim}
+
+Multi-electron, or \emph{pile-up}, events were constructed by overlaying
+independently simulated single-electron interactions. The \gls{ldmxsw}
+overlay combines their simulated physics and hit contributions by detector channel before the digitisation and reconstruction. The particles are transported independently (since $Z^{(k)} \perp\!\!\!\perp Z^{(\ell)}$),
+but simulated detector response and reconstruction are repeated after overlay because
+overlapping detector deposits must be processed jointly.
+
+The configuration was based on the \gls{ldmxsw} in-time pile-up validation
+workflow \cite{ldmx-github-itpileup}. Poisson sampling (of electron multiplicity) was disabled: every
+output contained one main electron and either one or two overlaid electrons. Disjoint input source files were assigned so that no simulated electron was reused in the generated multi-electron sample, a principle of \textit{unique} simulated electrons in every input event were held. The production logic details is found in Appendix~\ref{sec:appendix_overlay}.
+
+Figure~\ref{fig:event_displays} provides an example view of this construction.
+The \(1e\) event contains one electron shower, whereas the \(2e\) and
+\(3e\) events contain several truth-labelled hit groups in the same readout 
+Their spatial overlap is the hit-classification problem addressed in this
+thesis.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{config/fig/ecal_truth_event_displays.png}
+    \caption{Three-dimensional ECal event displays of randomly selected
+    \(1e\), \(2e\) and \(3e\) events. Each marker represents a selected ECal
+    hit and is coloured by the electron origin with the largest summed
+    deposited-energy contribution to that hit. Noise hits are omitted and only
+    simulation truth is shown; the event displays also represent a would-be perfectly predicted electron shower separation.}
+    \label{fig:event_displays}
+\end{figure}
+
+The target of \(10^7\) events for each pile-up multiplicity was selected to
+provide a large independent pool for model development and the study of
+infrequent reconstruction failures. The resulting dataset contains
+\(10^7\) events of each multiplicity. This sample size is not a direct test of the
+experiment-level background rejection required by \gls{ldmx}: those
+requirements are
+process-specific and can reach twelve orders of magnitude for backgrounds
+associated with few-\(\mathrm{GeV}\) bremsstrahlung
+\cite{akesson2020-photon-veto}. 
+The overlay release included an origin-identifier fix implemented by the
+author so that source-electron labels remain available after overlay
+\cite{petren2026-ldmx-origin-id-pr}. Table~\ref{tab:dataset_summary}
+summarises the generated samples.
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \caption{Sizes and construction of the inclusive (non-signal) event samples.}
+    \label{tab:dataset_summary}
+    \begin{tabular}{p{0.07\linewidth} p{0.27\linewidth}
+                    p{0.14\linewidth} p{0.12\linewidth}
+                    p{0.25\linewidth}}
+        \hline
+        Sample & Event construction & Events per file & Total events &
+        Release \\
+        \hline
+        \(1e\) & Inclusive event \(8\,\mathrm{GeV}\) beam &
+        \(10^4\) & \(\sim10^9\) & \texttt{ldmx-sw v4.6.2} \\
+        \(2e\) & 1 main + 1 overlay electron &
+        \(10^4\) & \(10^7\) & \texttt{ldmx-sw v4.7.3} \\
+        \(3e\) & 1 main + 2 overlay electrons &
+        \(5\times10^3\) & \(10^7\) & \texttt{ldmx-sw v4.7.3} \\
+        \hline
+    \end{tabular}
+\end{table}
+
+
+\subsection{Data Extraction and Supervised Targets}
+\label{sec:method_processing}
+
+This section defines the reconstructed detector quantities supplied to the
+models and the simulation-only quantities used to construct targets. The
+simulation and reconstruction output is stored in files with the
+\texttt{.root} extension. ROOT is a C++ data-analysis framework widely used in
+high-energy physics. Within each LDMX file, a \texttt{TTree} stores every
+event as one entry and organises its quantities into compressed,
+column-oriented branches. This provides space-efficient storage of the full
+event record while allowing selected branches to be read efficiently
+\cite{ROOT_NIMA_1997,root_about,root_ttree}.
+
+\texttt{ROOT} reading, tensor and target construction, and model training are
+deliberately kept as separate stages. This is a conscious design choice: the
+\texttt{ROOT} files retain the broader simulation record, whereas conversion
+extracts only the quantities required by this study into a reusable
+model-ready representation. The conversion is therefore performed once rather
+than repeated for every training run. Besides reducing repeated I/O and
+preprocessing work, this keeps the target definition independent of the model
+architecture and allows new models to use the same processed events.
+
+Figure~\ref{fig:readout_vs_truth} shows the boundary between detector inputs
+and simulation truth. Exact \texttt{ROOT} fields, reading logic and
+intermediate data structures are given in
+Appendix~\ref{sec:appendix_root_conversion}, together with the complete
+conversion diagram in Figure~\ref{fig:io_and_tensor}.
+
+
+
+\subsubsection{Selected Detector Data and Simulation Truth}
+
+Only quantities available from reconstructed detector data are given to the
+model. For an \gls{ecal} \gls{rechit}, these are the cell position and reconstructed
+energy, \((x_i,y_i,z_i,E_i)\). For a reconstructed \gls{tpad} track, they are
+the one-dimensional centroid and photoelectron count,
+\((c_j,n_j^{\mathrm{pe}})\).
+
+The trigger-pad tracks provide context from another subdetector but do not
+have their own hit-origin targets. Only \gls{ecal} hits have these targets.
+The same network still produces a vector of class scores, called
+\textit{logits}, for every input row. Before the loss and metrics are
+calculated, the \texttt{ecal\_mask} selects only the ECal rows. Trigger-pad
+rows can therefore influence the ECal predictions, but their own output
+scores are ignored.
+
+Training also requires simulation truth, but this information is not given
+to the model, as that would break what a model in a real scenario would be able to ''see''. 
+% THE REST OF THIS PARAGRAPH I WONDER IF IT NOT BEST SUMMARIZED IN TABLE INSTEAD SIMPLY INSTEAD OF FLOW TEXT? 
+Detector-cell identifiers are used to match reconstructed and
+simulated \gls{ecal} hits. The deposited-energy and origin arrays describe
+the energy in each stored contribution and the overlay origin to which it
+belongs. Separate track identifiers describe the simulated tracks. The noise
+flag is also used only when targets and dataset views are prepared. Truth is
+therefore used to calculate the supervised loss and evaluation metrics, not
+as a model input.
+
+
+Table~\ref{tab:selected_root_fields} lists the selected fields. A complete
+branch path has the form \path{collection/collection.member_}. The collection
+and member names are shown separately to keep the table readable while
+preserving their exact \texttt{ROOT} spelling.
+
+\begin{table}[htbp]
+    \centering
+    \small
+    \caption{\textbf{MAKE THIS LOOK MORE NICE} Selected branches from the \texttt{LDMX\_Events} tree and their
+    role in the supervised pipeline.}
+    \label{tab:selected_root_fields}
+    \begin{tabular}{p{0.25\linewidth} p{0.29\linewidth}
+                    p{0.36\linewidth}}
+        \hline
+        Collection & Members read & Role \\
+        \hline
+        \path{EcalRecHits_overlay} &
+        \path{id_}, \path{xpos_}, \path{ypos_}, \path{zpos_},
+        \path{energy_}, \path{is_noise_} &
+        Cell matching, reconstructed \gls{ecal} position and energy, and the
+        training-time noise policy \\
+
+        \path{EcalSimHitsOverlay_overlay} &
+        \path{id_}, \path{track_id_contribs_},
+        \path{edep_contribs_}, \path{origin_contribs_},
+        \path{n_contribs_} &
+        Cell matching and target construction from the deposited-energy
+        and origin arrays. Track-ID and count arrays are only temporary \\
+
+        \path{TriggerPadTracks_overlay} &
+        \path{centroid_}, \path{pe_} &
+        Reconstructed trigger-pad context supplied to the
+        heterogeneous detector models \\
+        \hline
+    \end{tabular}
+\end{table}
+
+The track-identifier contribution array and the stored number of
+contributions are kept in the temporary record for inspection. They are not
+used by the maintained target definitions or copied into the final tensor
+shards. The \gls{rechit} and \gls{simhit} identifiers are needed for matching, but they
+are not model features themselves. Trigger-pad tracks are an estimate of the number of electrons detected, but they are not matched to the true individual simulated electrons. 
+
+The event multiplicity and source label are also not read from detector
+branches. They are taken from the configured \(2e\) or \(3e\) input source
+and added as source metadata.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{config/fig/readout_vs_truth.jpg}
+    \caption{Use of detector-derived and simulation-only information in the
+    supervised pipeline. Detector quantities form the model input, whereas
+    simulation truth is used only to construct training targets and
+    evaluation metrics.}
+    \label{fig:readout_vs_truth}
+\end{figure}
+
+\subsubsection{Chunked ROOT Reading and Hit Matching}
+
+The selected collections are read from the \texttt{LDMX\_Events} tree with
+\texttt{uproot} and \texttt{Awkward} arrays \cite{uproot_software}. Each
+worker holds only one configurable chunk of selected branch arrays in memory.
+Converted events from the current source file are collected until its output
+shard is written.
+
+\gls{rechit}s and \gls{simhit} are stored in separate collections and may appear in different row orders. Both collections contain a detector-cell identifier that uniquely identifies the corresponding ECal cell. For each event, the reader builds a lookup from cell identifier to SimHit record and uses it to attach the correct simulation contributions to every \gls{rechit}. This preserves the \gls{rechit} ordering while aligning each reconstructed hit with the truth information from the same cell. A noise hit may have no simulated contribution. \textbf{DOES THIS HAPPEN? FIND OUT} A non-noise hit without a matching contribution cannot be assigned a valid origin target, so conversion stops instead of creating an unsupported label.
+
+This step produces a temporary Python dictionary of variable-length lists.
+It contains \gls{rechit} identifiers, positions, reconstructed energies and noise
+flags. It also contains the matched track, deposited-energy and origin
+contribution lists, together with a nested trigger-pad record for the
+centroids and photoelectron counts. This dictionary is only an intermediate
+format. It is different from both the original branch layout and the tensor
+dictionaries saved in the \texttt{.pt} shards.
+
+\subsubsection{Target Definition and Baseline Simplifications}
+\label{sec:method_targets}
+
+The principal task assigns each selected \gls{ecal} hit to the electron with
+the largest deposited-energy contribution, thereby separating overlapping
+showers at hit level removing pile-up ambiguity. The baseline models make three simplifying assumptions:
+
+\begin{enumerate}
+    \item \textbf{Known pile-up level.} Each fixed-multiplicity baseline is
+    trained and evaluated on either \(2e\) or \(3e\) events. The number of
+    electron classes is therefore indirectly known before reconstruction and this isolates the hit-assignment task. In a real-world scenario, however, the multiplicity would not necessarily be known in advance. A more desirable model, a full-event reconstruction model, would also be assigned the task of predicting the number of electrons present. This lead to the experimental mixed-multiplicity model which also attempts to predict the number of electrons in the event.
+
+    \item \textbf{One hard label per hit.} An \gls{ecal} cell may contain
+    energy from several overlaid showers. For the baseline loss, the hit is
+    assigned to only one origin label in \(\{1,2,3\}\), called the
+    \textit{dominant origin}. It is the origin with the largest total
+    deposited energy after contributions from the same origin have been summed.
+
+    \item \textbf{Noise-free baseline input.} Simulated noise hits are kept in
+    the reusable production shards but removed before data are given to a
+    baseline model. The experimental model can instead retain them through a
+    separate background class \(0\).
+\end{enumerate}
+
+\subsubsection{Dominant-Origin and Energy-Fraction Targets}
+
+Let \(K_i\) be the number of simulated-particle contributions stored for
+reconstructed hit \(i\). Contribution \(k\) has deposited energy \(d_{ik}\)
+and overlay origin identifier \(o_{ik}\). For an electron origin \(j\), its
+total contribution to the hit is
+\begin{align}
+    D_{ij}
+    &=
+    \sum_{k=1}^{K_i}
+    \mathbb{I}\!\left[o_{ik}=j\right]d_{ik}, \\
+    y_i^{\mathrm{origin}}
+    &=
+    \operatorname*{arg\,max}_{j\in\mathcal{J}}D_{ij},
+    \label{eq:dominant_origin_target}\\
+    f_{ij}
+    &=
+    \frac{D_{ij}}{\sum_{k=1}^{K_i}d_{ik}} .
+    \label{eq:origin_fraction_target}
+\end{align}
+Here, \(\mathcal{J}\) is the configured set of electron origins and
+\(\mathbb{I}[\cdot]\) is the indicator function. The baseline classifiers and
+the slot model use the hard target \(y_i^{\mathrm{origin}}\), while the slot
+model also uses the fractions \(f_{ij}\) to retain information about shared
+hits. The fractions sum to one when the configured origins account for all
+deposited energy in the hit. A hard label assigns the hit to one target class
+but does not imply that the overlapping energy deposits have been physically
+separated.
+
+An earlier implementation selected the origin of the largest individual
+contribution. The summed rule was adopted because all contributions from the
+same physical origin should, from a physics motivated standpoint, be combined before the dominant origin is chosen.
+
+\subsubsection{Noise Handling and Electron Ordering}
+
+The production shards keep \gls{rechit}s that carry the noise flag and mark them
+with a Boolean noise target. A noise hit is assigned to background class
+\(\{0\}\), and its electron-fraction row is set to zero. These rows are removed
+before data are given to a baseline model. The experimental model can instead keep
+the background class. Noise rows are excluded when the target set of electron
+origins and its ordering are constructed. If they are retained, they still
+form part of the slot model's event context.
+
+Origin identifiers assigned during overlay only index each electron and therefore have no consistent physical ordering. Swapping two origin identifiers leaves the physical event unchanged, but it would swap the meaning of two output classes, potentially adding heavy loss to successful shower separation. To obtain a
+consistent class definition across events, the electrons are therefore ordered
+according to a fixed spatial convention. For each origin represented among
+the hard-labelled, non-noise \gls{ecal} hits, the unweighted mean
+\(y\)-coordinate is defined as
+\begin{equation}
+    \bar y_j =
+    \frac{1}{\lvert \mathcal{E}_j\rvert}
+    \sum_{i\in\mathcal{E}_j} y_i,
+    \qquad
+    \mathcal{E}_j =
+    \left\{i:y_i^{\mathrm{origin}}=j\right\}.
+\end{equation}
+
+\textbf{Above math is a bit convoluted I think, better formulation that is easier to interpret but still confident and academic?}
+Origins are sorted from the lowest to the highest value of \(\bar y_j\) and
+mapped to consecutive canonical slots. The fraction-target columns are
+reordered in the same way.
+
+This changes the class labels only. It does not sort the tensor rows, weight
+positions by energy, use trigger-pad centroids or match trigger-pad tracks to
+electron origins. The saved shards contain the original physical-origin
+labels. Canonical-\(y\) labels are constructed when the data are loaded. The
+original origin identifiers and fraction-column order are kept so the mapping
+can be traced.
+
+\subsection{Tensorization and Model-Ready Data}
+\label{sec:method_features}
+
+% First we should say what tensorization is, which is kind of said now. 
+Each temporary event record is converted into numerical arrays, masks, targets and metadata. Events keep their variable size and the stored order within each detector collection. Tensorization uses fixed operations that are already implemented with \texttt{PyTorch}.
+
+\subsubsection{Combined Event Tensor}
+
+Let \(N_{\mathrm{E}}\) and \(N_{\mathrm{T}}\) be the total number of retained
+\gls{ecal} hits and trigger-pad tracks in an event respectively. The \gls{ecal} rows are placed
+first and the trigger-pad rows follow:
+\begin{equation}
+    \mathbf{X}
+    \in
+    \mathbb{R}^{(N_{\mathrm{E}}+N_{\mathrm{T}})\times 8},
+    \qquad
+    \mathbf{x}_n =
+    \begin{cases}
+        (1,0,x_i,y_i,z_i,\widetilde{E}_i,0,0),
+        & n=i, \\[2mm]
+        (0,1,0,0,0,0,c_j,\widetilde{n}^{\mathrm{pe}}_j),
+        & n=N_{\mathrm{E}}+j .
+    \end{cases}
+    \label{eq:combined_event_tensor}
+\end{equation}
+% This could be shown visually in a very nice way but that improvement comes at a later stage (if there is still time left before the deadline!) so in flowing text is fine for now.
+The first two columns are the row-type flags \texttt{is\_ecal} and
+\texttt{is\_tpad}. Columns 3--6 contain \texttt{ecal\_x},
+\texttt{ecal\_y}, \texttt{ecal\_z} and \texttt{ecal\_energy}; the final two
+contain \texttt{tpad\_centroid} and \texttt{tpad\_pe}. Fields that do not
+apply to a row are filled with zeros. The type columns and corresponding
+\texttt{ecal\_mask} and \texttt{tpad\_mask} identify the row type. Hit-level
+targets and losses apply only to the \(N_{\mathrm{E}}\) ECal rows, while
+trigger-pad rows provide context.
+
+An \gls{ecal}-only model view selects
+\((x_i,y_i,z_i,\widetilde{E}_i)\) from the same stored event rather than
+using a second processed dataset, so the combined event tensor can be utilized by all trained models. The collection order is preserved in
+storage, but the row index has no physical meaning for the models. \gls{ecal} hits
+and \gls{tpad} tracks are treated as unordered sets with variable size.
+
+\subsubsection{Preprocessing of Energy Input Features}
+\label{sec:preprocess}
+
+The production shards used in this study apply a log transform of the energy-based features that are present in the input
+\begin{equation}
+    \widetilde{E}
+    = \log\!\left(1+\max(E,0)\right),
+    \qquad
+    \widetilde{n}^{\mathrm{pe}}
+    = \log\!\left(1+\max(n^{\mathrm{pe}},0)\right),
+    \label{eq:input_log_transforms}
+\end{equation}
+using the \texttt{log1p} function in \texttt{PyTorch}
+\cite{pytorch_log1p}. Both input distributions are right-skewed, as is typical
+for intensity-valued energy features \cite{lai2024shower}. These
+transforms reduce their numerical range while preserving the order of the
+values, making them numerically more suitable for \gls{ml}.
+Figure~\ref{fig:skew_and_log} shows their effect. Deposited energies used only
+to construct truth targets remain on their original scale.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.76\textwidth]{config/fig/log1p_2x2.png}
+    \caption{\textbf{This figure was made to be half size wrapfigure I will update it so labels are better and ranges and so that it does not take up as much space. The plot will also tell how many events it is based on.} Reconstructed ECal-energy and trigger-pad photoelectron
+    distributions before and after the input \(\log(1+x)\) transform.}
+    \label{fig:skew_and_log}
+\end{figure}
+
+
+\subsubsection{ML-Ready Shards and Stored Event Structure}
+
+The conversion writes one \texttt{PyTorch} \texttt{.pt} shard for each
+selected source \texttt{ROOT} file. This one-to-one correspondence makes the
+source of every shard clear, but it is not a complete copy of the
+\texttt{ROOT} file. The shards contains only the information required for the models in this study previously covered. The tensor files do not use the
+same optimized compression as \texttt{ROOT}. Their purpose is instead to
+provide data that can be loaded directly by \texttt{PyTorch}. Once the shards
+have been produced, they are self-contained for model training and
+evaluation. The original \texttt{ROOT} files are not read during training.
+
+Each shard stores a schema version, source information, preprocessing settings
+and a list of events. Every selected \texttt{TTree} entry becomes one tensor
+event containing the combined input, detector masks, raw detector values,
+hit-level targets and source metadata. Figure~\ref{fig:io_and_tensor}
+summarises this stored representation.
+
+When a shard is written, \texttt{physical\_y} records the simulation-derived
+dominant-origin label of each retained ECal hit. Electron origins are labelled
+\(1,2,\ldots\), while a retained noise hit receives \(0\). The field
+\texttt{y} stores the corresponding class index used by the training loss.
+Before a baseline model is trained, noise rows are removed and
+\texttt{y} is replaced by the canonical-\(y\) class described above. The
+field \texttt{origin\_id\_y} preserves the original overlay-origin identifier
+so that the canonical class can be traced back to the simulated electron; it
+is set to \(-1\) when no origin is available. \textbf{DOES THAT HAPPEN?}
+
+The event-level field \texttt{electron\_count} records how many electrons were
+overlaid. It defines the valid-slot target and evaluates the count derived
+from those slots, but is never supplied as an input feature.
+
+The detector-cell identifiers and the variable-length contribution lists are
+used while reconstructed hits are matched to simulation truth and the targets
+are constructed. They are not copied into the final tensor event. This does
+not limit training because all model inputs and targets are already present
+in the shard. It only means that the source \texttt{ROOT} file must be opened
+again if the original matching or additional simulation quantities need to be
+inspected. Together, \texttt{source\_label}, \texttt{source\_file} and
+\texttt{source\_entry} identify the source event. The field
+\texttt{keep\_indices} maps the retained ECal tensor rows to their original
+\gls{rechit} rows.
+
+Two JSON files describe the complete tensor dataset. The
+\texttt{manifest.json} file records how the shards were produced, including
+the source files, accepted labels, noise treatment, input transformations,
+target definition and feature layout. The \texttt{index.json} file records
+where each shard is stored and which event range it contains. It also records
+the total number of events and any source files that were skipped.
+
+During training, the loader reads a shard only when one of its events is
+requested. A bounded memory cache keeps a small number of recently used
+shards. The full dataset therefore does not need to fit in memory, and the
+\texttt{ROOT}-to-tensor conversion is not repeated for every training run.
+The compressed \texttt{ROOT} TTree remains the main simulation format
+\cite{root_ttree}, while the tensor shards form the task-specific working
+dataset used for machine learning.
+
+\subsubsection{Data Split and Training-Time Preparations}
+
+\textbf{THIS CAN PROBABLY BE SHORTENED TO A FEW SENTENCES DONT GOING INTO DETAIL JUST STATING THAT THE CONTENT WAS RANDOMIZED IDK}
+
+% the test split can be presented in a small "wrap-table" that is on the right hand side of the text that would be nice. 
+The event indices are shuffled with a fixed seed and divided into training,
+validation and test sets. The proportions are \(80\%\), \(10\%\) and \(10\%\) respectively.
+Only the index lists are split, so the shards do not need to be rewritten.
+For a baseline model, noise rows are removed and the physical-origin labels
+are mapped to canonical-\(y\) classes when each event is loaded.
+
+% "Continous columns" was difficult to understand not intuitive for the reader and I added text that are necessary to explain better it has to be referenced with the entries that are integers or float values, but there is a better way to explain this that flows better... something more intuitive had to be added that references to the equation 
+%How are they standardized? What does that mean specifically? Are they normalized into a range like from 0 to 1? IS THE LOG TRANSFORM PREPROCESSING BEFORE OR AFTER THIS?
+After the split, the six continuous columns 3--6 in
+Equation~\eqref{eq:combined_event_tensor} are standardized using means and
+standard deviations calculated from the training set only. The two binary
+detector-type columns are not standardized. The same training statistics are
+applied to validation and test data and saved with the model run.
+
+% This is not a suggestion of how to change the text, but is that bad that the zero filled field may become non-zero after standardization?
+Standardization is applied after the two detector types have been placed in
+the same tensor. A zero-filled field may therefore become non-zero after
+standardization. The type columns and masks still identify the detector type.
+The statistics are calculated from all ECal and trigger-pad rows before a
+model-specific view is selected. This means that the zero-filled fields take
+part in the calculation. The ECal-only view also uses the scaling fitted on
+the common mixed-detector tensor.
+
+Parameter updates are calculated from the training split only. Validation
+loss controls checkpoint selection, early stopping and, where enabled,
+learning-rate scheduling, as detailed in the training procedure below. The
+test split is kept separate from these choices and is used for the final
+evaluation presented in the Results chapter.
+
+%This paragraph is not good because it says how things NOT are, instead we should just say how things actually are. We will add another subsection that explains the batching so we can remove this it is also not updated to the latest version.
+%The saved events are  not padded and there is no fixed dataset-wide limit on their size. In the baseline Transformer trainer, events are padded only to the longest event in the current mini-batch. A validity mask marks the padded rows. GravNet events are joined into a batched graph, and a batch index marks which event each node belongs to. The experimental multi-task trainers currently process events one at a time and combine their losses before an optimizer update. These batching steps do not change the saved shards or the physical content of an event.
+
+
+
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsection{Model Architectures}
+\label{sec:method_models}
+
+
+\subsubsection{Capacity-Selection Strategy}
+\label{sec:method_capacity_selection}
+
+Model capacity was selected with a performance-first strategy. The principal
+objective was to establish whether the proposed inputs and interaction
+mechanisms could achieve useful reconstruction performance, rather than to
+identify the smallest possible network. Widths and depths were therefore
+chosen conservatively from development runs so that insufficient capacity was
+unlikely to be the dominant limitation. The scale of contemporary
+Transformer-based \gls{mlpf} implementations provided a qualitative reference
+for a reconstruction model with heterogeneous inputs
+\cite{pata2026-mlpf}. The present LDMX task nevertheless has \emph{much} smaller input
+sets and also a narrower output scope than full CMS particle-flow reconstruction.
+
+This study did not either include a broad hyperparameter or architecture sweep, nor
+did it attempt pruning, quantisation, knowledge distillation or another model
+compression procedure. Thus, the reported parameter counts should not be interpreted as
+minimum capacities required by the reconstruction tasks. Establishing the
+accuracy--latency--memory trade-off is left to future work.
+
+The architectures reported below are the configurations used for the
+million-event training campaigns found in the results. Separate \(2e\) and \(3e\) models were
+trained within each baseline family, but their architectures and
+hyperparameters are identical except for the width of the final classifier:
+\(C=2\) for the \(2e\) task and \(C=3\) for the \(3e\) task. Each baseline model used one million
+fixed-multiplicity events, whereas the contributor-set slot model used one
+million events balanced between the \(2e\) and \(3e\) sources not informing the model the multiplicity count beforehand.
+
+
+
+\subsubsection{GravNet Baseline}
+
+The GravNet baseline embeds every eight-feature ECal or trigger-pad node in a
+128-dimensional latent space. Four residual \texttt{GravNetConv} blocks then
+learn event-local neighbourhoods and propagate information between nearby
+nodes in the learned space \cite{qasim2019-gravnet}. A linear per-node head
+produces the origin logits, of which only the ECal rows are supervised. The
+graph-assignment vector described in
+Section~\ref{sec:method_batching} prevents message passing between events.
+
+The selected baseline architectures are summarised side by side in
+Figure~\ref{fig:baseline_architectures}.
+
+\subsubsection{Transformer Baseline}
+
+The Transformer baseline maps the same eight input features to a
+128-dimensional representation and applies three pre-layer-normalised
+encoder blocks. Within each event, full self-attention lets every valid token
+interact with every other valid token and the padding mask prevents padded rows
+from contributing, and the leading batch dimension is processed
+independently. A linear token head produces the ECal hit-origin logits. This
+model adds no sequence positional encoding and the detector coordinates are already
+included in the input features, and the row order carries no meaning. This
+set-to-set construction follows the interaction pattern used in recent
+\gls{mlpf} models while retaining and restricting it to a single \gls{ldmx}-specific output task
+\cite{pata2026-mlpf}.
+
+The selected baseline architectures are summarised side by side in
+Figure~\ref{fig:baseline_architectures}.
+
+\input{config/fig/model_architecture_baselines}[H]
+
+
+\subsubsection{MLPF-Inspired Contributor-Set Slot Model}
+
+The proposed model uses one shared Transformer backbone for the mixed
+\(2e/3e\) dataset. A learned detector-type embedding distinguishes ECal and
+trigger-pad tokens. Two ECal-supervised heads predict the subset of electron
+slots contributing to each hit and their energy fractions. In parallel, a
+mask-aware event summary predicts which of the three electron slots are
+valid. Coherent post-processing combines these outputs to derive the electron
+count, dominant hit origin and pure-versus-mixed classification and these are
+not learned by separate heads. The three training losses---contributor-set,
+fraction and slot-validity---were assigned equal weight.
+
+\input{config/fig/model_architecture_contributor_slot}
+
+\subsection{Training Procedure}
+
+
+
+\subsubsection{Mini-Batch Construction for Variable-Sized Events}
+\label{sec:method_batching}
+
+Each mini-batch contains at most \(B\) events, where the batch size counts
+events rather than detector objects. For event \(b\), the model-specific input
+is a variable-size matrix
+\(\mathbf{X}_b\in\mathbb{R}^{n_b\times F}\). 
+%In the ECal-only models every row is an ECal hit. 
+In the ECal-plus-trigger-pad models, trigger-pad rows are valid
+context objects but only ECal rows are supervised. Figure~\ref{fig:baseline_batching}
+shows how these event matrices are collated and processed.
+
+\begin{figure}[htbp]
+    \centering
+    \begin{tikzpicture}[
+        >=Latex,
+        node distance=6mm and 4mm,
+        every node/.style={font=\normalsize},
+        common/.style={draw, rounded corners, align=center,
+                      minimum height=11mm, text width=108mm,
+                      fill=RoyalBlue!8},
+        transformer/.style={draw, rounded corners, align=center,
+                           minimum height=14mm, text width=59mm,
+                           fill=Orange!13},
+        gravnet/.style={draw, rounded corners, align=center,
+                       minimum height=14mm, text width=59mm,
+                       fill=ForestGreen!10},
+        arrow/.style={->, thick}
+    ]
+        \node[common] (events) {
+            \textbf{1. Select up to \(B\) variable-size events}\\
+            \(\{\mathbf{X}_b\in\mathbb{R}^{n_b\times F}\}_{b=1}^{B}\)
+        };
+
+        \node[common, below=of events] (views) {
+            \textbf{2. Construct the model-specific view}\\
+            ECal-only, or ECal plus trigger-pad context;\\
+            the ECal mask marks supervised rows
+        };
+
+        \node[transformer, below=8mm of views, xshift=-34mm] (tpad) {
+            \textbf{3T. Pad and stack}\\
+            \(N_{\max}=\max_b n_b\), \qquad
+            \(\mathbf{X}_{\mathrm{pad}}
+            \in\mathbb{R}^{B\times N_{\max}\times F}\)
+        };
+        \node[gravnet, below=8mm of views, xshift=34mm] (gcat) {
+            \textbf{3G. Concatenate all nodes}\\
+            \(N_{\Sigma}=\sum_{b=1}^{B}n_b\), \qquad
+            \(\mathbf{X}_{\mathrm{cat}}
+            \in\mathbb{R}^{N_{\Sigma}\times F}\)
+        };
+
+        \node[transformer, below=of tpad] (tmasks) {
+            \textbf{4T. Construct masks}\\
+            \(\mathbf{M}_{\mathrm{valid}},\mathbf{M}_{\mathrm{ECal}}
+            \in\{0,1\}^{B\times N_{\max}}\)\\
+            Valid tokens include both ECal and trigger-pad rows
+        };
+        \node[gravnet, right=3mm of tmasks] (gindex) {
+            \textbf{4G. Assign every node to an event}\\
+            \(\mathbf{g}\in\{0,\ldots,B-1\}^{N_{\Sigma}}\), \qquad
+            \(\mathbf{M}_{\mathrm{ECal}}\in\{0,1\}^{N_{\Sigma}}\)
+        };
+
+        \node[transformer, below=of tmasks] (tmodel) {
+            \textbf{5T. Transformer forward pass}\\
+            Full self-attention is evaluated\\
+            separately for each batch slice \(b\)\\
+            (no attention across \(B\))\\
+            \(\neg\mathbf{M}_{\mathrm{valid}}\) masks padding\\
+            \(\mathbf{Z}\in
+            \mathbb{R}^{B\times N_{\max}\times C}\)
+        };
+        \node[gravnet, right=3mm of tmodel] (gmodel) {
+            \textbf{5G. GravNet}\\
+            \textbf{forward pass}\\
+            \(\mathbf{g}\) is passed to each\\
+            \texttt{GravNetConv} layer\\
+            Learned \(k\)-NN neighbours\\
+            remain within one event\\
+            \(\mathbf{Z}\in
+            \mathbb{R}^{N_{\Sigma}\times C}\)
+        };
+
+        \node[common, below=9mm of tmodel, xshift=34mm] (loss) {
+            \textbf{6. Select ECal logits and compute one batch loss}\\
+            \(\displaystyle
+              \mathcal{L}_{\mathrm{batch}}
+              =\frac{1}{H}\sum_{b=1}^{B}
+               \sum_{i\in\mathcal{E}_b}
+               \operatorname{CE}(\mathbf{z}_{bi},y_{bi}),
+              \qquad
+              H=\sum_{b=1}^{B}|\mathcal{E}_b|\)
+        };
+        \node[common, below=of loss] (update) {
+            \textbf{7. Backpropagate, clip the gradients}\\
+            \textbf{and update the model}
+        };
+
+        \draw[arrow] (events) -- (views);
+        \draw[arrow] (views) -- (tpad);
+        \draw[arrow] (views) -- (gcat);
+        \draw[arrow] (tpad) -- (tmasks);
+        \draw[arrow] (gcat) -- (gindex);
+        \draw[arrow] (tmasks) -- (tmodel);
+        \draw[arrow] (gindex) -- (gmodel);
+        \draw[arrow] (tmodel) -- (loss);
+        \draw[arrow] (gmodel) -- (loss);
+        \draw[arrow] (loss) -- (update);
+    \end{tikzpicture}%
+    \caption{Mini-batch construction for the Transformer and GravNet
+    baselines. Here \(F\) is the input-feature dimension, \(C\) is the number
+    of output classes and \(\mathcal{E}_b\) is the set of ECal rows in event
+    \(b\). Trigger-pad rows provide context but do not enter the hit-origin
+    loss.}
+    \label{fig:baseline_batching}
+\end{figure}
+
+For the Transformer, the leading batch dimension indexes independent event
+sequences and is not part of the attention contraction. Full self-attention
+therefore acts only between tokens belonging to the same event, while the
+validity mask excludes padding tokens within that event. GravNet instead uses
+\(\mathbf{g}\) to keep the learned neighbourhoods of the concatenated nodes
+event-specific. In both models, the ECal mask selects the supervised outputs
+and the loss is averaged over all \(H\) ECal hits in the mini-batch.
+
+\subsubsection{Training Objectives}
+\label{sec:method_training}
+
+For the baseline classifiers, the batch loss shown in
+Figure~\ref{fig:baseline_batching} is categorical cross-entropy over the
+retained ECal hits. The contributor-set model instead gives every event equal
+weight, irrespective of its hit count. For event \(b\), its three loss terms
+are
+\begin{align}
+    \mathcal{L}_{\mathrm{sup}}^{(b)}
+    &=
+    \frac{1}{N_b}\sum_{i\in\mathcal{E}_b}
+    w_{s_{bi}}\operatorname{CE}
+    \!\left(\widehat{\boldsymbol{s}}_{bi},s_{bi}\right), \\
+    \mathcal{L}_{\mathrm{frac}}^{(b)}
+    &=
+    -\frac{1}{N_b}\sum_{i\in\mathcal{E}_b}
+    \sum_{j=0}^{3} f_{bij}\log \widehat f_{bij}, \\
+    \mathcal{L}_{\mathrm{slot}}^{(b)}
+    &=
+    \frac{1}{3}\sum_{j=1}^{3}
+    \operatorname{BCE}\!\left(\widehat v_{bj},v_{bj}\right).
+\end{align}
+Here, \(s_{bi}\in\{0,\ldots,7\}\) encodes the subset of three electron slots
+contributing to hit \(i\), \(w_{s_{bi}}\) is a fixed class weight derived from
+the training split, \(f_{bi0},\ldots,f_{bi3}\) are the background and
+electron energy fractions, and \(v_{bj}\) is the validity target for slot
+\(j\). The optimized mini-batch objective is
+\begin{equation}
+    \mathcal{L}_{\mathrm{batch}}
+    =
+    \frac{1}{B}\sum_{b=1}^{B}
+    \left(
+    \lambda_{\mathrm{sup}}\mathcal{L}_{\mathrm{sup}}^{(b)}
+    +\lambda_{\mathrm{frac}}\mathcal{L}_{\mathrm{frac}}^{(b)}
+    +\lambda_{\mathrm{slot}}\mathcal{L}_{\mathrm{slot}}^{(b)}
+    \right),
+\end{equation}
+with all three coefficients set to one in the reported model. Electron count,
+dominant origin and pure-versus-mixed labels are derived during
+post-processing and therefore have no separate training losses.
+
+
+\subsubsection{Optimizer and Regularization}
+
+All reported models were trained with AdamW, using an initial learning rate of
+\(3\times10^{-4}\) and a weight-decay coefficient of \(10^{-4}\). AdamW uses
+the adaptive first- and second-moment updates of Adam but decouples weight
+decay from the loss-gradient update. The regularisation is therefore applied
+directly to the parameters instead of being rescaled by the optimizer's
+adaptive gradient statistics \cite{loshchilov2019-adamw}. It was selected as a
+robust general-purpose optimizer for both the Transformer and GravNet
+campaigns. This was a pragmatic common choice, not the outcome of a dedicated
+optimizer comparison.
+
+The reported configurations use dropout with probability \(0.1\) and clip the
+total gradient \(L^2\) norm to at most \(1.0\) before each optimizer step.
+Weight decay and dropout regularise the model, while gradient clipping limits
+occasional large updates. The baseline runs retain the initial learning rate.
+For the multi-task slot model, validation-loss plateau scheduling is enabled
+with a patience of one epoch and a reduction factor of \(0.5\).
+
+
+
+\subsubsection{Early Stopping and Checkpoint Selection}
+
+The validation loss is evaluated after every training epoch and controls early
+stopping. The reported campaigns permit at most 15 epochs, require at least
+five, and stop after three consecutive epochs without a validation-loss
+improvement of at least \(10^{-4}\). The test split does not influence this
+decision.
+
+Two related checkpoint criteria are retained deliberately. A resumable latest
+checkpoint and an epoch checkpoint are written after each epoch. Separately,
+the best checkpoint is replaced whenever the validation loss reaches a new
+strict minimum. The latter improvement may be smaller than the \(10^{-4}\)
+threshold used to reset early-stopping patience. Thus, the best available
+parameters are preserved even when several improvements are too small to
+justify extending training. Interrupted runs can resume with the optimizer,
+learning-rate scheduler, data split and early-stopping history restored.
+
+
+
+\subsection{Evaluation Methodology}
+\label{sec:method_evaluation}
+
+Model selection and exploratory failure analysis are performed on the
+validation split. The test split remains held out for the final comparison of
+the selected models. Metrics are calculated both after pooling all retained
+\gls{ecal} hits and separately for each event. The event-wise quantities are
+important in this problem because a single aggregate accuracy can conceal a
+broad distribution containing both easily separated and strongly overlapping
+showers.
+
+\subsubsection{Hit-Origin Classification Metrics}
+
+\textbf{These will be simplified and rewritten, in line with LK feedback}
+
+Consider an event \(e\) with a set of retained ECal hits
+\(\mathcal{H}_e\), where \(N_e=|\mathcal{H}_e|\). Let \(y_{eh}\) and
+\(\widehat{y}_{eh}\) denote the target and predicted dominant-origin classes
+for hit \(h\), respectively. The ordinary event hit accuracy is
+\begin{equation}
+    A_{\mathrm{hit}}^{(e)}
+    =
+    \frac{1}{N_e}
+    \sum_{h \in \mathcal{H}_e}
+    \mathbb{I}
+    \!\left[\widehat{y}_{eh}=y_{eh}\right],
+    \label{eq:event_hit_accuracy}
+\end{equation}
+where \(\mathbb{I}[\cdot]\) is the indicator function. Electron slots have no
+intrinsic physical order, however, so a correct shower partition should not be
+penalised solely because two complete labels are exchanged. The reported
+event-level grouping metric is therefore
+\begin{equation}
+    A_{\mathrm{perm}}^{(e)}
+    =
+    \max_{\pi\in\mathcal{S}_{K_e}}
+    \frac{1}{N_e}
+    \sum_{h\in\mathcal{H}_e}
+    \mathbb{I}
+    \!\left[\pi(\widehat y_{eh})=y_{eh}\right],
+    \label{eq:event_permutation_accuracy}
+\end{equation}
+where \(\mathcal{S}_{K_e}\) is the set of global permutations of the
+\(K_e\) electron labels. A maximising permutation \(\pi_e^\star\) is chosen
+once for the complete event and retained for all layer-wise and
+energy-weighted metrics; individual hits cannot be relabelled independently.
+Unless explicitly stated otherwise, hit-assignment results use
+Equation~\eqref{eq:event_permutation_accuracy}. Training curves remain
+unaligned because they measure optimisation against the canonical targets.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.58\linewidth]{config/fig/results/shower_label_swap_recovery_3e.png}
+    \caption{Ordinary canonical-label accuracy and permutation-aligned
+    accuracy for \(3{,}000\) \(3e\) validation events from a Transformer
+    development run. Alignment changes \(297\) event scores (\(9.9\,\%\)) and
+    increases mean event accuracy from \(0.722\) to \(0.737\).}
+    \label{fig:results_label_swap_recovery}
+\end{figure}
+
+Misclassifying a low-energy hit and misclassifying a hit carrying a large
+amount of shower energy need not have equal physical importance. A parallel
+energy-weighted accuracy is therefore defined as
+\begin{equation}
+    A_{E}^{(e)}
+    =
+    \frac{
+        \displaystyle\sum_{h \in \mathcal{H}_e}
+        E_{eh}^{\mathrm{raw}}
+        \mathbb{I}
+        \!\left[\pi_e^\star(\widehat{y}_{eh})=y_{eh}\right]
+    }{
+        \displaystyle\sum_{h \in \mathcal{H}_e}
+        E_{eh}^{\mathrm{raw}}
+    },
+    \label{eq:event_energy_weighted_accuracy}
+\end{equation}
+where \(E_{eh}^{\mathrm{raw}}\) is the non-transformed reconstructed ECal
+energy and \(\pi_e^\star\) is the permutation selected in
+Equation~\eqref{eq:event_permutation_accuracy}. Thus, the logarithmically
+transformed model input is not used as a physical weight. The distributions,
+means and medians of these event metrics are retained, while pooled confusion
+matrices show which origin groups are confused.
+
+The predicted class probabilities \(p_{ehj}\) are also used to calculate the
+maximum confidence \(c_{eh}=\max_j p_{ehj}\) and the normalised entropy
+\begin{equation}
+    H_{eh}
+    =
+    -\frac{1}{\log K}
+    \sum_{j=1}^{K} p_{ehj}\log p_{ehj},
+    \label{eq:normalised_prediction_entropy}
+\end{equation}
+where \(K\) is the number of classifier output classes. Their event means,
+together with the event loss and hit multiplicity, are used as supporting
+diagnostics of confident failure and event difficulty.
+
+\subsubsection{Projected Shower Geometry}
+
+To relate performance to physical overlap, every ECal hit is projected onto
+the transverse plane, \(\boldsymbol r_{eh}=(x_{eh},y_{eh})\). Truth origin
+\(j\) receives the weight
+\begin{equation}
+    w_{ehj}=E_{eh}^{\mathrm{raw}}f_{ehj},
+    \label{eq:shower_geometry_weight}
+\end{equation}
+where \(f_{ehj}\) is its simulated deposited-energy fraction. A mixed hit can
+therefore contribute to several shower geometries in proportion to its truth
+fractions. The energy-weighted centroid and radial variance are
+\begin{align}
+    \boldsymbol{\mu}_{ej}
+    &=
+    \frac{\sum_h w_{ehj}\boldsymbol r_{eh}}
+         {\sum_h w_{ehj}},
+    \label{eq:projected_shower_centroid} \\
+    s_{ej}^{2}
+    &=
+    \frac{\sum_h w_{ehj}
+    \lVert\boldsymbol r_{eh}-\boldsymbol\mu_{ej}\rVert_2^2}
+         {\sum_h w_{ehj}}.
+         \label{eq:projected_shower_width}
+\end{align}
+For shower pair \(i,j\), the centroid distance and dimensionless separation
+are
+\begin{align}
+    d_{e,ij}
+    &=
+    \lVert\boldsymbol\mu_{ei}-\boldsymbol\mu_{ej}\rVert_2,
+    \label{eq:shower_centroid_distance} \\
+    S_{e,ij}
+    &=
+    \frac{d_{e,ij}}{\sqrt{s_{ei}^{2}+s_{ej}^{2}}}.
+    \label{eq:normalised_shower_separation}
+\end{align}
+The event-level difficulty coordinate is the closest pair,
+\begin{equation}
+     S_{e,\min}=\min_{1\leq i<j\leq K_e}S_{e,ij}.
+    \label{eq:min_shower_separation}
+\end{equation}
+A small value means that at least one pair is close relative to its combined
+width. Geometry is evaluated either over all ECal layers or over an explicitly
+stated early-layer subset. Because the weights require simulation truth, these
+quantities are oracle difficulty diagnostics rather than deployable detector
+observables.
+
+\subsubsection{Difficulty Profiles and Event Inspection}
+
+Accuracy profiles use approximately equal-population bins in shower
+separation or model confidence. Means and \(95\,\%\) confidence intervals are
+estimated by bootstrap resampling events within each bin. Events are also
+ranked by permutation-aligned hit accuracy to select lower-tail, median and
+high-performing examples.
+
+For the multi-task model, fraction quality is summarized by
+\begin{equation}
+    \operatorname{MAE}_{f}
+    =
+    \frac{1}{4N_e}
+    \sum_{h \in \mathcal{H}_e}
+    \sum_{j=0}^{3}
+    \left|\widehat{f}_{ehj}-f_{ehj}\right|,
+    \label{eq:fraction_mae}
+\end{equation}
+both before and after validity-mask post-processing. Exact contributor-set
+accuracy, dominant-origin accuracy, mixed-hit precision and recall, and
+electron-count accuracy complete the task-specific evaluation.
+
+Selected events are inspected with Plotly-based interactive HTML displays that
+preserve the detector \(z\)-coordinate. A menu switches among truth,
+prediction, correctness, confidence, entropy and energy, while hover labels
+expose hit-level values. These displays support qualitative checks and
+failure-mode discovery; an example is shown in
+Figure~\ref{fig:interactive_event_display} in the Appendix.
