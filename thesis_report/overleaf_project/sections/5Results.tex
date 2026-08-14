@@ -169,12 +169,16 @@ from determining the electron count by itself. This motivates testing whether
 a model can combine the \gls{tpad} observations with the \gls{ecal} shower
 pattern, at least in offline reconstruction it is highly expected that a reconstruction model can improve the electron count.
 
-\subsubsection{Summarizing discussion}
+\subsubsection{Implications of the Event Characteristics}
 
-In summary, the event statistics establish the expectations used to
-interpret the model results. The individual shower have the same characteristics in
-\(2e\) and \(3e\) events, but the closest-pair separation decreases
-substantially for \(3e\) and showers have a higher degree of overlap, and this should be the main cause of increased difficulty in separating the electro showers in reconstruction. The \gls{tpad} multiplicity supplies useful but incomplete event-level context.
+The event statistics establish the physical context for interpreting the
+model results. Individual shower widths are similar in the \(2e\) and \(3e\)
+samples, while the closest-pair separation is substantially smaller for
+\(3e\) events. The greater opportunity for pairwise overlap therefore makes
+the \(3e\) assignment problem intrinsically more crowded. The \gls{tpad}
+multiplicity supplies complementary but incomplete event-level context. These
+observations motivate the performance analyses below, but do not by
+themselves determine how much of the event structure the models can recover.
 
 %\textbf{THE REST OF THE RESULTS SECTION WILL INCLUDE ALL THE RESULTS AND ALSO DISCUSS THEM IN A NATURAL WAY AS WE GO ALONG I WANT TO DIVIDE IT INTO SUBSECTIONS THAT FIRST COVER THE BASELINE MODELS AND INVESTIGATE THE SO-CALLED PRINCIPAL TASK OF THIS THESIS AND STUDY OF ELECTRON SHOWER SEPARATION IN THE FORM OF HIT ASSIGNMENTS. ONE SUBSUBSECTION CAN NATURALLY LEAD INTO THE OTHER. ONCE THE BASELINE MODELS HAVE BEEN COVERED I HAVE ALREADY INTRODUCED MANY TYPES OF ANALYSES AND PLOTS AND I CAN REUSE ARGUMENTS AND I CAN UTILIZE THE FACT THAT STUFF HAS ALREADY BEEN EXPLAINED AND CONCEPTS DISCUSSED WHEN I GO INTO THE NEXT SECTION THE SECTION AFTER THE BASELINE MODEL SECTION IS COVERING THE MLPF INSPIRED MULTI TASK SLOT TRANSFORMER MODEL. HERE ALL THE SUBSUBSECTIONS WILL PRESENT THE RESULTS THAT ARE RELATED TO THIS MODEL AND THIS MODEL HAS NEW TASKS THAT THE BASELINE MODELS DOES NOT HAVE SO I HAVE TO GO THROUGH THESE AND DISCUSS AND EXPLAIN/COMMENT THE RESULTS (AND NOT EXPLAIN STUFF THAT I HAVE ALREADY EXPLAINED IN THE METHODOLOGY OF COURSE). I CAN USE THE SAME ANALYSIS PLOTS THAT I USED FOR THE HIT ASSIGNMENTS FOR THIS MODEL AS WELL AND INVESTIGATE IF THEY ARE SIMILAR OR DIFFERENT AND DISCUSS WHY THAT MIGHT BE THE CASE.}
 
@@ -735,3 +739,99 @@ separately trained ECal-only contributor model is needed to complete the
 controlled architecture comparison and is treated as follow-up work rather
 than folded into the current estimate.
 
+
+\clearpage
+\subsection{Overall Interpretation and Limitations}
+\label{sec:results_overall_interpretation}
+
+\subsubsection{Synthesis of Findings}
+
+The principal result is that both set-based architectures recover substantial
+per-electron structure from overlapping calorimeter showers, although the
+assignment remains imperfect. The final Transformer reaches pooled
+permutation-aligned hit accuracies of \(84.20\,\%\) for \(2e\) events and
+\(74.84\,\%\) for \(3e\) events. The corresponding mean event accuracies are
+\(83.73\,\%\) and \(74.40\,\%\). Energy weighting raises these values to
+\(89.76\,\%\) and \(83.18\,\%\), which shows that incorrectly assigned hits
+carry less reconstructed energy on average. The reduction for \(3e\) events
+is consistent with their smaller closest-pair separation and the additional
+pairwise combinations that can overlap.
+
+The detailed diagnostics support this interpretation without reducing event
+difficulty to a single geometric variable. Mean accuracy rises with truth
+shower separation and falls through the later, sparsely populated part of the
+ECal. A broad spread remains at any fixed separation, showing that centroid
+distance and shower width do not fully describe the assignment problem.
+Confidence and entropy can rank difficult predictions and expose an
+accuracy--coverage trade-off, but the present study does not establish that
+the softmax scores are calibrated probabilities.
+
+The Transformer and GravNet baselines are close in practical performance.
+Paired comparisons resolve a Transformer advantage of \(0.4\)--\(1.0\)
+percentage points across the reported event-level metrics, but the magnitude
+is small. The Transformer also trained faster in these implementations despite
+having more parameters. This makes it a useful representative model for the
+present study, not a generally superior architecture. Only one trained
+instance of each configuration was compared, their batch sizes differed and
+neither architecture underwent an exhaustive hyperparameter search.
+
+The contributor-set model demonstrates that the output space can be expanded
+without sacrificing most of the dominant-origin performance. After removing
+truth-noise hits and aligning labels, its pooled accuracies are
+\(84.13\,\%\) for \(2e\) and \(74.39\,\%\) for \(3e\), close to the
+fixed-multiplicity Transformer values. It simultaneously derives the correct
+electron count for \(99.983\,\%\) of the mixed test sample. This count result
+is restricted to a balanced binary distinction between \(2e\) and \(3e\),
+not general electron counting. Exact contributor-set accuracy is
+\(72.41\,\%\), mixed-hit detection reaches \(F_1=0.551\) and the
+validity-masked fraction error is \(0.115\). These results locate the
+remaining challenge in identifying mixed deposits and dividing their energy,
+rather than in the restricted event-count decision.
+
+The two ablation studies indicate task-dependent sensitivity to the
+\gls{tpad} tokens. For the final fixed-count \(3e\) Transformer, intact-input
+accuracy exceeds the token-removed evaluation by only \(0.119\) percentage
+points in pooled hit accuracy and \(0.125\) points in mean event accuracy.
+The paired confidence intervals exclude zero, so the change is statistically
+resolved for that checkpoint, while its practical magnitude is small. In the
+earlier \(100{,}000\)-event contributor development model, token removal
+reduces count accuracy by \(1.64\) points overall and \(3.25\) points for
+true \(3e\) events. The latter study uses a different model and a smaller
+test sample than the final contributor result, so the ablation magnitudes
+should not be treated as one controlled cross-task comparison. More
+fundamentally, inference-time removal changes both the input distribution and
+the attention context. The studies establish sensitivity to removal, but do
+not isolate the causal informational value of the \gls{tpad} modality.
+
+\subsubsection{Scope and Limitations}
+
+The conclusions are limited to simulated overlays of independent inclusive
+non-signal electron events with multiplicities two and three. They do not
+establish performance on detector data, dark-matter signal samples, other
+beam conditions or a wider multiplicity range. The fixed-count baselines are
+also deliberately simplified. They receive the true multiplicity, use one
+hard dominant-origin label per hit and exclude simulated noise. The
+contributor model relaxes these assumptions, but remains a preliminary study
+within the same restricted multiplicity domain. Simulation-flagged noise
+constitutes only \(0.0092\,\%\) of its hits, which is too little support for a
+broad claim about noise reconstruction.
+
+Canonical \(y\)-ordering supplies a stable training convention but is not a
+physical identity for an electron. Event-wise permutation alignment removes
+this arbitrary label choice from the reported baseline accuracies, while the
+training objective itself remains ordering dependent. Several diagnostic
+variables, including truth-centroid separation, contributor sets and energy
+fractions, also require simulation truth. They explain model behaviour but
+are not observables that would be available directly in deployed inference.
+
+The reported confidence intervals resample held-out events for fixed
+checkpoints. They quantify finite-test-sample uncertainty, not variation from
+retraining, random initialisation, simulated sample production or detector
+systematics. Model capacity was chosen with a performance-first strategy and
+the study does not map the accuracy--capacity frontier. The recorded training
+times are implementation-specific and are not measurements of online
+inference latency. Finally, the models use full-resolution offline ECal hits
+rather than the coarser trigger-cell representation. The results should
+therefore be viewed as an offline reconstruction proof of concept and a
+reusable basis for further study, not as a production-ready reconstruction
+system.

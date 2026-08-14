@@ -8,23 +8,26 @@ simulated two- and three-electron pile-up events.
 
 Events are represented as unordered, variable-size sets of calorimeter hits
 and trigger-pad-track observations. Transformer and GravNet are modern architectures that can 
-assign each hit to its dominant origin electron; a multitask Transformer also
+assign each hit to its dominant origin electron. A multitask Transformer also
 predicts electron count, per-hit contributor sets, and deposited-energy
 fractions, inspired by particle-flow algorithms.
 
-On matched test samples, the Transformer achieved pooled hit accuracies of
-\(83.31\,\%\) for two-electron events and \(73.11\,\%\) for three-electron
-events, compared with \(83.09\,\%\) and \(72.63\,\%\), respectively, for
-GravNet. The architectures performed thus similarly, with a small
-Transformer advantage. Three-electron events were harder because of more
-shower overlap.
+On matched test samples, the Transformer achieved permutation-aligned pooled
+hit accuracies of \(84.20\,\%\) for two-electron events and \(74.84\,\%\)
+for three-electron events, compared with \(83.79\,\%\) and \(74.01\,\%\),
+respectively, for GravNet. The architectures therefore performed similarly,
+with a small Transformer advantage in this campaign. The lower
+three-electron accuracy is consistent with
+the smaller closest-pair separation in that sample and the observed dependence
+of model performance on shower overlap.
 %while higher energy-weighted accuracies showed that misassigned hits tended to carry slightly less energy. 
 Removing trigger-pad tokens at inference time produced a small but
 statistically resolved change in fixed-multiplicity hit assignment and a
 larger change in variable-multiplicity electron counting. These ablations do
 not isolate useful trigger-pad information from the distribution shift caused
 by removing a complete input modality. The final model achieved
-electron-count, contributor-set, and dominant-origin accuracies of
+restricted \(2e\)-versus-\(3e\) electron-count, contributor-set, and native
+dominant-origin accuracies of
 \(99.98\,\%\), \(72.41\,\%\), and \(77.04\,\%\), respectively.
 
 Set-based neural architectures can thus recover substantial per-electron

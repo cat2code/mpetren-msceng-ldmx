@@ -1,36 +1,85 @@
 
-\subsection{Summary of Contributions}
-Summarize main findings and improvements over baseline.
+\subsection{Conclusions}
+\label{sec:conclusions}
 
-\subsection{Future Work}
-Discuss architectural improvements. Discuss scalability.
-Discuss transformers and potential benefits with hardware specifically made for this. 
+This thesis investigated whether set-based neural networks can separate
+overlapping electron showers in the LDMX ECal and whether heterogeneous
+trigger-pad information adds useful context. Transformer and GravNet models
+were trained for fixed \(2e\) and \(3e\) hit assignment, followed by an
+experimental Transformer that predicts slot validity, hit contributors and
+energy fractions jointly. The common sharded dataset, deterministic event
+splits and held-out test samples made it possible to compare the implemented
+models and analyse their failure modes consistently.
 
-Explore integration into high-level trigger.
+Both baseline architectures learned substantial shower separation. The final
+Transformer reached permutation-aligned pooled hit accuracies of
+\(84.20\,\%\) for \(2e\) events and \(74.84\,\%\) for \(3e\) events.
+Energy-weighted accuracy was higher in both samples, which shows that errors
+preferentially affect lower-energy hits. The poorer \(3e\) result is
+consistent with the smaller closest-pair separation in that sample and with
+the observed dependence of accuracy on shower overlap. GravNet performed
+similarly, while paired fixed-checkpoint comparisons gave the Transformer a
+small advantage of approximately one percentage point or less. The Transformer was
+therefore the pragmatic reference architecture in this work, although the
+single-seed and implementation-specific comparison does not establish a
+universal ranking.
 
-Discuss training per epoch being a bit wierd.
+The multi-task model retained nearly the same aligned dominant-origin
+performance while supporting a richer reconstruction output. It achieved
+\(99.983\,\%\) electron-count accuracy in the restricted \(2e\)-versus-\(3e\)
+setting, while exact contributor sets, mixed-hit identification and energy
+fractions remained more difficult. This demonstrates the flexibility of a
+particle-flow-inspired set prediction, but also shows that mixed deposits are
+the central unresolved part of the problem. Removing \gls{tpad} tokens caused
+a small but statistically resolved change in fixed-count hit assignment and a
+larger count change in an earlier contributor-model study. Since both tests
+removed a complete modality only at inference time, they demonstrate
+sensitivity rather than the causal value of the detector information.
 
-Discuss noisy loss with experimental model due to incorrect 2e/3e predictions and wonder how one handles that. 
+An additional contribution is the \texttt{ml\_ldmx} software platform
+developed for the study. It connects ROOT-data extraction and tensorisation,
+sharded datasets, variable-size model inputs, checkpointed training and
+reproducible evaluation in one documented workflow. The project is intended
+to be reusable by later students and researchers rather than to support only
+the models reported here. Taken together, the results establish that
+set-based learning is a feasible route to per-electron reconstruction in
+simulated LDMX pile-up, while shower overlap, mixed hits and validation beyond
+the present simulation domain remain the main barriers to application.
 
-Discuss trimming the model to minimal size but preserving performance. 
+\subsection{Outlook}
+\label{sec:outlook}
 
-Discuss how MORE information can be fed and how that has not been tested yet. Discuss that MORE information can mean new unique information but it can also include more object-level information that is already processed beforehand somewhat. 
+The first priority is a controlled test of heterogeneous detector value.
+ECal-only and ECal-plus-\gls{tpad} models should be trained on identical event
+splits across several random seeds and evaluated on the same held-out events.
+The study should cover a wider range of electron multiplicities and explicitly
+separate events with complete, missing and merged \gls{tpad} candidates. An
+alternative trigger-scintillator geometry that provides information in both
+transverse coordinates could also be tested, since it may offer more
+complementary context than the present one-dimensional centroids.
 
-Discuss the 3 highlighted simplifications and why they were made. 
+The contributor model should next replace or reduce its dependence on
+canonical \(y\)-ordering. A permutation-invariant loss with event-wise matching,
+such as Hungarian assignment, would align predicted slots to truth during
+training rather than only during evaluation. Multi-task loss balancing should
+then be studied together with broader electron counts and more varied event
+conditions. Additional detector streams or reconstructed object-level inputs
+can be introduced through controlled modality comparisons so that their
+incremental value is measurable.
 
-Discuss the comparison between transformer and gnn based models and why transformers seem to be the preffered choice given this study. 
+Deployment-oriented work should map the trade-off between accuracy, model
+capacity, memory use and inference latency. This includes systematic capacity
+studies, pruning, quantisation, distillation and benchmarks on the intended
+hardware with realistic trigger-level inputs. More specialised attention
+implementations should be considered only if the input multiplicity grows
+substantially. FlashAttention can improve the memory behaviour of exact
+attention, while locality-sensitive-hashing or other sparse approximations can
+reduce the interactions that are evaluated. For the few hundred tokens in the
+present events, these methods are unlikely to be the first optimisation
+priority.
 
-Discuss the prospect of general optimization trimming the size of the network: parameters, inference time, size on disk. 
-
-Discuss prospect of adding tasks to the model (multi-task already or not). 
-
-Discuss the canonical y-ordering and potential of using Hungarian matching instead for loss calculation. 
-
-Discuss implementing LSH or was it called LHS as in mlpf 2021 or flash attention reducing the sizes and reducing inference time. Discuss why this is probably overkill for this project with relatively few inputs. 
-
-Put emphasis on that the codebase that was the basis for this report is meant to be logically structured and documented in such a way so that it can be handed over and that it can act as a platform for deep learning ML based tasks connected to LDMX. One of the intended purposes of the master thesis was to create something that could be picked up at a later stage. It should be a platform where resources can be reused to see if ML based methods can perform  different reconstruction tasks, by students or researchers alike. 
-
-Discuss the inclusion of TS and tpad information. Why heterogenous detector information is interesting, and discuss why the tpad information in this case seem to matter little to nothing at all. Discuss what that could mean, discuss if we think that we can squeeze more infomration out or not. When do we expect this information to be important? When is it not important? 
-
-Alternative geometry for trigger scintillator can be used to achieve resolution in both x and y directions. 
-
+After robustness and latency have been established, the reconstruction can be
+evaluated with trigger-cell inputs and downstream event-level physics metrics.
+The documented data, training and evaluation components in \texttt{ml\_ldmx}
+provide a handover point for these studies and for other machine-learning
+reconstruction tasks within LDMX.
