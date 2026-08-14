@@ -426,13 +426,13 @@ radiation lengths. A radiation length \(X_0\) is the characteristic material
 scale for energy loss by a high-energy electron through bremsstrahlung.
 Tungsten layers initiate and develop electromagnetic showers, while
 interleaved silicon layers sample their energy deposits. The final design
-contains 32 silicon layers
+contains 32 silicon layers 
 %arranged as 16 bilayers, where each bilayer pairs two silicon sampling planes around a common support and cooling structure.
 and the \path{ldmx-det-v15-8gev} geometry used in this thesis likewise produces
 reconstructed ECal hits at 32 layer positions. The performance simulations in
 the current (and newer) LDMX design report instead used an earlier geometry with 34
-layers
-%in 17 bilayers
+layers 
+%in 17 bilayers 
 \cite{ldmx2025-overview}.
 
 An energetic electron radiates photons through \gls{bremsstrahlung} as it
@@ -443,7 +443,7 @@ deposits in many cells and layers rather than a single detector hit. The energy 
 energy and shower development \cite{groom2024-passage-particles}.
 
 The transverse size of an electromagnetic shower is commonly described by
-the Molière radius \(R_{\mathrm{M}}\).
+the Molière radius \(R_{\mathrm{M}}\). 
 %For a homogeneous material, it is calculated as
 %\begin{equation}
 %    R_{\mathrm{M}} = X_0\frac{E_{\mathrm{s}}}{E_{\mathrm{c}}},
@@ -452,7 +452,7 @@ the Molière radius \(R_{\mathrm{M}}\).
 %\end{equation}
 %where \(X_0\) is the radiation length, \(E_{\mathrm{s}}\) is a
 %material-independent scale energy, and \(E_{\mathrm{c}}\) is the critical
-%energy at which radiative and ionisation energy losses are comparable.
+%energy at which radiative and ionisation energy losses are comparable. 
 On
 average, about \(90\%\) of the shower energy is contained within a cylinder
 of radius \(R_{\mathrm{M}}\) \cite{groom2024-passage-particles}. For the
@@ -503,15 +503,14 @@ track candidates is itself a rule-based reconstruction method: low-level bar
 signals are converted into estimates of electron position and multiplicity.
 
 In this thesis, the reconstructed TS track candidates are referred to by
-their name in the \gls{ldmx} codebase, \texttt{TriggerPadTracks}, or simply
-\gls{tpad} in flowing text. The term describes objects reconstructed from TS
-measurements, not a separate detector. Each candidate provides a
-one-dimensional position estimate and a photoelectron count. Taken together,
-the candidates provide information about the positions and multiplicity of
-the incoming electrons. They are detector observations rather than
-simulation-truth labels and only correspond one-to-one with the incident
-electrons when the rule-based reconstruction succeeds
-\cite{ldmx2025-overview}.
+their name in the \gls{ldmx} codebase, \texttt{TriggerPadTracks}, or simply \gls{tpad} in flowing text. The
+term describes objects derived from TS measurements, not a separate detector,
+and should not be confused as so. Each
+candidate provides a one-dimensional position estimate and a photoelectron
+count. Together, the candidates provide information about the positions, energy and the 
+multiplicity of the incoming electrons. They are reconstructed detector
+objects rather than simulation-truth labels, and correspond one-to-one with
+the incident electrons only when the reconstruction makes correct prediction \cite{ldmx2025-overview}.
 
 \subsubsection{Triggering}
 
@@ -540,19 +539,25 @@ cause a signal candidate to be rejected. The trigger reduces the input to an
 average full-readout rate of approximately \(10\,\mathrm{kHz}\)
 \cite{ldmx2025-overview}.
 
-This latency requirement distinguishes online from offline reconstruction.
-Online algorithms operate before storage with strict limits on time, memory
-and data transfer, using quantities such as ECal trigger-cell sums and
-reconstructed TS candidates. After an accepted event has been fully read out,
-offline algorithms can use individual ECal cells and more computationally
-demanding methods. The models developed in this thesis use full-resolution
-simulated ECal hits and therefore address offline reconstruction. Adapting
-them to the trigger would require a separate study with trigger-level inputs,
-target hardware and measured latency.
+The distinction between online/offline reconstruction is set by this
+deadline. Online reconstruction occurs before storage and must satisfy strict
+limits on latency, memory and transferred information. It therefore uses
+reduced quantities such as ECal trigger-cell sums and Trigger Scintillator
+track candidates. Once an accepted event has been fully read out, offline
+reconstruction (which techincally has no deadline) can use individual ECal cells and more computationally
+demanding algorithms to construct calibrated hits, tracks, showers and
+analysis quantities \cite{ldmx2025-overview}.
+
+
+The methods developed in this thesis use simulated ECal hits at the full cell
+granularity and due to thus they
+therefore belong to offline reconstruction research. Their results can show
+whether electron showers can be separated under multi-electron conditions, contributing to ascertaining what the ideal Poisson sampling might be.
+Deployment in the online trigger would be a separate task because it would
+require reduced trigger inputs and a dedicated latency and hardware study.
 
 \subsubsection{Pile-Up and Reconstruction}
 \label{sec:formalism}
-
 In this thesis, \gls{pile-up} means primarily \emph{in-time pile-up}. Two or
 more beam electrons occupy the same radio-frequency bucket, so their detector
 responses are recorded in one readout window. If the number of electrons
@@ -568,16 +573,21 @@ For example, \(\mu=1\) gives \(P(N=1)=e^{-1}\simeq36.8\,\%\) and
 retain \(36.8\,\%\) of all buckets, or \(58.2\,\%\) when conditioning on a
 bucket being non-empty. Lowering \(\mu\) reduces the multi-electron fraction,
 but also reduces the number of \gls{eot} delivered per unit time. The
-practical challenge is therefore to benefit from a higher beam intensity
+engineering challenge of this trade-off is therefore to benefit from a higher beam intensity
 without discarding every bucket that contains several electrons
 \cite{ldmx2025-overview}.
 
 Separate beam electrons can be treated as propagating independently to an
 excellent approximation because direct interactions between them are
-negligible. This makes it possible to generate their particle histories
-separately and overlay them before detector digitisation and reconstruction.
-Let \(Z^{(k)}\) denote the simulated deposits from electron \(k\). The
-observed hit collection can be written schematically as
+negligible. The propagation is partly deterministic (momentum) and partly stochastic (i.e nondeterministically reversible). Let \(Z^{(k)}\) denote the simulated deposits from electron \(k\).
+\begin{equation}
+    Z^{(k)} \perp\!\!\!\perp Z^{(\ell)}
+    \qquad \text{for } k\neq\ell .
+\end{equation}
+This makes it possible to simulate their particle histories
+separately and \textit{overlay} them before detector digitisation (detector response simulation) and reconstruction.
+The
+observed hit collection can be written as
 \begin{equation}
     \mathcal{H}
     =
@@ -591,7 +601,7 @@ includes digitisation, detector granularity, thresholds, noise and hit
 reconstruction. The particle histories may be independent, but their observed
 responses need not remain separable. Deposits can share a cell or showers can
 overlap across several layers, so a simple geometric boundary does not in
-general recover the original \(Z^{(k)}\).
+general reconstruct the original \(Z^{(k)}\).
 
 This creates an inverse reconstruction problem. From the combined detector
 objects \(\mathcal{H}\), one would like to infer the incoming multiplicity and
@@ -600,15 +610,20 @@ an incorrect multiplicity changes the missing-energy estimate. Offline,
 overlap obscures ECal topology and may hide low-energy deposits relevant to
 background rejection. This thesis isolates one part of the inverse problem by
 testing whether full-resolution ECal hits can be assigned to their electron
-of origin. The experimental multi-task model also infers the restricted
+of origin. An experimental multi-task model also infers the restricted
 \(2e\)-versus-\(3e\) multiplicity and predicts contributions from more than
 one electron to the same hit.
+
+
+%The trigger must therefore use thresholds that depend on the estimated electron count. Offline reconstruction can use the full stored detector response to determine which multi-electron events remain separable and how much per-electron information can be recovered. 
+%Such studies can later inform which event classes are useful enough to retain at trigger level, although deploying an online method requires a separate trigger study. This thesis addresses the offline problem by assigning the combined ECal activity to the different beam electrons \cite{ldmx2025-overview}.
+
 
 \subsubsection{The Practical Physics Reach}
 \label{sec:practical_physics_reach}
 
-Multi-electron buckets are not only a reconstruction complication. They can
-also increase the useful electron throughput. The LDMX design report
+Pile up does not necessarily have to be perceived only as a reconstruction complication. They can
+also be seen as an opportuniy to increase the useful electron throughput. The LDMX design report
 estimates that approximately \(4\times10^{14}\) \gls{eot} can be accumulated
 in twelve months at an average multiplicity of one electron per sample, while
 exposures of order \(10^{16}\) \gls{eot} would take many years at the same
@@ -623,28 +638,36 @@ the total signal-trigger efficiency from \(0.58\) to \(0.88\) at
 approximately the same \(1\,\mathrm{kHz}\) trigger budget. That result used
 the energy in the first 20 ECal layers and belongs to a particular trigger
 study, but it demonstrates why usable multi-electron events can improve the
-practical reach of the experiment \cite{ldmx2025-overview}.
+practical reach of the experiment, thus improving the \textit{physics reach} as well \cite{ldmx2025-overview}.
 
 Reliable pile-up reconstruction is therefore an enabling step rather than a
 dark-matter measurement by itself. If overlapping showers can be separated,
 more accepted events can retain interpretable per-electron information and
 contribute to the accumulated exposure. This thesis tests that premise for
-simulated \(2e\) and \(3e\) events. It does not calculate a change in LDMX
-sensitivity or optimise the online trigger. Instead, it asks whether modern
+simulated wo-electron and three-electron events as direct extensions of the single-
+electron case and higher multiplicities are outside its scope. The study
+does not itself search for \gls{dm} or optimise the online trigger, the latter would require its own study. Instead, it asks whether modern
 machine-learning methods can recover per-electron shower structure from the
 combined full-resolution detector response.
 
-\subsection{Machine Learning for Set-Based Detector Reconstruction}
 
-The pile-up problem combines a variable number of irregular detector objects
-whose interpretation depends on their relations to the rest of the event.
-This motivates models that process an event as an unordered set and learn
-object-to-object interactions. The following subsections introduce a recent
-particle-flow example and the GravNet and Transformer architectures used in
-this thesis.
+% TODO. Find a suitable title.
+\subsection{New Title Here}
+
+%\subsection{Why ML?} I think I need more subsections here
+% I need some more motivation than what I have right now... 
 
 
 \subsubsection{MLPF, a Recent Example of ML-based Reconstruction in HEP}
+% Find a more sophisticated title here
+
+% This subsection should include that the reserachers behind mlpf at cern motivates their ml based particleflow that it can be used for LHC high-luminosity phase where pile-up will be much more prevalent. This mirrors the context of ldmx and also ldmx phase 2 that will project to increase the number of beam electrons increasing EoT over time. (Find sources to reference!).
+
+% Here somewhere we should establish the idea of rule-based reconstruction and ml-based reconstruction and how they differ. The idea that ML-based reconstruction is somewhat "automatic", potentially finding an optimal solution that would have been difficult to capture "by hand" with rule-based methods. Unfortunately that also comes with that it has a bit of a black-box nature as well. 
+
+% Somewhere before MLPF (or maybe in MLPF since one of their articles was the one that introduced this) I MUST I MUST I MUST mention the analogy of that using ML-based reconstruction one proposes the useful analogy to picture of "going backwards" in simulation and that we assess the simulation to be a mapping that can be learned (to a certain degree) and that the ultimate task of an ML based model is to learn the inverse R function!
+
+% This section should just mention/explain what particleflow is concisely
 
 \Gls{mlpf}, developed for the \gls{cms} experiment, provides a relevant
 example of machine learning used inside reconstruction rather than only as a
@@ -872,7 +895,7 @@ where \(d_k\) is the query and key dimension. In matrix form
     \!\left(
         \frac{\mathbf{Q}\mathbf{K}^{\mathsf{T}}}{\sqrt{d_k}}
     \right)
-    \mathbf{V}.
+    \mathbf{V},
     \label{eq:scaled_dot_product_attention}
 \end{equation}
 Each row of \(\boldsymbol{\alpha}\) sums to one.
@@ -882,7 +905,7 @@ the complete event, not merely from nearby detector cells.
 Multi-head attention repeats this calculation with independent projections.
 The head outputs are concatenated and linearly mixed, allowing different
 heads to represent different object-to-object relations. The reported models
-use a pre-layer-normalised encoder block,
+use a pre-layer-normalized encoder block,
 \begin{align}
     \widetilde{\mathbf{H}}
     &=
@@ -904,7 +927,7 @@ applied independently to every token. The additions are residual connections,
 which preserve an unchanged path for the previous representation. Stacking
 encoder blocks alternates global information exchange with token-wise
 non-linear processing. Figure~\ref{fig:transformer_encoder} shows both the
-attention update and the pre-layer-normalised block used in this thesis.
+attention update and the pre-layer-normalized block used in this thesis.
 
 \input{config/fig/transformer_encoder}
 
@@ -913,7 +936,7 @@ the original language-model architecture is unnecessary for per-object
 prediction \cite{vaswani2017attention}. Sequence-position encoding is also
 omitted because detector-row order is arbitrary. Physical position enters
 explicitly through detector-coordinate features.
-%Shorter events are padded within a mini-batch, and an attention mask prevents padded rows from sending or receiving information.
+%Shorter events are padded within a mini-batch, and an attention mask prevents padded rows from sending or receiving information. 
 Full attention forms an
 \(N\times N\) matrix for every head, so its dominant interaction memory and
 computation grow quadratically with event size.
@@ -933,20 +956,22 @@ computation grow quadratically with event size.
 \subsubsection{GravNet--Transformer Analogy}
 \label{sec:gravnet_transformer_comparison}
 
-A Transformer encoder can be interpreted within the generic message-passing
-framework of a \gls{gnn}. Tokens become nodes in a fully connected graph, and
-self-attention determines the weight of every connection. Each node then
-exchanges information with every other node, including itself, just as each
-Transformer token attends to every valid token. Under this interpretation, a
-Transformer is a message-passing network whose graph is complete and whose
-edge weights are learned through attention \cite{joshi2025transformersgnn}.
+The Transformer is a special case of a \gls{gnn} \cite{joshi2025transformersgnn}. Here, \gls{gnn} is understood in the
+generic message-passing sense. A generic
+\gls{gnn} can be moulded into the mathematical equivalent of a Transformer by enforcing fully connected graphs and implementing self-attention to determine the importance
+of every connection between nodes. Each node then exchanges information with every node in
+the event, including itself, just as each Transformer token attends to every
+valid token, deconstructing the separated analogy of nodes and tokens. The formal equivalence is derived in
+Ref.~\cite{joshi2025transformersgnn} and its qualitative consequence is that a
+Transformer can be viewed as a \gls{gnn} whose graph is complete and whose edge
+weights are learned through attention.
 
 Both architectures therefore update one representation per detector object by
 exchanging information between objects. The Transformer uses the complete
 graph described above, whereas GravNet learns a sparse \(k\)-nearest-neighbour
 graph and weights its edges through distance in the learned coordinate space.
 This mathematical correspondence does not make their concrete implementations
-or computational costs identical.
+or computational costs identical however.
 
 \begin{table}[htbp]
     \centering
@@ -979,12 +1004,13 @@ or computational costs identical.
     \end{tabular}
 \end{table}
 
-Transformers benefit from a hardware and software ecosystem that is highly
-optimised for the dense matrix multiplications used by attention. This is an
-example of the \emph{hardware lottery}: an architecture can gain a practical
-advantage when its operations align well with available accelerators and
-software libraries, without this making it universally superior
-\cite{hooker2020hardwarelottery,joshi2025transformersgnn}. In practice, all
+From a computational perspective, Transformers are described as \gls{gnn}s that are
+``currently winning the \textit{hardware lottery}'' \footnote{The term \emph{hardware lottery} describes an architecture benefiting because
+its operations match the available software and hardware ecosystem, rather
+than this alone demonstrating that it is universally superior
+\cite{hooker2020hardwarelottery}.} \cite{joshi2025transformersgnn}. The current industry shift towards
+accelerator\footnote{``Accelerator'' in this context refers to specialized hardware such as \glspl{gpu} or even \gls{ml} specialized architectures such as the relatively new \gls{tpu} designed by Google that accelerate the speed of computation for applicable processes\cite{needed}} computing has produced highly optimized GPU and TPU support for
+the dense matrix multiplications used by Transformers. In practice, all
 token interactions can be evaluated through large parallel tensor operations.
 
 The development of \gls{mlpf} is consistent with this hardware-lottery
@@ -1004,13 +1030,10 @@ GravNet evaluates fewer pairwise messages after graph construction, but it
 must construct a nearest-neighbour graph and perform indexed gather--scatter
 operations for sparse message passing. These operations are less directly
 aligned with the dense-computing path emphasized by current accelerators and
-software libraries \cite{fey2019-pytorch-geometric}. Full self-attention is
-not mathematically cheaper because the number of token pairs grows as
-\(N^2\), compared with \(Nk\) edges after the GravNet graph has been
-constructed. It may nevertheless execute faster for a particular workload.
-The practical comparison depends on event size, batch size, implementation
-and hardware, and is therefore measured empirically in the Results and
-Discussion chapter.
+software libraries \cite{fey2019-pytorch-geometric}. Although full self attention is likely not mathematically cheaper, the number of token pairs still grows as \(N^2\), compared with \(Nk\) edges
+after GravNet graph construction, the Transformer could still compute faster in real time. Which model is
+faster for this study still depends on event size, batch size, implementation
+and hardware and is therefore measured empirically and discussed in the Results and Discussion chapter.
 The complete architectures, including their chosen widths, depths, heads and
 neighbour counts, are specified in Section~\ref{sec:method_models}.
 
@@ -1018,3 +1041,7 @@ neighbour counts, are specified in Section~\ref{sec:method_models}.
 %the number of token pairs still grows as \(N^2\), compared with \(Nk\) edges
 %after GravNet graph construction. It means that the Transformer is
 %particularly well matched to the present computing ecosystem. 
+
+
+
+
