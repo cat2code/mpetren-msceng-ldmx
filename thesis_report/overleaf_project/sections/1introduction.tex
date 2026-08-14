@@ -29,8 +29,9 @@ models, without projecting the event onto a fixed image.
 
 Two controlled baseline models are studied: a \gls{gnn} using GravNet
 convolutions and a Transformer encoder. Both receive \gls{ecal} hits and
-reconstructed trigger-pad-track observations, with the value of the latter
-evaluated through inference-time ablation. Both architectures learn relations within unordered,
+reconstructed trigger-pad-track observations. Sensitivity to the latter is
+examined through inference-time ablation, with the resulting distribution
+shift treated as a limitation. Both architectures learn relations within unordered,
 irregular detector data. Their use is motivated by recent machine-learned
 particle-flow methods that interpret heterogeneous detector information with
 graph-based or Transformer-based models

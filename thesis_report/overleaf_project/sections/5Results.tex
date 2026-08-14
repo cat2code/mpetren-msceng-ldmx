@@ -510,7 +510,7 @@ layers, where the per-layer estimate is least stable. Agreement between the
 two layer means does not by itself establish hit-level probability
 calibration.
 
-% Remove? Why / why not?
+% TODO AFTER FIRST HAND IN: update this one it is based on a much smaller dataset I think! 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.96\linewidth]{config/fig/results/confidence_accuracy_by_layer.png}
@@ -524,33 +524,34 @@ calibration.
 
 \subsubsection{Trigger-Pad Ablation}
 
-% There will be a \gls{tpad} ablation discussion at the end with a summarizing discussion that discusses the value of the trigger pad in the hit assignemnt task and the electron count tast. This subsection should only cover the hit assignment task and should not discuss it too deeply.
-Figure~\ref{fig:results_tpad_ablation} removes \gls{tpad}-track tokens at
-inference time from one trained \(3e\) \texttt{ECalTpadTransformer}. The
-reference and ablated event accuracies are almost identical. Across the
-\(3{,}000\) validation events, the pooled hit-accuracy gain from retaining the
-\gls{tpad} inputs is \(1.26\times10^{-4}\), the mean event-accuracy gain is
-\(1.32\times10^{-4}\), and the median event-accuracy gain is zero.
+A paired inference-time ablation was performed with the best checkpoint of the
+final \(3e\) pre-layer-normalised Transformer. The intact model and the same
+model with every \gls{tpad}-track token removed were evaluated on the
+identical \(100{,}000\) held-out test events. Table~\ref{tab:results_baseline_tpad_ablation}
+reports permutation-aligned results, consistently with the other baseline
+hit-assignment metrics.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.98\linewidth]{config/fig/results/tpad_ablation_3e.png}
-    \caption{\textbf{THIS FIG SUCKS I WILL REPLACE}Paired inference-time ablation of \gls{tpad}-track tokens for a
-    trained \(3e\) \texttt{ECalTpadTransformer} on \(3{,}000\) validation
-    events. The upper panels compare event accuracy with and without the
-    \gls{tpad} inputs. The lower panels divide the comparison by completeness
-    and observed \gls{tpad} multiplicity.}
-    \label{fig:results_tpad_ablation}
-\end{figure}
+\input{config/tables/results_baseline_tpad_ablation}
 
-For this trained model and validation sample, the available \gls{tpad} inputs
-therefore have negligible influence on fixed-multiplicity hit assignment. The
-ablation removes tokens from an already trained model and does not replace a
-controlled comparison between separately trained ECal-only and
-ECal-plus-\gls{tpad} models. More importantly, the result is specific to a
-task for which the electron multiplicity is already fixed. It does not imply
-that \gls{tpad} information is uninformative when the model must also infer
-the number of electrons in an event.
+Accuracy with the intact input exceeds the ablated evaluation by \(0.119\)
+percentage points for pooled hit accuracy, \(0.125\) points for mean event
+accuracy and \(0.243\) points for energy-weighted accuracy. All three paired
+bootstrap intervals exclude zero, showing that the measured differences are
+statistically resolved for this fixed checkpoint and test sample. Their
+magnitude is nevertheless small: the largest difference is \(0.243\)
+percentage points, and the median event-level accuracy change is zero.
+
+The ablation therefore demonstrates sensitivity to removing the \gls{tpad}
+tokens, but it cannot establish that useful detector information contained in
+those tokens caused the difference. Removing an entire modality only at
+inference time changes the model's input distribution and attention context.
+A controlled comparison between separately trained ECal-only and
+ECal-plus-\gls{tpad} models, preferably across several random seeds, would be
+required to isolate the added value of \gls{tpad} information. The confidence
+intervals quantify event-sampling uncertainty for this fixed checkpoint; they
+do not include variation from retraining with different random seeds or
+samples. The result is also specific to a \(3e\) task whose electron count is
+supplied in advance.
 
 
 \subsection{MLPF-Inspired Multi-Task Slot Model}
@@ -659,6 +660,7 @@ contributor-set and fraction objectives do not remove the overlap dependence,
 yet they preserve approximately the same dominant-origin performance while
 supporting the additional reconstruction outputs.
 
+% TODO AFTER FIRST HAND IN: add the physical mm on top horizontal direction
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.99\linewidth]{config/fig/results/contributor_width_normalized_separation.png}
@@ -670,6 +672,7 @@ supporting the additional reconstruction outputs.
     \label{fig:results_contributor_width_separation}
 \end{figure}
 
+% TODO AFTER FIRST HAND IN: add an entropy plot as I think have seen that the entropy is higher for the mlpf model or just that it was worse a few layers in...
 
 \subsubsection{Electron Counting and the Contribution of Trigger-Pad Information}
 
@@ -717,18 +720,18 @@ The paired ablation reduces overall count accuracy by \(1.64\) percentage
 points, with a \(95\,\%\) event-bootstrap interval of
 \([1.39,1.89]\) percentage points. Almost the entire effect occurs in true
 \(3e\) events, for which removing \gls{tpad} information reduces accuracy by
-\(3.25\) percentage points. The interval excludes zero, providing evidence
-that this trained network uses the \gls{tpad} input for the variable-count
-task.
+\(3.25\) percentage points. The interval excludes zero, demonstrating
+statistically resolved sensitivity to removing the \gls{tpad} input for the
+variable-count task.
 
 Together with the fixed-count ablation in
-Figure~\ref{fig:results_tpad_ablation}, these results show a task-dependent
-role for \gls{tpad} information: it has negligible measured effect on the
-baseline's hit assignment when multiplicity is given, but a clear effect when
-the contributor model must infer multiplicity. The present ablation still
-introduces a distribution shift because \gls{tpad} inputs are removed only at
-inference time. A separately trained ECal-only contributor model is needed to
-complete the controlled architecture comparison and is treated as follow-up
-work rather than folded into the current estimate.
-
+Table~\ref{tab:results_baseline_tpad_ablation}, these results show
+task-dependent sensitivity to \gls{tpad}-token removal: the measured change
+is small for baseline hit assignment when multiplicity is given, but larger
+when the contributor model must infer multiplicity. Both are inference-time
+ablations and therefore introduce a distribution shift; neither alone
+isolates the informational value of the removed detector modality. A
+separately trained ECal-only contributor model is needed to complete the
+controlled architecture comparison and is treated as follow-up work rather
+than folded into the current estimate.
 

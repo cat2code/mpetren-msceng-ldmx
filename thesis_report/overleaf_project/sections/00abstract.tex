@@ -17,10 +17,13 @@ On matched test samples, the Transformer achieved pooled hit accuracies of
 events, compared with \(83.09\,\%\) and \(72.63\,\%\), respectively, for
 GravNet. The architectures performed thus similarly, with a small
 Transformer advantage. Three-electron events were harder because of more
-shower overlap, 
+shower overlap.
 %while higher energy-weighted accuracies showed that misassigned hits tended to carry slightly less energy. 
-trigger-pad information had negligible measured influence for fixed multiplicity but improved
-variable-multiplicity electron counting. The final model achieved
+Removing trigger-pad tokens at inference time produced a small but
+statistically resolved change in fixed-multiplicity hit assignment and a
+larger change in variable-multiplicity electron counting. These ablations do
+not isolate useful trigger-pad information from the distribution shift caused
+by removing a complete input modality. The final model achieved
 electron-count, contributor-set, and dominant-origin accuracies of
 \(99.98\,\%\), \(72.41\,\%\), and \(77.04\,\%\), respectively.
 

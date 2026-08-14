@@ -1,0 +1,27 @@
+\begin{table}[htbp]
+    \centering
+    \small
+    \setlength{\tabcolsep}{6pt}
+    \caption{Paired inference-time \gls{tpad} ablation for the final \(3e\)
+    pre-layer-normalised Transformer on its \(100{,}000\)-event test set.
+    Assignment metrics are permutation aligned. Differences are
+    ECal-plus-\gls{tpad} minus the same model with all \gls{tpad} tokens
+    removed, in percentage points. Intervals are paired \(95\,\%\) percentile
+    intervals from \(2{,}000\) event-bootstrap resamples.}
+    \label{tab:results_baseline_tpad_ablation}
+    \resizebox{\linewidth}{!}{%
+    \begin{tabular}{lccc}
+        \hline
+        Metric & ECal+\gls{tpad} (\%) & \gls{tpad} removed (\%)
+        & Difference (percentage points) \\
+        \hline
+        Pooled hit accuracy
+        & 74.844 & 74.726 & \(+0.119\;[0.113,\,0.124]\) \\
+        Mean event accuracy
+        & 74.396 & 74.272 & \(+0.125\;[0.119,\,0.130]\) \\
+        Energy-weighted accuracy
+        & 83.274 & 83.032 & \(+0.243\;[0.231,\,0.255]\) \\
+        \hline
+    \end{tabular}%
+    }
+\end{table}
