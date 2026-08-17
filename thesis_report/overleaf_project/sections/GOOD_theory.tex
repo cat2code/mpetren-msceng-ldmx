@@ -610,7 +610,7 @@ an incorrect multiplicity changes the missing-energy estimate. Offline,
 overlap obscures ECal topology and may hide low-energy deposits relevant to
 background rejection. This thesis isolates one part of the inverse problem by
 testing whether full-resolution ECal hits can be assigned to their electron
-of origin. The experimental TRACE model also infers the restricted
+of origin. An experimental multi-task model also infers the restricted
 \(2e\)-versus-\(3e\) multiplicity and predicts contributions from more than
 one electron to the same hit.
 
@@ -768,108 +768,213 @@ information.
 \subsubsection{Graph Neural Networks and GravNet}
 \label{sec:gnn_gravnet_background}
 
-% Motivate WHY using gravnet
-
-A graph represents detector objects as \emph{nodes} and connections between
-them as \emph{edges} \cite{scarselli2009-gnn}. A \gls{gnn} updates every node using information from
-its neighbours. The same learned operation is applied to all nodes, and the
-neighbour information is combined in a way that does not depend on the order
-of the neighbours. Stacking several layers allows information to propagate through a
-larger part of the event \cite{gilmer2017-message-passing}. Graph-based models have therefore become a
-natural approach to particle tracking and reconstruction tasks in \gls{hep}
-\cite{duarte2020-gnn-tracking}.
-
-GravNet was selected as a baseline because it was developed specifically for
-sparse, irregular particle-detector data and first evaluated on the clustering
-of calorimeter showers \cite{qasim2019-gravnet}. Related dynamic-graph ideas
-have also been used successfully in modern high-energy-physics models. The
-2021 MLPF model used nearest-neighbour graph construction and graph
-convolutions for particle-flow reconstruction, while ParticleNet used a
-dynamic graph for jet tagging \cite{pata2021-mlpf,qu2019-particlenet}. These
-models do not use the same graph layer, but together they motivate learned
-graphs as an established approach for unordered detector and particle data.
-Using GravNet alongside a Transformer therefore compares a detector-oriented
-graph architecture with a modern attention-based architecture on the same
-shower-separation task.
+A graph represents detector objects as nodes and the permitted information
+exchanges as edges. A \gls{gnn} layer performs the same operation for every node: it
+collects messages from the node's neighbours and uses their sum to update the
+node representation. The standard message-passing formulation is
+\begin{align}
+    \mathbf{m}_i^{(\ell)}
+    &=
+    \sum_{j\in\mathcal{N}(i)}
+    M^{(\ell)}\!\left(
+        \mathbf{h}_i^{(\ell)},
+        \mathbf{h}_j^{(\ell)},
+        \mathbf{e}_{ij}
+    \right),
+    \label{eq:generic_message}\\
+    \mathbf{h}_i^{(\ell+1)}
+    &=
+    U^{(\ell)}\!\left(
+        \mathbf{h}_i^{(\ell)},
+        \mathbf{m}_i^{(\ell)}
+    \right).
+    \label{eq:generic_update}
+\end{align}
+Here, \(\mathbf{h}_i^{(\ell)}\) is the representation of node \(i\) in layer
+\(\ell\), \(\mathcal{N}(i)\) is its set of neighbours, and
+\(\mathbf{e}_{ij}\) denotes optional information about their connecting edge.
+The learned function \(M\) constructs one message from each neighbour and the
+learned function \(U\) combines their sum with the current node. In intuitive
+terms, the first line asks ``what do my neighbours tell me?'', while the second
+asks ``how should that information change me?'' The sum is independent of
+neighbour order. Other \gls{gnn}s may replace it with a mean or maximum, but the
+principle is unchanged \cite{gilmer2017-message-passing,duarte2020-gnn-tracking}.
 
 \glsunset{gravnet}
-GravNet differs from a \gls{gnn} with a fixed graph because it learns which
-nodes should be neighbours. In each layer, the network places every node in an
-internal coordinate space and connects it to its \(k\) nearest neighbours, a tunable integer hyperparameter.
-This learned space is not a physical detector coordinate. It is a
-representation developed during training so that nodes useful to one another
-can become neighbours \cite{qasim2019-gravnet}.
+GravNet differs from a \gls{gnn} with a fixed graph because it learns which nodes
+should be neighbours. In every GravNet layer, each node representation
+\(\mathbf{h}_i\) is first mapped to two learned quantities:
+\begin{align}
+    \mathbf{s}_i &= \mathbf{W}_s\mathbf{h}_i+\mathbf{b}_s,
+    &
+    \mathbf{f}_i &= \mathbf{W}_f\mathbf{h}_i+\mathbf{b}_f.
+    \label{eq:gravnet_projections}
+\end{align}
+The matrices \(\mathbf{W}\) and biases \(\mathbf{b}\) are learned during
+training. The coordinate \(\mathbf{s}_i\) determines who the neighbours are,
+whereas \(\mathbf{f}_i\) contains the information that node \(i\) can send.
+Importantly, \(\mathbf{s}_i\) is not a physical detector position. It is an
+internal coordinate chosen by the network for the prediction task.
 
-Each node then receives information from these neighbours. Nearby neighbours
-in the learned space have greater influence, while mean and maximum summary operations
-capture typical and strong neighbour features. These summaries are combined
-with the node's existing representation. A new graph is constructed in every
-layer, so the network can learn a different notion of similarity as the
-information is processed \cite{qasim2019-gravnet}.
-Figure~\ref{fig:gravnet_convolution} illustrates this sequence. The
-implementation used in this work is provided by PyTorch Geometric
-\cite{fey2019-pytorch-geometric}.
+Each node is connected to the \(k\) nodes with the smallest Euclidean distance
+in this learned space. Information from a neighbour \(j\) is then weighted as
+\begin{align}
+    d_{ij}^{2}
+    &= \lVert\mathbf{s}_i-\mathbf{s}_j\rVert_2^2,
+    &
+    \mathbf{m}_{j\rightarrow i}
+    &= \underbrace{\exp(-\lambda d_{ij}^{2})}_{\text{distance weight}}
+       \mathbf{f}_j.
+    \label{eq:gravnet_message}
+\end{align}
+The original GravNet paper uses the Gaussian potential with \(\lambda=1\)
+\cite{qasim2019-gravnet}; the PyTorch Geometric implementation
+\cite{fey2019-pytorch-geometric} used here sets \(\lambda=10\). In either case,
+the interpretation is simple: a nearby node in the learned space contributes
+strongly, while a distant node contributes little.
+
+Finally, the incoming messages are reduced to fixed-size summaries and used to
+update the node:
+\begin{align}
+    \mathbf{a}_i
+    &=
+    \left[
+        \underset{j\in\mathcal{N}_k(i)}{\operatorname{mean}}
+        \mathbf{m}_{j\rightarrow i}
+        \,\middle\Vert\,
+        \underset{j\in\mathcal{N}_k(i)}{\operatorname{max}}
+        \mathbf{m}_{j\rightarrow i}
+    \right],
+    \label{eq:gravnet_aggregation}\\
+    \mathbf{h}'_i
+    &=
+    \mathbf{W}_{\mathrm{self}}\mathbf{h}_i
+    +
+    \mathbf{W}_{\mathrm{agg}}\mathbf{a}_i
+    +\mathbf{b}.
+    \label{eq:gravnet_update}
+\end{align}
+The maximum is taken element by element and \(\Vert\) denotes concatenation.
+Intuitively, the mean describes the typical neighbour message, the maximum
+retains its strongest components, and the first term in the update preserves
+information from the node itself. A new neighbour graph is constructed in
+every layer, so the network can learn a different notion of similarity at
+each stage. Figure~\ref{fig:gravnet_convolution} visualises the same sequence.
 
 \input{config/fig/gravnet_convolution}
 
 The models in this thesis use either \gls{ecal} hits alone or \gls{ecal} hits
-and trigger-pad tracks as nodes. After several GravNet layers, an output
-network makes a prediction for each ECal hit. Because each node communicates
-with only \(k\) neighbours per layer, the graph remains sparse, although a
-nearest-neighbour search must be performed. The complete model architecture
-is specified in Section~\ref{sec:method_models}.
+and trigger-pad tracks as nodes. A stack of \texttt{GravNetConv} layers
+returns one representation per node, and a shared output head produces the
+per-node predictions. Only ECal-node outputs are supervised for the
+hit-origin task. Once the neighbour graph has been found, message aggregation
+uses \(Nk\) directed neighbour relations rather than all \(N^2\) node pairs.
+The cost of the \(k\)-nearest-neighbour search is additional and depends on
+its implementation. The exact dimensions and residual block structure are
+given in Section~\ref{sec:method_models}.
+
+
+
+
+
+
 
 
 
 \subsubsection{Transformer Encoders and Self-Attention}
 \label{sec:transformer_encoder_background}
 
+A Transformer calls each input object a \emph{token}. In this thesis, a token
+is an ECal hit or trigger-pad track object. A shared input projection maps every
+feature vector \(\mathbf{x}_i\) to
+\(\mathbf{h}_i\in\mathbb{R}^{d_{\mathrm{model}}}\). For an event with \(N\)
+tokens, the representations form
+\(\mathbf{H}\in\mathbb{R}^{N\times d_{\mathrm{model}}}\).
 
+Self-attention updates a token by forming a weighted combination of all valid
+tokens in the same event. For one attention head, learned linear projections
+produce a query, key and value for every token:
+\begin{equation}
+    \mathbf{Q}=\mathbf{H}\mathbf{W}_Q,
+    \qquad
+    \mathbf{K}=\mathbf{H}\mathbf{W}_K,
+    \qquad
+    \mathbf{V}=\mathbf{H}\mathbf{W}_V.
+    \label{eq:transformer_qkv}
+\end{equation}
+The query \(\mathbf{q}_i\) expresses what token \(i\) seeks, the key
+\(\mathbf{k}_j\) describes what token \(j\) offers for matching, and the value
+\(\mathbf{v}_j\) contains the information that token \(j\) can send. The
+attention weights and updated representation are
+\begin{align}
+    \alpha_{ij}
+    &=
+    \frac{
+        \exp(\mathbf{q}_i^{\mathsf T}\mathbf{k}_j/\sqrt{d_k})
+    }{
+        \sum_{m=1}^{N}
+        \exp(\mathbf{q}_i^{\mathsf T}\mathbf{k}_m/\sqrt{d_k})
+    },
+    &
+    \mathbf{z}_i
+    &=
+    \sum_{j=1}^{N}\alpha_{ij}\mathbf{v}_j ,
+    \label{eq:token_attention}
+\end{align}
+where \(d_k\) is the query and key dimension. In matrix form
+\cite{vaswani2017attention},
+\begin{equation}
+    \operatorname{Attention}(\mathbf{Q},\mathbf{K},\mathbf{V})
+    =
+    \operatorname{softmax}
+    \!\left(
+        \frac{\mathbf{Q}\mathbf{K}^{\mathsf{T}}}{\sqrt{d_k}}
+    \right)
+    \mathbf{V},
+    \label{eq:scaled_dot_product_attention}
+\end{equation}
+Each row of \(\boldsymbol{\alpha}\) sums to one.
+Thus, every updated token is a learned weighted average of information from
+the complete event, not merely from nearby detector cells.
 
-A Transformer represents its inputs as \emph{tokens}
-\cite{vaswani2017attention}. Attention-based models can also operate on
-unordered sets rather than only on ordered sequences
-\cite{lee2019-set-transformer}. In this thesis, a token is an ECal hit or a
-trigger-pad track. The same input network first converts the measured features
-of every token into an internal representation. The use of a Transformer for
-the newer MLPF reconstruction model provides a recent application of this
-architecture to heterogeneous detector objects in \gls{hep}
-\cite{pata2026-mlpf}.
-
-Self-attention then allows each token to collect information from all valid
-tokens in the event \cite{vaswani2017attention}. The network produces a
-\emph{query}, \emph{key} and
-\emph{value} for each token. A query is compared with the keys to determine
-which other tokens are relevant, while the values contain the information to
-be combined. The resulting attention weights are normalised, so each updated
-token becomes a weighted mixture of information from the event
-\cite{vaswani2017attention}.
-
-Multi-head attention repeats this process several times, allowing different
-heads to represent different relations between detector objects. After attention, a feed-forward network processes
-every token independently. Residual connections preserve earlier information,
-while layer normalisation is used within each encoder block
-\cite{vaswani2017attention}. In the pre-layer-normalised design used here,
-normalisation is applied before the attention and feed-forward operations.
-Several such encoder blocks are stacked, alternating information exchange
-across the event with processing of each token. The exact block used in this
-work is specified in Section~\ref{sec:method_models} and shown in
-Figure~\ref{fig:transformer_encoder}.
+Multi-head attention repeats this calculation with independent projections.
+The head outputs are concatenated and linearly mixed, allowing different
+heads to represent different object-to-object relations. The reported models
+use a pre-layer-normalized encoder block,
+\begin{align}
+    \widetilde{\mathbf{H}}
+    &=
+    \mathbf{H}
+    +
+    \operatorname{MHA}\!\left(\operatorname{LN}(\mathbf{H})\right),
+    \label{eq:preln_attention}\\
+    \mathbf{H}'
+    &=
+    \widetilde{\mathbf{H}}
+    +
+    \operatorname{FFN}\!\left(
+        \operatorname{LN}(\widetilde{\mathbf{H}})
+    \right),
+    \label{eq:preln_ffn}
+\end{align}
+where \(\operatorname{FFN}\) is the same two-layer feed-forward network
+applied independently to every token. The additions are residual connections,
+which preserve an unchanged path for the previous representation. Stacking
+encoder blocks alternates global information exchange with token-wise
+non-linear processing. Figure~\ref{fig:transformer_encoder} shows both the
+attention update and the pre-layer-normalized block used in this thesis.
 
 \input{config/fig/transformer_encoder}
 
-Only the Transformer \textit{encoder} is used. The decoder from the original
-architecture is unnecessary because the task is not to generate a sequence.
-Encoding of sequence order is also omitted because the storage
-order of detector objects has no physical meaning. Physical position is
-instead provided directly among the detector features. This treatment follows
-the set-based use of attention, for which the input order should not determine
-the result \cite{lee2019-set-transformer}. Unlike GravNet, self-attention
-compares every pair of valid tokens. This gives global event context in one
-layer, but its memory and computation grow quadratically with the number of
-tokens \cite{vaswani2017attention,joshi2025transformersgnn}.
-
-
+Only the Transformer \textit{encoder} is used. The autoregressive decoder from
+the original language-model architecture is unnecessary for per-object
+prediction \cite{vaswani2017attention}. Sequence-position encoding is also
+omitted because detector-row order is arbitrary. Physical position enters
+explicitly through detector-coordinate features.
+%Shorter events are padded within a mini-batch, and an attention mask prevents padded rows from sending or receiving information. 
+Full attention forms an
+\(N\times N\) matrix for every head, so its dominant interaction memory and
+computation grow quadratically with event size.
 
 
 
@@ -939,7 +1044,7 @@ From a computational perspective, Transformers are described as \gls{gnn}s that 
 its operations match the available software and hardware ecosystem, rather
 than this alone demonstrating that it is universally superior
 \cite{hooker2020hardwarelottery}.} \cite{joshi2025transformersgnn}. The current industry shift towards
-accelerator computing has produced highly optimized GPU and TPU support for
+accelerator\footnote{``Accelerator'' in this context refers to specialized hardware such as \glspl{gpu} or even \gls{ml} specialized architectures such as the relatively new \gls{tpu} designed by Google that accelerate the speed of computation for applicable processes\cite{needed}} computing has produced highly optimized GPU and TPU support for
 the dense matrix multiplications used by Transformers. In practice, all
 token interactions can be evaluated through large parallel tensor operations.
 
@@ -970,4 +1075,8 @@ neighbour counts, are specified in Section~\ref{sec:method_models}.
 %Winning the hardware lottery therefore does not mean that full attention is mathematically cheaper:
 %the number of token pairs still grows as \(N^2\), compared with \(Nk\) edges
 %after GravNet graph construction. It means that the Transformer is
-%particularly well matched to the present computing ecosystem.
+%particularly well matched to the present computing ecosystem. 
+
+
+
+

@@ -37,7 +37,7 @@ produced \(10^4\) \(2e\) events or \(5\times10^3\) \(3e\) events.
 
 The simulations are stored in \texttt{ROOT} files. A \texttt{TTree} stores
 each event as one entry and divides its quantities into compressed,
-column-oriented branches \cite{ROOT_NIMA_1997,root_about,root_ttree}. The
+column-oriented branches \cite{root_about,root_ttree}. The
 conversion pipeline uses \texttt{uproot} to read the selected branches without
 the C++ ROOT runtime and \texttt{Awkward} arrays to represent the nested,
 variable-length data \cite{uproot_docs,awkward_docs}.
@@ -269,7 +269,7 @@ context without entering the hit-origin loss.
 Figure~\ref{fig:interactive_event_display} shows the interactive event display
 used as a qualitative hit-level diagnostic, allowing truth assignments,
 incorrect predictions and additional per-hit information to be inspected in
-their three-dimensional detector context.
+the \gls{ecal}, allowing the user to form hypotheses.
 
 \begin{figure}[htbp]
     \centering

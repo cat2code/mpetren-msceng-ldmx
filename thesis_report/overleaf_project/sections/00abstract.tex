@@ -1,60 +1,29 @@
 \noindent
 
-The \gls{ldmx} searches for sub-GeV dark matter particles
-through a missing-momentum signature. Multiple electrons in one readout
-window can produce overlapping electromagnetic-calorimeter showers and
-obscure hit origins. This thesis studies supervised hit-level separation in
-simulated two- and three-electron pile-up events.
+The \gls{ldmx} searches for sub-GeV dark matter through missing momentum.
+Multiple electrons in one readout window can produce overlapping calorimeter
+showers and obscure the origin of individual hits. This thesis evaluates
+Transformer and GravNet for supervised hit-level reconstruction of simulated two- and three-electron
+pile-up events represented as unordered variable-size detector-object sets.
 
-Events are represented as unordered, variable-size sets of calorimeter hits
-and trigger-pad-track observations. Transformer and GravNet are modern architectures that can 
-assign each hit to its dominant origin electron. A multitask Transformer also
-predicts electron count, per-hit contributor sets, and deposited-energy
-fractions, inspired by particle-flow algorithms.
-
-On matched test samples, the Transformer achieved permutation-aligned pooled
+On held-out test samples, the Transformer achieved permutation-invariant pooled
 hit accuracies of \(84.20\,\%\) for two-electron events and \(74.84\,\%\)
-for three-electron events, compared with \(83.79\,\%\) and \(74.01\,\%\),
-respectively, for GravNet. The architectures therefore performed similarly,
-with a small Transformer advantage in this campaign. The lower
-three-electron accuracy is consistent with
-the smaller closest-pair separation in that sample and the observed dependence
-of model performance on shower overlap.
-%while higher energy-weighted accuracies showed that misassigned hits tended to carry slightly less energy. 
-Removing trigger-pad tokens at inference time produced a small but
-statistically resolved change in fixed-multiplicity hit assignment and a
-larger change in variable-multiplicity electron counting. These ablations do
-not isolate useful trigger-pad information from the distribution shift caused
-by removing a complete input modality. The final model achieved
-restricted \(2e\)-versus-\(3e\) electron-count, contributor-set, and native
-dominant-origin accuracies of
-\(99.98\,\%\), \(72.41\,\%\), and \(77.04\,\%\), respectively.
+for three-electron events, or $89.76\%$ and $83.18\%$ respectively for the energy weighted variants. GravNet performed similarly, with a small observed
+Transformer advantage. The lower three-electron performance
+is consistent with greater shower overlap.
 
-Set-based neural architectures can thus recover substantial per-electron
-shower structure from simulated \gls{ldmx} pile-up events, although mixed and
-strongly overlapping deposits remain the principal challenge. The framework developed for this thesis is designed to be reusable and enables further studies with heterogeneous \gls{ldmx} detector inputs.
+The \gls{mlpf}-inspired \gls{trace} retained nearly the same
+hit assignment performance as the baselines while also predicting electron slots,
+contributor sets and energy fractions. It distinguished two from three
+electrons with \(99.983\,\%\) accuracy, while exact contributor-set accuracy
+was \(72.41\,\%\). Mixed deposits remained the main reconstruction challenge.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Inference-time trigger-pad ablations produced statistically resolved changes,
+but could not distinguish useful detector information from the distribution
+shift caused by removing a complete modality. The results establish set-based
+learning as a feasible offline approach to per-electron reconstruction in
+simulated \gls{ldmx} pile-up. The reusable \texttt{ml\_ldmx} framework
+supports controlled detector-modality studies and future reconstruction tasks.
 
 
 

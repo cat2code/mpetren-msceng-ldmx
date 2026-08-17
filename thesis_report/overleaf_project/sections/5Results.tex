@@ -314,7 +314,7 @@ million-event campaigns to make sure the models have proper exposure to the inpu
 \subsubsection{\gls{ecal} Hit Assignment Performance}
 \label{sec:results_detailed_hit_assignment}
 
-%\textbf{THIS SUBSECTION SHOULD COVER THE OVERALL ACCURACIES AND PERFORMANCES OF THE BASELINE MODELS FOR THE PRINCIPAL TASK OF HIT ASSIGNMENTS (OR NODE ASSIGNMENTS AS IT IS CALLED GENERALLY IN MACHINE LEARNING). IT PRESENTS AN EVENT-AVERAGED (PERMUTATION INVARIANT) ACCURACY FOR THE 2E AND 3E MODELS THAT IS RELEVANT TO THE LDMX WHERE CAN SEE THAT THE DISTRIBUTION IS WIDE AND WHERE WE CAN SEE WHAT THE MOST COMMON EVENT WIDE ACCURACY PERCENTAGE IS AND WHERE WE SEE CLEARLY THAT THE 2E EVENTS ARE EASIER TO ASSIGN AND THAT THE 3E EVENTS ARE MORE DIFFICULT TO ASSIGN. WE PRESENT ALSO HIT CONFUSION MATRICES THAT SHOW **POOLED** HIT ACCURACIES AND ALSO 4X4 CONFUSION MATRICES THAT IMPLY THAT THE HIT ACCURACY SEEMS TO BE LOWER DEEPER INTO THE ECAL LAYERS (BUT ALSO THAT MOST HITS ARE FOUND IN THE FIRST 20 ECAL LAYERS SINCE THAT ACCURACY IS ABOUT THE SAME AS THE ACCURACY ACROSS ALL ECAL LAYERS). THE ECAL LAYERS 1-20 HAS BEEN CHOSEN SPECIFICALLY BECAUSE THESE ARE USED FOR THE TRIGGER-LEVEL ONLINE RECONSTRUCTION, BUT OF COURSE IT THIS SCENARIO THE LOWER GRANULARITY TRIGGER CELLS ARE USED INSTEAD OF THE FULL RESOLUTION CELLS THAT WE HAVE NOW. THE ECAL LAYER POOLED HIT CONFUSION MATRICES LEAD PERFECTLY INTO THE NEXT SUBSECTION WHERE WE SHOW ACCURACY ACROSS ECAL DEPTH}
+%\textbf{THIS SUBSECTION SHOULD COVER THE OVERALL ACCURACIES AND PERFORMANCES OF THE BASELINE MODELS FOR THE PRINCIPAL TASK OF HIT ASSIGNMENTS (OR NODE ASSIGNMENTS AS IT IS CALLED GENERALLY IN MACHINE LEARNING). IT PRESENTS AN EVENT-AVERAGED (PERMUTATION INVARIANT) ACCURACY FOR THE 2E AND 3E MODELS THAT IS RELEVANT TO THE \gls{ldmx} WHERE CAN SEE THAT THE DISTRIBUTION IS WIDE AND WHERE WE CAN SEE WHAT THE MOST COMMON EVENT WIDE ACCURACY PERCENTAGE IS AND WHERE WE SEE CLEARLY THAT THE 2E EVENTS ARE EASIER TO ASSIGN AND THAT THE 3E EVENTS ARE MORE DIFFICULT TO ASSIGN. WE PRESENT ALSO HIT CONFUSION MATRICES THAT SHOW **POOLED** HIT ACCURACIES AND ALSO 4X4 CONFUSION MATRICES THAT IMPLY THAT THE HIT ACCURACY SEEMS TO BE LOWER DEEPER INTO THE ECAL LAYERS (BUT ALSO THAT MOST HITS ARE FOUND IN THE FIRST 20 ECAL LAYERS SINCE THAT ACCURACY IS ABOUT THE SAME AS THE ACCURACY ACROSS ALL ECAL LAYERS). THE ECAL LAYERS 1-20 HAS BEEN CHOSEN SPECIFICALLY BECAUSE THESE ARE USED FOR THE TRIGGER-LEVEL ONLINE RECONSTRUCTION, BUT OF COURSE IT THIS SCENARIO THE LOWER GRANULARITY TRIGGER CELLS ARE USED INSTEAD OF THE FULL RESOLUTION CELLS THAT WE HAVE NOW. THE ECAL LAYER POOLED HIT CONFUSION MATRICES LEAD PERFECTLY INTO THE NEXT SUBSECTION WHERE WE SHOW ACCURACY ACROSS ECAL DEPTH}
 
 The event-wise distributions in Figure~\ref{fig:results_event_accuracy}
 show that reconstruction quality varies substantially between events. The
@@ -529,7 +529,7 @@ calibration.
 \subsubsection{Trigger-Pad Ablation}
 
 A paired inference-time ablation was performed with the best checkpoint of the
-final \(3e\) pre-layer-normalised Transformer. The intact model and the same
+final \(3e\) baseline Transformer, specifically choosing the $3e$ events since these are the hardest to separate showers and where potentially useful information outside of the ecal can help the most. The intact model and the same
 model with every \gls{tpad}-track token removed were evaluated on the
 identical \(100{,}000\) held-out test events. Table~\ref{tab:results_baseline_tpad_ablation}
 reports permutation-aligned results, consistently with the other baseline
@@ -545,6 +545,7 @@ statistically resolved for this fixed checkpoint and test sample. Their
 magnitude is nevertheless small: the largest difference is \(0.243\)
 percentage points, and the median event-level accuracy change is zero.
 
+
 The ablation therefore demonstrates sensitivity to removing the \gls{tpad}
 tokens, but it cannot establish that useful detector information contained in
 those tokens caused the difference. Removing an entire modality only at
@@ -552,17 +553,16 @@ inference time changes the model's input distribution and attention context.
 A controlled comparison between separately trained ECal-only and
 ECal-plus-\gls{tpad} models, preferably across several random seeds, would be
 required to isolate the added value of \gls{tpad} information. The confidence
-intervals quantify event-sampling uncertainty for this fixed checkpoint; they
+intervals quantify uncertainty for this specific checkpoint and they
 do not include variation from retraining with different random seeds or
-samples. The result is also specific to a \(3e\) task whose electron count is
-supplied in advance.
+samples. The result is also specific to a \(3e\) task whose electron count is supplied in advance.
 
 
-\subsection{MLPF-Inspired Multi-Task Slot Model}
+\subsection{TRACE Multi-Task Reconstruction}
 
 \subsubsection{Multi-Task Reconstruction Performance}
 
-The experimental contributor-set slot model extends the fixed-multiplicity
+\gls{trace} extends the fixed-multiplicity
 assignment problem to a particle-flow-like multi-task setting. It was trained
 on \(500{,}000\) \(2e\) and \(500{,}000\) \(3e\) events. The combined sample
 was divided into \(800{,}000\) training, \(100{,}000\) validation and
@@ -589,7 +589,7 @@ A contributor-set error can still occur when the predicted dominant origin and t
     \centering
     \includegraphics[width=0.94\linewidth]{config/fig/results/contributor_set_confusion.png}
     \caption{Row-normalised test-set confusion matrix for the per-hit
-    contributor set predicted by the slot model. Each class denotes the exact
+    contributor set predicted by TRACE. Each class denotes the exact
     subset of electron origins contributing simulated deposited energy to a
     hit. Cell annotations show row percentages.}
     \label{fig:results_contributor_set_confusion}
@@ -607,7 +607,7 @@ summarised by ordinary accuracy alone because pure hits are much more common.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.98\linewidth]{config/fig/results/contributor_hit_task_confusions.png}
-    \caption{Test-set confusion matrices derived from the contributor-slot
+    \caption{Test-set confusion matrices derived from the TRACE
     outputs. Left: dominant electron origin inferred from the predicted energy
     fractions. Right: binary pure-versus-mixed classification derived from
     the predicted contributor set.}
@@ -623,7 +623,6 @@ mixed-hit results show that resolving overlap at hit level remains the main
 weakness of this preliminary model.
 
 
-\clearpage
 \subsubsection{Comparison with Fixed-Multiplicity Hit Assignment}
 
 For a direct comparison with the principal baseline task, the contributor
@@ -650,7 +649,7 @@ the fixed-multiplicity models.
     \centering
     \includegraphics[width=0.98\linewidth]{config/fig/results/contributor_event_accuracy_distribution.png}
     \caption{Permutation-aligned dominant-origin event accuracy for the
-    contributor model on the \(49{,}934\) \(2e\) events and \(50{,}066\)
+    TRACE model on the \(49{,}934\) \(2e\) events and \(50{,}066\)
     \(3e\) events in its test set. Truth-noise hits are excluded. Every event
     contributes equally to the histogram and box-plot summary.}
     \label{fig:results_contributor_event_accuracy}
@@ -668,7 +667,7 @@ supporting the additional reconstruction outputs.
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.99\linewidth]{config/fig/results/contributor_width_normalized_separation.png}
-    \caption{Permutation-aligned contributor-model dominant-origin accuracy
+    \caption{Permutation-aligned TRACE dominant-origin accuracy
     as a function of the minimum truth-centroid distance divided by combined
     shower width, for \(2e\) events (top) and \(3e\) events (bottom). White
     points show equal-population bin means with \(95\,\%\) confidence
@@ -692,7 +691,7 @@ slot-validity predictions and it has not been trained to count an unrestricted r
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.72\linewidth]{config/fig/results/contributor_count_neural_1m.png}
-    \caption{Electron count derived from the contributor model's predicted
+    \caption{Electron count derived from TRACE's predicted
     slot-validity mask on the \(100{,}000\)-event test set. The model receives
     both ECal and \gls{tpad} inputs. Rows are normalized within the true
     electron count; cell annotations show the event count and row percentage.}
@@ -724,72 +723,58 @@ The paired ablation reduces overall count accuracy by \(1.64\) percentage
 points, with a \(95\,\%\) event-bootstrap interval of
 \([1.39,1.89]\) percentage points. Almost the entire effect occurs in true
 \(3e\) events, for which removing \gls{tpad} information reduces accuracy by
-\(3.25\) percentage points. The interval excludes zero, demonstrating
-statistically resolved sensitivity to removing the \gls{tpad} input for the
-variable-count task.
+\(3.25\) percentage points. The interval excludes zero, providing evidence
+that this trained network uses the \gls{tpad} input for the variable-count
+task.
 
 Together with the fixed-count ablation in
-Table~\ref{tab:results_baseline_tpad_ablation}, these results show
-task-dependent sensitivity to \gls{tpad}-token removal: the measured change
-is small for baseline hit assignment when multiplicity is given, but larger
-when the contributor model must infer multiplicity. Both are inference-time
-ablations and therefore introduce a distribution shift; neither alone
-isolates the informational value of the removed detector modality. A
-separately trained ECal-only contributor model is needed to complete the
-controlled architecture comparison and is treated as follow-up work rather
-than folded into the current estimate.
+Table~\ref{tab:results_baseline_tpad_ablation}, these results show a
+task-dependent role for \gls{tpad} information: its measured effect is small
+for baseline hit assignment when multiplicity is given, but larger when \gls{trace} must infer multiplicity. The present ablation still
+introduces a distribution shift because \gls{tpad} inputs are removed only at
+inference time. A separately trained ECal-only \gls{trace} is needed to
+complete the controlled architecture comparison and is treated as follow-up
+work rather than folded into the current estimate.
 
 
 \clearpage
 \subsection{Overall Interpretation and Limitations}
 \label{sec:results_overall_interpretation}
 
-\subsubsection{Synthesis of Findings}
+\subsubsection{Summary of Findings}
 
 The principal result is that both set-based architectures recover substantial
 per-electron structure from overlapping calorimeter showers, although the
 assignment remains imperfect. The final Transformer reaches pooled
 permutation-aligned hit accuracies of \(84.20\,\%\) for \(2e\) events and
-\(74.84\,\%\) for \(3e\) events. The corresponding mean event accuracies are
-\(83.73\,\%\) and \(74.40\,\%\). Energy weighting raises these values to
+\(74.84\,\%\) for \(3e\) events. 
+%The corresponding mean event accuracies are \(83.73\,\%\) and \(74.40\,\%\). 
+Energy weighting, which is relevant because capturing the energy in the detector is the task of the detector, raises these values to
 \(89.76\,\%\) and \(83.18\,\%\), which shows that incorrectly assigned hits
-carry less reconstructed energy on average. The reduction for \(3e\) events
+carry less reconstructed energy on average. The reason for \textit{why} that is the case is not clearly laid out from the plots but some results go hand-in-hand with this such as the fact that the accuracy per layer is highest at the first layers, and in the immediate following layers around the same region most of the hits and reconstructed energy is occupied. The reduction for \(3e\) events accuracy
 is consistent with their smaller closest-pair separation and the additional
 pairwise combinations that can overlap.
 
 The detailed diagnostics support this interpretation without reducing event
-difficulty to a single geometric variable. Mean accuracy rises with truth
-shower separation and falls through the later, sparsely populated part of the
-ECal. A broad spread remains at any fixed separation, showing that centroid
+difficulty to a single geometric variable. Mean accuracy rises with shower separation and falls through the later, sparsely populated part of the
+ECal. A broad spread remains at any fixed separation, showing that the introduced centroid
 distance and shower width do not fully describe the assignment problem.
 Confidence and entropy can rank difficult predictions and expose an
-accuracy--coverage trade-off, but the present study does not establish that
-the softmax scores are calibrated probabilities.
+accuracy--coverage trade-off, but one should be careful to establish that the softmax scores are calibrated probabilities that is not necessarily the case, though it is an interesting metric quite unique to \gls{ml}-based methods, as compared to rule-based ones. 
 
-The Transformer and GravNet baselines are close in practical performance.
-Paired comparisons resolve a Transformer advantage of \(0.4\)--\(1.0\)
-percentage points across the reported event-level metrics, but the magnitude
-is small. The Transformer also trained faster in these implementations despite
+The Transformer and GravNet baselines are close in practical performance, very close.
+Paired comparisons resolve a Transformer a small advantage of \(0.4\)--\(1.0\)
+percentage points across the reported event-level metrics. The Transformer also trained faster in these implementations despite
 having more parameters. This makes it a useful representative model for the
-present study, not a generally superior architecture. Only one trained
-instance of each configuration was compared, their batch sizes differed and
-neither architecture underwent an exhaustive hyperparameter search.
+present study, though not concluded as a generally superior architecture even if this was somewhat of a expected result. Only one trained instance of each configuration was compared, and neither architecture underwent an exhaustive hyperparameter search.
 
 The contributor-set model demonstrates that the output space can be expanded
-without sacrificing most of the dominant-origin performance. After removing
-truth-noise hits and aligning labels, its pooled accuracies are
-\(84.13\,\%\) for \(2e\) and \(74.39\,\%\) for \(3e\), close to the
+without sacrificing most of the dominant-origin performance, even though the different tasks share a common internal learned mapping analzying either a $2e$ or $3e$ event from input. After removing truth-noise hits and aligning labels, its pooled accuracies are \(84.13\,\%\) for \(2e\) and \(74.39\,\%\) for \(3e\), close to the
 fixed-multiplicity Transformer values. It simultaneously derives the correct
-electron count for \(99.983\,\%\) of the mixed test sample. This count result
-is restricted to a balanced binary distinction between \(2e\) and \(3e\),
-not general electron counting. Exact contributor-set accuracy is
-\(72.41\,\%\), mixed-hit detection reaches \(F_1=0.551\) and the
-validity-masked fraction error is \(0.115\). These results locate the
-remaining challenge in identifying mixed deposits and dividing their energy,
-rather than in the restricted event-count decision.
+electron count for \(99.983\,\%\) of the mixed test sample. It is a promising result, but it should be taken into account that it was restricted to a simpler problem to solve, namely a binary distinction between \(2e\) and \(3e\) and not general electron counting. Exact contributor-set accuracy is \(72.41\,\%\), mixed-hit detection reaches \(F_1=0.551\) and the validity-masked fraction error is \(0.115\). These results seem to locate a remaining challenge in identifying mixed deposits and dividing their energy, but the results might as well also illustrate the boundary of how much ambiguity one can remove, as we expect some information of the original events' electrons to be lost completely, though unknown how much that is. 
 
 The two ablation studies indicate task-dependent sensitivity to the
-\gls{tpad} tokens. For the final fixed-count \(3e\) Transformer, intact-input
+\gls{tpad} tokens, which makes sense considering which one that show sensitivity. For the final fixed-count \(3e\) Transformer, intact-input
 accuracy exceeds the token-removed evaluation by only \(0.119\) percentage
 points in pooled hit accuracy and \(0.125\) points in mean event accuracy.
 The paired confidence intervals exclude zero, so the change is statistically
@@ -801,20 +786,19 @@ test sample than the final contributor result, so the ablation magnitudes
 should not be treated as one controlled cross-task comparison. More
 fundamentally, inference-time removal changes both the input distribution and
 the attention context. The studies establish sensitivity to removal, but do
-not isolate the causal informational value of the \gls{tpad} modality.
+not necessarily isolate the causal informational value of the \gls{tpad} modality.
 
 \subsubsection{Scope and Limitations}
 
 The conclusions are limited to simulated overlays of independent inclusive
-non-signal electron events with multiplicities two and three. They do not
+non-signal electron events with multiplicities $2e$ and $3e$. They do not
 establish performance on detector data, dark-matter signal samples, other
-beam conditions or a wider multiplicity range. The fixed-count baselines are
+beam conditions or a wider multiplicity range. The fixed-count baselines were
 also deliberately simplified. They receive the true multiplicity, use one
 hard dominant-origin label per hit and exclude simulated noise. The
-contributor model relaxes these assumptions, but remains a preliminary study
-within the same restricted multiplicity domain. Simulation-flagged noise
-constitutes only \(0.0092\,\%\) of its hits, which is too little support for a
-broad claim about noise reconstruction.
+\gls{trace} relaxes these assumptions, but remains a preliminary study
+within the same restricted multiplicity domain. 
+%Simulation-flagged noise constitutes only \(0.0092\,\%\) of its hits, which is too little support for a broad claim about noise reconstruction.
 
 Canonical \(y\)-ordering supplies a stable training convention but is not a
 physical identity for an electron. Event-wise permutation alignment removes

@@ -1,12 +1,10 @@
-
 \subsection{Conclusions}
 \label{sec:conclusions}
 
-This thesis investigated whether set-based neural networks can separate
-overlapping electron showers in the LDMX ECal and whether heterogeneous
-trigger-pad information adds useful context. Transformer and GravNet models
+This thesis investigated whether modern set-based neural networks can separate overlapping electron showers in the LDMX ECal and whether heterogeneous
+trigger-pad information adds useful context that these models can extract. Transformer and GravNet models
 were trained for fixed \(2e\) and \(3e\) hit assignment, followed by an
-experimental Transformer that predicts slot validity, hit contributors and
+experimental TRACE model that predicts slot validity, hit contributors and
 energy fractions jointly. The common sharded dataset, deterministic event
 splits and held-out test samples made it possible to compare the implemented
 models and analyse their failure modes consistently.
@@ -24,15 +22,14 @@ therefore the pragmatic reference architecture in this work, although the
 single-seed and implementation-specific comparison does not establish a
 universal ranking.
 
-The multi-task model retained nearly the same aligned dominant-origin
-performance while supporting a richer reconstruction output. It achieved
+TRACE retained nearly the same aligned dominant-origin performance while supporting a richer reconstruction output with both hit-level and event-level metrics. It achieved
 \(99.983\,\%\) electron-count accuracy in the restricted \(2e\)-versus-\(3e\)
 setting, while exact contributor sets, mixed-hit identification and energy
 fractions remained more difficult. This demonstrates the flexibility of a
 particle-flow-inspired set prediction, but also shows that mixed deposits are
 the central unresolved part of the problem. Removing \gls{tpad} tokens caused
 a small but statistically resolved change in fixed-count hit assignment and a
-larger count change in an earlier contributor-model study. Since both tests
+larger count change in an earlier TRACE study. Since both tests
 removed a complete modality only at inference time, they demonstrate
 sensitivity rather than the causal value of the detector information.
 
@@ -43,7 +40,7 @@ reproducible evaluation in one documented workflow. The project is intended
 to be reusable by later students and researchers rather than to support only
 the models reported here. Taken together, the results establish that
 set-based learning is a feasible route to per-electron reconstruction in
-simulated LDMX pile-up, while shower overlap, mixed hits and validation beyond
+simulated \gls{ldmx} pile-up, while shower overlap, mixed hits and validation beyond
 the present simulation domain remain the main barriers to application.
 
 \subsection{Outlook}
@@ -55,10 +52,10 @@ splits across several random seeds and evaluated on the same held-out events.
 The study should cover a wider range of electron multiplicities and explicitly
 separate events with complete, missing and merged \gls{tpad} candidates. An
 alternative trigger-scintillator geometry that provides information in both
-transverse coordinates could also be tested, since it may offer more
+transverse coordinates (introducing x-coordinates) could also be tested, since it may offer more
 complementary context than the present one-dimensional centroids.
 
-The contributor model should next replace or reduce its dependence on
+TRACE should next replace or reduce its dependence on
 canonical \(y\)-ordering. A permutation-invariant loss with event-wise matching,
 such as Hungarian assignment, would align predicted slots to truth during
 training rather than only during evaluation. Multi-task loss balancing should
@@ -67,19 +64,16 @@ conditions. Additional detector streams or reconstructed object-level inputs
 can be introduced through controlled modality comparisons so that their
 incremental value is measurable.
 
-Deployment-oriented work should map the trade-off between accuracy, model
-capacity, memory use and inference latency. This includes systematic capacity
-studies, pruning, quantisation, distillation and benchmarks on the intended
-hardware with realistic trigger-level inputs. More specialised attention
-implementations should be considered only if the input multiplicity grows
-substantially. FlashAttention can improve the memory behaviour of exact
-attention, while locality-sensitive-hashing or other sparse approximations can
-reduce the interactions that are evaluated. For the few hundred tokens in the
-present events, these methods are unlikely to be the first optimisation
-priority.
+Before online reconstruction is considered for production, the models should be tested on the
+intended hardware using realistic trigger-level inputs. These tests should
+measure accuracy, memory consumption and inference time for models of
+different sizes. If a smaller or faster model is required, methods such as
+pruning, quantisation and knowledge distillation can then be evaluated.
+
+%More specialised attention methods would become relevant if future inputs contained substantially more detector objects. FlashAttention can reduce the memory required for standard self-attention without changing its result. The events studied here contain only a few hundred tokens, so these methods are not an immediate priority.
 
 After robustness and latency have been established, the reconstruction can be
 evaluated with trigger-cell inputs and downstream event-level physics metrics.
 The documented data, training and evaluation components in \texttt{ml\_ldmx}
-provide a handover point for these studies and for other machine-learning
-reconstruction tasks within LDMX.
+provide a handover point for these studies and for other related machine-learning
+reconstruction tasks within \gls{ldmx}.
