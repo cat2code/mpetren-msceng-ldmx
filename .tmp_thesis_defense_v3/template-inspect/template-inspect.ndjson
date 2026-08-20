@@ -1,0 +1,148 @@
+{"kind":"slide","id":"sl/y90nupkv","slide":1,"title":"MASTER’S THESIS DEFENCE","textShapes":5}
+{"kind":"textbox","id":"sh/utg3698n","slide":1,"textChars":23,"textLines":1}
+{"kind":"textbox","id":"sh/547294r6","slide":1,"textChars":20,"textLines":1}
+{"kind":"textbox","id":"sh/k3yl0zql","slide":1,"textChars":62,"textLines":1}
+{"kind":"shape","id":"sh/1cvuxc7e","slide":1,"bbox":[44,414,720,0.01]}
+{"kind":"textbox","id":"sh/65g3298r","slide":1,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/ts7md4r2","slide":1,"textChars":113,"textLines":2}
+{"kind":"shape","id":"sh/sryl4zqx","slide":1,"bbox":[1138,0,142,720]}
+{"kind":"shape","id":"sh/fu94fe98","slide":1,"bbox":[1188,0,92,720]}
+{"kind":"slide","id":"sl/hwbqtkby","slide":2,"title":"Gravity reveals missing mass—but not its particle identity","textShapes":8}
+{"kind":"textbox","id":"sh/9wnqhczy","slide":2,"textChars":58,"textLines":1}
+{"kind":"shape","id":"sh/cnupgny5","slide":2,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/ozy1ofad","slide":2,"textChars":60,"textLines":1}
+{"kind":"textbox","id":"sh/b29kza94","slide":2,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/a10jqpsj","slide":2,"textChars":4,"textLines":1}
+{"kind":"textbox","id":"sh/x4r21kru","slide":2,"textChars":56,"textLines":2}
+{"kind":"textbox","id":"sh/w3i1sfa9","slide":2,"textChars":25,"textLines":1}
+{"kind":"textbox","id":"sh/r65knqtk","slide":2,"textChars":27,"textLines":1}
+{"kind":"textbox","id":"sh/ove9o7yd","slide":2,"textChars":69,"textLines":1}
+{"kind":"image","id":"im/mpcv2l0b","slide":2,"name":"","bbox":[458,132,750,494]}
+{"kind":"slide","id":"sl/ofy9wn61","slide":3,"title":"The missing-momentum search opens the sub-GeV frontier","textShapes":5}
+{"kind":"textbox","id":"sh/n6ls3alk","slide":3,"textChars":54,"textLines":1}
+{"kind":"shape","id":"sh/e10f2twf","slide":3,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/d0jax03i","slide":3,"textChars":69,"textLines":1}
+{"kind":"textbox","id":"sh/298ryl4v","slide":3,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/pcjqtg36","slide":3,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/m5cra54z","slide":3,"textChars":149,"textLines":1}
+{"kind":"image","id":"im/o32dw321","slide":3,"name":"","bbox":[-2000,0,1,1]}
+{"kind":"image","id":"im/n2tc3y1g","slide":3,"name":"","bbox":[-2000,0,1,1]}
+{"kind":"image","id":"im/21kvutkb","slide":3,"name":"","bbox":[42,151.73,610,330.55]}
+{"kind":"image","id":"im/10bu183q","slide":3,"name":"","bbox":[700,190.52,500,88.95]}
+{"kind":"slide","id":"sl/jyx0ra1s","slide":4,"title":"LDMX searches for invisible particles through missing momentum","textShapes":5}
+{"kind":"textbox","id":"sh/ih8ju9sn","slide":4,"textChars":62,"textLines":1}
+{"kind":"shape","id":"sh/g36tgryd","slide":4,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/0ba143al","slide":4,"textChars":63,"textLines":1}
+{"kind":"textbox","id":"sh/rm1k7yt4","slide":4,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/sna103ap","slide":4,"textChars":24,"textLines":1}
+{"kind":"textbox","id":"sh/3ihk3et8","slide":4,"textChars":106,"textLines":3}
+{"kind":"image","id":"im/q5onm50v","slide":4,"name":"","bbox":[42,142,640,426]}
+{"kind":"image","id":"im/m1s7e9k3","slide":4,"name":"","bbox":[730,142,460,294]}
+{"kind":"slide","id":"sl/i107q5of","slide":5,"title":"Pile-up converts exposure into overlapping showers","textShapes":8}
+{"kind":"textbox","id":"sh/v2twb6dw","slide":5,"textChars":50,"textLines":1}
+{"kind":"shape","id":"sh/wve1knyx","slide":5,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/cf2tcr61","slide":5,"textChars":57,"textLines":1}
+{"kind":"textbox","id":"sh/z2tcnm5s","slide":5,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/yhkbe1o7","slide":5,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/l4bupwny","slide":5,"textChars":57,"textLines":1}
+{"kind":"textbox","id":"sh/032tgr6d","slide":5,"textChars":24,"textLines":1}
+{"kind":"shape","id":"sh/e1sjatgz","slide":5,"bbox":[46,450,310,0.01]}
+{"kind":"textbox","id":"sh/m5kbi1oj","slide":5,"textChars":97,"textLines":1}
+{"kind":"shape","id":"sh/x4vedgvm","slide":5,"bbox":[710,556,380,64]}
+{"kind":"textbox","id":"sh/ahkvi1cb","slide":5,"textChars":42,"textLines":1}
+{"kind":"image","id":"im/g7q1ozq9","slide":5,"name":"","bbox":[416,198.83,816,300.33]}
+{"kind":"slide","id":"sl/x8f69ofe","slide":6,"title":"Reconstruction is an inverse problem with information loss","textShapes":10}
+{"kind":"textbox","id":"sh/5svutgni","slide":6,"textChars":58,"textLines":1}
+{"kind":"shape","id":"sh/svmt4v6t","slide":6,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/zi98nu94","slide":6,"textChars":64,"textLines":1}
+{"kind":"textbox","id":"sh/87ipkzal","slide":6,"textChars":1,"textLines":1}
+{"kind":"shape","id":"sh/98rqt4r6","slide":6,"bbox":[42,132,570,420]}
+{"kind":"textbox","id":"sh/ml07i9sv","slide":6,"textChars":25,"textLines":1}
+{"kind":"textbox","id":"sh/7m98ru9g","slide":6,"textChars":33,"textLines":1}
+{"kind":"textbox","id":"sh/oryp8fah","slide":6,"textChars":95,"textLines":5}
+{"kind":"shape","id":"sh/pc76hkr2","slide":6,"bbox":[656,132,582,420]}
+{"kind":"textbox","id":"sh/h4bupgn6","slide":6,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/w32twb6l","slide":6,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/v2tcn650","slide":6,"textChars":102,"textLines":5}
+{"kind":"textbox","id":"sh/u1kbu1ov","slide":6,"textChars":83,"textLines":1}
+{"kind":"slide","id":"sl/gnmp4jqx","slide":7,"title":"The network sees detector readout—not simulation truth","textShapes":4}
+{"kind":"textbox","id":"sh/eh0ba1sr","slide":7,"textChars":54,"textLines":1}
+{"kind":"shape","id":"sh/25ojml43","slide":7,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/dcbud0ra","slide":7,"textChars":74,"textLines":1}
+{"kind":"textbox","id":"sh/ydkbm5sv","slide":7,"textChars":1,"textLines":1}
+{"kind":"shape","id":"sh/kzmdova1","slide":7,"bbox":[84,568,1112,72]}
+{"kind":"textbox","id":"sh/l0vuh0rm","slide":7,"textChars":128,"textLines":1}
+{"kind":"image","id":"im/y1ofmd0z","slide":7,"name":"","bbox":[263.57,122,750.87,430]}
+{"kind":"slide","id":"sl/fu1gfa1s","slide":8,"title":"Ten million overlays per multiplicity anchor the study","textShapes":12}
+{"kind":"textbox","id":"sh/zipwbmdc","slide":8,"textChars":54,"textLines":1}
+{"kind":"shape","id":"sh/cvmdsb2h","slide":8,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/g72x4zyd","slide":8,"textChars":46,"textLines":1}
+{"kind":"textbox","id":"sh/ri9g7uhw","slide":8,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/tkby9kzm","slide":8,"textChars":3,"textLines":1}
+{"kind":"textbox","id":"sh/sjix0zy1","slide":8,"textChars":28,"textLines":1}
+{"kind":"textbox","id":"sh/je9g3ahk","slide":8,"textChars":3,"textLines":1}
+{"kind":"textbox","id":"sh/id0fu50z","slide":8,"textChars":30,"textLines":1}
+{"kind":"shape","id":"sh/0n2dkr2p","slide":8,"bbox":[686,286,504,0.01]}
+{"kind":"textbox","id":"sh/98rehwve","slide":8,"textChars":3,"textLines":1}
+{"kind":"textbox","id":"sh/m5gvmhwn","slide":8,"textChars":38,"textLines":1}
+{"kind":"textbox","id":"sh/n6pwfmd8","slide":8,"textChars":8,"textLines":1}
+{"kind":"textbox","id":"sh/0jydkreh","slide":8,"textChars":34,"textLines":1}
+{"kind":"shape","id":"sh/uhsbmtc7","slide":8,"bbox":[686,464,504,0.01]}
+{"kind":"textbox","id":"sh/ehgvihwr","slide":8,"textChars":132,"textLines":1}
+{"kind":"image","id":"im/u1wrqh87","slide":8,"name":"","bbox":[54,142.92,560,486.15]}
+{"kind":"slide","id":"sl/udsvah03","slide":9,"title":"Two set encoders test local and global interaction","textShapes":10}
+{"kind":"textbox","id":"sh/cnu1kzyd","slide":9,"textChars":50,"textLines":1}
+{"kind":"shape","id":"sh/lsn2h4fa","slide":9,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/0b65obm9","slide":9,"textChars":63,"textLines":1}
+{"kind":"textbox","id":"sh/nex4jq5k","slide":9,"textChars":1,"textLines":1}
+{"kind":"shape","id":"sh/mdonql4z","slide":9,"bbox":[42,132,570,420]}
+{"kind":"textbox","id":"sh/9gzml0nq","slide":9,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/ofq5svm5","slide":9,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/bih4na5w","slide":9,"textChars":149,"textLines":5}
+{"kind":"shape","id":"sh/ah8nu54b","slide":9,"bbox":[656,132,582,420]}
+{"kind":"textbox","id":"sh/oza1gfyh","slide":9,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/p0ji9kf2","slide":9,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/2xsjepgb","slide":9,"textChars":150,"textLines":5}
+{"kind":"textbox","id":"sh/3y107axw","slide":9,"textChars":96,"textLines":1}
+{"kind":"slide","id":"sl/m90b6t0r","slide":10,"title":"TRACE predicts a coherent 2e/3e event description","textShapes":5}
+{"kind":"textbox","id":"sh/725onyl4","slide":10,"textChars":49,"textLines":1}
+{"kind":"shape","id":"sh/1cru1g3y","slide":10,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/cbu58j2h","slide":10,"textChars":55,"textLines":1}
+{"kind":"textbox","id":"sh/zelojyl8","slide":10,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/ydcnatkn","slide":10,"textChars":71,"textLines":1}
+{"kind":"textbox","id":"sh/kzu5c32t","slide":10,"textChars":123,"textLines":1}
+{"kind":"image","id":"im/tg7ixo36","slide":10,"name":"","bbox":[90,164,1100,440]}
+{"kind":"slide","id":"sl/jetc3ut0","slide":11,"title":"Evaluation must ignore arbitrary shower labels","textShapes":7}
+{"kind":"textbox","id":"sh/9gza9sze","slide":11,"textChars":46,"textLines":1}
+{"kind":"shape","id":"sh/m58fih43","slide":11,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/wbih4b6d","slide":11,"textChars":51,"textLines":1}
+{"kind":"textbox","id":"sh/n69grmpw","slide":11,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/98rytw72","slide":11,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/o7ih0r6h","slide":11,"textChars":37,"textLines":2}
+{"kind":"shape","id":"sh/03qxg7mx","slide":11,"bbox":[792,388,368,0.01]}
+{"kind":"textbox","id":"sh/61kzalof","slide":11,"textChars":110,"textLines":1}
+{"kind":"textbox","id":"sh/ofqtgnyt","slide":11,"textChars":67,"textLines":1}
+{"kind":"image","id":"im/qd83ixsj","slide":11,"name":"","bbox":[97.53,126,568.94,490]}
+{"kind":"slide","id":"sl/8f2psfyx","slide":12,"title":"Both baselines recover most of the shower energy","textShapes":14}
+{"kind":"textbox","id":"sh/1oj61kn6","slide":12,"textChars":48,"textLines":1}
+{"kind":"shape","id":"sh/87q5srux","slide":12,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/0f2lgnmp","slide":12,"textChars":54,"textLines":1}
+{"kind":"textbox","id":"sh/ra943il8","slide":12,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/dcbm583y","slide":12,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/sb2lcnmd","slide":12,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/b6d4f2lc","slide":12,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/a543mx4r","slide":12,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/wvupgz6t","slide":12,"textChars":18,"textLines":1}
+{"kind":"shape","id":"sh/i5o3e147","slide":12,"bbox":[828,318,382,0.01]}
+{"kind":"textbox","id":"sh/atc7epon","slide":12,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/bulo7u58","slide":12,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/orapcf6h","slide":12,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/9sj65kn2","slide":12,"textChars":18,"textLines":1}
+{"kind":"shape","id":"sh/t0vm1wnq","slide":12,"bbox":[828,488,382,0.01]}
+{"kind":"textbox","id":"sh/nq1o3a5w","slide":12,"textChars":70,"textLines":1}
+{"kind":"textbox","id":"sh/0nap8f6l","slide":12,"textChars":104,"textLines":1}
+{"kind":"image","id":"im/jah8nqto","slide":12,"name":"","bbox":[42,142.74,744,468.52]}
+{"kind":"slide","id":"sl/hgzapcr6","slide":13,"title":"Three-electron events are more crowded—not wider","textShapes":8}
+{"kind":"textbox","id":"sh/gb6x0zm9","slide":13,"textChars":48,"textLines":1}
+{"kind":"shape","id":"sh/lkvy103m","slide":13,"bbox":[42,102,1196,0.01]}
+{"kind":"notice","message":"Truncated: omitted 160 lines. Increase maxChars or narrow target."}

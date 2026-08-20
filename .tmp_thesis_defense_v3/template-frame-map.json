@@ -1,0 +1,42 @@
+{
+  "sourceDeck": "thesis_report/presentation/Thesis_Defense_Eliot_Montesino_Petren_v2.pptx",
+  "outputSlides": [
+    {"outputSlide": 1, "sourceSlide": 1, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {
+      "outputSlide": 2,
+      "sourceSlide": 2,
+      "narrativeRole": "galaxy-rotation dark-matter introduction",
+      "reuseMode": "duplicate-slide",
+      "editTargets": [
+        {"shapeId": "sh/9wnqhczy", "action": "rewrite", "purpose": "headline"},
+        {"shapeId": "sh/ozy1ofad", "action": "rewrite", "purpose": "attribution footer"},
+        {"shapeIds": ["sh/a10jqpsj", "sh/x4r21kru", "sh/w3i1sfa9", "sh/r65knqtk", "sh/ove9o7yd"], "action": "rewrite-and-reposition", "purpose": "matter budget and animation explanation"},
+        {"shapeId": "im/mpcv2l0b", "action": "replace", "purpose": "embedded animated comparison"}
+      ]
+    },
+    {"outputSlide": 3, "sourceSlide": 3, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 4, "sourceSlide": 4, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 5, "sourceSlide": 5, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 6, "sourceSlide": 6, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 7, "sourceSlide": 7, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 8, "sourceSlide": 8, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 9, "sourceSlide": 9, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 10, "sourceSlide": 10, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 11, "sourceSlide": 11, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 12, "sourceSlide": 12, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 13, "sourceSlide": 13, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 14, "sourceSlide": 14, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 15, "sourceSlide": 15, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 16, "sourceSlide": 16, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 17, "sourceSlide": 17, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 18, "sourceSlide": 18, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 19, "sourceSlide": 19, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 20, "sourceSlide": 20, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 21, "sourceSlide": 21, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 22, "sourceSlide": 22, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 23, "sourceSlide": 23, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 24, "sourceSlide": 24, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []},
+    {"outputSlide": 25, "sourceSlide": 25, "narrativeRole": "preserve-only", "reuseMode": "duplicate-slide", "editTargets": []}
+  ],
+  "omittedSourceSlides": []
+}

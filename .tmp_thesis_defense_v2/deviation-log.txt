@@ -1,0 +1,10 @@
+Output slide 2 duplicates source slide 2 but enlarges its inherited image frame and repurposes the inherited narrative text for a popular-science Einstein-ring opening. This deliberate departure gives the new visual a hero treatment while preserving typography and header/footer structure.
+Output slide 3 duplicates source slide 3. Both inherited image slots are replaced by thesis Figure 3 and the dark-matter mass-range strip; the detector-specific copy is rewritten as the MeV–GeV motivation.
+Output slide 4 duplicates source slide 3. The inherited images become the missing-momentum schematic and supplied ECal-cell crop; the reaction equation is removed by rewriting its inherited textbox as a detector-granularity callout.
+Output slide 6 duplicates source slide 7. Its two inherited comparison panels are repurposed as forward detector response versus learned task-specific inverse mapping.
+Output slide 14 duplicates source slide 12. Its inherited evidence image and interpretation column are repurposed for accuracy versus width-normalized shower separation.
+Output slide 15 duplicates source slide 21 and is promoted from backup into the main talk. Its title and callouts are rewritten to report the layer-1-to-layer-20 event-balanced means.
+Output slide 20 duplicates source slide 16 and rewrites the three numbered rows as a prioritized outlook centered on controlled validation and the ml_ldmx handover.
+Source slide 15 is moved to output slide 22 and explicitly labeled as backup. Source slide 21 is no longer backup because it is promoted to output slide 15.
+All main-slide timings, page markers, and speaker-note source blocks are updated for the revised sequence.
+

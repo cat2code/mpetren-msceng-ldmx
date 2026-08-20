@@ -1,0 +1,33 @@
+Presentation source ledger
+
+Primary source
+- /Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/thesis_report/overleaf_project/main.tex
+- Active chapters: sections/00abstract.tex, 1introduction.tex, 2theory.tex,
+  4Methodology.tex, 5Results.tex, 7Conclusion.tex, 8Appendix.tex.
+- sections/GOOD_theory.tex and old_stuff/ are not included by main.tex and were not
+  treated as authoritative.
+
+Visual provenance
+- dm_range.jpeg: thesis Figure fig:dm_candidate_range; reproduced from
+  gajdan2025-hcal-thesis and inspired by battaglieri2017-cosmic-visions.
+- beam_electron_schematic.jpg: thesis Figure fig:ldmx_beam_electron_schematic;
+  from akesson2018-ldmx.
+- ldmx_detector_cutaway.jpg: thesis Figure fig:ldmx_detector_cutaway; from
+  ldmx2025-overview.
+- ecal_truth_event_displays.png: thesis-authored simulation-truth event display.
+- readout_vs_truth.jpg and data_pipeline.jpg: thesis-authored methodology figures.
+- baseline_architecture.png and trace_architecture.png: raster renderings made from
+  the thesis TikZ sources model_architecture_baselines.tex and
+  model_architecture_contributor_slot.tex.
+- All results PNGs are thesis-authored plots from sections/5Results.tex.
+
+Consistency decisions
+- Baseline headline values use 84.20/74.84 percent pooled hit accuracy and
+  89.76/83.18 percent energy-weighted accuracy, as repeated in the abstract,
+  baseline table, results prose and conclusion.
+- The TPad slide reports only paired differences, because the intact 3e
+  energy-weighted value in the TPad table (83.274 percent) does not match the
+  baseline table's 83.18 percent.
+- Speaker notes call post-softmax outputs probabilities, not logits.
+- The model-ready tensor has six continuous columns 3--8; the prose statement
+  “columns 3--6” is treated as an indexing typo.

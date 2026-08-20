@@ -1,0 +1,15 @@
+Slide 2 sources and attribution
+
+Animation input:
+- Local source: thesis_report/presentation/Galaxy_rotation_under_the_influence_of_dark_matter.ogv.360p.mpeg4.mov
+- Original work: Ingo Berg, “Galaxy rotation under the influence of dark matter.ogv,” 28 March 2012.
+- Wikimedia Commons: https://commons.wikimedia.org/wiki/File:Galaxy_rotation_under_the_influence_of_dark_matter.ogv
+- License: Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0).
+- Commons description: left, a galaxy with the rotation curve predicted before dark matter was considered; right, a galaxy with a flat rotation curve that can be explained by dark matter.
+- Format conversion for this deck: embedded animated GIF at 8 fps; no change to the scientific content.
+
+Matter-budget statement:
+- Active thesis source: thesis_report/overleaf_project/sections/2theory.tex.
+- Bibliography key used in the thesis: cirelli2026-darkmatter.
+- Safe wording: approximately 84% of matter is attributed to dark matter and approximately 16% is ordinary/baryonic matter. These percentages refer to matter, not the total mass–energy content of the Universe.
+

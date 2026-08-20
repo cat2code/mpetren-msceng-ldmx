@@ -1,0 +1,312 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/x8jc9f",
+    "id": "x8jc9f",
+    "slide": 19,
+    "layoutId": "a9796494-50dd-40c5-b063-65b699894dd0",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "d4c07a03-8892-4b6f-8e45-dcbfc014c5c9",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Helvetica Neue"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "a9796494-50dd-40c5-b063-65b699894dd0",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "d4c07a03-8892-4b6f-8e45-dcbfc014c5c9",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "d4c07a03-8892-4b6f-8e45-dcbfc014c5c9",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/a9sr6lk3",
+      "id": "1",
+      "name": "slide-19-title",
+      "bbox": [
+        42,
+        30,
+        1160,
+        66
+      ],
+      "geometry": "rect",
+      "text": "Backup — full baseline architectures",
+      "textPreview": "Backup — full baseline architectures",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 40,
+        "typeface": "Helvetica Neue",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Backup — full baseline architectures"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Backup — full baseline architectures",
+          "resolvedTextStyle": {
+            "fontSize": 40,
+            "typeface": "Helvetica Neue",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Backup — full baseline architectures",
+              "fontSize": 40,
+              "typeface": "Helvetica Neue",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/xcjah03u",
+      "id": "2",
+      "bbox": [
+        42,
+        102,
+        1196,
+        0.01
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#111111",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/cba98v29",
+      "id": "3",
+      "name": "slide-19-source",
+      "bbox": [
+        42,
+        678,
+        1050,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Thesis Figure fig:baseline_architectures",
+      "textPreview": "Thesis Figure fig:baseline_architectures",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 11,
+        "typeface": "Helvetica Neue",
+        "color": "#5F6672",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Thesis Figure fig:baseline_architectures"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Thesis Figure fig:baseline_architectures",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "typeface": "Helvetica Neue",
+            "color": "#5F6672",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Thesis Figure fig:baseline_architectures",
+              "fontSize": 11,
+              "typeface": "Helvetica Neue",
+              "color": "#5F6672",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/n6hsbqls",
+      "id": "4",
+      "name": "slide-19-number",
+      "bbox": [
+        1178,
+        674,
+        60,
+        22
+      ],
+      "geometry": "rect",
+      "text": "19",
+      "textPreview": "19",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 13,
+        "typeface": "Helvetica Neue",
+        "color": "#5F6672",
+        "alignment": "right",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "19"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "19",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "typeface": "Helvetica Neue",
+            "color": "#5F6672",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "19",
+              "fontSize": 13,
+              "typeface": "Helvetica Neue",
+              "color": "#5F6672",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/3a9gb6hs",
+      "id": "5",
+      "bbox": [
+        54,
+        120,
+        1172,
+        520
+      ],
+      "alt": "Detailed GravNet and Transformer baseline architectures",
+      "contentType": "image/png",
+      "imageCrop": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0.14
+      },
+      "imageFit": "contain",
+      "asset": {
+        "assetId": "87f3d29a-6dd2-40b1-87ff-2ae5dff081de",
+        "contentType": "image/png",
+        "byteLength": 247127
+      }
+    }
+  ],
+  "composeRuns": []
+}

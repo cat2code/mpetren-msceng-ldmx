@@ -1,0 +1,391 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/xz1t7b",
+    "id": "xz1t7b",
+    "slide": 5,
+    "layoutId": "a9796494-50dd-40c5-b063-65b699894dd0",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "d4c07a03-8892-4b6f-8e45-dcbfc014c5c9",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "bg1": "#FFFFFF",
+      "bg2": "#000000",
+      "tx1": "#1F1F1F",
+      "tx2": "#FFFFFF",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "Helvetica Neue"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "a9796494-50dd-40c5-b063-65b699894dd0",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "d4c07a03-8892-4b6f-8e45-dcbfc014c5c9",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "d4c07a03-8892-4b6f-8e45-dcbfc014c5c9",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/snutgj69",
+      "id": "1",
+      "name": "slide-5-title",
+      "bbox": [
+        42,
+        30,
+        1160,
+        66
+      ],
+      "geometry": "rect",
+      "text": "The network sees detector readout—not simulation truth",
+      "textPreview": "The network sees detector readout—not simulation truth",
+      "resolvedFontSize": 40,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 40,
+        "typeface": "Helvetica Neue",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "The network sees detector readout—not simulation truth"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "The network sees detector readout—not simulation truth",
+          "resolvedTextStyle": {
+            "fontSize": 40,
+            "typeface": "Helvetica Neue",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "The network sees detector readout—not simulation truth",
+              "fontSize": 40,
+              "typeface": "Helvetica Neue",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r21cnypo",
+      "id": "2",
+      "bbox": [
+        42,
+        102,
+        1196,
+        0.01
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#111111",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/61sbeto3",
+      "id": "3",
+      "name": "slide-5-source",
+      "bbox": [
+        42,
+        678,
+        1050,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Thesis §4.3 · reconstructed inputs; truth only defines targets and metrics",
+      "textPreview": "Thesis §4.3 · reconstructed inputs; truth only defines targets and metrics",
+      "resolvedFontSize": 11,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 11,
+        "typeface": "Helvetica Neue",
+        "color": "#5F6672",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Thesis §4.3 · reconstructed inputs; truth only defines targets and metrics"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Thesis §4.3 · reconstructed inputs; truth only defines targets and metrics",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "typeface": "Helvetica Neue",
+            "color": "#5F6672",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Thesis §4.3 · reconstructed inputs; truth only defines targets and metrics",
+              "fontSize": 11,
+              "typeface": "Helvetica Neue",
+              "color": "#5F6672",
+              "alignment": "left"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/50julo7y",
+      "id": "4",
+      "name": "slide-5-number",
+      "bbox": [
+        1178,
+        674,
+        60,
+        22
+      ],
+      "geometry": "rect",
+      "text": "5",
+      "textPreview": "5",
+      "resolvedFontSize": 13,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 13,
+        "typeface": "Helvetica Neue",
+        "color": "#5F6672",
+        "alignment": "right",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "5"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "5",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "typeface": "Helvetica Neue",
+            "color": "#5F6672",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "5",
+              "fontSize": 13,
+              "typeface": "Helvetica Neue",
+              "color": "#5F6672",
+              "alignment": "right"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "image",
+      "scope": "slide",
+      "aid": "im/ho32xwzq",
+      "id": "5",
+      "bbox": [
+        74,
+        122,
+        1130,
+        430
+      ],
+      "alt": "Boundary between reconstructed detector inputs and simulation-truth supervision",
+      "contentType": "image/jpeg",
+      "imageFit": "contain",
+      "asset": {
+        "assetId": "af5b1348-89ba-48fa-b41b-3f517e22f59e",
+        "contentType": "image/jpeg",
+        "byteLength": 407447
+      }
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/jy1cjeps",
+      "id": "6",
+      "bbox": [
+        84,
+        568,
+        1112,
+        72
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#DCEEFF",
+      "lineWidth": 0
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ixsba9o7",
+      "id": "7",
+      "bbox": [
+        110,
+        588,
+        1060,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Input set: ECal (x, y, z, E) + TPad (centroid, photoelectrons)   →   Targets: dominant origin, contributor set, energy fractions",
+      "textPreview": "Input set: ECal (x, y, z, E) + TPad (centroid, photoelectrons)   →   Targets: dominant origin, contributor set, energy fractions",
+      "resolvedFontSize": 18.29,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 20,
+        "typeface": "Helvetica Neue",
+        "color": "#111111",
+        "bold": true,
+        "alignment": "center",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 0.91,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Input set: ECal (x, y, z, E) + TPad (centroid, photoelectrons)   →   Targets: dominant origin, contributor set, energy fractions"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Input set: ECal (x, y, z, E) + TPad (centroid, photoelectrons)   →   Targets: dominant origin, contributor set, energy fractions",
+          "resolvedTextStyle": {
+            "fontSize": 20,
+            "typeface": "Helvetica Neue",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Input set: ECal (x, y, z, E) + TPad (centroid, photoelectrons)   →   Targets: dominant origin, contributor set, energy fractions",
+              "fontSize": 20,
+              "typeface": "Helvetica Neue",
+              "color": "#111111",
+              "bold": true,
+              "alignment": "center"
+            }
+          ],
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

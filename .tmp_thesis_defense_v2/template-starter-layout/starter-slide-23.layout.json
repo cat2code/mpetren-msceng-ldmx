@@ -1,0 +1,855 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/l7b43o",
+    "id": "l7b43o",
+    "slide": 23,
+    "layoutId": "/ppt/slideLayouts/slideLayout1.xml",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#FFFFFF",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1280,
+      "height": 720
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "fontScheme": {
+      "name": "Office",
+      "majorFont": {
+        "latinTypeface": "Calibri Light",
+        "eastAsianTypeface": "Calibri Light",
+        "complexScriptTypeface": "Calibri Light"
+      },
+      "minorFont": {
+        "latinTypeface": "Calibri",
+        "eastAsianTypeface": "Calibri",
+        "complexScriptTypeface": "Calibri"
+      }
+    },
+    "typefaces": [
+      "Calibri",
+      "Calibri Light",
+      "Helvetica Neue"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout1.xml",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ne147i50",
+      "id": "7",
+      "name": "slide-18-title",
+      "bbox": [
+        42,
+        30,
+        1160,
+        66
+      ],
+      "geometry": "rect",
+      "text": "Backup — data, features and training configuration",
+      "textPreview": "Backup — data, features and training configuration",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Backup — data, features and training configuration"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Backup — data, features and training configuration",
+          "resolvedTextStyle": {
+            "fontSize": 40,
+            "typeface": "Helvetica Neue",
+            "color": "#111111",
+            "bold": true,
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Backup — data, features and training configuration",
+              "fontSize": 40,
+              "typeface": "Helvetica Neue",
+              "color": "#111111",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/8be5s7mp",
+      "id": "8",
+      "bbox": [
+        42,
+        102,
+        1196,
+        0.01
+      ],
+      "geometry": "straightConnector1",
+      "lineColor": "#111111",
+      "lineWidth": 1.2
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/bil4b25w",
+      "id": "3",
+      "name": "slide-18-source",
+      "bbox": [
+        42,
+        678,
+        1050,
+        18
+      ],
+      "geometry": "rect",
+      "text": "Thesis Chapter 4 and Appendix",
+      "textPreview": "Thesis Chapter 4 and Appendix",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Thesis Chapter 4 and Appendix"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Thesis Chapter 4 and Appendix",
+          "resolvedTextStyle": {
+            "fontSize": 11,
+            "typeface": "Helvetica Neue",
+            "color": "#5F6672",
+            "alignment": "left"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Thesis Chapter 4 and Appendix",
+              "fontSize": 11,
+              "typeface": "Helvetica Neue",
+              "color": "#5F6672"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ofalgn6l",
+      "id": "4",
+      "name": "slide-18-number",
+      "bbox": [
+        1178,
+        674,
+        60,
+        22
+      ],
+      "geometry": "rect",
+      "text": "18",
+      "textPreview": "18",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "18"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "18",
+          "resolvedTextStyle": {
+            "fontSize": 13,
+            "typeface": "Helvetica Neue",
+            "color": "#5F6672",
+            "alignment": "right"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "18",
+              "fontSize": 13,
+              "typeface": "Helvetica Neue",
+              "color": "#5F6672"
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    },
+    {
+      "order": 5,
+      "kind": "table",
+      "scope": "slide",
+      "aid": "tb/w36pc7m9",
+      "id": "9",
+      "bbox": [
+        68,
+        132,
+        1144,
+        470
+      ],
+      "text": "Item | Configuration\nSimulation | ldmx-sw v4.7.3 · ldmx-det-v15-8gev · 8 GeV e⁻\nEvent input | Variable-size 8-column heterogeneous ECal + TPad set\nFinal baseline split | 800k train · 100k validation · 100k test, per multiplicity\nOptimiser | AdamW · learning rate 3×10⁻⁴ · weight decay 10⁻⁴\nRegularisation | Dropout 0.1 · global gradient L2 clip 1.0\nStopping | max 15 epochs · min 5 · patience 3 · Δloss ≥ 10⁻⁴\nTRACE objective | contributor-set CE + fraction CE + slot-validity BCE; equal weights",
+      "textPreview": "Item | Configuration | Simulation | ldmx-sw v4.7.3 · ldmx-det-v15-8gev · 8 GeV e⁻ | Event input | Variable-size 8-column heterogeneous EC...",
+      "rows": 8,
+      "cols": 2,
+      "cells": [
+        {
+          "index": 1,
+          "row": 1,
+          "column": 1,
+          "bbox": [
+            68,
+            132,
+            255,
+            58.75
+          ],
+          "text": "Item",
+          "textPreview": "Item",
+          "fillColor": "#111111",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Item",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Item",
+                  "fontSize": 18,
+                  "typeface": "Helvetica Neue",
+                  "color": "#FFFFFF",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 2,
+          "row": 1,
+          "column": 2,
+          "bbox": [
+            323,
+            132,
+            889,
+            58.75
+          ],
+          "text": "Configuration",
+          "textPreview": "Configuration",
+          "fillColor": "#111111",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Configuration",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Configuration",
+                  "fontSize": 18,
+                  "typeface": "Helvetica Neue",
+                  "color": "#FFFFFF",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 3,
+          "row": 2,
+          "column": 1,
+          "bbox": [
+            68,
+            190.75,
+            255,
+            58.75
+          ],
+          "text": "Simulation",
+          "textPreview": "Simulation",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Simulation",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Simulation",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 4,
+          "row": 2,
+          "column": 2,
+          "bbox": [
+            323,
+            190.75,
+            889,
+            58.75
+          ],
+          "text": "ldmx-sw v4.7.3 · ldmx-det-v15-8gev · 8 GeV e⁻",
+          "textPreview": "ldmx-sw v4.7.3 · ldmx-det-v15-8gev · 8 GeV e⁻",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "ldmx-sw v4.7.3 · ldmx-det-v15-8gev · 8 GeV e⁻",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "ldmx-sw v4.7.3 · ldmx-det-v15-8gev · 8 GeV e⁻",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 5,
+          "row": 3,
+          "column": 1,
+          "bbox": [
+            68,
+            249.5,
+            255,
+            58.75
+          ],
+          "text": "Event input",
+          "textPreview": "Event input",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Event input",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Event input",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 6,
+          "row": 3,
+          "column": 2,
+          "bbox": [
+            323,
+            249.5,
+            889,
+            58.75
+          ],
+          "text": "Variable-size 8-column heterogeneous ECal + TPad set",
+          "textPreview": "Variable-size 8-column heterogeneous ECal + TPad set",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Variable-size 8-column heterogeneous ECal + TPad set",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Variable-size 8-column heterogeneous ECal + TPad set",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 7,
+          "row": 4,
+          "column": 1,
+          "bbox": [
+            68,
+            308.25,
+            255,
+            58.75
+          ],
+          "text": "Final baseline split",
+          "textPreview": "Final baseline split",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Final baseline split",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Final baseline split",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 8,
+          "row": 4,
+          "column": 2,
+          "bbox": [
+            323,
+            308.25,
+            889,
+            58.75
+          ],
+          "text": "800k train · 100k validation · 100k test, per multiplicity",
+          "textPreview": "800k train · 100k validation · 100k test, per multiplicity",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "800k train · 100k validation · 100k test, per multiplicity",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "800k train · 100k validation · 100k test, per multiplicity",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 9,
+          "row": 5,
+          "column": 1,
+          "bbox": [
+            68,
+            367,
+            255,
+            58.75
+          ],
+          "text": "Optimiser",
+          "textPreview": "Optimiser",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Optimiser",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Optimiser",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 10,
+          "row": 5,
+          "column": 2,
+          "bbox": [
+            323,
+            367,
+            889,
+            58.75
+          ],
+          "text": "AdamW · learning rate 3×10⁻⁴ · weight decay 10⁻⁴",
+          "textPreview": "AdamW · learning rate 3×10⁻⁴ · weight decay 10⁻⁴",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "AdamW · learning rate 3×10⁻⁴ · weight decay 10⁻⁴",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "AdamW · learning rate 3×10⁻⁴ · weight decay 10⁻⁴",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 11,
+          "row": 6,
+          "column": 1,
+          "bbox": [
+            68,
+            425.75,
+            255,
+            58.75
+          ],
+          "text": "Regularisation",
+          "textPreview": "Regularisation",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Regularisation",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Regularisation",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 12,
+          "row": 6,
+          "column": 2,
+          "bbox": [
+            323,
+            425.75,
+            889,
+            58.75
+          ],
+          "text": "Dropout 0.1 · global gradient L2 clip 1.0",
+          "textPreview": "Dropout 0.1 · global gradient L2 clip 1.0",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Dropout 0.1 · global gradient L2 clip 1.0",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Dropout 0.1 · global gradient L2 clip 1.0",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 13,
+          "row": 7,
+          "column": 1,
+          "bbox": [
+            68,
+            484.5,
+            255,
+            58.75
+          ],
+          "text": "Stopping",
+          "textPreview": "Stopping",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "Stopping",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "Stopping",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 14,
+          "row": 7,
+          "column": 2,
+          "bbox": [
+            323,
+            484.5,
+            889,
+            58.75
+          ],
+          "text": "max 15 epochs · min 5 · patience 3 · Δloss ≥ 10⁻⁴",
+          "textPreview": "max 15 epochs · min 5 · patience 3 · Δloss ≥ 10⁻⁴",
+          "fillColor": "#FFFFFF",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "max 15 epochs · min 5 · patience 3 · Δloss ≥ 10⁻⁴",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "max 15 epochs · min 5 · patience 3 · Δloss ≥ 10⁻⁴",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 15,
+          "row": 8,
+          "column": 1,
+          "bbox": [
+            68,
+            543.25,
+            255,
+            58.75
+          ],
+          "text": "TRACE objective",
+          "textPreview": "TRACE objective",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "TRACE objective",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "TRACE objective",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111",
+                  "bold": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "index": 16,
+          "row": 8,
+          "column": 2,
+          "bbox": [
+            323,
+            543.25,
+            889,
+            58.75
+          ],
+          "text": "contributor-set CE + fraction CE + slot-validity BCE; equal weights",
+          "textPreview": "contributor-set CE + fraction CE + slot-validity BCE; equal weights",
+          "fillColor": "#F1F3F5",
+          "paragraphs": [
+            {
+              "index": 1,
+              "text": "contributor-set CE + fraction CE + slot-validity BCE; equal weights",
+              "runs": [
+                {
+                  "index": 1,
+                  "text": "contributor-set CE + fraction CE + slot-validity BCE; equal weights",
+                  "fontSize": 17,
+                  "typeface": "Helvetica Neue",
+                  "color": "#111111"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/mds3edof",
+      "id": "6",
+      "bbox": [
+        88,
+        624,
+        1104,
+        34
+      ],
+      "geometry": "rect",
+      "text": "Baseline simplifications: true multiplicity supplied · truth-noise hits removed · hard dominant-origin target",
+      "textPreview": "Baseline simplifications: true multiplicity supplied · truth-noise hits removed · hard dominant-origin target",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "anchor": 1,
+        "fontSize": 24,
+        "typeface": "Calibri",
+        "color": "tx1",
+        "alignment": "left",
+        "verticalAlignment": "top",
+        "autoFit": "shrinkText",
+        "autoFitScale": 1,
+        "insets": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        }
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Baseline simplifications: true multiplicity supplied · truth-noise hits removed · hard dominant-origin target"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Baseline simplifications: true multiplicity supplied · truth-noise hits removed · hard dominant-origin target",
+          "resolvedTextStyle": {
+            "fontSize": 18,
+            "typeface": "Helvetica Neue",
+            "color": "#D97706",
+            "bold": true,
+            "alignment": "center"
+          },
+          "runs": [
+            {
+              "index": 1,
+              "text": "Baseline simplifications: true multiplicity supplied · truth-noise hits removed · hard dominant-origin target",
+              "fontSize": 18,
+              "typeface": "Helvetica Neue",
+              "color": "#D97706",
+              "bold": true
+            }
+          ],
+          "bulletCharacter": "",
+          "marginLeft": 0
+        }
+      ],
+      "lineWidth": 0
+    }
+  ],
+  "composeRuns": []
+}

@@ -1,0 +1,8 @@
+Local source deck: thesis_report/presentation/Thesis_Defense_Eliot_Montesino_Petren.pptx.
+Einstein-ring image: thesis_report/presentation/euclid_dark_matter_einstein_ring.jpg. Derived from Figure 1 of C. M. O'Riordan et al. (Euclid Collaboration), "Euclid: A complete Einstein ring in NGC 6505," A&A 694, A145 (2025), arXiv:2502.06505, DOI 10.1051/0004-6361/202453014. The paper reports an inferred dark-matter fraction inside the Einstein radius of 11.1^{+5.4}_{-3.5}%.
+ECal-cell image: thesis_report/presentation/ecal_hexagonal_cells.jpg. User-provided crop of thesis asset config/fig/ecal_cells_and_layers.jpg, sourced from the 2025 LDMX design report. Safe crop-specific claims: seven hexagonal silicon modules per sampling plane and 432 cells per module/sensor.
+Thesis Figure 3: thesis_report/overleaf_project/config/fig/dark_bremsstrahlung_feynman.jpg. Thesis-authored sketch inspired by helgstrand2025veto_power.
+Mass-range strip: thesis_report/overleaf_project/config/fig/dm_range.jpeg; reproduced in the thesis from gajdan2025-hcal-thesis, inspired by battaglieri2017-cosmic-visions.
+Accuracy-versus-separation figure: thesis_report/overleaf_project/config/fig/results/width_normalized_separation.png; thesis-authored from run-020 held-out simulation.
+Depth figures: thesis_report/overleaf_project/config/fig/results/hit_accuracy_by_layer_2e.png and hit_accuracy_by_layer_3e.png; thesis-authored from run-020 held-out simulation.
+

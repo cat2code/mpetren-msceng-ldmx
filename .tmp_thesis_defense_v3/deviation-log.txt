@@ -1,0 +1,8 @@
+Template deviation log
+
+Output slide 2 replaces the Einstein-ring still with an embedded animated GIF derived from the user-supplied galaxy-rotation video. The slide headline, two numerical statements, animation caption, source footer, and speaker notes are rewritten. The existing visual hierarchy, typography, color palette, rule, margins, and slide number are preserved.
+
+The PowerPoint authoring API used here does not expose a native movie object. The source MOV is therefore converted to an embedded animated GIF (8 fps, 128-color palette). PowerPoint plays the animation during Slide Show without an external file dependency. The original MOV remains untouched in thesis_report/presentation.
+
+No other output slide is intentionally changed.
+

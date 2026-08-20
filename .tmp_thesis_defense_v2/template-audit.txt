@@ -1,0 +1,14 @@
+Source deck: thesis_report/presentation/Thesis_Defense_Eliot_Montesino_Petren.pptx
+Canvas: 1280 x 720 px, white background.
+Structure: one imported master and one inherited title layout; both contain no visible elements or unresolved placeholders. All visible content is slide-local and editable.
+Typography: Helvetica Neue is used for audience-facing content. Main slide titles are 40 pt bold; body copy is generally 18–24 pt; footers and page markers are 11–13 pt.
+Visual system: black titles, thin charcoal title rule, restrained grey body copy, and saturated blue/orange/purple accents. Slides favor one large figure or two balanced evidence panels rather than decorative chrome.
+Reusable source patterns:
+- Slide 2: title + one image + left-side narrative text.
+- Slide 3: title + two image slots + two explanatory text boxes.
+- Slide 7: two colored comparison panels + one bottom synthesis line.
+- Slide 12: large evidence image left + interpretation column right.
+- Slide 16: three numbered synthesis rows + bottom handoff banner.
+- Slide 21: two side-by-side diagnostic figures + two numeric callouts.
+Insertion contract: every output slide duplicates one source slide. New content reuses inherited text, image, panel, rule, footer, and number objects; no parallel overlay design or empty placeholder is introduced. All output page markers are rewritten after reordering.
+

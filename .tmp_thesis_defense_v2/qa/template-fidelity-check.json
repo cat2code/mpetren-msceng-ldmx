@@ -1,0 +1,13 @@
+{
+  "status": "pass",
+  "checkedAt": "2026-08-17T16:57:47.181Z",
+  "workspace": "/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/.tmp_thesis_defense_v2",
+  "finalPptx": "/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/thesis_report/presentation/Thesis_Defense_Eliot_Montesino_Petren_v2.pptx",
+  "starterPptx": "/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/.tmp_thesis_defense_v2/template-starter.pptx",
+  "mapPath": "/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/.tmp_thesis_defense_v2/template-frame-map.json",
+  "starterLayoutDir": "/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/.tmp_thesis_defense_v2/template-starter-layout",
+  "finalLayoutDir": "/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/.tmp_thesis_defense_v2/final-layout",
+  "editDir": "/Users/eliotmontesinopetren/src/mpetren-msceng-ldmx/.tmp_thesis_defense_v2/authoring",
+  "issueCount": 0,
+  "issues": []
+}

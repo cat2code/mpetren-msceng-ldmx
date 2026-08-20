@@ -1,0 +1,24 @@
+Template audit — Thesis Defense v2 source
+
+Source deck: thesis_report/presentation/Thesis_Defense_Eliot_Montesino_Petren_v2.pptx
+Canvas: 1280 × 720 px (16:9)
+Slides inspected: all 25 source slides plus the source master/layout.
+
+Visual system:
+- White background, black/near-black titles and rules.
+- Helvetica Neue is the visible deck typeface; titles are typically 40 pt bold.
+- Blue (#3D8DFF), orange, and purple accents distinguish concepts and models.
+- Each content slide uses a top title, thin horizontal rule, compact source footer, and page number.
+- Layout and master contain no visible reusable elements; the visible slide system is slide-local.
+
+Slide 2 pattern:
+- One-line title and rule.
+- Left narrative column with two large statements and supporting copy.
+- One large visual on the right.
+- Compact caption/source footer and slide number.
+
+Insertion contract:
+- Output slides 1–25 duplicate the same-number source slide.
+- Slide 2 edits only inherited text/image elements in the established layout.
+- Slides 1 and 3–25 remain preserve-only.
+

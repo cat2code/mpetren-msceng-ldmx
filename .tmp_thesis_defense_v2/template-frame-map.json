@@ -1,0 +1,55 @@
+{
+  "outputSlides": [
+    {"outputSlide":1,"sourceSlide":1,"narrativeRole":"preserve-only title","reuseMode":"duplicate-slide","editTargets":[]},
+    {"outputSlide":2,"sourceSlide":2,"narrativeRole":"opening evidence and curiosity","reuseMode":"duplicate-slide","editTargets":[
+      {"action":"rewrite","shapeId":"sh/9wnqhczy"},{"action":"rewrite","shapeId":"sh/ozy1ofad"},{"action":"rewrite","shapeId":"sh/b29kza94"},
+      {"action":"rewrite-and-reposition","shapeIds":["sh/a10jqpsj","sh/x4r21kru","sh/w3i1sfa9","sh/r65knqtk","sh/ove9o7yd"]},
+      {"action":"replace","shapeId":"im/kzexcfip"}
+    ]},
+    {"outputSlide":3,"sourceSlide":3,"narrativeRole":"sub-GeV motivation and dark-bremsstrahlung mechanism","reuseMode":"duplicate-slide","editTargets":[
+      {"action":"rewrite","shapeIds":["sh/n6ls3alk","sh/d0jax03i","sh/298ryl4v"]},
+      {"action":"replace","shapeIds":["im/5cn6p0v2","im/ipw7elwr"]},
+      {"action":"rewrite-and-reposition","shapeIds":["sh/pcjqtg36","sh/m5cra54z"]}
+    ]},
+    {"outputSlide":4,"sourceSlide":3,"narrativeRole":"LDMX missing-momentum measurement and ECal granularity","reuseMode":"duplicate-slide","editTargets":[
+      {"action":"rewrite","shapeIds":["sh/n6ls3alk","sh/d0jax03i","sh/298ryl4v"]},
+      {"action":"replace","shapeIds":["im/5cn6p0v2","im/ipw7elwr"]},
+      {"action":"rewrite-and-reposition","shapeIds":["sh/pcjqtg36","sh/m5cra54z"]}
+    ]},
+    {"outputSlide":5,"sourceSlide":4,"narrativeRole":"pile-up content with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/rm1k7yt4"}]},
+    {"outputSlide":6,"sourceSlide":7,"narrativeRole":"inverse-reconstruction thesis","reuseMode":"duplicate-slide","editTargets":[
+      {"action":"rewrite","shapeIds":["sh/n6x0fqlo","sh/dcbud0ra","sh/ydkbm5sv"]},
+      {"action":"rewrite-and-reposition","shapeIds":["sh/kzmdova1","sh/l0vuh0rm","sh/eh0ba1sr","sh/baxkjqlk","sh/a9ojq5kz","sh/xcz2l03q","sh/cbq1sv25"]},
+      {"action":"keep","shapeIds":["sh/zedcfa9g","sh/fi9c369c"]}
+    ]},
+    {"outputSlide":7,"sourceSlide":5,"narrativeRole":"supervised target construction with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/z2tcnm5s"}]},
+    {"outputSlide":8,"sourceSlide":6,"narrativeRole":"simulation pipeline with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/87ipkzal"}]},
+    {"outputSlide":9,"sourceSlide":7,"narrativeRole":"baseline architecture comparison with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/ydkbm5sv"}]},
+    {"outputSlide":10,"sourceSlide":8,"narrativeRole":"TRACE architecture with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/ri9g7uhw"}]},
+    {"outputSlide":11,"sourceSlide":9,"narrativeRole":"permutation-aligned evaluation with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/nex4jq5k"}]},
+    {"outputSlide":12,"sourceSlide":10,"narrativeRole":"baseline performance evidence with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/zelojyl8"}]},
+    {"outputSlide":13,"sourceSlide":11,"narrativeRole":"shower-geometry evidence with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/n69grmpw"}]},
+    {"outputSlide":14,"sourceSlide":12,"narrativeRole":"accuracy versus shower separation evidence","reuseMode":"duplicate-slide","editTargets":[
+      {"action":"rewrite","shapeIds":["sh/xw3q94ne","sh/0f2lgnmp","sh/ra943il8","sh/dcbm583y","sh/sb2lcnmd","sh/a543mx4r","sh/wvupgz6t"]},
+      {"action":"replace","shapeId":"im/uxknq14z"},{"action":"keep","shapeId":"sh/0nap8f6l"}
+    ]},
+    {"outputSlide":15,"sourceSlide":21,"narrativeRole":"accuracy versus ECal depth evidence","reuseMode":"duplicate-slide","editTargets":[
+      {"action":"rewrite","shapeIds":["sh/5kjydsri","sh/0f2lon6p","sh/ra9kryp8","sh/sb2lk36t","sh/b6d432pc","sh/al43uxor","sh/4jax4nqd"]},
+      {"action":"keep","shapeIds":["im/47itwfuh","im/ra9c7uds"]}
+    ]},
+    {"outputSlide":16,"sourceSlide":12,"narrativeRole":"confidence diagnostic with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/ra943il8"}]},
+    {"outputSlide":17,"sourceSlide":13,"narrativeRole":"TRACE count and assignment evidence with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/o3i5w3ad"}]},
+    {"outputSlide":18,"sourceSlide":14,"narrativeRole":"mixed-deposit evidence with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/jepwf2pc"}]},
+    {"outputSlide":19,"sourceSlide":16,"narrativeRole":"conclusion synthesis with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/ytkf2h8j"}]},
+    {"outputSlide":20,"sourceSlide":16,"narrativeRole":"prioritized future-work outlook","reuseMode":"duplicate-slide","editTargets":[
+      {"action":"rewrite","shapeIds":["sh/bulg7u5g","sh/9kby1g7m","sh/ytkf2h8j","sh/zutgvm94","sh/kv2h4rqp","sh/lwbyxwra","sh/3qdg7qpo","sh/fm1gzq5o","sh/e1sf65o3","sh/gnax8v6t","sh/nqlg3a5k","sh/2pcfa5oz","sh/oruhcf65"]},
+      {"action":"keep","shapeIds":["sh/zm50veps","sh/ji9k7ypw","sh/ps3y5knq"]}
+    ]},
+    {"outputSlide":21,"sourceSlide":17,"narrativeRole":"preserve-only questions bumper","reuseMode":"duplicate-slide","editTargets":[]},
+    {"outputSlide":22,"sourceSlide":15,"narrativeRole":"backup TPad ablation","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeIds":["sh/p8jyx83q","sh/76p4jqls"]}]},
+    {"outputSlide":23,"sourceSlide":18,"narrativeRole":"backup training configuration with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/itw3upcf"}]},
+    {"outputSlide":24,"sourceSlide":19,"narrativeRole":"backup architecture detail with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/vitozqt8"}]},
+    {"outputSlide":25,"sourceSlide":20,"narrativeRole":"backup exact performance table with revised sequence number","reuseMode":"duplicate-slide","editTargets":[{"action":"rewrite","shapeId":"sh/4nu1krqh"}]}
+  ],
+  "omittedSourceSlides": []
+}

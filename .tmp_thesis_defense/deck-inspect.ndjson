@@ -1,0 +1,274 @@
+{"kind":"slide","id":"sl/iitrdg","slide":1,"title":"MASTER’S THESIS DEFENCE","textShapes":5}
+{"kind":"textbox","id":"sh/90b21wrq","slide":1,"textChars":23,"textLines":1}
+{"kind":"textbox","id":"sh/mxkjqh8z","slide":1,"textChars":20,"textLines":1}
+{"kind":"textbox","id":"sh/nytkzm9k","slide":1,"textChars":62,"textLines":1}
+{"kind":"shape","id":"sh/wnm1wrq1","slide":1,"bbox":[44,414,720,0.01]}
+{"kind":"textbox","id":"sh/xov25wrm","slide":1,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/a1kju18b","slide":1,"textChars":113,"textLines":2}
+{"kind":"shape","id":"sh/vmtk369g","slide":1,"bbox":[1138,0,142,720]}
+{"kind":"shape","id":"sh/krml0bqd","slide":1,"bbox":[1188,0,92,720]}
+{"kind":"notes","id":"nt/iitrdg","slide":1,"text":"[Timing: 0:00–0:20] |  | Good morning. My thesis is called ‘Learning to Separ..."}
+{"kind":"slide","id":"sl/eprbxe","slide":2,"title":"The missing-momentum search opens the sub-GeV frontier","textShapes":8}
+{"kind":"textbox","id":"sh/o3utczil","slide":2,"textChars":54,"textLines":1}
+{"kind":"shape","id":"sh/nilcje10","slide":2,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/mhcba90v","slide":2,"textChars":56,"textLines":1}
+{"kind":"textbox","id":"sh/x8nupoji","slide":2,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/w7edgjix","slide":2,"textChars":75,"textLines":1}
+{"kind":"textbox","id":"sh/b6lcne1c","slide":2,"textChars":184,"textLines":1}
+{"kind":"textbox","id":"sh/a5cve90r","slide":2,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/lcnutoje","slide":2,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/uhkfadon","slide":2,"textChars":50,"textLines":1}
+{"kind":"image","id":"im/xc7udkje","slide":2,"name":"","alt":"Representative dark-matter candidate mass ranges with the light-dark-matter region highlighted","bbox":[638,154,570,370]}
+{"kind":"notes","id":"nt/eprbxe","slide":2,"text":"[Timing: 0:20–1:25] |  | The broad motivation is that dark matter is strongly..."}
+{"kind":"slide","id":"sl/l53fwa","slide":3,"title":"LDMX asks whether the 8 GeV electron left invisibly","textShapes":5}
+{"kind":"textbox","id":"sh/8j2xgzi5","slide":3,"textChars":51,"textLines":1}
+{"kind":"shape","id":"sh/7itw7uh0","slide":3,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/mhkfe90f","slide":3,"textChars":63,"textLines":1}
+{"kind":"textbox","id":"sh/lgbe54zu","slide":3,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/yt0vap03","slide":3,"textChars":22,"textLines":1}
+{"kind":"textbox","id":"sh/5cvehozy","slide":3,"textChars":87,"textLines":1}
+{"kind":"image","id":"im/x0ja1wji","slide":3,"name":"","alt":"Conceptual LDMX missing-momentum signature","bbox":[42,126,610,430]}
+{"kind":"image","id":"im/axsb6hk7","slide":3,"name":"","alt":"Cutaway view of the LDMX detector","bbox":[690,126,548,360]}
+{"kind":"notes","id":"nt/l53fwa","slide":3,"text":"[Timing: 1:25–2:45] |  | LDMX is a fixed-target missing-momentum experiment. ..."}
+{"kind":"slide","id":"sl/vzdd12","slide":4,"title":"Pile-up converts exposure into overlapping showers","textShapes":8}
+{"kind":"textbox","id":"sh/bq9sn21w","slide":4,"textChars":50,"textLines":1}
+{"kind":"shape","id":"sh/critw72h","slide":4,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/dsrapcj2","slide":4,"textChars":57,"textLines":1}
+{"kind":"textbox","id":"sh/21grqxkz","slide":4,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/3mpsj21k","slide":4,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/ony9s725","slide":4,"textChars":57,"textLines":1}
+{"kind":"textbox","id":"sh/poralsjq","slide":4,"textChars":24,"textLines":1}
+{"kind":"shape","id":"sh/mxkb2h0j","slide":4,"bbox":[46,450,310,0.01]}
+{"kind":"textbox","id":"sh/nitsvm14","slide":4,"textChars":97,"textLines":1}
+{"kind":"shape","id":"sh/214vip0j","slide":4,"bbox":[710,556,380,64]}
+{"kind":"textbox","id":"sh/p4vedkzu","slide":4,"textChars":42,"textLines":1}
+{"kind":"image","id":"im/o7ehovep","slide":4,"name":"","alt":"One-, two-, and three-electron ECal events colored by truth origin","bbox":[416,144,816,410]}
+{"kind":"notes","id":"nt/vzdd12","slide":4,"text":"[Timing: 2:45–4:05] |  | At a mean occupancy of one electron per bucket, mult..."}
+{"kind":"slide","id":"sl/xz1t7b","slide":5,"title":"The network sees detector readout—not simulation truth","textShapes":4}
+{"kind":"textbox","id":"sh/snutgj69","slide":5,"textChars":54,"textLines":1}
+{"kind":"shape","id":"sh/r21cnypo","slide":5,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/61sbeto3","slide":5,"textChars":74,"textLines":1}
+{"kind":"textbox","id":"sh/50julo7y","slide":5,"textChars":1,"textLines":1}
+{"kind":"shape","id":"sh/jy1cjeps","slide":5,"bbox":[84,568,1112,72]}
+{"kind":"textbox","id":"sh/ixsba9o7","slide":5,"textChars":128,"textLines":1}
+{"kind":"image","id":"im/ho32xwzq","slide":5,"name":"","alt":"Boundary between reconstructed detector inputs and simulation-truth supervision","bbox":[74,122,1130,430]}
+{"kind":"notes","id":"nt/xz1t7b","slide":5,"text":"[Timing: 4:05–5:20] |  | The supervised boundary is important. The model rece..."}
+{"kind":"slide","id":"sl/boak0a","slide":6,"title":"Ten million overlays per multiplicity anchor the study","textShapes":12}
+{"kind":"textbox","id":"sh/69kzulwv","slide":6,"textChars":54,"textLines":1}
+{"kind":"shape","id":"sh/tcby5gvm","slide":6,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/8b2hwbe1","slide":6,"textChars":46,"textLines":1}
+{"kind":"textbox","id":"sh/j6tgz6dk","slide":6,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/l8by1gva","slide":6,"textChars":3,"textLines":1}
+{"kind":"textbox","id":"sh/k72hsbe5","slide":6,"textChars":28,"textLines":1}
+{"kind":"textbox","id":"sh/bi9gvmd8","slide":6,"textChars":3,"textLines":1}
+{"kind":"textbox","id":"sh/ah0fm1wn","slide":6,"textChars":30,"textLines":1}
+{"kind":"shape","id":"sh/gz65wru5","slide":6,"bbox":[686,286,504,0.01]}
+{"kind":"textbox","id":"sh/h0f65wvq","slide":6,"textChars":3,"textLines":1}
+{"kind":"textbox","id":"sh/uxonuhcf","slide":6,"textChars":38,"textLines":1}
+{"kind":"textbox","id":"sh/vyxo3md0","slide":6,"textChars":8,"textLines":1}
+{"kind":"textbox","id":"sh/8vm5s7u9","slide":6,"textChars":34,"textLines":1}
+{"kind":"shape","id":"sh/twf61cvu","slide":6,"bbox":[686,464,504,0.01]}
+{"kind":"textbox","id":"sh/694nqhc3","slide":6,"textChars":132,"textLines":1}
+{"kind":"image","id":"im/z2x8zi5o","slide":6,"name":"","alt":"High-level LDMX simulation, tensorization, and training pipeline","bbox":[54,126,560,520]}
+{"kind":"notes","id":"nt/boak0a","slide":6,"text":"[Timing: 5:20–6:35] |  | The samples are built from inclusive, non-signal 8 G..."}
+{"kind":"slide","id":"sl/be6tw2","slide":7,"title":"Two set encoders test local and global interaction","textShapes":10}
+{"kind":"textbox","id":"sh/8zqx8rm5","slide":7,"textChars":50,"textLines":1}
+{"kind":"shape","id":"sh/7yhwf65k","slide":7,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/mx8f614z","slide":7,"textChars":63,"textLines":1}
+{"kind":"textbox","id":"sh/lczedwne","slide":7,"textChars":1,"textLines":1}
+{"kind":"shape","id":"sh/kbqx4rmt","slide":7,"bbox":[42,132,570,420]}
+{"kind":"textbox","id":"sh/zahwbm58","slide":7,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/y98f2h4n","slide":7,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/x8ze9cni","slide":7,"textChars":149,"textLines":5}
+{"kind":"shape","id":"sh/c76x07mx","slide":7,"bbox":[656,132,582,420]}
+{"kind":"textbox","id":"sh/65gz2h03","slide":7,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/rqpgbmh8","slide":7,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/sryh47it","slide":7,"textChars":150,"textLines":5}
+{"kind":"textbox","id":"sh/ts7ydcze","slide":7,"textChars":96,"textLines":1}
+{"kind":"notes","id":"nt/be6tw2","slide":7,"text":"[Timing: 6:35–7:55] |  | The controlled baseline comparison uses the same eig..."}
+{"kind":"slide","id":"sl/b3yheo","slide":8,"title":"TRACE predicts a coherent 2e/3e event description","textShapes":5}
+{"kind":"textbox","id":"sh/srit83ut","slide":8,"textChars":49,"textLines":1}
+{"kind":"shape","id":"sh/7q9cfid8","slide":8,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/6pgb6dcn","slide":8,"textChars":55,"textLines":1}
+{"kind":"textbox","id":"sh/5o7ud8v2","slide":8,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/knyt43uh","slide":8,"textChars":71,"textLines":1}
+{"kind":"textbox","id":"sh/ilgb2tcb","slide":8,"textChars":123,"textLines":1}
+{"kind":"image","id":"im/6p07q1oz","slide":8,"name":"","alt":"TRACE multi-task contributor reconstruction architecture","bbox":[70,164,1140,440]}
+{"kind":"notes","id":"nt/b3yheo","slide":8,"text":"[Timing: 7:55–9:15] |  | TRACE stands for Transformer for Reconstruction and ..."}
+{"kind":"slide","id":"sl/2ag4t6","slide":9,"title":"Evaluation must ignore arbitrary shower labels","textShapes":7}
+{"kind":"textbox","id":"sh/610nulgj","slide":9,"textChars":46,"textLines":1}
+{"kind":"shape","id":"sh/t4r6p0fa","slide":9,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/s3i5wvyp","slide":9,"textChars":51,"textLines":1}
+{"kind":"textbox","id":"sh/f69orax0","slide":9,"textChars":1,"textLines":1}
+{"kind":"textbox","id":"sh/18b6tkf6","slide":9,"textChars":21,"textLines":1}
+{"kind":"textbox","id":"sh/g7ip0fyl","slide":9,"textChars":37,"textLines":2}
+{"kind":"shape","id":"sh/vapof6xw","slide":9,"bbox":[792,388,368,0.01]}
+{"kind":"textbox","id":"sh/a9gnm1gb","slide":9,"textChars":110,"textLines":1}
+{"kind":"textbox","id":"sh/grypsv25","slide":9,"textChars":67,"textLines":1}
+{"kind":"image","id":"im/jepsz2lg","slide":9,"name":"","alt":"Canonical versus permutation-aligned event accuracy","bbox":[42,126,680,490]}
+{"kind":"notes","id":"nt/2ag4t6","slide":9,"text":"[Timing: 9:15–10:25] |  | Electron slot numbers are a bookkeeping convention,..."}
+{"kind":"slide","id":"sl/ldfw3o","slide":10,"title":"Both baselines recover most of the shower energy","textShapes":14}
+{"kind":"textbox","id":"sh/psfqlgva","slide":10,"textChars":48,"textLines":1}
+{"kind":"shape","id":"sh/2p4rqlwj","slide":10,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/nqd8jqd4","slide":10,"textChars":54,"textLines":1}
+{"kind":"textbox","id":"sh/0nm9obed","slide":10,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/el4rm1w7","slide":10,"textChars":11,"textLines":1}
+{"kind":"textbox","id":"sh/fmd8f6ds","slide":10,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/sj2pkbeh","slide":10,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/dkbqdwv2","slide":10,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/xkbq1gn6","slide":10,"textChars":18,"textLines":1}
+{"kind":"shape","id":"sh/wj2p8bml","slide":10,"bbox":[828,318,382,0.01]}
+{"kind":"textbox","id":"sh/vi98z65g","slide":10,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/ah076l4v","slide":10,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/9grqxgna","slide":10,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/8fip4b6p","slide":10,"textChars":18,"textLines":1}
+{"kind":"shape","id":"sh/ne9ov654","slide":10,"bbox":[828,488,382,0.01]}
+{"kind":"textbox","id":"sh/mt0721oj","slide":10,"textChars":70,"textLines":1}
+{"kind":"textbox","id":"sh/lsr6twny","slide":10,"textChars":104,"textLines":1}
+{"kind":"image","id":"im/8betsn65","slide":10,"name":"","alt":"Distribution of permutation-aligned event accuracy for two- and three-electron events","bbox":[42,122,744,510]}
+{"kind":"notes","id":"nt/ldfw3o","slide":10,"text":"[Timing: 10:25–11:55] |  | These are the headline held-out results. The Trans..."}
+{"kind":"slide","id":"sl/mb0epp","slide":11,"title":"Three-electron events are more crowded—not wider","textShapes":8}
+{"kind":"textbox","id":"sh/ahgrq14f","slide":11,"textChars":48,"textLines":1}
+{"kind":"shape","id":"sh/xkralg3q","slide":11,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/wji9sbml","slide":11,"textChars":60,"textLines":1}
+{"kind":"textbox","id":"sh/jm9sn6lw","slide":11,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/l8rapg32","slide":11,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/kni9wbmh","slide":11,"textChars":42,"textLines":1}
+{"kind":"textbox","id":"sh/7atsrql8","slide":11,"textChars":13,"textLines":1}
+{"kind":"textbox","id":"sh/69krylkn","slide":11,"textChars":47,"textLines":1}
+{"kind":"textbox","id":"sh/sbml0fup","slide":11,"textChars":145,"textLines":1}
+{"kind":"image","id":"im/3u5gjad0","slide":11,"name":"","alt":"Width-normalized separation and radial shower width for two- and three-electron events","bbox":[42,126,1196,430]}
+{"kind":"notes","id":"nt/mb0epp","slide":11,"text":"[Timing: 11:55–13:10] |  | To understand the multiplicity gap, I use simulati..."}
+{"kind":"slide","id":"sl/4a5gyy","slide":12,"title":"Confidence ranks difficult events—but is not calibrated","textShapes":7}
+{"kind":"textbox","id":"sh/lov2h4r6","slide":12,"textChars":55,"textLines":1}
+{"kind":"shape","id":"sh/y14j69sv","slide":12,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/z2d0fe9g","slide":12,"textChars":66,"textLines":1}
+{"kind":"textbox","id":"sh/8r61cjax","slide":12,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/mp4ja9sr","slide":12,"textChars":37,"textLines":1}
+{"kind":"textbox","id":"sh/nqdkje9c","slide":12,"textChars":64,"textLines":1}
+{"kind":"shape","id":"sh/ov210fat","slide":12,"bbox":[794,342,380,0.01]}
+{"kind":"textbox","id":"sh/pwbi9kry","slide":12,"textChars":14,"textLines":1}
+{"kind":"textbox","id":"sh/xc7290nq","slide":12,"textChars":179,"textLines":4}
+{"kind":"image","id":"im/wfipkb2d","slide":12,"name":"","alt":"Accuracy-coverage trade-off from confidence selection","bbox":[42,122,700,520]}
+{"kind":"notes","id":"nt/4a5gyy","slide":12,"text":"[Timing: 13:10–14:15] |  | The network’s maximum softmax probability and norm..."}
+{"kind":"slide","id":"sl/tcazxp","slide":13,"title":"TRACE adds structure with almost no assignment penalty","textShapes":11}
+{"kind":"textbox","id":"sh/8zidk761","slide":13,"textChars":54,"textLines":1}
+{"kind":"shape","id":"sh/7y9cb25g","slide":13,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/6d0vixov","slide":13,"textChars":50,"textLines":1}
+{"kind":"textbox","id":"sh/lcru9snq","slide":13,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/ja9c725k","slide":13,"textChars":7,"textLines":1}
+{"kind":"textbox","id":"sh/y90bexoz","slide":13,"textChars":56,"textLines":1}
+{"kind":"shape","id":"sh/58vulwnu","slide":13,"bbox":[716,278,450,0.01]}
+{"kind":"textbox","id":"sh/472dsr69","slide":13,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/y1gz2xgv","slide":13,"textChars":26,"textLines":1}
+{"kind":"textbox","id":"sh/z2p0b2x0","slide":13,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/03yh47yl","slide":13,"textChars":26,"textLines":1}
+{"kind":"textbox","id":"sh/l47idcf6","slide":13,"textChars":42,"textLines":1}
+{"kind":"shape","id":"sh/qdwzyxgj","slide":13,"bbox":[716,510,450,0.01]}
+{"kind":"textbox","id":"sh/bepg72h4","slide":13,"textChars":96,"textLines":1}
+{"kind":"image","id":"im/h4ze1kzu","slide":13,"name":"","alt":"TRACE electron-count confusion matrix","bbox":[60,124,590,510]}
+{"kind":"notes","id":"nt/tcazxp","slide":13,"text":"[Timing: 14:15–15:30] |  | TRACE uses one model for both multiplicities. On i..."}
+{"kind":"slide","id":"sl/dodiyk","slide":14,"title":"Mixed deposits remain the central reconstruction challenge","textShapes":9}
+{"kind":"textbox","id":"sh/wfmt8rm1","slide":14,"textChars":58,"textLines":1}
+{"kind":"shape","id":"sh/bedcfm5g","slide":14,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/ad4b6h4v","slide":14,"textChars":61,"textLines":1}
+{"kind":"textbox","id":"sh/lkfulwni","slide":14,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/jidcjm5s","slide":14,"textChars":6,"textLines":1}
+{"kind":"textbox","id":"sh/yh4ba147","slide":14,"textChars":30,"textLines":1}
+{"kind":"textbox","id":"sh/t8fupgnu","slide":14,"textChars":15,"textLines":1}
+{"kind":"textbox","id":"sh/8n6tgbm9","slide":14,"textChars":28,"textLines":1}
+{"kind":"textbox","id":"sh/udkvyhkf","slide":14,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/fetcrml0","slide":14,"textChars":39,"textLines":1}
+{"kind":"image","id":"im/l0f6hwf2","slide":14,"name":"","alt":"TRACE dominant-origin and pure-versus-mixed hit confusion matrices","bbox":[66,124,1148,402]}
+{"kind":"notes","id":"nt/dodiyk","slide":14,"text":"[Timing: 15:30–16:45] |  | Counting is nearly saturated, but sharing one hit ..."}
+{"kind":"slide","id":"sl/xbzyei","slide":15,"title":"TPad carries a small, confounded assignment signal","textShapes":15}
+{"kind":"textbox","id":"sh/t4j69ozq","slide":15,"textChars":50,"textLines":1}
+{"kind":"shape","id":"sh/6h8nyt0f","slide":15,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/721o7yh0","slide":15,"textChars":71,"textLines":1}
+{"kind":"textbox","id":"sh/g7a543yh","slide":15,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/h8j6d8z2","slide":15,"textChars":28,"textLines":1}
+{"kind":"textbox","id":"sh/u5sn2tgb","slide":15,"textChars":15,"textLines":1}
+{"kind":"shape","id":"sh/v61obyhw","slide":15,"bbox":[200,206,450,64]}
+{"kind":"shape","id":"sh/wbq5sjid","slide":15,"bbox":[200,206,390.54,64]}
+{"kind":"textbox","id":"sh/xcz614zy","slide":15,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/xo72p0j2","slide":15,"textChars":10,"textLines":1}
+{"kind":"shape","id":"sh/cnylgv2h","slide":15,"bbox":[200,340,450,64]}
+{"kind":"shape","id":"sh/bmpknq1w","slide":15,"bbox":[200,340,200.89,64]}
+{"kind":"textbox","id":"sh/alg3elkb","slide":15,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/lcr2t0jy","slide":15,"textChars":10,"textLines":1}
+{"kind":"shape","id":"sh/krilkf2d","slide":15,"bbox":[200,474,450,64]}
+{"kind":"shape","id":"sh/zq9kra1s","slide":15,"bbox":[200,474,191.25,64]}
+{"kind":"textbox","id":"sh/ypg3i5kn","slide":15,"textChars":5,"textLines":1}
+{"kind":"textbox","id":"sh/9grmxkja","slide":15,"textChars":86,"textLines":1}
+{"kind":"textbox","id":"sh/8filofip","slide":15,"textChars":39,"textLines":1}
+{"kind":"textbox","id":"sh/sjq50jql","slide":15,"textChars":99,"textLines":1}
+{"kind":"shape","id":"sh/tkzmtor6","slide":15,"bbox":[780,384,390,0.01]}
+{"kind":"textbox","id":"sh/6x8nyt8v","slide":15,"textChars":24,"textLines":1}
+{"kind":"textbox","id":"sh/7yh4re9g","slide":15,"textChars":188,"textLines":1}
+{"kind":"notes","id":"nt/xbzyei","slide":15,"text":"[Timing: 16:45–17:50] |  | Trigger-pad tracks provide upstream position and m..."}
+{"kind":"slide","id":"sl/ixozvp","slide":16,"title":"Set-based learning is feasible; detector ambiguity is the limit","textShapes":13}
+{"kind":"textbox","id":"sh/ozidsjel","slide":16,"textChars":63,"textLines":1}
+{"kind":"shape","id":"sh/3y9wjedg","slide":16,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/2x0vq9wv","slide":16,"textChars":41,"textLines":1}
+{"kind":"textbox","id":"sh/d4bepovi","slide":16,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/c32dw3ex","slide":16,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/b2twnydc","slide":16,"textChars":44,"textLines":1}
+{"kind":"textbox","id":"sh/q1kvutwr","slide":16,"textChars":112,"textLines":1}
+{"kind":"shape","id":"sh/l8vet8ve","slide":16,"bbox":[52,296,1140,0.01]}
+{"kind":"textbox","id":"sh/072d03et","slide":16,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/6ds7elgn","slide":16,"textChars":38,"textLines":1}
+{"kind":"textbox","id":"sh/re187qh8","slide":16,"textChars":128,"textLines":1}
+{"kind":"shape","id":"sh/sfapgbyt","slide":16,"bbox":[52,468,1140,0.01]}
+{"kind":"textbox","id":"sh/tgjq9gzy","slide":16,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/ehs7ilgj","slide":16,"textChars":61,"textLines":1}
+{"kind":"textbox","id":"sh/f2l8bqh4","slide":16,"textChars":125,"textLines":1}
+{"kind":"shape","id":"sh/g3upkvyp","slide":16,"bbox":[160,630,960,38]}
+{"kind":"textbox","id":"sh/143qd0za","slide":16,"textChars":126,"textLines":1}
+{"kind":"notes","id":"nt/ixozvp","slide":16,"text":"[Timing: 17:50–19:30] |  | I draw three conclusions. First, set-based neural ..."}
+{"kind":"slide","id":"sl/6l0c5w","slide":17,"title":"QUESTIONS","textShapes":4}
+{"kind":"textbox","id":"sh/fm5ofud0","slide":17,"textChars":9,"textLines":1}
+{"kind":"textbox","id":"sh/0ne58ful","slide":17,"textChars":73,"textLines":1}
+{"kind":"shape","id":"sh/1on6hkvq","slide":17,"bbox":[42,404,760,0.01]}
+{"kind":"textbox","id":"sh/qxcn25w3","slide":17,"textChars":80,"textLines":1}
+{"kind":"textbox","id":"sh/ry54bado","slide":17,"textChars":40,"textLines":1}
+{"kind":"shape","id":"sh/sze54fe9","slide":17,"bbox":[1138,0,142,720]}
+{"kind":"shape","id":"sh/dknmdkvu","slide":17,"bbox":[1188,0,92,720]}
+{"kind":"notes","id":"nt/6l0c5w","slide":17,"text":"[Timing: 19:30–20:00] |  | The one-sentence answer to the thesis question is ..."}
+{"kind":"slide","id":"sl/t3h9vw","slide":18,"title":"Backup — data, features and training configuration","textShapes":4}
+{"kind":"textbox","id":"sh/5sjqxov2","slide":18,"textChars":50,"textLines":1}
+{"kind":"shape","id":"sh/i58729cr","slide":18,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/3q18vedc","slide":18,"textChars":29,"textLines":1}
+{"kind":"textbox","id":"sh/g3qp0zul","slide":18,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/u187ypcf","slide":18,"textChars":109,"textLines":1}
+{"kind":"table","id":"tb/4r29kni5","slide":18,"name":"","rows":8,"cols":2,"preview":"Item | Configuration","bbox":[68,132,1144,470]}
+{"kind":"notes","id":"nt/t3h9vw","slide":18,"text":"[Timing: Backup] |  | Use this slide if asked about reproducibility or traini..."}
+{"kind":"slide","id":"sl/x8jc9f","slide":19,"title":"Backup — full baseline architectures","textShapes":3}
+{"kind":"textbox","id":"sh/a9sr6lk3","slide":19,"textChars":36,"textLines":1}
+{"kind":"shape","id":"sh/xcjah03u","slide":19,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/cba98v29","slide":19,"textChars":40,"textLines":1}
+{"kind":"textbox","id":"sh/n6hsbqls","slide":19,"textChars":2,"textLines":1}
+{"kind":"image","id":"im/3a9gb6hs","slide":19,"name":"","alt":"Detailed GravNet and Transformer baseline architectures","bbox":[54,120,1172,520]}
+{"kind":"notes","id":"nt/x8jc9f","slide":19,"text":"[Timing: Backup] |  | The exact configurations are shown here. GravNet uses f..."}
+{"kind":"slide","id":"sl/g64oeb","slide":20,"title":"Backup — exact baseline performance","textShapes":6}
+{"kind":"textbox","id":"sh/vyt0ji98","slide":20,"textChars":35,"textLines":1}
+{"kind":"shape","id":"sh/gzmhcnat","slide":20,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/h0vilsre","slide":20,"textChars":78,"textLines":1}
+{"kind":"textbox","id":"sh/i14zexsz","slide":20,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/43mhgnqp","slide":20,"textChars":51,"textLines":1}
+{"kind":"textbox","id":"sh/54vipsra","slide":20,"textChars":68,"textLines":2}
+{"kind":"textbox","id":"sh/y50z2tsf","slide":20,"textChars":68,"textLines":2}
+{"kind":"table","id":"tb/ytknu1oj","slide":20,"name":"","rows":5,"cols":6,"preview":"Multiplicity | Model | Pooled hit | Mean event | Median event | Energy-weighted","bbox":[48,144,1184,300]}
+{"kind":"notes","id":"nt/g64oeb","slide":20,"text":"[Timing: Backup] |  | This table gives all headline baseline metrics. The pai..."}
+{"kind":"slide","id":"sl/ff9bdy","slide":21,"title":"Backup — assignment accuracy falls in the ECal tail","textShapes":7}
+{"kind":"textbox","id":"sh/ylwrylc7","slide":21,"textChars":51,"textLines":1}
+{"kind":"shape","id":"sh/l8nq90vy","slide":21,"bbox":[42,102,1196,0.01]}
+{"kind":"textbox","id":"sh/07e90vud","slide":21,"textChars":55,"textLines":1}
+{"kind":"textbox","id":"sh/napsbado","slide":21,"textChars":2,"textLines":1}
+{"kind":"textbox","id":"sh/8by94fu9","slide":21,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/vepsfad0","slide":21,"textChars":30,"textLines":1}
+{"kind":"textbox","id":"sh/adgr65cf","slide":21,"textChars":12,"textLines":1}
+{"kind":"textbox","id":"sh/wr25ofmt","slide":21,"textChars":30,"textLines":1}
+{"kind":"image","id":"im/ve5wri10","slide":21,"name":"","alt":"Two-electron hit accuracy by ECal layer","bbox":[42,132,580,420]}
+{"kind":"image","id":"im/gfexknil","slide":21,"name":"","alt":"Three-electron hit accuracy by ECal layer","bbox":[658,132,580,420]}
+{"kind":"notes","id":"nt/ff9bdy","slide":21,"text":"[Timing: Backup] |  | Performance falls in the late calorimeter layers, where..."}
+{"kind":"notice","message":"Truncated: omitted 0 lines. Increase maxChars or narrow target."}
